@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabxi - Fresh Sabji from Market to Your Door</title>
+    <meta name="description" content="Sabxi delivers fresh vegetables straight from the market to your doorstep. Coming soon.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #fafdf7;
+            color: #2d2d2d;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .logo {
+            width: 280px;
+            max-width: 80%;
+            margin-bottom: 2.5rem;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: #555;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .coming-soon {
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4a7c23;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .description {
+            font-size: 1.05rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .notify-form {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 400px;
+            margin: 0 auto 3rem;
+        }
+
+        .notify-form input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .notify-form input:focus {
+            border-color: #4a7c23;
+        }
+
+        .notify-form button {
+            padding: 0.75rem 1.5rem;
+            background: #4a7c23;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .notify-form button:hover {
+            background: #3d6a1c;
+        }
+
+        .features {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .feature {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .feature span {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        footer {
+            margin-top: auto;
+            padding-top: 2rem;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 480px) {
+            .notify-form {
+                flex-direction: column;
+            }
+
+            .coming-soon {
+                font-size: 1.6rem;
+            }
+
+            .features {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="sabxi.com.png" alt="Sabxi" class="logo">
+
+        <div class="coming-soon">Coming Soon</div>
+
+        <p class="tagline">Fresh sabji, straight from the market to your door.</p>
+
+        <p class="description">
+            We're building something fresh. Sabxi will bring you handpicked vegetables
+            directly from the local market — no middlemen, no cold storage, just pure freshness.
+        </p>
+
+        <form class="notify-form" onsubmit="event.preventDefault(); this.innerHTML='<p style=\'padding:0.75rem;color:#4a7c23;font-weight:600;\'>We\'ll notify you! 🥕</p>';">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Notify Me</button>
+        </form>
+
+        <div class="features">
+            <div class="feature">
+                <span>🥬</span>
+                Farm Fresh
+            </div>
+            <div class="feature">
+                <span>🚀</span>
+                Same Day Delivery
+            </div>
+            <div class="feature">
+                <span>💰</span>
+                Market Prices
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Sabxi. All rights reserved.
+    </footer>
+</body>
+</html>
