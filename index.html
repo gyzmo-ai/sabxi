@@ -215,11 +215,42 @@
         }
         .menu-card:hover { transform: scale(1.02); }
         .menu-card-img {
-            height: 100px; display: flex; align-items: center; justify-content: center;
-            font-size: 3rem;
+            height: 120px; display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; position: relative;
         }
-        .menu-card:nth-child(odd) .menu-card-img { background: rgba(255,107,0,0.08); }
-        .menu-card:nth-child(even) .menu-card-img { background: rgba(46,133,64,0.08); }
+        .menu-card[data-cat="veg"] .menu-card-img { background: rgba(255,107,0,0.08); }
+        .menu-card[data-cat="fruit"] .menu-card-img { background: rgba(255,193,7,0.12); }
+        .menu-card[data-cat="juice"] .menu-card-img { background: linear-gradient(180deg, #fff8f0 0%, #ffe8cc 100%); }
+        .menu-card[data-cat="combo"] .menu-card-img { background: rgba(46,133,64,0.08); }
+
+        /* Juice glass visuals */
+        .juice-glass {
+            width: 52px; height: 72px; position: relative;
+            border: 3px solid rgba(0,0,0,0.12); border-top: none;
+            border-radius: 0 0 14px 14px; overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .juice-glass::before {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 75%;
+            border-radius: 0 0 10px 10px;
+        }
+        .juice-glass::after {
+            content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+            width: 36px; height: 8px; border: 3px solid rgba(0,0,0,0.12);
+            border-bottom: none; border-radius: 6px 6px 0 0;
+        }
+        .juice-glass.orange::before { background: linear-gradient(180deg, #ffb347, #ff8c00); }
+        .juice-glass.green::before { background: linear-gradient(180deg, #7cb342, #558b2f); }
+        .juice-glass.watermelon::before { background: linear-gradient(180deg, #ff6b8a, #e53935); }
+        .juice-glass.carrot::before { background: linear-gradient(180deg, #ffb74d, #f57c00); }
+        .juice-glass.mango::before { background: linear-gradient(180deg, #ffca28, #ff8f00); }
+        .juice-glass.mixed::before { background: linear-gradient(180deg, #ab47bc, #7b1fa2); }
+        .juice-foam {
+            position: absolute; top: 18%; left: 10%; right: 10%; height: 6px;
+            background: rgba(255,255,255,0.5); border-radius: 50%; z-index: 1;
+        }
+        .juice-glass-wrap { position: relative; display: flex; flex-direction: column; align-items: center; }
+        .juice-glass-wrap .fruit-accent { font-size: 1.4rem; position: absolute; top: -4px; right: -18px; }
         .menu-card-body { padding: 1rem; }
         .menu-card-body h4 { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
         .menu-card-body p { font-size: 0.78rem; color: var(--gray); margin-bottom: 0.5rem; }
@@ -548,21 +579,39 @@
         <div class="menu-tabs reveal">
             <button class="menu-tab active" data-cat="veg">Vegetables</button>
             <button class="menu-tab" data-cat="juice">Juices</button>
+            <button class="menu-tab" data-cat="fruit">Fruits</button>
             <button class="menu-tab" data-cat="combo">Combos</button>
         </div>
         <div class="menu-grid" id="menuGrid">
+            <!-- Vegetables -->
             <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img">🍅</div><div class="menu-card-body"><h4>Tomatoes</h4><p>500g · diced, sliced, or whole</p><div class="menu-card-footer"><span class="menu-price">₹35</span><button class="add-btn">+</button></div></div></div>
             <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img">🥬</div><div class="menu-card-body"><h4>Palak</h4><p>250g · chopped or whole leaves</p><div class="menu-card-footer"><span class="menu-price">₹28</span><button class="add-btn">+</button></div></div></div>
             <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img">🧅</div><div class="menu-card-body"><h4>Onions</h4><p>500g · sliced, diced, or whole</p><div class="menu-card-footer"><span class="menu-price">₹32</span><button class="add-btn">+</button></div></div></div>
             <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img">🥕</div><div class="menu-card-body"><h4>Carrots</h4><p>500g · julienned, diced, or whole</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
             <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img">🫑</div><div class="menu-card-body"><h4>Bell Peppers</h4><p>3 pcs · sliced or diced</p><div class="menu-card-footer"><span class="menu-price">₹60</span><button class="add-btn">+</button></div></div></div>
             <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img">🥒</div><div class="menu-card-body"><h4>Cucumber</h4><p>500g · sliced or whole</p><div class="menu-card-footer"><span class="menu-price">₹25</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img">🍊</div><div class="menu-card-body"><h4>Classic Orange</h4><p>Cold-pressed, no added sugar</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img">🥬</div><div class="menu-card-body"><h4>Green Detox</h4><p>Spinach, cucumber, apple, ginger</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img">🍉</div><div class="menu-card-body"><h4>Watermelon Mint</h4><p>Hydrating summer blend</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img">🥕</div><div class="menu-card-body"><h4>Carrot Ginger</h4><p>Immunity boost with turmeric</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
+
+            <!-- Juices -->
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><div class="juice-glass-wrap"><div class="juice-glass orange"><div class="juice-foam"></div></div><span class="fruit-accent">🍊</span></div></div><div class="menu-card-body"><h4>Classic Orange</h4><p>300ml · cold-pressed, no sugar</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><div class="juice-glass-wrap"><div class="juice-glass green"><div class="juice-foam"></div></div><span class="fruit-accent">🥬</span></div></div><div class="menu-card-body"><h4>Green Detox</h4><p>300ml · spinach, cucumber, ginger</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><div class="juice-glass-wrap"><div class="juice-glass watermelon"><div class="juice-foam"></div></div><span class="fruit-accent">🍉</span></div></div><div class="menu-card-body"><h4>Watermelon Mint</h4><p>300ml · hydrating summer blend</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><div class="juice-glass-wrap"><div class="juice-glass carrot"><div class="juice-foam"></div></div><span class="fruit-accent">🥕</span></div></div><div class="menu-card-body"><h4>Carrot Ginger</h4><p>300ml · immunity boost + turmeric</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><div class="juice-glass-wrap"><div class="juice-glass mango"><div class="juice-foam"></div></div><span class="fruit-accent">🥭</span></div></div><div class="menu-card-body"><h4>Alphonso Mango</h4><p>300ml · seasonal, thick &amp; sweet</p><div class="menu-card-footer"><span class="menu-price">₹119</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><div class="juice-glass-wrap"><div class="juice-glass mixed"><div class="juice-foam"></div></div><span class="fruit-accent">🫐</span></div></div><div class="menu-card-body"><h4>Mixed Berry</h4><p>300ml · berries, banana, honey</p><div class="menu-card-footer"><span class="menu-price">₹129</span><button class="add-btn">+</button></div></div></div>
+
+            <!-- Fruits -->
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img">🍎</div><div class="menu-card-body"><h4>Apples</h4><p>1 kg · Shimla or Kashmiri</p><div class="menu-card-footer"><span class="menu-price">₹120</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img">🍌</div><div class="menu-card-body"><h4>Bananas</h4><p>6 pcs · ripe &amp; ready to eat</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img">🍊</div><div class="menu-card-body"><h4>Oranges</h4><p>1 kg · sweet &amp; juicy</p><div class="menu-card-footer"><span class="menu-price">₹80</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img">🥭</div><div class="menu-card-body"><h4>Mangoes</h4><p>1 kg · seasonal varieties</p><div class="menu-card-footer"><span class="menu-price">₹150</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img">🍇</div><div class="menu-card-body"><h4>Grapes</h4><p>500g · seedless green or black</p><div class="menu-card-footer"><span class="menu-price">₹90</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img">🍉</div><div class="menu-card-body"><h4>Watermelon</h4><p>1 pc · cut or whole</p><div class="menu-card-footer"><span class="menu-price">₹60</span><button class="add-btn">+</button></div></div></div>
+
+            <!-- Combos -->
             <div class="menu-card reveal" data-cat="combo"><div class="menu-card-img">🍲</div><div class="menu-card-body"><h4>Daily Sabzi Pack</h4><p>Tomato, onion, potato, green chilli</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
             <div class="menu-card reveal" data-cat="combo"><div class="menu-card-img">🥗</div><div class="menu-card-body"><h4>Salad Kit</h4><p>Lettuce, cucumber, tomato, lemon</p><div class="menu-card-footer"><span class="menu-price">₹129</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="combo"><div class="menu-card-img">🥤</div><div class="menu-card-body"><h4>Juice + Veg Combo</h4><p>Any juice + 3 vegetables of choice</p><div class="menu-card-footer"><span class="menu-price">₹199</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="combo"><div class="menu-card-img">🍱</div><div class="menu-card-body"><h4>Weekly Fruit Box</h4><p>Seasonal mix · 2 kg assorted fruits</p><div class="menu-card-footer"><span class="menu-price">₹349</span><button class="add-btn">+</button></div></div></div>
         </div>
     </div>
 </section>
@@ -742,9 +791,7 @@
             tab.classList.add('active');
             const cat = tab.dataset.cat;
             document.querySelectorAll('.menu-card').forEach(card => {
-                card.style.display = (cat === 'veg' && card.dataset.cat === 'veg') ||
-                    (cat === 'juice' && card.dataset.cat === 'juice') ||
-                    (cat === 'combo' && card.dataset.cat === 'combo') ? '' : 'none';
+                card.style.display = card.dataset.cat === cat ? '' : 'none';
             });
         });
     });
