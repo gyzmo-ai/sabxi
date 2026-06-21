@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SABXI — Chop Chop, Sorted.</title>
-    <meta name="description" content="SABXI — Chop Chop, Sorted. Fresh vegetables cut to order, cold-pressed juices, and fruits delivered fast. Powered by an AI fresh-commerce platform.">
+    <meta name="description" content="SABXI — Chop Chop, Sorted. Fresh vegetables, salads, fruit chaat, and cold-pressed juice prepared at SABXI Studio across six stations — order receive, cutting, salad, juice, ice & water, packaging. Delivered fast.">
     <meta name="theme-color" content="#FF6B00">
     <link rel="icon" href="assets/logo-trans.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -142,17 +142,35 @@
         .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem,6vw,4.5rem); line-height: 1; background: linear-gradient(135deg, var(--orange), var(--green-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .stat-label { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.55); margin-top: 0.4rem; }
 
-        /* How */
-        .how { background: white; }
-        .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
-        .step { background: var(--cream); border-radius: 22px; overflow: hidden; transition: transform 0.3s; }
-        .step:hover { transform: translateY(-6px); }
-        .step-media { width: 100%; aspect-ratio: 16/10; overflow: hidden; background: var(--gray-light); position: relative; }
-        .step-media video, .step-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .step-num { position: absolute; top: 1rem; left: 1rem; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: white; background: var(--orange); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
-        .step-body { padding: 1.5rem; }
-        .step-body h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .step-body p { font-size: 0.9rem; color: var(--gray); }
+        /* Studio workflow */
+        .how { background: var(--ink); color: white; }
+        .how .section-label { color: var(--orange-light); }
+        .how .section-desc { color: rgba(255,255,255,0.6); }
+        .workflow { display: grid; grid-template-columns: repeat(6,1fr); gap: 1rem; margin-top: 3rem; }
+        .workflow-step {
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 18px; padding: 1.5rem 1rem; text-align: center;
+            transition: transform 0.3s, border-color 0.3s, background 0.3s;
+            position: relative; overflow: hidden;
+        }
+        .workflow-step::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--orange), var(--green-light));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .workflow-step:hover { transform: translateY(-6px); border-color: rgba(255,107,0,0.4); background: rgba(255,255,255,0.07); }
+        .workflow-step:hover::before { opacity: 1; }
+        .workflow-num {
+            width: 48px; height: 48px; border-radius: 50%; margin: 0 auto 1rem;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: white;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            box-shadow: 0 6px 20px rgba(255,107,0,0.35);
+        }
+        .workflow-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+        .workflow-step h3 { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.5rem; line-height: 1.3; }
+        .workflow-step p { font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+        .workflow-connector { display: none; }
 
         /* Features */
         .features { background: var(--cream); }
@@ -178,21 +196,39 @@
         .line-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
         .line-chip { font-size: 0.7rem; background: white; border: 1px solid var(--gray-light); border-radius: 50px; padding: 0.25rem 0.65rem; color: var(--gray); }
 
-        /* Food tile (menu mixes) */
-        .food-tile { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3.2rem; }
+        /* Food tile (menu mixes) — emoji is the fallback behind the photo */
+        .food-tile { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3.2rem; }
+        .food-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
         /* Studio */
-        .studio { background: white; }
-        .studio-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: center; margin-top: 3rem; }
-        .studio-photo { border-radius: 24px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,0.14); border: 4px solid white; position: relative; }
-        .studio-photo img { width: 100%; display: block; aspect-ratio: 460/390; object-fit: cover; }
-        .studio-badge { position: absolute; top: 1.25rem; left: 1.25rem; background: var(--orange); color: white; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-        .studio-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 1rem; }
+        .studio { background: var(--cream); }
+        .studio-showcase {
+            margin-top: 3rem; border-radius: 28px; overflow: hidden;
+            box-shadow: 0 32px 80px rgba(0,0,0,0.18); border: 1px solid rgba(0,0,0,0.06);
+            position: relative; background: var(--ink);
+        }
+        .studio-showcase img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
+        .studio-showcase-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(12,12,12,0.92) 60%);
+            padding: 3rem 2.5rem 2rem; color: white;
+        }
+        .studio-showcase-overlay h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.5rem); letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+        .studio-showcase-overlay p { font-size: 0.95rem; color: rgba(255,255,255,0.75); max-width: 560px; }
+        .studio-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; margin-top: 3rem; }
+        .studio-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 1rem; }
         .studio-info h3 span { color: var(--orange); }
         .studio-info p { color: var(--gray); line-height: 1.7; margin-bottom: 1.5rem; }
         .studio-perks { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
         .studio-perks li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.92rem; font-weight: 500; }
         .studio-perks li::before { content: '✓'; width: 24px; height: 24px; border-radius: 50%; background: rgba(46,133,64,0.12); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+        .studio-specs { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+        .studio-spec {
+            background: white; border-radius: 16px; padding: 1.25rem;
+            border: 1px solid rgba(0,0,0,0.05); text-align: center;
+        }
+        .studio-spec strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--orange); line-height: 1; margin-bottom: 0.25rem; }
+        .studio-spec span { font-size: 0.78rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.06em; }
 
         /* Fresh action */
         .fresh { background: var(--ink); color: white; }
@@ -251,7 +287,7 @@
 
         /* AI pipeline */
         .pipeline { background: var(--ink); color: white; padding-top: 0; }
-        .pipeline-track { display: grid; grid-template-columns: repeat(5,1fr); gap: 1rem; margin-top: 3rem; position: relative; }
+        .pipeline-track { display: grid; grid-template-columns: repeat(6,1fr); gap: 1rem; margin-top: 3rem; position: relative; }
         .pipe-step { text-align: center; position: relative; padding: 1.5rem 0.75rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; }
         .pipe-step .pipe-ico { font-size: 1.8rem; margin-bottom: 0.6rem; }
         .pipe-step h5 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; }
@@ -310,9 +346,9 @@
             .hero-sub { margin-left: auto; margin-right: auto; }
             .hero-actions, .hero-trust { justify-content: center; }
             .phone-wrap { margin-top: 2.5rem; }
-            .steps, .features-grid, .ai-grid, .review-grid, .media-grid { grid-template-columns: 1fr; }
+            .workflow, .features-grid, .ai-grid, .review-grid, .media-grid { grid-template-columns: repeat(2,1fr); }
             .media-card.wide { grid-column: span 1; }
-            .studio-wrap, .market-thesis { grid-template-columns: 1fr; }
+            .studio-wrap, .market-thesis, .studio-specs { grid-template-columns: 1fr; }
             .market-grid, .pipeline-track, .lines-grid { grid-template-columns: repeat(2,1fr); }
             .footer-inner { grid-template-columns: 1fr; }
         }
@@ -322,7 +358,7 @@
             .menu-toggle { display: block; }
             .phone-float { display: none; }
             .stats-grid { grid-template-columns: 1fr 1fr; }
-            .lines-grid { grid-template-columns: 1fr; }
+            .lines-grid, .workflow, .pipeline-track { grid-template-columns: 1fr; }
             .notify-form { flex-direction: column; }
         }
     </style>
@@ -332,9 +368,9 @@
 <nav id="nav">
     <img src="assets/logo-trans.png" alt="SABXI" class="nav-logo">
     <ul id="navLinks">
-        <li><a href="#how">How It Works</a></li>
+        <li><a href="#how">Inside Studio</a></li>
         <li><a href="#lines">Products</a></li>
-        <li><a href="#studio">Studio</a></li>
+        <li><a href="#studio">SABXI Studio</a></li>
         <li><a href="#menu">Order</a></li>
         <li><a href="#ai">AI</a></li>
         <li><a href="#notify" class="nav-cta">Get Early Access</a></li>
@@ -352,17 +388,17 @@
     <div class="hero-inner">
         <div>
             <img src="assets/logo-trans.png" alt="SABXI logo" class="hero-logo">
-            <div class="hero-badge">Launching soon in your city</div>
+            <div class="hero-badge">SABXI Studio — Fresh, Made Visible</div>
             <h1><span class="o">Chop Chop,</span><br><span class="g">Sorted.</span></h1>
-            <p class="hero-sub">Raw and freshly-cut vegetables &amp; fruits, ready-to-eat mixes, and cold-pressed juices &amp; jars — delivered fast. One tap, and your sabzi is sorted.</p>
+            <p class="hero-sub">Order on the app. Watch it flow through our SABXI Studio — six stations from order receive to packaging — then delivered to your door in under 30 minutes.</p>
             <div class="hero-actions">
                 <a href="#notify" class="btn btn-primary">Get Early Access</a>
-                <a href="#how" class="btn btn-ghost">See How It Works</a>
+                <a href="#how" class="btn btn-ghost">See the 6 Stations</a>
             </div>
             <div class="hero-trust">
-                <div><strong>30 min</strong><span>Avg. delivery</span></div>
+                <div><strong>6</strong><span>Prep stations</span></div>
                 <div><strong>100%</strong><span>Cut to order</span></div>
-                <div><strong>7–9</strong><span>Order 7AM–9PM</span></div>
+                <div><strong>30 min</strong><span>Avg. delivery</span></div>
             </div>
         </div>
         <div class="phone-wrap">
@@ -399,8 +435,8 @@
 <!-- MARQUEE -->
 <div class="marquee">
     <div class="marquee-track">
-        <span>Chop Chop, Sorted</span><span>Fresh Cut</span><span>Cold-Pressed Juice</span><span>Zero Middlemen</span><span>Market Prices</span><span>AI Powered</span>
-        <span>Chop Chop, Sorted</span><span>Fresh Cut</span><span>Cold-Pressed Juice</span><span>Zero Middlemen</span><span>Market Prices</span><span>AI Powered</span>
+        <span>Chop Chop, Sorted</span><span>SABXI Studio</span><span>Order Receive</span><span>Cut to Order</span><span>Salad &amp; Fruit Chaat</span><span>Cold-Pressed Juice</span><span>Ice &amp; Water</span><span>Packaged Fresh</span>
+        <span>Chop Chop, Sorted</span><span>SABXI Studio</span><span>Order Receive</span><span>Cut to Order</span><span>Salad &amp; Fruit Chaat</span><span>Cold-Pressed Juice</span><span>Ice &amp; Water</span><span>Packaged Fresh</span>
     </div>
 </div>
 
@@ -414,33 +450,48 @@
     </div>
 </div>
 
-<!-- HOW IT WORKS -->
+<!-- STUDIO WORKFLOW -->
 <section class="how" id="how">
     <div class="section-inner" style="text-align:center;">
-        <span class="section-label reveal">Simple as 1-2-3</span>
-        <h2 class="section-title reveal">From App to Kitchen</h2>
-        <p class="section-desc reveal" style="margin:0 auto;">Order, we chop, you cook. Fresh produce sorted in three quick steps.</p>
-        <div class="steps">
-            <div class="step reveal">
-                <div class="step-media">
-                    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/26649/26649-720.mp4" type="video/mp4"></video>
-                    <div class="step-num">1</div>
-                </div>
-                <div class="step-body"><h3>Browse &amp; Customize</h3><p>Pick vegetables, fruits, and juices. Choose your cut — diced, sliced, julienned, or whole.</p></div>
+        <span class="section-label reveal">Inside SABXI Studio</span>
+        <h2 class="section-title reveal" style="color:white;">Six Stations. One Fresh Promise.</h2>
+        <p class="section-desc reveal" style="margin:0 auto;">Every order moves through six dedicated stations — from the moment it hits our POS to the final sealed bag. Transparent, hygienic, and built for speed.</p>
+        <div class="workflow">
+            <div class="workflow-step reveal">
+                <div class="workflow-num">1</div>
+                <div class="workflow-icon">📋</div>
+                <h3>Order Receive (POC)</h3>
+                <p>App orders land on our studio POS. Every item is verified, queued, and routed to the right station.</p>
             </div>
-            <div class="step reveal">
-                <div class="step-media">
-                    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/46543/46543-720.mp4" type="video/mp4"></video>
-                    <div class="step-num">2</div>
-                </div>
-                <div class="step-body"><h3>We Chop Fresh</h3><p>Your order hits the cutting station. No pre-cut stock, no cold storage — prepped the moment you order.</p></div>
+            <div class="workflow-step reveal">
+                <div class="workflow-num">2</div>
+                <div class="workflow-icon">🔪</div>
+                <h3>Cutting Vegetables</h3>
+                <p>Diced, sliced, or julienned to your spec — cut fresh on stainless steel, never from pre-cut stock.</p>
             </div>
-            <div class="step reveal">
-                <div class="step-media">
-                    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/22677/22677-720.mp4" type="video/mp4"></video>
-                    <div class="step-num">3</div>
-                </div>
-                <div class="step-body"><h3>Sorted &amp; Delivered</h3><p>AI-optimized routes get your bag to your door in under 30 minutes. Track it live.</p></div>
+            <div class="workflow-step reveal">
+                <div class="workflow-num">3</div>
+                <div class="workflow-icon">🥗</div>
+                <h3>Salad &amp; Fruit Chaat</h3>
+                <p>Salad bowls, fruit cuts, and chaat mixes assembled with seasonal produce from our cold shelves.</p>
+            </div>
+            <div class="workflow-step reveal">
+                <div class="workflow-num">4</div>
+                <div class="workflow-icon">🥤</div>
+                <h3>Juice</h3>
+                <p>Cold-pressed and blended fresh — orange, green detox, smoothies, and seasonal specials on demand.</p>
+            </div>
+            <div class="workflow-step reveal">
+                <div class="workflow-num">5</div>
+                <div class="workflow-icon">🧊</div>
+                <h3>Ice &amp; Drinking Water</h3>
+                <p>Filtered water and crushed ice added to drinks. Every juice and smoothie finished at peak freshness.</p>
+            </div>
+            <div class="workflow-step reveal">
+                <div class="workflow-num">6</div>
+                <div class="workflow-icon">📦</div>
+                <h3>Packaging</h3>
+                <p>Labelled, sealed, and quality-checked. Your bag is ready for pickup by our delivery partner.</p>
             </div>
         </div>
     </div>
@@ -456,7 +507,8 @@
             <div class="feat-card reveal"><div class="feat-icon">🔪</div><h4>Cut to Your Spec</h4><p>Diced for biryani, sliced for sandwiches, julienned for stir-fry. We prep it your way.</p></div>
             <div class="feat-card reveal"><div class="feat-icon">⚡</div><h4>Same-Day Delivery</h4><p>Order between 7 AM and 9 PM — fresh produce and juices delivered the same day.</p></div>
             <div class="feat-card reveal"><div class="feat-icon">💰</div><h4>Market Prices</h4><p>Direct from mandis every morning. What you'd pay at the market is what you pay — no markup.</p></div>
-            <div class="feat-card reveal"><div class="feat-icon">📍</div><h4>Live Order Tracking</h4><p>Watch your order move from cutting station to delivery partner to your door, in real time.</p></div>
+            <div class="feat-card reveal"><div class="feat-icon">🏪</div><h4>SABXI Studio</h4><p>Six dedicated stations — order receive, cutting, salad &amp; chaat, juice, ice &amp; water, packaging — all under one roof.</p></div>
+            <div class="feat-card reveal"><div class="feat-icon">📍</div><h4>Live Order Tracking</h4><p>Track your order through every studio station — from POC to packaging to your door, in real time.</p></div>
             <div class="feat-card reveal"><div class="feat-icon">🍲</div><h4>Ready-to-Eat Mixes</h4><p>Fried rice, poha, custard, sandwiches, boiled rajma &amp; chana, bhel and more — fresh, prepped, and ready.</p></div>
             <div class="feat-card reveal"><div class="feat-icon">🔁</div><h4>Daily Subscription</h4><p>Set your daily basket — palak, tomatoes, onions. Auto-delivered every morning, always discounted.</p></div>
         </div>
@@ -495,7 +547,7 @@
             <div class="line-card reveal">
                 <div class="line-media">
                     <span class="line-no">3</span>
-                    <div class="food-tile" style="background:linear-gradient(135deg,#FFE0B2,#FFCC80);">🍲</div>
+                    <div class="food-tile" style="background:linear-gradient(135deg,#FFE0B2,#FFCC80);">🍲<img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&h=450&fit=crop" alt="Ready mixes" loading="lazy" onerror="this.remove()"></div>
                 </div>
                 <div class="line-body">
                     <h3>Mixes — Ready &amp; Prepped</h3>
@@ -523,21 +575,34 @@
     <div class="section-inner">
         <span class="section-label reveal">Our Store</span>
         <h2 class="section-title reveal">SABXI Studio</h2>
-        <p class="section-desc reveal">Every app order is prepared here — a compact, glass-front micro-store built for speed, hygiene, and transparency.</p>
+        <p class="section-desc reveal">A compact, industrial-chic micro-store — black panels, stainless steel counters, LED-lit shelves, and six dedicated prep stations. Every app order is made here, visible and fresh.</p>
+
+        <div class="studio-showcase reveal">
+            <img src="assets/sabxi-studio.png" alt="SABXI Studio storefront — six-station fresh produce, salad, juice, and packaging studio">
+            <div class="studio-showcase-overlay">
+                <h3>SABXI · sabxi.com</h3>
+                <p>Fresh vegetables, salads, fruit chaat, and cold-pressed juice — prepared across six stations and delivered to your door.</p>
+            </div>
+        </div>
+
         <div class="studio-wrap">
             <div class="studio-info reveal">
-                <h3>Chop Chop,<br><span>Sorted.</span></h3>
-                <p>SABXI Studio is where your vegetables get cut to order, juices are blended fresh, and every bag is packed clean — all visible through our full glass front.</p>
+                <h3>Designed for<br><span>Speed &amp; Hygiene</span></h3>
+                <p>SABXI Studio is a 100 sq.ft smart layout built around six stations — order receive, cutting, salad &amp; fruit chaat, juice, ice &amp; water, and packaging. Stainless steel surfaces, LED lighting, and CCTV at every station.</p>
                 <ul class="studio-perks">
-                    <li>100 sq.ft smart layout — cut, pack, deliver</li>
-                    <li>Glass-front — watch your order being prepared</li>
-                    <li>Fully AC with LED lighting &amp; CCTV</li>
-                    <li>App-only orders — no walk-ins needed</li>
+                    <li>Six dedicated prep stations — no cross-contamination</li>
+                    <li>Stainless steel counters with LED-lit produce shelves</li>
+                    <li>POS at order receive — app orders flow straight to the floor</li>
+                    <li>Ice &amp; filtered water station for every drink</li>
+                    <li>Labelled packaging with order tracking QR</li>
+                    <li>App-only — no walk-ins, built for delivery speed</li>
                 </ul>
             </div>
-            <div class="studio-photo reveal">
-                <span class="studio-badge">SABXI Studio</span>
-                <img src="assets/sabxi-studio.png" alt="SABXI Studio storefront — glass-front fresh produce and juice shop">
+            <div class="studio-specs reveal">
+                <div class="studio-spec"><strong>6</strong><span>Prep Stations</span></div>
+                <div class="studio-spec"><strong>100</strong><span>Sq.ft Layout</span></div>
+                <div class="studio-spec"><strong>LED</strong><span>Lit Shelves</span></div>
+                <div class="studio-spec"><strong>30</strong><span>Min Delivery</span></div>
             </div>
         </div>
     </div>
@@ -546,33 +611,33 @@
 <!-- FRESH IN ACTION -->
 <section class="fresh" id="fresh">
     <div class="section-inner">
-        <span class="section-label reveal">See It Happen</span>
-        <h2 class="section-title reveal" style="color:white;">Chopped. Pressed. Packed.</h2>
-        <p class="section-desc reveal">Watch how every SABXI order is prepared — from the cutting board to the bag at your door.</p>
+        <span class="section-label reveal">Station by Station</span>
+        <h2 class="section-title reveal" style="color:white;">See Every Station in Action</h2>
+        <p class="section-desc reveal">From the POS to the sealed bag — watch how each SABXI Studio station prepares your order.</p>
         <div class="media-grid">
-            <div class="media-card wide reveal">
-                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=800&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/6272/6272-720.mp4" type="video/mp4"></video>
-                <div class="media-info"><span class="media-tag cut">Cut to Order</span><h4>Vegetables Chopped Fresh</h4><p>Every order cut on demand — diced, sliced, or julienned exactly how you want it.</p></div>
+            <div class="media-card reveal">
+                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/26649/26649-720.mp4" type="video/mp4"></video>
+                <div class="media-info"><span class="media-tag cut">Station 1</span><h4>Order Receive (POC)</h4><p>App orders verified on POS and routed to the right prep stations instantly.</p></div>
             </div>
             <div class="media-card reveal">
-                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/43913/43913-720.mp4" type="video/mp4"></video>
-                <div class="media-info"><span class="media-tag fruit">Fruits</span><h4>Fresh Fruit Prep</h4><p>Seasonal fruits sliced and ready for your juice or fruit bowl.</p></div>
+                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/46543/46543-720.mp4" type="video/mp4"></video>
+                <div class="media-info"><span class="media-tag cut">Station 2</span><h4>Cutting Vegetables</h4><p>Diced, sliced, or julienned on stainless steel — cut fresh the moment you order.</p></div>
+            </div>
+            <div class="media-card reveal">
+                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/6272/6272-720.mp4" type="video/mp4"></video>
+                <div class="media-info"><span class="media-tag fruit">Station 3</span><h4>Salad &amp; Fruit Chaat</h4><p>Salad bowls, fruit cuts, and chaat mixes assembled from LED-lit cold shelves.</p></div>
             </div>
             <div class="media-card reveal">
                 <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/15954/15954-720.mp4" type="video/mp4"></video>
-                <div class="media-info"><span class="media-tag fruit">Juices</span><h4>Cold-Pressed Juice</h4><p>Made fresh the moment you order — no bottles, no concentrates.</p></div>
+                <div class="media-info"><span class="media-tag fruit">Station 4</span><h4>Juice</h4><p>Cold-pressed and blended fresh — no bottles, no concentrates, made on demand.</p></div>
             </div>
             <div class="media-card reveal">
-                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/22677/22677-720.mp4" type="video/mp4"></video>
-                <div class="media-info"><span class="media-tag pack">Packaged</span><h4>Bagged &amp; Sealed</h4><p>Your produce packed in clean, sealed bags — hygienic and ready to cook.</p></div>
+                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1551024709-8f23befdfef9?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/34252/34252-720.mp4" type="video/mp4"></video>
+                <div class="media-info"><span class="media-tag pack">Station 5</span><h4>Ice &amp; Drinking Water</h4><p>Filtered water and crushed ice added — every drink finished at peak temperature.</p></div>
             </div>
             <div class="media-card reveal">
-                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/25435/25435-720.mp4" type="video/mp4"></video>
-                <div class="media-info"><span class="media-tag fruit">Fruits</span><h4>Fruit Bagging</h4><p>Hand-picked fruits weighed, packed, and quality-checked before dispatch.</p></div>
-            </div>
-            <div class="media-card wide reveal">
-                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/982/982-720.mp4" type="video/mp4"></video>
-                <div class="media-info"><span class="media-tag pack">Out for Delivery</span><h4>From Market to Your Door</h4><p>Fresh bags loaded and on their way — tracked live on the SABXI app.</p></div>
+                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/22677/22677-720.mp4" type="video/mp4"></video>
+                <div class="media-info"><span class="media-tag pack">Station 6</span><h4>Packaging</h4><p>Labelled, sealed, and quality-checked — your bag ready for delivery in minutes.</p></div>
             </div>
         </div>
     </div>
@@ -608,15 +673,15 @@
             <div class="menu-card reveal" data-cat="cut"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop" alt="Salad cuts"></div><div class="menu-card-body"><h4>Salad Cut Pack</h4><p>400g · lettuce, cucumber, tomato</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
 
             <!-- 3. Mixes — ready & prepped -->
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFE0B2,#FFB74D);">🍚</div></div><div class="menu-card-body"><h4>Veg Fried Rice</h4><p>Ready-to-eat · 350g</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFF3E0,#FFCC80);">🍛</div></div><div class="menu-card-body"><h4>Poha</h4><p>Ready-to-eat · 300g</p><div class="menu-card-footer"><span class="menu-price">₹59</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFF9C4,#FFE082);">🍮</div></div><div class="menu-card-body"><h4>Fruit Custard</h4><p>Ready-to-eat · 250g</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#DCEDC8,#AED581);">🥪</div></div><div class="menu-card-body"><h4>Veg Sandwich</h4><p>Freshly made · 2 pcs</p><div class="menu-card-footer"><span class="menu-price">₹69</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFCCBC,#FF8A65);">🫘</div></div><div class="menu-card-body"><h4>Rajma + Boiled Rajma</h4><p>Masala mix + boiled beans · 400g</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFE0B2,#FFB74D);">🧆</div></div><div class="menu-card-body"><h4>Chana Masala Mix</h4><p>With boiled chana · 400g</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFF3E0,#FFCC80);">🥔</div></div><div class="menu-card-body"><h4>Boiled Potato Mix</h4><p>Peeled &amp; boiled · 500g</p><div class="menu-card-footer"><span class="menu-price">₹59</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFE082,#FFB300);">🥗</div></div><div class="menu-card-body"><h4>Bhel Mix</h4><p>Ready bhel kit · 300g</p><div class="menu-card-footer"><span class="menu-price">₹69</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFE0B2,#FF8A65);">🥜</div></div><div class="menu-card-body"><h4>Chana Chur / Namkeen</h4><p>Crunchy snack mix · 200g</p><div class="menu-card-footer"><span class="menu-price">₹49</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFE0B2,#FFB74D);">🍚<img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop" alt="Veg Fried Rice" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Veg Fried Rice</h4><p>Ready-to-eat · 350g</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFF3E0,#FFCC80);">🍛<img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop" alt="Poha" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Poha</h4><p>Ready-to-eat · 300g</p><div class="menu-card-footer"><span class="menu-price">₹59</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFF9C4,#FFE082);">🍮<img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop" alt="Fruit Custard" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Fruit Custard</h4><p>Ready-to-eat · 250g</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#DCEDC8,#AED581);">🥪<img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&h=300&fit=crop" alt="Veg Sandwich" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Veg Sandwich</h4><p>Freshly made · 2 pcs</p><div class="menu-card-footer"><span class="menu-price">₹69</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFCCBC,#FF8A65);">🫘<img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&h=300&fit=crop" alt="Rajma" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Rajma + Boiled Rajma</h4><p>Masala mix + boiled beans · 400g</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFE0B2,#FFB74D);">🧆<img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=300&fit=crop" alt="Chana Masala" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Chana Masala Mix</h4><p>With boiled chana · 400g</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFF3E0,#FFCC80);">🥔<img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&h=300&fit=crop" alt="Boiled Potato Mix" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Boiled Potato Mix</h4><p>Peeled &amp; boiled · 500g</p><div class="menu-card-footer"><span class="menu-price">₹59</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFE082,#FFB300);">🥗<img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=300&fit=crop" alt="Bhel Mix" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Bhel Mix</h4><p>Ready bhel kit · 300g</p><div class="menu-card-footer"><span class="menu-price">₹69</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFE0B2,#FF8A65);">🥜<img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop" alt="Chana Chur / Namkeen" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Chana Chur / Namkeen</h4><p>Crunchy snack mix · 200g</p><div class="menu-card-footer"><span class="menu-price">₹49</span><button class="add-btn">+</button></div></div></div>
 
             <!-- 4. Juices, Salads & Jars -->
             <div class="menu-card reveal" data-cat="jars"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/15954/15954-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Classic Orange Juice</h4><p>300ml · cold-pressed, no sugar</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
@@ -655,18 +720,19 @@
     </div>
 </section>
 
-<!-- AI PIPELINE -->
+<!-- STUDIO PIPELINE -->
 <section class="pipeline">
     <div class="section-inner" style="text-align:center;">
-        <span class="section-label reveal" style="color:var(--orange-light);">End to End</span>
-        <h2 class="section-title reveal" style="color:white;">The AI Pipeline</h2>
-        <p class="section-desc reveal" style="color:rgba(255,255,255,0.6);margin:0 auto;">Every order flows through five intelligent stages — fully automated, fully tracked.</p>
+        <span class="section-label reveal" style="color:var(--orange-light);">Order Flow</span>
+        <h2 class="section-title reveal" style="color:white;">From App to Bag in Six Steps</h2>
+        <p class="section-desc reveal" style="color:rgba(255,255,255,0.6);margin:0 auto;">Track your order as it moves through every SABXI Studio station — live on the app.</p>
         <div class="pipeline-track">
-            <div class="pipe-step reveal"><div class="pipe-ico">🌾</div><h5>Source</h5><p>AI buys best produce from 50+ mandis</p><span class="pipe-tag">Supply AI</span></div>
-            <div class="pipe-step reveal"><div class="pipe-ico">📈</div><h5>Forecast</h5><p>Predicts demand, stocks to the gram</p><span class="pipe-tag">Demand AI</span></div>
-            <div class="pipe-step reveal"><div class="pipe-ico">🔪</div><h5>Chop</h5><p>Cut to spec, vision-verified</p><span class="pipe-tag">Vision AI</span></div>
-            <div class="pipe-step reveal"><div class="pipe-ico">📦</div><h5>Pack</h5><p>Clean, sealed, quality checked</p><span class="pipe-tag">QA AI</span></div>
-            <div class="pipe-step reveal"><div class="pipe-ico">🛵</div><h5>Deliver</h5><p>Optimized routes, live tracked</p><span class="pipe-tag">Route AI</span></div>
+            <div class="pipe-step reveal"><div class="pipe-ico">📋</div><h5>Order Receive</h5><p>POC verifies &amp; queues</p><span class="pipe-tag">Station 1</span></div>
+            <div class="pipe-step reveal"><div class="pipe-ico">🔪</div><h5>Cutting</h5><p>Vegetables cut to spec</p><span class="pipe-tag">Station 2</span></div>
+            <div class="pipe-step reveal"><div class="pipe-ico">🥗</div><h5>Salad &amp; Chaat</h5><p>Fruit &amp; salad assembly</p><span class="pipe-tag">Station 3</span></div>
+            <div class="pipe-step reveal"><div class="pipe-ico">🥤</div><h5>Juice</h5><p>Blended &amp; pressed fresh</p><span class="pipe-tag">Station 4</span></div>
+            <div class="pipe-step reveal"><div class="pipe-ico">🧊</div><h5>Ice &amp; Water</h5><p>Drinks finished &amp; chilled</p><span class="pipe-tag">Station 5</span></div>
+            <div class="pipe-step reveal"><div class="pipe-ico">📦</div><h5>Packaging</h5><p>Labelled &amp; sealed</p><span class="pipe-tag">Station 6</span></div>
         </div>
     </div>
 </section>
@@ -681,13 +747,13 @@
         </div>
         <div class="market-grid">
             <div class="reveal"><div class="market-num">$50B+</div><div class="market-label">India fresh produce market</div></div>
-            <div class="reveal"><div class="market-num">100</div><div class="market-label">Sq.ft repeatable store model</div></div>
+            <div class="reveal"><div class="market-num">6</div><div class="market-label">Dedicated prep stations per studio</div></div>
             <div class="reveal"><div class="market-num">30%</div><div class="market-label">Supply chain waste eliminated</div></div>
             <div class="reveal"><div class="market-num">10x</div><div class="market-label">Faster than traditional retail</div></div>
         </div>
         <div class="market-thesis reveal">
-            <div><h3>Why SABXI Wins</h3><p>We're not competing on warehouse scale. We're building a network of AI-operated micro-stores inside neighborhoods — closer to customers, fresher by design, and 10x cheaper to launch.</p></div>
-            <div><h3>Unit Economics</h3><ul><li>100 sq.ft stores — low capex, fast rollout</li><li>AI procurement cuts COGS by 22%</li><li>Cut-to-order eliminates pre-packaging waste</li><li>Forecasting reduces spoilage 35%</li><li>App-only delivery — no walk-ins needed</li><li>Subscription revenue = predictable LTV</li></ul></div>
+            <div><h3>Why SABXI Wins</h3><p>We're not competing on warehouse scale. We're building a network of SABXI Studios — compact, six-station micro-stores inside neighborhoods. Closer to customers, fresher by design, and 10x cheaper to launch.</p></div>
+            <div><h3>Unit Economics</h3><ul><li>100 sq.ft studios with 6 prep stations — low capex, fast rollout</li><li>Stainless steel layout — hygienic, repeatable, scalable</li><li>Cut-to-order eliminates pre-packaging waste</li><li>AI procurement cuts COGS by 22%</li><li>App-only delivery — no walk-ins needed</li><li>Subscription revenue = predictable LTV</li></ul></div>
         </div>
     </div>
 </section>
@@ -727,12 +793,12 @@
     <div class="footer-inner">
         <div class="footer-brand">
             <img src="assets/logo-trans.png" alt="SABXI">
-            <p>Fresh vegetables cut to order, cold-pressed juices, and fruits — delivered fast. AI-powered from farm to doorstep.</p>
+            <p>Fresh vegetables, salads, fruit chaat, and cold-pressed juice — prepared at SABXI Studio and delivered fast. AI-powered from farm to doorstep.</p>
             <div class="footer-tag">Chop Chop, Sorted.</div>
         </div>
         <div class="footer-links">
             <h5>Product</h5>
-            <ul><li><a href="#how">How It Works</a></li><li><a href="#studio">Studio</a></li><li><a href="#menu">Order</a></li></ul>
+            <ul><li><a href="#how">Inside Studio</a></li><li><a href="#studio">SABXI Studio</a></li><li><a href="#menu">Order</a></li></ul>
         </div>
         <div class="footer-links">
             <h5>Company</h5>
