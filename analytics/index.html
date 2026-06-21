@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sabxi · Unit Economics Panel</title>
+<style>
+  :root {
+    --cream: #f4f0e7;
+    --surface: #ffffff;
+    --surface-2: #faf7f0;
+    --ink: #2d2a26;
+    --ink-soft: #6f6960;
+    --ink-faint: #a39c90;
+    --carrot: #e2722b;
+    --carrot-dark: #c75f1e;
+    --carrot-tint: #fbeadc;
+    --leaf: #5e9a3f;
+    --leaf-tint: #eaf3e2;
+    --danger: #c0392b;
+    --danger-tint: #f7e4e1;
+    --border: #e6ded0;
+    --border-strong: #d8cdb9;
+    --radius: 12px;
+    --shadow: none;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 22px 22px 80px; }
+
+  /* Top bar */
+  .topbar {
+    display: flex; align-items: center; gap: 16px;
+    padding: 14px 20px; margin-bottom: 22px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  }
+  .topbar img { height: 44px; width: auto; display: block; }
+  .topbar .sub { color: var(--ink-soft); font-size: 12.5px; }
+  .topbar h1 { font-size: 17px; margin: 0; letter-spacing: -0.2px; }
+  .spacer { flex: 1; }
+
+  button {
+    font: inherit; cursor: pointer; border-radius: 8px; padding: 7px 13px;
+    border: 1px solid var(--border-strong); background: var(--surface); color: var(--ink);
+    transition: background .12s, border-color .12s;
+  }
+  button:hover { background: var(--surface-2); }
+  button.primary { background: var(--carrot); border-color: var(--carrot); color: #fff; }
+  button.primary:hover { background: var(--carrot-dark); }
+  button.ghost { border-color: transparent; background: transparent; color: var(--carrot-dark); }
+  button.ghost:hover { background: var(--carrot-tint); }
+  button:disabled { opacity: .45; cursor: default; }
+  button.primary.dirty { outline: 2px solid var(--carrot-tint); outline-offset: 2px; }
+  button.icon { padding: 4px 8px; color: var(--ink-faint); border-color: transparent; background: transparent; }
+  button.icon:hover { color: var(--danger); background: var(--danger-tint); }
+
+  h2 { font-size: 15.5px; margin: 26px 0 8px; letter-spacing: -0.2px; }
+  h3 { font-size: 13.5px; margin: 0 0 8px; }
+  .muted { color: var(--ink-soft); }
+  .faint { color: var(--ink-faint); }
+  .small { font-size: 12px; }
+  .sectionhead { display: flex; align-items: center; gap: 10px; margin: 26px 0 6px; }
+  .sectionhead h2 { margin: 0; }
+  .note { color: var(--ink-soft); font-size: 12px; margin: 0 0 10px; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .stat {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 13px 15px;
+  }
+  .stat { cursor: pointer; }
+  .stat:hover { border-color: var(--border-strong); }
+  .stat .v { font-size: 22px; font-weight: 650; letter-spacing: -0.5px; }
+  .stat .l { color: var(--ink-soft); font-size: 11.5px; margin-top: 3px; }
+  .stat.pos .v { color: var(--leaf); }
+  .stat.neg .v { color: var(--danger); }
+  .stat.accent .v { color: var(--carrot-dark); }
+  .stat-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+  .chev { color: var(--ink-faint); font-size: 12px; line-height: 1; margin-top: 4px; transition: transform .12s; }
+  .stat.open .chev { transform: rotate(180deg); }
+  .stat-detail { display: none; margin-top: 10px; border-top: 1px solid var(--border); padding-top: 8px; }
+  .stat.open .stat-detail { display: block; }
+  .calc-row { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; padding: 3px 0; color: var(--ink-soft); }
+  .calc-row span:last-child { font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap; }
+  .calc-row.total { font-weight: 650; border-top: 1px dashed var(--border-strong); margin-top: 3px; padding-top: 5px; color: var(--ink); }
+  .calc-note { font-size: 11px; color: var(--ink-faint); margin-top: 7px; line-height: 1.4; }
+
+  /* Callout */
+  .callout { border-radius: var(--radius); padding: 13px 16px; margin: 18px 0; font-size: 13px; border: 1px solid; }
+  .callout.good { background: var(--leaf-tint); border-color: #cfe3bf; color: #345021; }
+  .callout.warn { background: var(--carrot-tint); border-color: #f2d3b5; color: #8a4a16; }
+  .callout b { font-weight: 650; }
+
+  /* Card + input grid */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
+  .card-title { font-size: 12px; text-transform: uppercase; letter-spacing: .6px; color: var(--ink-faint); margin-bottom: 14px; font-weight: 650; }
+  .fields { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px 18px; }
+  .field label { display: block; font-size: 12px; color: var(--ink-soft); margin-bottom: 5px; }
+  .field .hint { font-size: 11px; color: var(--ink-faint); margin-top: 4px; }
+  .inrow { display: flex; align-items: center; gap: 6px; }
+  input[type=number], input[type=text], select {
+    font: inherit; padding: 6px 9px; border: 1px solid var(--border-strong); border-radius: 8px;
+    background: var(--surface); color: var(--ink); width: 100%; max-width: 130px;
+  }
+  input:focus, select:focus { outline: none; border-color: var(--carrot); }
+  .unit { color: var(--ink-faint); font-size: 12px; }
+  .bold { font-weight: 650; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  th, td { text-align: right; padding: 9px 12px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { text-align: left; }
+  th { font-size: 11.5px; color: var(--ink-soft); font-weight: 600; background: var(--surface-2); }
+  tr:last-child td { border-bottom: none; }
+  td input { max-width: 92px; }
+  td input[type=text] { max-width: 150px; }
+  td select { max-width: 110px; }
+  .totalrow td { background: var(--surface-2); font-weight: 650; }
+  #monthTable { min-width: 1080px; }
+  #monthTable th, #monthTable td { padding: 9px 10px; white-space: nowrap; }
+  #monthTable td input[type=number] { width: 60px; max-width: 60px; }
+  #monthTable td input[type=text] { width: 92px; max-width: 92px; }
+  .monthcell { display: flex; align-items: center; gap: 4px; }
+  .rowtoggle { border: none; background: transparent; color: var(--ink-faint); cursor: pointer; font-size: 11px; padding: 2px 5px; }
+  .rowtoggle:hover { color: var(--carrot-dark); background: transparent; }
+  .mdrow td { background: var(--surface-2); padding: 14px 16px; white-space: normal; }
+  .mdetail { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .mdcol .mdtitle { font-size: 11px; text-transform: uppercase; letter-spacing: .5px; color: var(--ink-faint); font-weight: 650; margin-bottom: 5px; }
+  .mdsub { font-size: 11px; color: var(--ink-faint); margin: 7px 0 1px; font-weight: 600; }
+  .pos { color: var(--leaf); }
+  .neg { color: var(--danger); }
+
+  .cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+
+  /* Charts */
+  .chartcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
+  .legend { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+  .legend .li { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+  .legend .sw { width: 11px; height: 11px; border-radius: 3px; flex: none; }
+  .legend .nm { color: var(--ink-soft); }
+  .legend .vl { margin-left: auto; font-variant-numeric: tabular-nums; }
+  .legrow { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 10px; }
+  .legrow .li { display: flex; align-items: center; gap: 7px; font-size: 12px; }
+  .legrow .sw { width: 11px; height: 11px; border-radius: 3px; }
+  .legrow .nm { color: var(--ink-soft); }
+  .donutwrap { display: grid; grid-template-columns: 150px 1fr; gap: 16px; align-items: center; }
+  svg text { fill: var(--ink-soft); font-size: 10px; }
+  .pill { display: inline-block; font-size: 11.5px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--border-strong); }
+  .pill.good { background: var(--leaf-tint); border-color: #cfe3bf; color: #345021; }
+  .pill.warn { background: var(--carrot-tint); border-color: #f2d3b5; color: #8a4a16; }
+  @media (max-width: 880px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .fields { grid-template-columns: repeat(2, 1fr); }
+    .cols2 { grid-template-columns: 1fr; }
+    .donutwrap { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <img src="assets/logo.png" alt="Sabxi" />
+    <div>
+      <h1>Unit Economics Panel</h1>
+      <div class="sub">Monthly P&amp;L · per-product packaging · capacity-based staffing</div>
+    </div>
+    <div class="spacer"></div>
+    <span class="small faint" id="dirtyHint"></span>
+    <button class="primary recalc" id="recalcBtn" disabled>Re&nbsp;Calculate</button>
+    <button class="ghost" id="exportBtn">Export CSV</button>
+    <button id="resetBtn">Reset defaults</button>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div id="callout"></div>
+
+  <div class="card">
+    <div class="card-title">Demand &amp; pricing levers</div>
+    <div class="fields" id="levers"></div>
+  </div>
+
+  <div class="sectionhead">
+    <h2>Products &amp; packaging</h2>
+    <span id="mixPill"></span>
+    <div class="spacer"></div>
+    <button class="ghost" id="addProduct">+ Add product</button>
+  </div>
+  <p class="note">One average order/basket value (set in the levers) is split across product types by <b>share % of value</b>
+    \u2014 e.g. Raw at 40% of a \u20b9263 basket = \u20b9105/order. Each type has its own COGS % and packaging cost.
+    Gross profit = revenue − COGS − packaging (before shared discount, wastage, staff &amp; overheads).</p>
+  <table id="productTable"></table>
+
+  <div class="sectionhead">
+    <h2>Resources &amp; capacity</h2>
+    <div class="spacer"></div>
+    <button class="ghost" id="addResource">+ Add resource</button>
+  </div>
+  <p class="note">In <b>capacity</b> mode, headcount auto-scales with orders/day: one head per N orders/day (rounded up).
+    Use <b>fixed</b> mode for roles that don't scale (e.g. manager, mandi runs).</p>
+  <table id="resourceTable"></table>
+
+  <div class="cols2" style="margin-top:22px;">
+    <div>
+      <div class="sectionhead" style="margin-top:0;">
+        <h3 style="margin:0;">Fixed overheads</h3>
+        <div class="spacer"></div>
+        <button class="ghost" id="addOverhead">+ Add</button>
+      </div>
+      <table id="overheadTable"></table>
+    </div>
+    <div class="chartcard">
+      <h3>Where every ₹ of revenue goes</h3>
+      <div class="donutwrap">
+        <div id="donut"></div>
+        <div class="legend" id="donutLegend"></div>
+      </div>
+      <p class="small faint" id="donutCaption" style="margin:10px 0 0;"></p>
+    </div>
+  </div>
+
+  <h2>Profit sensitivity to volume</h2>
+  <p class="note">Net profit and per-order profit as orders/day changes, holding pricing, mix and costs constant.
+    Staffing steps up automatically as capacity thresholds are crossed.</p>
+  <div class="chartcard" style="margin-bottom:16px;">
+    <div id="profitChart"></div>
+    <p class="small faint" style="margin:8px 0 0;">X-axis: orders/day · Y-axis: net profit (₹/month)</p>
+  </div>
+  <div class="chartcard">
+    <div id="perOrderChart"></div>
+    <p class="small faint" style="margin:8px 0 0;">X-axis: orders/day · Y-axis: profit per order (₹)</p>
+  </div>
+
+  <div class="sectionhead">
+    <h2>Month-on-month projection</h2>
+    <div class="spacer"></div>
+    <button class="ghost" id="addMonth">+ Add month (copy last)</button>
+    <button class="primary recalc" disabled>Re&nbsp;Calculate</button>
+  </div>
+  <p class="note">Set each month's rates (orders/day, basket value, <b>COGS %</b>, discount, delivery, wastage).
+    The per-month COGS % is applied to that month's revenue (overriding the product-mix blend), so you can model COGS
+    improving as you scale. Product mix, packaging, staffing capacity and overheads are shared from above and re-applied
+    per month. Copy the last month to project the next at the <b>same intensity</b>, then tweak.</p>
+  <div style="overflow-x:auto;"><table id="monthTable"></table></div>
+  <div class="chartcard" style="margin-top:16px;">
+    <h3>Net revenue, total cost &amp; net profit by month</h3>
+    <div id="monthChart"></div>
+  </div>
+  <div class="chartcard" style="margin-top:16px;">
+    <h3>Monthly cost breakdown (stacked)</h3>
+    <div id="monthStack"></div>
+    <p class="small faint" style="margin:8px 0 0;">Each bar = that month's total cost, split into COGS, wastage, packaging, delivery, staff &amp; overheads.</p>
+  </div>
+  <div class="chartcard" style="margin-top:16px;">
+    <h3>Cumulative operating profit vs one-time setup</h3>
+    <div id="cumChart"></div>
+    <p class="small faint" id="cumCaption" style="margin:8px 0 0;"></p>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+const DEFAULTS = {
+  ordersPerDay: 150,
+  workingDays: 30,
+  discountPerOrder: 30,
+  deliveryCostPerOrder: 16,
+  wastagePct: 15,
+  setupCost: 861500,
+  amortMonths: 0,
+  avgBasket: 263,
+  products: [
+    { id: "raw", name: "Raw", share: 40, cogs: 60, pack: 20 },
+    { id: "cut", name: "Cut", share: 30, cogs: 55, pack: 35 },
+    { id: "premixed", name: "Pre-mixed", share: 20, cogs: 50, pack: 45 },
+    { id: "juice", name: "Juice", share: 10, cogs: 45, pack: 30 },
+  ],
+  resources: [
+    { id: "delivery", name: "Delivery guy", mode: "capacity", salary: 22000, capacity: 40, count: 1 },
+    { id: "packer", name: "Packer / Worker", mode: "capacity", salary: 20000, capacity: 75, count: 1 },
+    { id: "mandi", name: "Mandi \u2192 Warehouse person", mode: "fixed", salary: 20000, capacity: 0, count: 2 },
+    { id: "manager", name: "Manager", mode: "fixed", salary: 30000, capacity: 0, count: 1 },
+  ],
+  overheads: [
+    { id: "rent", name: "Rent (Studio + Warehouse)", monthly: 48000 },
+    { id: "marketing", name: "Marketing (Society + Meta Ads)", monthly: 70000 },
+    { id: "transport", name: "Transportation / Fuel", monthly: 40000 },
+    { id: "utilities", name: "Water & Electricity", monthly: 6000 },
+    { id: "wifi", name: "Wifi", monthly: 1500 },
+  ],
+  months: [
+    { id: "m1", label: "Month 1", ordersPerDay: 50, avgBasket: 220, cogsPct: 60, discountPerOrder: 60, deliveryCostPerOrder: 18, wastagePct: 25 },
+    { id: "m2", label: "Month 2", ordersPerDay: 100, avgBasket: 240, cogsPct: 57, discountPerOrder: 40, deliveryCostPerOrder: 17, wastagePct: 20 },
+    { id: "m3", label: "Month 3", ordersPerDay: 150, avgBasket: 263, cogsPct: 55, discountPerOrder: 30, deliveryCostPerOrder: 16, wastagePct: 15 },
+    { id: "m4", label: "Month 4", ordersPerDay: 150, avgBasket: 263, cogsPct: 55, discountPerOrder: 30, deliveryCostPerOrder: 16, wastagePct: 15 },
+  ],
+};
+
+const PALETTE = ["#e2722b", "#5e9a3f", "#d9a441", "#7a8b99", "#9b6b9e", "#4e8c8a", "#c0573b", "#b0a18f"];
+const STORE_KEY = "sabxi-panel-v1";
+
+let state = load();
+const expanded = {};
+const monthExpanded = {};
+
+function load() {
+  let obj = structuredClone(DEFAULTS);
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) obj = Object.assign(obj, JSON.parse(raw));
+  } catch (e) {}
+  // Migration: ensure every month carries a COGS % (older saves lacked it).
+  const bc = Math.round(blendedCogs(obj.products || DEFAULTS.products));
+  (obj.months || []).forEach((m) => { if (m.cogsPct == null) m.cogsPct = bc; });
+  return obj;
+}
+function blendedCogs(products) {
+  const ss = products.reduce((s, p) => s + Number(p.share || 0), 0);
+  return ss > 0 ? products.reduce((s, p) => s + p.share * p.cogs, 0) / ss : 0;
+}
+function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {} }
+const uid = (p) => p + "-" + Math.random().toString(36).slice(2, 7);
+
+const fmt = (n) => (n < 0 ? "-\u20b9" : "\u20b9") + Math.round(Math.abs(n)).toLocaleString("en-IN");
+const fmtK = (n) => {
+  const a = Math.abs(n), s = n < 0 ? "-" : "";
+  return a >= 100000 ? s + "\u20b9" + (a / 100000).toFixed(1) + "L" : s + "\u20b9" + Math.round(a).toLocaleString("en-IN");
+};
+const r1 = (n) => Math.round(n * 10) / 10;
+
+function staffAt(d) {
+  return state.resources.map((res) => {
+    const count = res.mode === "capacity" ? (res.capacity > 0 ? Math.ceil(d / res.capacity) : 0) : res.count;
+    return Object.assign({}, res, { eff: count, cost: count * res.salary });
+  });
+}
+
+// Headcount/cost are directly derived from orders/day ÷ capacity, so refresh them
+// live (the heavier P&L stats/charts still wait for "Re Calculate").
+function refreshResourceCells() {
+  for (const r of staffAt(state.ordersPerDay)) {
+    if (r.mode === "capacity") setText("rh-" + r.id, String(r.eff));
+    setText("rc-" + r.id, fmt(r.cost));
+  }
+}
+
+function model(over) {
+  const g = (k) => (over && over[k] != null ? over[k] : state[k]);
+  const ordersPerDay = g("ordersPerDay");
+  const workingDays = g("workingDays");
+  const avgBasket = g("avgBasket");
+  const discountPerOrder = g("discountPerOrder");
+  const deliveryCostPerOrder = g("deliveryCostPerOrder");
+  const wastagePct = g("wastagePct");
+  const overheadTotal = state.overheads.reduce((s, o) => s + Number(o.monthly || 0), 0);
+  const monthlyOrders = ordersPerDay * workingDays;
+  const gross = monthlyOrders * avgBasket;
+  let cogs = 0, pack = 0;
+  const cogsOverride = over && over.cogsPct != null;
+  for (const p of state.products) {
+    if (!cogsOverride) cogs += ((gross * p.share) / 100) * (p.cogs / 100);
+    pack += monthlyOrders * ((p.share / 100) * p.pack);
+  }
+  if (cogsOverride) cogs = (gross * over.cogsPct) / 100;
+  const discount = monthlyOrders * discountPerOrder;
+  const delivery = monthlyOrders * deliveryCostPerOrder;
+  const wastage = (cogs * wastagePct) / 100;
+  const staffCost = staffAt(ordersPerDay).reduce((s, r) => s + r.cost, 0);
+  const netRevenue = gross - discount;
+  const opCost = cogs + wastage + pack + delivery + staffCost + overheadTotal;
+  const opProfit = netRevenue - opCost;
+  const amortized = state.amortMonths > 0 ? state.setupCost / state.amortMonths : 0;
+  const costTotal = opCost + amortized;
+  const netProfit = netRevenue - costTotal;
+  return {
+    monthlyOrders, gross, cogs, pack, discount, delivery, wastage, staffCost,
+    overheadTotal, netRevenue, amortized, opProfit, costTotal, netProfit,
+    grossMargin: gross > 0 ? ((gross - cogs) / gross) * 100 : 0,
+    perOrder: monthlyOrders > 0 ? netProfit / monthlyOrders : 0,
+  };
+}
+function compute(d) { return model({ ordersPerDay: d }); }
+
+function breakeven() {
+  for (let d = 1; d <= 1000; d++) if (compute(d).netProfit >= 0) return d;
+  return null;
+}
+
+/* ---------- builders (structure once) ---------- */
+
+function buildLevers() {
+  const m = compute(state.ordersPerDay);
+  const el = document.getElementById("levers");
+  el.innerHTML = `
+    ${field("Orders per day", numInput("ordersPerDay", state.ordersPerDay, "/day"), `<span id="h-orders"></span>`)}
+    ${field("Working days / month", numInput("workingDays", state.workingDays, "days"))}
+    ${field("Discount per order", numInput("discountPerOrder", state.discountPerOrder, "\u20b9"), `<span id="h-disc"></span>`)}
+    ${field("Delivery cost per order", numInput("deliveryCostPerOrder", state.deliveryCostPerOrder, "\u20b9"), `<span id="h-deliv"></span>`)}
+    ${field("Wastage (% of COGS)", numInput("wastagePct", state.wastagePct, "%"), `<span id="h-waste"></span>`)}
+    ${field("One-time setup cost", numInput("setupCost", state.setupCost, "\u20b9"), "Deposits, interiors, branding\u2026")}
+    ${field("Spread setup over", numInput("amortMonths", state.amortMonths, "months"), `<span id="h-amort"></span>`)}
+    ${field("Avg order value (basket)", numInput("avgBasket", state.avgBasket, "\u20b9"), "split across products by share %")}
+    ${field("Blended packaging", `<span class="bold" id="h-pack"></span>`, "weighted by product mix")}
+  `;
+}
+function field(label, inner, hint) {
+  return `<div class="field"><label>${label}</label>${inner}${hint ? `<div class="hint">${hint}</div>` : ""}</div>`;
+}
+function numInput(key, val, unit) {
+  return `<div class="inrow"><input type="number" data-k="${key}" value="${val}" />${unit ? `<span class="unit">${unit}</span>` : ""}</div>`;
+}
+
+function buildProducts() {
+  const t = document.getElementById("productTable");
+  let body = state.products.map((p) => `
+    <tr data-pid="${p.id}">
+      <td><input type="text" data-f="name" value="${escapeAttr(p.name)}" /></td>
+      <td><input type="number" data-f="share" value="${p.share}" /></td>
+      <td id="pv-${p.id}" class="muted"></td>
+      <td><input type="number" data-f="cogs" value="${p.cogs}" /></td>
+      <td><input type="number" data-f="pack" value="${p.pack}" /></td>
+      <td id="pr-${p.id}" class="muted"></td>
+      <td id="pg-${p.id}"></td>
+      <td><button class="icon" data-del-product="${p.id}" title="Remove">\u2715</button></td>
+    </tr>`).join("");
+  const totals = `
+    <tr class="totalrow">
+      <td>Blended / Total</td>
+      <td id="t-share"></td><td id="t-aov"></td><td id="t-cogs"></td><td id="t-pack"></td>
+      <td id="t-rev"></td><td id="t-gp"></td><td></td>
+    </tr>`;
+  t.innerHTML = `
+    <thead><tr>
+      <th>Product</th><th>Share %<br>of value</th><th>Value/order \u20b9</th><th>COGS %</th><th>Packaging \u20b9/order</th>
+      <th>Revenue/mo</th><th>Gross profit/mo</th><th></th>
+    </tr></thead>
+    <tbody>${body}${totals}</tbody>`;
+}
+
+function buildResources() {
+  const t = document.getElementById("resourceTable");
+  const rows = state.resources.map((r) => {
+    const capCell = r.mode === "capacity"
+      ? `<input type="number" data-f="capacity" value="${r.capacity}" />`
+      : `<span class="faint">\u2014</span>`;
+    const headCell = r.mode === "fixed"
+      ? `<input type="number" data-f="count" value="${r.count}" />`
+      : `<span class="bold" id="rh-${r.id}"></span>`;
+    return `
+      <tr data-rid="${r.id}">
+        <td><input type="text" data-f="name" value="${escapeAttr(r.name)}" /></td>
+        <td>
+          <select data-f="mode">
+            <option value="capacity" ${r.mode === "capacity" ? "selected" : ""}>capacity</option>
+            <option value="fixed" ${r.mode === "fixed" ? "selected" : ""}>fixed</option>
+          </select>
+        </td>
+        <td>${capCell}</td>
+        <td>${headCell}</td>
+        <td><input type="number" data-f="salary" value="${r.salary}" /></td>
+        <td id="rc-${r.id}" class="bold"></td>
+        <td><button class="icon" data-del-resource="${r.id}" title="Remove">\u2715</button></td>
+      </tr>`;
+  }).join("");
+  t.innerHTML = `
+    <thead><tr>
+      <th>Resource</th><th>Mode</th><th>Capacity (orders/day/head)</th><th>Headcount</th>
+      <th>Salary \u20b9/mo</th><th>Cost \u20b9/mo</th><th></th>
+    </tr></thead><tbody>${rows}</tbody>`;
+}
+
+function buildOverheads() {
+  const t = document.getElementById("overheadTable");
+  const rows = state.overheads.map((o) => `
+    <tr data-oid="${o.id}">
+      <td><input type="text" data-f="name" value="${escapeAttr(o.name)}" /></td>
+      <td><input type="number" data-f="monthly" value="${o.monthly}" /></td>
+      <td><button class="icon" data-del-overhead="${o.id}" title="Remove">\u2715</button></td>
+    </tr>`).join("");
+  t.innerHTML = `
+    <thead><tr><th>Overhead</th><th>\u20b9 / month</th><th></th></tr></thead>
+    <tbody>${rows}<tr class="totalrow"><td>Total fixed overheads</td><td id="t-oh"></td><td></td></tr></tbody>`;
+}
+
+function buildMonths() {
+  const t = document.getElementById("monthTable");
+  const rows = state.months.map((mo) => `
+    <tr data-mid="${mo.id}">
+      <td><div class="monthcell"><button class="rowtoggle" data-mtoggle="${mo.id}" title="Show breakup">\u25b8</button><input type="text" data-f="label" value="${escapeAttr(mo.label)}" /></div></td>
+      <td><input type="number" data-f="ordersPerDay" value="${mo.ordersPerDay}" /></td>
+      <td><input type="number" data-f="avgBasket" value="${mo.avgBasket}" /></td>
+      <td><input type="number" data-f="cogsPct" value="${mo.cogsPct}" /></td>
+      <td><input type="number" data-f="discountPerOrder" value="${mo.discountPerOrder}" /></td>
+      <td><input type="number" data-f="deliveryCostPerOrder" value="${mo.deliveryCostPerOrder}" /></td>
+      <td><input type="number" data-f="wastagePct" value="${mo.wastagePct}" /></td>
+      <td id="mo-orders-${mo.id}" class="muted"></td>
+      <td id="mo-rev-${mo.id}" class="muted"></td>
+      <td id="mo-cogs-${mo.id}" class="muted"></td>
+      <td id="mo-cost-${mo.id}" class="muted"></td>
+      <td id="mo-profit-${mo.id}" class="bold"></td>
+      <td id="mo-po-${mo.id}"></td>
+      <td><button class="icon" data-del-month="${mo.id}" title="Remove">\u2715</button></td>
+    </tr>
+    <tr class="mdrow" data-mdrow="${mo.id}" style="display:none"><td colspan="14" id="md-${mo.id}"></td></tr>`).join("");
+  t.innerHTML = `
+    <thead><tr>
+      <th>Month</th><th>Orders/day</th><th>Basket \u20b9</th><th>COGS %</th><th>Discount \u20b9</th><th>Delivery \u20b9</th><th>Wastage %</th>
+      <th>Orders/mo</th><th>Net revenue</th><th>COGS/mo</th><th>Total cost</th><th>Net profit</th><th>Profit/order</th><th></th>
+    </tr></thead><tbody>${rows}</tbody>`;
+}
+
+function multiLine(cats, series, fmtY, ref) {
+  const W = 660, H = 250, padL = 66, padR = 18, padT = 14, padB = 30;
+  const innerW = W - padL - padR, innerH = H - padT - padB;
+  let all = [0];
+  series.forEach((s) => all.push(...s.data));
+  if (ref) all.push(ref.value);
+  let min = Math.min(...all), max = Math.max(...all);
+  if (min === max) max = min + 1;
+  const x = (i) => padL + (cats.length <= 1 ? innerW / 2 : (i / (cats.length - 1)) * innerW);
+  const y = (v) => padT + innerH - ((v - min) / (max - min)) * innerH;
+  let grid = "";
+  for (let t = 0; t <= 4; t++) {
+    const val = min + ((max - min) * t) / 4, yy = y(val);
+    grid += `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}" stroke="#efe8db"></line>`;
+    grid += `<text x="${padL - 8}" y="${(yy + 3).toFixed(1)}" text-anchor="end">${fmtY(val)}</text>`;
+  }
+  let zero = "";
+  if (min < 0 && max > 0) { const zy = y(0); zero = `<line x1="${padL}" y1="${zy.toFixed(1)}" x2="${W - padR}" y2="${zy.toFixed(1)}" stroke="#d8cdb9" stroke-width="1.2"></line>`; }
+  let refmk = "";
+  if (ref) {
+    const ry = y(ref.value);
+    refmk = `<line x1="${padL}" y1="${ry.toFixed(1)}" x2="${W - padR}" y2="${ry.toFixed(1)}" stroke="#9a9389" stroke-width="1.4" stroke-dasharray="5 4"></line>`
+      + `<text x="${W - padR}" y="${(ry - 5).toFixed(1)}" text-anchor="end" style="fill:#8a4a16">${ref.label}</text>`;
+  }
+  const paths = series.map((s) => {
+    const pts = s.data.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+    const dots = s.data.map((v, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="3" fill="${s.color}"></circle>`).join("");
+    return `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2"></polyline>${dots}`;
+  }).join("");
+  const xlabels = cats.map((c, i) => `<text x="${x(i).toFixed(1)}" y="${H - 9}" text-anchor="middle">${c}</text>`).join("");
+  const legend = series.map((s) => `<span class="li"><span class="sw" style="background:${s.color}"></span><span class="nm">${s.name}</span></span>`).join("");
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet">${grid}${zero}${refmk}${paths}${xlabels}</svg><div class="legrow">${legend}</div>`;
+}
+
+function stackedBar(cats, series, fmtY) {
+  const W = 660, H = 260, padL = 66, padR = 18, padT = 14, padB = 30;
+  const innerW = W - padL - padR, innerH = H - padT - padB;
+  const totals = cats.map((_, i) => series.reduce((s, se) => s + (se.data[i] || 0), 0));
+  const max = Math.max(1, ...totals);
+  const n = cats.length || 1;
+  const slot = innerW / n, bw = Math.min(46, slot * 0.55);
+  let grid = "";
+  for (let t = 0; t <= 4; t++) {
+    const val = (max * t) / 4, yy = padT + innerH - (t / 4) * innerH;
+    grid += `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}" stroke="#efe8db"></line>`;
+    grid += `<text x="${padL - 8}" y="${(yy + 3).toFixed(1)}" text-anchor="end">${fmtY(val)}</text>`;
+  }
+  let bars = "";
+  cats.forEach((c, i) => {
+    const cx = padL + (i + 0.5) * slot;
+    let acc = 0;
+    series.forEach((se) => {
+      const v = se.data[i] || 0;
+      const h = (v / max) * innerH;
+      bars += `<rect x="${(cx - bw / 2).toFixed(1)}" y="${(padT + innerH - acc - h).toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0, h).toFixed(1)}" fill="${se.color}"></rect>`;
+      acc += h;
+    });
+  });
+  const xlabels = cats.map((c, i) => `<text x="${(padL + (i + 0.5) * slot).toFixed(1)}" y="${H - 9}" text-anchor="middle">${c}</text>`).join("");
+  const legend = series.map((s) => `<span class="li"><span class="sw" style="background:${s.color}"></span><span class="nm">${s.name}</span></span>`).join("");
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet">${grid}${bars}${xlabels}</svg><div class="legrow">${legend}</div>`;
+}
+
+function monthDetailHTML(mo, r) {
+  const o = r.monthlyOrders.toLocaleString("en-IN");
+  const revenue = calcRows([
+    { l: "Orders / month", v: o },
+    { l: "\u00d7 Basket value", v: fmt(mo.avgBasket) },
+    { l: "= Gross revenue", v: fmt(r.gross) },
+    { l: `\u2212 Discount (\u00d7 ${fmt(mo.discountPerOrder)}/order)`, v: "\u2212" + fmt(r.discount) },
+    { l: "= Net revenue", v: fmt(r.netRevenue), total: true },
+  ]);
+  const staffRows = staffAt(mo.ordersPerDay).map((s) => ({ l: `${s.name} (${s.eff} \u00d7 ${fmt(s.salary)})`, v: fmt(s.cost) }));
+  let costHtml = calcRows([
+    { l: `COGS (${mo.cogsPct}% of revenue)`, v: fmt(r.cogs) },
+    { l: `Wastage (${mo.wastagePct}% of COGS)`, v: fmt(r.wastage) },
+    { l: "Packaging", v: fmt(r.pack) },
+    { l: `Delivery (\u00d7 ${fmt(mo.deliveryCostPerOrder)}/order)`, v: fmt(r.delivery) },
+  ]);
+  costHtml += `<div class="mdsub">Staff (auto-scaled to ${mo.ordersPerDay}/day)</div>` + calcRows(staffRows);
+  const tail = [{ l: "Overheads", v: fmt(r.overheadTotal) }];
+  if (r.amortized > 0) tail.push({ l: "Setup amortized", v: fmt(r.amortized) });
+  tail.push({ l: "= Total cost", v: fmt(r.costTotal), total: true });
+  costHtml += calcRows(tail);
+  const result = calcRows([
+    { l: "Net revenue", v: fmt(r.netRevenue) },
+    { l: "\u2212 Total cost", v: "\u2212" + fmt(r.costTotal) },
+    { l: "= Net profit", v: fmt(r.netProfit), total: true },
+    { l: "Profit / order", v: fmt(r.perOrder) },
+    { l: "Gross margin", v: r1(r.grossMargin) + "%" },
+  ]);
+  return `<div class="mdetail">
+    <div class="mdcol"><div class="mdtitle">Revenue build-up</div>${revenue}</div>
+    <div class="mdcol"><div class="mdtitle">Monthly costs</div>${costHtml}</div>
+    <div class="mdcol"><div class="mdtitle">Result</div>${result}</div>
+  </div>`;
+}
+
+function applyMonthExpand(id) {
+  const row = document.querySelector(`[data-mdrow="${id}"]`);
+  const tog = document.querySelector(`[data-mtoggle="${id}"]`);
+  const open = !!monthExpanded[id];
+  if (row) row.style.display = open ? "" : "none";
+  if (tog) tog.textContent = open ? "\u25be" : "\u25b8";
+}
+
+function escapeAttr(s) { return String(s).replace(/"/g, "&quot;").replace(/</g, "&lt;"); }
+
+/* ---------- recompute (derived only, keeps input focus) ---------- */
+
+function recompute() {
+  const m = compute(state.ordersPerDay);
+  const be = breakeven();
+  const shareSum = state.products.reduce((s, p) => s + Number(p.share || 0), 0);
+  const avgOrderValue = state.avgBasket;
+  const blendedPack = state.products.reduce((s, p) => s + (p.share / 100) * p.pack, 0);
+
+  // Stats (each expandable to show its calculation)
+  const orders = m.monthlyOrders.toLocaleString("en-IN");
+  const ordersDetail = calcRows([
+    { l: "Orders / day", v: state.ordersPerDay },
+    { l: "\u00d7 Working days / month", v: state.workingDays },
+    { l: "= Orders / month", v: orders, total: true },
+  ]);
+  const netrevDetail = calcRows([
+    { l: "Orders / month", v: orders },
+    { l: "\u00d7 Avg basket value", v: fmt(avgOrderValue) },
+    { l: "= Gross revenue", v: fmt(m.gross) },
+    { l: `\u2212 Discount (\u00d7 ${fmt(state.discountPerOrder)}/order)`, v: "\u2212" + fmt(m.discount) },
+    { l: "= Net revenue", v: fmt(m.netRevenue), total: true },
+  ]);
+  const costList = [
+    { l: "COGS", v: fmt(m.cogs) },
+    { l: `Wastage (${state.wastagePct}% of COGS)`, v: fmt(m.wastage) },
+    { l: `Packaging (\u00d7 ${fmt(blendedPack)}/order)`, v: fmt(m.pack) },
+    { l: `Delivery (\u00d7 ${fmt(state.deliveryCostPerOrder)}/order)`, v: fmt(m.delivery) },
+    { l: "Staff", v: fmt(m.staffCost) },
+    { l: "Overheads", v: fmt(m.overheadTotal) },
+  ];
+  if (state.amortMonths > 0) costList.push({ l: `Setup amortized (${fmt(state.setupCost)} \u00f7 ${state.amortMonths})`, v: fmt(m.amortized) });
+  costList.push({ l: "= Total cost", v: fmt(m.costTotal), total: true });
+  const costDetail = calcRows(costList);
+  const profitDetail = calcRows([
+    { l: "Net revenue", v: fmt(m.netRevenue) },
+    { l: "\u2212 Total cost", v: "\u2212" + fmt(m.costTotal) },
+    { l: "= Net profit", v: fmt(m.netProfit), total: true },
+  ]);
+  const perorderDetail = calcRows([
+    { l: "Net profit / month", v: fmt(m.netProfit) },
+    { l: "\u00f7 Orders / month", v: orders },
+    { l: "= Profit / order", v: fmt(m.perOrder), total: true },
+  ]);
+  const marginDetail = calcRows([
+    { l: "Gross revenue", v: fmt(m.gross) },
+    { l: "\u2212 COGS", v: "\u2212" + fmt(m.cogs) },
+    { l: "= Gross profit", v: fmt(m.gross - m.cogs) },
+    { l: "\u00f7 Gross revenue", v: fmt(m.gross) },
+    { l: "= Gross margin", v: r1(m.grossMargin) + "%", total: true },
+  ]);
+  const beDetail = (be
+    ? calcRows([
+        { l: "Lowest orders/day with profit \u2265 0", v: be + " /day" },
+        { l: `Net profit at ${be}/day`, v: fmt(compute(be).netProfit) },
+        { l: "Currently running at", v: state.ordersPerDay + " /day" },
+      ])
+    : calcRows([{ l: "No profitable volume up to 1,000/day", v: "\u2014" }]))
+    + `<div class="calc-note">Found by scanning orders/day until net profit turns positive (staffing steps up with volume).</div>`;
+  const paybackDetail = calcRows([
+    { l: "One-time setup cost", v: fmt(state.setupCost) },
+    { l: "\u00f7 Operating profit / month", v: fmt(m.opProfit) },
+    { l: "= Setup payback", v: m.opProfit > 0 ? r1(state.setupCost / m.opProfit) + " months" : "\u2014", total: true },
+  ]) + `<div class="calc-note">Operating profit = net revenue \u2212 all monthly costs, before any setup amortization.</div>`;
+
+  document.getElementById("stats").innerHTML = [
+    statCard("orders", orders, "Orders / month", "", ordersDetail),
+    statCard("netrev", fmtK(m.netRevenue), "Net revenue / month", "", netrevDetail),
+    statCard("cost", fmtK(m.costTotal), "Total cost / month", "", costDetail),
+    statCard("profit", fmtK(m.netProfit), "Net profit / month", m.netProfit >= 0 ? "pos" : "neg", profitDetail),
+    statCard("perorder", fmt(m.perOrder), "Profit / order", m.perOrder >= 0 ? "pos" : "neg", perorderDetail),
+    statCard("margin", r1(m.grossMargin) + "%", "Gross margin", "accent", marginDetail),
+    statCard("breakeven", be ? be + "/day" : "\u2014", "Break-even orders/day", be && state.ordersPerDay >= be ? "pos" : "accent", beDetail),
+    statCard("payback", m.opProfit > 0 ? r1(state.setupCost / m.opProfit) + " mo" : "\u2014", "Setup payback (op. profit)", "", paybackDetail),
+  ].join("");
+
+  // Callout
+  const co = document.getElementById("callout");
+  if (be && state.ordersPerDay < be) {
+    co.innerHTML = `<div class="callout warn">Below break-even \u2014 at ${state.ordersPerDay} orders/day you lose ${fmt(Math.abs(m.netProfit))}/month. You need at least <b>${be} orders/day</b> to profit with current pricing, costs and staffing.</div>`;
+  } else {
+    co.innerHTML = `<div class="callout good">Profitable \u2014 at ${state.ordersPerDay} orders/day you make <b>${fmt(m.netProfit)}/month</b>${be ? ` (break-even is ${be} orders/day).` : "."}</div>`;
+  }
+
+  // Lever hints
+  setText("h-orders", m.monthlyOrders.toLocaleString("en-IN") + " / month");
+  setText("h-disc", fmt(m.discount) + " / month");
+  setText("h-deliv", fmt(m.delivery) + " / month");
+  setText("h-waste", fmt(m.wastage) + " / month");
+  setText("h-amort", state.amortMonths > 0 ? fmt(m.amortized) + " / month" : "0 = not spread (one-time only)");
+  setText("h-pack", fmt(blendedPack) + "/order");
+
+  // Mix pill
+  const mp = document.getElementById("mixPill");
+  mp.innerHTML = shareSum === 100
+    ? `<span class="pill good">Mix = 100%</span>`
+    : `<span class="pill warn">Mix = ${r1(shareSum)}% (should be 100%)</span>`;
+
+  // Product computed cells + totals
+  let tR = 0, tC = 0, tG = 0;
+  for (const p of state.products) {
+    const valuePerOrder = (avgOrderValue * p.share) / 100;
+    const rev = m.monthlyOrders * valuePerOrder;
+    const c = (rev * p.cogs) / 100;
+    const packMo = m.monthlyOrders * ((p.share / 100) * p.pack);
+    const gp = rev - c - packMo;
+    tR += rev; tC += c; tG += gp;
+    setText("pv-" + p.id, fmt(valuePerOrder));
+    setText("pr-" + p.id, fmt(rev));
+    const g = document.getElementById("pg-" + p.id);
+    if (g) { g.textContent = fmt(gp); g.className = gp >= 0 ? "pos" : "neg"; }
+  }
+  setText("t-share", r1(shareSum) + "%");
+  setText("t-aov", fmt(avgOrderValue));
+  setText("t-cogs", r1(tR > 0 ? (tC / tR) * 100 : 0) + "%");
+  setText("t-pack", fmt(blendedPack));
+  setText("t-rev", fmt(tR));
+  setText("t-gp", fmt(tG));
+
+  // Resource computed cells
+  for (const r of staffAt(state.ordersPerDay)) {
+    if (r.mode === "capacity") setText("rh-" + r.id, String(r.eff));
+    setText("rc-" + r.id, fmt(r.cost));
+  }
+  setText("t-oh", fmt(m.overheadTotal));
+
+  // Charts
+  renderDonut(m);
+  renderCharts();
+
+  // Month-on-month
+  const mcats = [], mrev = [], mcost = [], mprofit = [], mcum = [];
+  const sCogs = [], sWaste = [], sPack = [], sDeliv = [], sStaff = [], sOver = [], sAmort = [];
+  let cum = 0, anyAmort = false;
+  for (const mo of state.months) {
+    const r = model({
+      ordersPerDay: mo.ordersPerDay, avgBasket: mo.avgBasket, cogsPct: mo.cogsPct, discountPerOrder: mo.discountPerOrder,
+      deliveryCostPerOrder: mo.deliveryCostPerOrder, wastagePct: mo.wastagePct,
+    });
+    cum += r.opProfit;
+    mcats.push(mo.label || "");
+    mrev.push(Math.round(r.netRevenue));
+    mcost.push(Math.round(r.costTotal));
+    mprofit.push(Math.round(r.netProfit));
+    mcum.push(Math.round(cum));
+    sCogs.push(Math.round(r.cogs)); sWaste.push(Math.round(r.wastage)); sPack.push(Math.round(r.pack));
+    sDeliv.push(Math.round(r.delivery)); sStaff.push(Math.round(r.staffCost)); sOver.push(Math.round(r.overheadTotal));
+    sAmort.push(Math.round(r.amortized)); if (r.amortized > 0) anyAmort = true;
+    setText("mo-orders-" + mo.id, r.monthlyOrders.toLocaleString("en-IN"));
+    setText("mo-rev-" + mo.id, fmt(r.netRevenue));
+    setText("mo-cogs-" + mo.id, fmt(r.cogs));
+    setText("mo-cost-" + mo.id, fmt(r.costTotal));
+    const pe = document.getElementById("mo-profit-" + mo.id);
+    if (pe) { pe.textContent = fmt(r.netProfit); pe.className = "bold " + (r.netProfit >= 0 ? "pos" : "neg"); }
+    const po = document.getElementById("mo-po-" + mo.id);
+    if (po) { po.textContent = fmt(r.perOrder); po.className = r.perOrder >= 0 ? "pos" : "neg"; }
+    const md = document.getElementById("md-" + mo.id);
+    if (md) md.innerHTML = monthDetailHTML(mo, r);
+    applyMonthExpand(mo.id);
+  }
+  if (state.months.length) {
+    document.getElementById("monthChart").innerHTML = multiLine(mcats, [
+      { name: "Net revenue", color: "#4e8c8a", data: mrev },
+      { name: "Total cost", color: "#c0573b", data: mcost },
+      { name: "Net profit", color: "#5e9a3f", data: mprofit },
+    ], (v) => fmtK(v));
+    const stackSeries = [
+      { name: "COGS", color: "#e2722b", data: sCogs },
+      { name: "Wastage", color: "#d9a441", data: sWaste },
+      { name: "Packaging", color: "#9b6b9e", data: sPack },
+      { name: "Delivery", color: "#4e8c8a", data: sDeliv },
+      { name: "Staff", color: "#7a8b99", data: sStaff },
+      { name: "Overheads", color: "#c0573b", data: sOver },
+    ];
+    if (anyAmort) stackSeries.push({ name: "Setup amortized", color: "#b0a18f", data: sAmort });
+    document.getElementById("monthStack").innerHTML = stackedBar(mcats, stackSeries, (v) => fmtK(v));
+    document.getElementById("cumChart").innerHTML = multiLine(mcats, [
+      { name: "Cumulative operating profit", color: "#5e9a3f", data: mcum },
+    ], (v) => fmtK(v), { value: state.setupCost, label: "Setup " + fmtK(state.setupCost) });
+    const lastCum = mcum[mcum.length - 1];
+    setText("cumCaption", `After ${state.months.length} month(s), cumulative operating profit = ${fmt(lastCum)} vs one-time setup ${fmt(state.setupCost)} \u2014 ${lastCum >= state.setupCost ? "setup recovered." : "setup not yet recovered."} (Operating profit, before setup amortization.)`);
+  }
+
+  save();
+
+  document.querySelectorAll(".recalc").forEach((b) => { b.disabled = true; b.classList.remove("dirty"); });
+  const dh = document.getElementById("dirtyHint");
+  if (dh) dh.textContent = "";
+}
+
+function statCard(key, v, l, cls, detail) {
+  const open = !!expanded[key];
+  return `<div class="stat ${cls} ${open ? "open" : ""}" data-stat="${key}">
+    <div class="stat-head">
+      <div class="stat-main"><div class="v">${v}</div><div class="l">${l}</div></div>
+      <span class="chev">\u25be</span>
+    </div>
+    <div class="stat-detail">${detail || ""}</div>
+  </div>`;
+}
+function calcRows(rows) {
+  return rows.map((r) => `<div class="calc-row ${r.total ? "total" : ""}"><span>${r.l}</span><span>${r.v}</span></div>`).join("");
+}
+function setText(id, txt) { const el = document.getElementById(id); if (el) el.textContent = txt; }
+
+/* ---------- charts ---------- */
+
+function renderDonut(m) {
+  const slices = [
+    { label: "COGS", value: m.cogs },
+    { label: "Wastage", value: m.wastage },
+    { label: "Packaging", value: m.pack },
+    { label: "Delivery", value: m.delivery },
+    { label: "Staff", value: m.staffCost },
+    { label: "Overheads", value: m.overheadTotal },
+    { label: "Setup (amortized)", value: m.amortized },
+    { label: "Discounts", value: m.discount },
+  ];
+  if (m.netProfit > 0) slices.push({ label: "Net profit", value: m.netProfit, leaf: true });
+  const filtered = slices.filter((s) => s.value > 0);
+  const total = filtered.reduce((s, x) => s + x.value, 0) || 1;
+  let cum = 0;
+  const segs = filtered.map((s, i) => {
+    const pct = (s.value / total) * 100;
+    const color = s.leaf ? "#5e9a3f" : PALETTE[i % PALETTE.length];
+    s._color = color;
+    const seg = `<circle r="15.915" cx="21" cy="21" fill="transparent" stroke="${color}" stroke-width="6" stroke-dasharray="${pct.toFixed(2)} ${(100 - pct).toFixed(2)}" stroke-dashoffset="${(25 - cum).toFixed(2)}"></circle>`;
+    cum += pct;
+    return seg;
+  }).join("");
+  document.getElementById("donut").innerHTML =
+    `<svg viewBox="0 0 42 42" width="150" height="150"><circle r="15.915" cx="21" cy="21" fill="transparent" stroke="#efe8db" stroke-width="6"></circle>${segs}</svg>`;
+  document.getElementById("donutLegend").innerHTML = filtered.map((s) =>
+    `<div class="li"><span class="sw" style="background:${s._color}"></span><span class="nm">${s.label}</span><span class="vl">${fmtK(s.value)} \u00b7 ${r1((s.value / total) * 100)}%</span></div>`
+  ).join("");
+  document.getElementById("donutCaption").textContent =
+    `Share of gross revenue (${fmt(m.gross)}/mo) at ${state.ordersPerDay} orders/day.`;
+}
+
+function renderCharts() {
+  const sweep = [25, 50, 75, 100, 150, 200, 250, 300];
+  const profit = sweep.map((d) => Math.round(compute(d).netProfit));
+  const perOrder = sweep.map((d) => r1(compute(d).perOrder));
+  document.getElementById("profitChart").innerHTML = lineChart(sweep, profit, "#5e9a3f", (v) => fmtK(v));
+  document.getElementById("perOrderChart").innerHTML = lineChart(sweep, perOrder, "#e2722b", (v) => "\u20b9" + r1(v));
+}
+
+function lineChart(cats, data, color, fmtY) {
+  const W = 640, H = 220, padL = 60, padR = 16, padT = 16, padB = 28;
+  const innerW = W - padL - padR, innerH = H - padT - padB;
+  let min = Math.min(0, ...data), max = Math.max(0, ...data);
+  if (min === max) max = min + 1;
+  const x = (i) => padL + (cats.length === 1 ? innerW / 2 : (i / (cats.length - 1)) * innerW);
+  const y = (v) => padT + innerH - ((v - min) / (max - min)) * innerH;
+  const ticks = 4;
+  let grid = "";
+  for (let t = 0; t <= ticks; t++) {
+    const val = min + ((max - min) * t) / ticks;
+    const yy = y(val);
+    grid += `<line x1="${padL}" y1="${yy.toFixed(1)}" x2="${W - padR}" y2="${yy.toFixed(1)}" stroke="#efe8db" stroke-width="1"></line>`;
+    grid += `<text x="${padL - 8}" y="${(yy + 3).toFixed(1)}" text-anchor="end">${fmtY(val)}</text>`;
+  }
+  // zero line emphasis
+  const zeroY = y(0);
+  const zero = (min < 0 && max > 0) ? `<line x1="${padL}" y1="${zeroY.toFixed(1)}" x2="${W - padR}" y2="${zeroY.toFixed(1)}" stroke="#d8cdb9" stroke-width="1.2"></line>` : "";
+  const pts = data.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+  const area = `${padL},${y(Math.max(0, min)).toFixed(1)} ` + data.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ") + ` ${(W - padR)},${y(Math.max(0, min)).toFixed(1)}`;
+  const dots = data.map((v, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="3" fill="${color}"></circle>`).join("");
+  const xlabels = cats.map((c, i) => `<text x="${x(i).toFixed(1)}" y="${H - 8}" text-anchor="middle">${c}</text>`).join("");
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet">
+    ${grid}${zero}
+    <polygon points="${area}" fill="${color}" opacity="0.10"></polygon>
+    <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2"></polyline>
+    ${dots}${xlabels}
+  </svg>`;
+}
+
+/* ---------- events ---------- */
+
+function num(v) { return v === "" || v === null ? 0 : Number(v); }
+
+function markDirty() {
+  save();
+  document.querySelectorAll(".recalc").forEach((b) => { b.disabled = false; b.classList.add("dirty"); });
+  document.getElementById("dirtyHint").textContent = "Changes pending \u2014 click Re Calculate";
+}
+
+document.addEventListener("input", (e) => {
+  const el = e.target;
+  if (el.dataset.k) {
+    state[el.dataset.k] = el.type === "number" ? num(el.value) : el.value;
+    if (el.dataset.k === "ordersPerDay") refreshResourceCells();
+    markDirty();
+    return;
+  }
+  const tr = el.closest("tr");
+  if (!tr) return;
+  const f = el.dataset.f;
+  if (tr.dataset.pid) setItem("products", tr.dataset.pid, f, el);
+  else if (tr.dataset.rid) { setItem("resources", tr.dataset.rid, f, el); refreshResourceCells(); }
+  else if (tr.dataset.oid) setItem("overheads", tr.dataset.oid, f, el);
+  else if (tr.dataset.mid) setItem("months", tr.dataset.mid, f, el);
+  else return;
+  markDirty();
+});
+
+document.querySelectorAll(".recalc").forEach((b) => { b.onclick = () => recompute(); });
+
+document.addEventListener("change", (e) => {
+  const el = e.target;
+  if (el.dataset.f === "mode" && el.closest("tr")) {
+    const id = el.closest("tr").dataset.rid;
+    const r = state.resources.find((x) => x.id === id);
+    if (r) { r.mode = el.value; buildResources(); recompute(); }
+  }
+});
+
+function setItem(coll, id, f, el) {
+  const item = state[coll].find((x) => x.id === id);
+  if (!item) return;
+  item[f] = el.type === "number" ? num(el.value) : el.value;
+}
+
+document.getElementById("addProduct").onclick = () => {
+  state.products.push({ id: uid("p"), name: "New product", share: 0, cogs: 50, pack: 30 });
+  buildProducts(); recompute();
+};
+document.getElementById("addResource").onclick = () => {
+  state.resources.push({ id: uid("r"), name: "New role", mode: "capacity", salary: 20000, capacity: 50, count: 1 });
+  buildResources(); recompute();
+};
+document.getElementById("addOverhead").onclick = () => {
+  state.overheads.push({ id: uid("o"), name: "New overhead", monthly: 0 });
+  buildOverheads(); recompute();
+};
+document.getElementById("addMonth").onclick = () => {
+  const last = state.months[state.months.length - 1];
+  const base = last || { ordersPerDay: state.ordersPerDay, avgBasket: state.avgBasket, discountPerOrder: state.discountPerOrder, deliveryCostPerOrder: state.deliveryCostPerOrder, wastagePct: state.wastagePct };
+  state.months.push({
+    id: uid("m"), label: "Month " + (state.months.length + 1),
+    ordersPerDay: base.ordersPerDay, avgBasket: base.avgBasket,
+    cogsPct: base.cogsPct != null ? base.cogsPct : Math.round(blendedCogs(state.products)),
+    discountPerOrder: base.discountPerOrder, deliveryCostPerOrder: base.deliveryCostPerOrder, wastagePct: base.wastagePct,
+  });
+  buildMonths(); recompute();
+};
+
+document.addEventListener("click", (e) => {
+  const b = e.target;
+  const card = b.closest && b.closest(".stat");
+  if (card && card.dataset.stat) {
+    const k = card.dataset.stat;
+    expanded[k] = !expanded[k];
+    card.classList.toggle("open", expanded[k]);
+    return;
+  }
+  const mt = b.closest && b.closest("[data-mtoggle]");
+  if (mt) {
+    const id = mt.dataset.mtoggle;
+    monthExpanded[id] = !monthExpanded[id];
+    applyMonthExpand(id);
+    return;
+  }
+  if (b.dataset.delProduct) { state.products = state.products.filter((x) => x.id !== b.dataset.delProduct); buildProducts(); recompute(); }
+  if (b.dataset.delResource) { state.resources = state.resources.filter((x) => x.id !== b.dataset.delResource); buildResources(); recompute(); }
+  if (b.dataset.delOverhead) { state.overheads = state.overheads.filter((x) => x.id !== b.dataset.delOverhead); buildOverheads(); recompute(); }
+  if (b.dataset.delMonth) { state.months = state.months.filter((x) => x.id !== b.dataset.delMonth); buildMonths(); recompute(); }
+});
+
+document.getElementById("resetBtn").onclick = () => {
+  state = structuredClone(DEFAULTS); save();
+  buildAll(); recompute();
+};
+function csvEsc(v) { const s = String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+
+function buildCSV() {
+  const L = [];
+  const push = (arr) => L.push(arr.map(csvEsc).join(","));
+  push(["Sabxi Unit Economics Export"]);
+  push(["Generated", new Date().toLocaleString()]);
+  L.push("");
+
+  push(["Scenario inputs"]);
+  push(["Orders per day", state.ordersPerDay]);
+  push(["Working days / month", state.workingDays]);
+  push(["Avg basket value", state.avgBasket]);
+  push(["Discount per order", state.discountPerOrder]);
+  push(["Delivery cost per order", state.deliveryCostPerOrder]);
+  push(["Wastage % of COGS", state.wastagePct]);
+  push(["One-time setup cost", state.setupCost]);
+  push(["Spread setup over (months)", state.amortMonths]);
+  L.push("");
+
+  const mOrders = state.ordersPerDay * state.workingDays;
+  push(["Products (at " + state.ordersPerDay + " orders/day)"]);
+  push(["Product", "Share %", "Value/order", "COGS %", "Packaging/order", "Revenue/mo", "Gross profit/mo"]);
+  for (const p of state.products) {
+    const valuePerOrder = (state.avgBasket * p.share) / 100;
+    const rev = mOrders * valuePerOrder;
+    const gp = rev - (rev * p.cogs) / 100 - mOrders * ((p.share / 100) * p.pack);
+    push([p.name, p.share, Math.round(valuePerOrder), p.cogs, p.pack, Math.round(rev), Math.round(gp)]);
+  }
+  L.push("");
+
+  push(["Resources (at " + state.ordersPerDay + " orders/day)"]);
+  push(["Resource", "Mode", "Capacity (orders/day/head)", "Headcount", "Salary/mo", "Cost/mo"]);
+  for (const r of staffAt(state.ordersPerDay)) {
+    push([r.name, r.mode, r.mode === "capacity" ? r.capacity : "", r.eff, r.salary, r.cost]);
+  }
+  L.push("");
+
+  push(["Overheads"]);
+  push(["Overhead", "Monthly"]);
+  for (const o of state.overheads) push([o.name, o.monthly]);
+  L.push("");
+
+  push(["Month-on-month projection"]);
+  push(["Month", "Orders/day", "Basket", "COGS %", "Discount/order", "Delivery/order", "Wastage %",
+    "Orders/mo", "Gross revenue", "Net revenue", "COGS", "Wastage", "Packaging", "Delivery", "Staff",
+    "Overheads", "Setup amortized", "Total cost", "Net profit", "Profit/order", "Gross margin %", "Cumulative op profit"]);
+  let cum = 0;
+  for (const mm of state.months) {
+    const r = model({ ordersPerDay: mm.ordersPerDay, avgBasket: mm.avgBasket, cogsPct: mm.cogsPct, discountPerOrder: mm.discountPerOrder, deliveryCostPerOrder: mm.deliveryCostPerOrder, wastagePct: mm.wastagePct });
+    cum += r.opProfit;
+    push([mm.label, mm.ordersPerDay, mm.avgBasket, mm.cogsPct, mm.discountPerOrder, mm.deliveryCostPerOrder, mm.wastagePct,
+      r.monthlyOrders, Math.round(r.gross), Math.round(r.netRevenue), Math.round(r.cogs), Math.round(r.wastage),
+      Math.round(r.pack), Math.round(r.delivery), Math.round(r.staffCost), Math.round(r.overheadTotal),
+      Math.round(r.amortized), Math.round(r.costTotal), Math.round(r.netProfit), Math.round(r.perOrder),
+      r1(r.grossMargin), Math.round(cum)]);
+  }
+  return L.join("\n");
+}
+
+document.getElementById("exportBtn").onclick = () => {
+  const blob = new Blob([buildCSV()], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "sabxi-scenario.csv";
+  a.click();
+};
+
+function buildAll() { buildLevers(); buildProducts(); buildResources(); buildOverheads(); buildMonths(); }
+buildAll();
+recompute();
+</script>
+</body>
+</html>
