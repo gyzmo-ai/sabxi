@@ -214,16 +214,24 @@
         .food-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
         /* Studio */
-        .studio { background: var(--cream); }
+        .studio { background: var(--cream); scroll-margin-top: 5rem; }
+        .studio .section-desc { margin-bottom: 0; }
         .studio-showcase {
-            margin-top: 3rem; border-radius: 28px; overflow: hidden;
+            margin-top: 2rem; border-radius: 28px; overflow: hidden;
             box-shadow: 0 32px 80px rgba(0,0,0,0.18); border: 1px solid rgba(0,0,0,0.06);
             background: white;
         }
+        .studio-showcase-visual {
+            display: flex; align-items: center; justify-content: center;
+            background: white; padding: 0.5rem;
+            max-height: min(calc(100svh - 12rem), 780px);
+            min-height: 280px;
+        }
         .studio-showcase-img {
-            width: 100%; display: block; height: auto;
-            aspect-ratio: 819 / 1024; object-fit: contain; object-position: center;
-            background: white;
+            display: block; width: auto; height: auto;
+            max-width: 100%; max-height: min(calc(100svh - 12rem), 780px);
+            object-fit: contain; object-position: center;
+            margin: 0 auto;
         }
         .studio-showcase-caption {
             padding: 1.75rem 2rem; text-align: center;
@@ -410,7 +418,9 @@
             .stats-grid { grid-template-columns: 1fr 1fr; }
             .lines-grid, .workflow, .pipeline-track, .product-showcase { grid-template-columns: 1fr; }
             .product-columns .lines-grid { grid-template-columns: 1fr; }
-            .studio-showcase { border-radius: 20px; margin-top: 2rem; }
+            .studio-showcase { border-radius: 20px; margin-top: 1.5rem; }
+            .studio-showcase-visual { max-height: min(calc(100svh - 10rem), 620px); padding: 0.25rem; }
+            .studio-showcase-img { max-height: min(calc(100svh - 10rem), 620px); }
             .studio-showcase-caption { padding: 1.25rem 1rem; }
             .studio-categories { grid-template-columns: 1fr; }
             .studio-cat-col:first-child { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
@@ -428,6 +438,8 @@
             .hero-trust { gap: 1.5rem; justify-content: space-around; width: 100%; }
             .stats-grid { grid-template-columns: 1fr; }
             .features-grid, .review-grid { grid-template-columns: 1fr; }
+            .studio-showcase-visual { max-height: min(calc(100svh - 8rem), 480px); }
+            .studio-showcase-img { max-height: min(calc(100svh - 8rem), 480px); }
             .studio-specs { grid-template-columns: 1fr; }
         }
     </style>
@@ -659,7 +671,9 @@
         <p class="section-desc reveal">Freshly cut, quickly delivered — your neighbourhood fresh-food studio. Stainless steel counters, LED-lit shelves, and six product lines under one roof.</p>
 
         <div class="studio-showcase reveal">
-            <img src="assets/sabxi-studio.png" alt="SABXI Studio storefront — cut veggies, cut fruits, fresh juices, vegetables, fruits, smoothies" class="studio-showcase-img" width="819" height="1024">
+            <div class="studio-showcase-visual">
+                <img src="assets/sabxi-studio.png" alt="SABXI Studio storefront — cut veggies, cut fruits, fresh juices, vegetables, fruits, smoothies" class="studio-showcase-img" width="819" height="1024">
+            </div>
             <div class="studio-showcase-caption">
                 <h3>sabxi studio</h3>
                 <p>Freshly cut, quickly delivered — your neighbourhood fresh-food studio with six product lines under one roof.</p>
