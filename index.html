@@ -142,7 +142,7 @@
         }
         .reveal-child.visible { opacity: 1; transform: translateY(0); }
 
-        .line-card, .menu-card, .product-shot, .review-card, .studio-spec, .feat-item {
+        .line-card, .menu-card, .product-shot, .review-card, .feat-item {
             transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s, border-color 0.45s;
         }
         .line-card:hover, .menu-card:hover, .product-shot:hover, .review-card:hover {
@@ -514,52 +514,13 @@
         .studio-categories.visible .studio-cat-col:last-child li:nth-child(1) { transition-delay: 0.2s; }
         .studio-categories.visible .studio-cat-col:last-child li:nth-child(2) { transition-delay: 0.3s; }
         .studio-categories.visible .studio-cat-col:last-child li:nth-child(3) { transition-delay: 0.4s; }
-        .studio-perks li {
-            opacity: 0; transform: translateX(-18px);
-            transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .studio-info.visible .studio-perks li { opacity: 1; transform: translateX(0); }
-        .studio-info.visible .studio-perks li:nth-child(1) { transition-delay: 0.08s; }
-        .studio-info.visible .studio-perks li:nth-child(2) { transition-delay: 0.16s; }
-        .studio-info.visible .studio-perks li:nth-child(3) { transition-delay: 0.24s; }
-        .studio-info.visible .studio-perks li:nth-child(4) { transition-delay: 0.32s; }
-        .studio-info.visible .studio-perks li:nth-child(5) { transition-delay: 0.4s; }
-        .studio-info.visible .studio-perks li:nth-child(6) { transition-delay: 0.48s; }
-        .studio-info.visible .studio-perks li::before { animation: checkPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
-        .studio-info.visible .studio-perks li:nth-child(1)::before { animation-delay: 0.12s; }
-        .studio-info.visible .studio-perks li:nth-child(2)::before { animation-delay: 0.2s; }
-        .studio-info.visible .studio-perks li:nth-child(3)::before { animation-delay: 0.28s; }
-        .studio-info.visible .studio-perks li:nth-child(4)::before { animation-delay: 0.36s; }
-        .studio-info.visible .studio-perks li:nth-child(5)::before { animation-delay: 0.44s; }
-        .studio-info.visible .studio-perks li:nth-child(6)::before { animation-delay: 0.52s; }
-        @keyframes checkPop {
-            from { transform: scale(0); }
-            60% { transform: scale(1.15); }
-            to { transform: scale(1); }
-        }
-        .studio-spec {
-            background: white; border-radius: 16px; padding: 1.25rem;
-            border: 1px solid rgba(0,0,0,0.05); text-align: center;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s, border-color 0.4s;
-        }
-        .studio-spec:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 16px 40px rgba(255,107,0,0.1); border-color: rgba(255,107,0,0.2); }
-        .studio-spec strong.counted { animation: statPop 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-        .studio-specs .studio-spec {
-            opacity: 0; transform: translateY(20px) scale(0.96);
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s, border-color 0.4s;
-        }
-        .studio-specs.visible .studio-spec { opacity: 1; transform: translateY(0) scale(1); }
-        .studio-specs.visible .studio-spec:nth-child(1) { transition-delay: 0.05s; }
-        .studio-specs.visible .studio-spec:nth-child(2) { transition-delay: 0.12s; }
-        .studio-specs.visible .studio-spec:nth-child(3) { transition-delay: 0.19s; }
-        .studio-specs.visible .studio-spec:nth-child(4) { transition-delay: 0.26s; }
         @media (prefers-reduced-motion: reduce) {
             .studio-showcase.studio-live .studio-showcase-img,
             .studio-showcase.studio-live .studio-shimmer,
             .studio-showcase.studio-live .studio-badge-dot,
             .studio-glow,
             .studio-showcase-caption.visible h3 { animation: none; }
-            .studio-cat-col li, .studio-perks li, .studio-specs .studio-spec { opacity: 1; transform: none; }
+            .studio-cat-col li { opacity: 1; transform: none; }
         }
         .studio-details { padding: 4rem 2rem 5.5rem; }
         .studio-showcase-caption {
@@ -585,16 +546,6 @@
         }
         .studio-cat-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
         .studio-cat-col li { font-size: 0.9rem; font-weight: 500; color: var(--black); }
-        .studio-wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: start; margin-top: 3rem; }
-        .studio-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 1rem; }
-        .studio-info h3 span { color: var(--orange); }
-        .studio-info p { color: var(--gray); line-height: 1.7; margin-bottom: 1.5rem; }
-        .studio-perks { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
-        .studio-perks li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.92rem; font-weight: 500; }
-        .studio-perks li::before { content: '✓'; width: 24px; height: 24px; border-radius: 50%; background: rgba(46,133,64,0.12); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
-        .studio-specs { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
-        .studio-spec strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--orange); line-height: 1; margin-bottom: 0.25rem; }
-        .studio-spec span { font-size: 0.78rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.06em; }
 
         /* Fresh action */
         .fresh { background: var(--ink); color: white; }
@@ -936,8 +887,6 @@
             .features-inner { grid-template-columns: 1fr; gap: 2.5rem; }
             .features-head { position: static; }
             .media-card.wide { grid-column: span 1; }
-            .studio-wrap { grid-template-columns: 1fr; }
-            .studio-specs { grid-template-columns: repeat(4,1fr); }
             .product-columns { grid-template-columns: 1fr; }
             .product-columns .lines-grid { grid-template-columns: repeat(2,1fr); }
             .product-showcase { grid-template-columns: repeat(2,1fr); }
@@ -960,7 +909,6 @@
             .studio-categories { grid-template-columns: 1fr; }
             .studio-cat-col:first-child { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
             .studio-cat-col { padding: 1.25rem 1rem; }
-            .studio-specs { grid-template-columns: 1fr 1fr; }
             .menu-tabs { gap: 0.4rem; }
             .menu-tab { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
             .menu-grid { grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 1rem; }
@@ -1363,27 +1311,6 @@
                     </ul>
                 </div>
             </div>
-
-            <div class="studio-wrap">
-            <div class="studio-info reveal">
-                <h3>Freshly Cut,<br><span>Quickly Delivered.</span></h3>
-                <p>Walk into SABXI Studio and you'll see exactly what we sell — cut veggies and cut fruits on the left, whole vegetables, fruits, and smoothies on the right. Every order is prepared fresh and delivered to your door.</p>
-                <ul class="studio-perks">
-                    <li>Cut Veggies — diced, sliced, julienned to order</li>
-                    <li>Cut Fruits — bowls and seasonal slices</li>
-                    <li>Fresh Juices — cold-pressed, no concentrate</li>
-                    <li>Vegetables — whole, from the mandi daily</li>
-                    <li>Fruits — whole, seasonal, by the kilo</li>
-                    <li>Smoothies — thick, blended fresh</li>
-                </ul>
-            </div>
-            <div class="studio-specs reveal">
-                <div class="studio-spec"><strong data-count="6">6</strong><span>Product Lines</span></div>
-                <div class="studio-spec"><strong data-count="30">30</strong><span>Min Delivery</span></div>
-                <div class="studio-spec"><strong data-count="100" data-suffix="%">100%</strong><span>Cut to Order</span></div>
-                <div class="studio-spec"><strong>Daily</strong><span>Fresh Stock</span></div>
-            </div>
-        </div>
         </div>
     </div>
 </section>
@@ -1504,13 +1431,6 @@
             } else {
                 entry.target.querySelectorAll('.stat-num:not([data-count])').forEach(s => s.classList.add('counted'));
             }
-            entry.target.querySelectorAll('strong[data-count]').forEach(s => {
-                if (!s.dataset.done) {
-                    s.dataset.done = '1';
-                    countUp(s, +s.dataset.count, s.dataset.suffix || '');
-                }
-            });
-            entry.target.querySelectorAll('.studio-spec strong:not([data-count])').forEach(s => s.classList.add('counted'));
             revealObserver.unobserve(entry.target);
         });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
