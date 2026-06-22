@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SABXI — Chop Chop, Sorted.</title>
-    <meta name="description" content="SABXI — Chop Chop, Sorted. Fresh vegetables, salads, fruit chaat, and cold-pressed juice prepared at SABXI Studio across six stations — order receive, cutting, salad, juice, ice & water, packaging. Delivered fast.">
+    <title>SABXI Studio — Freshly Cut, Quickly Delivered</title>
+    <meta name="description" content="SABXI Studio — Freshly cut, quickly delivered. Order cut veggies, cut fruits, fresh juices, whole vegetables, fruits, and smoothies. Delivered to your door in 30 minutes.">
     <meta name="theme-color" content="#FF6B00">
     <link rel="icon" href="assets/logo-trans.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -105,7 +105,7 @@
         .app-header h3 { font-size: 1.05rem; font-weight: 700; }
         .app-header p { font-size: 0.72rem; opacity: 0.85; }
         .app-search { margin: -0.75rem 1rem 0; background: white; border-radius: 12px; padding: 0.6rem 1rem; font-size: 0.72rem; color: var(--gray); box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
-        .app-cats { display: grid; grid-template-columns: repeat(4,1fr); gap: 0.5rem; padding: 1rem; }
+        .app-cats { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.5rem; padding: 1rem; }
         .app-cat { text-align: center; font-size: 0.6rem; font-weight: 600; }
         .app-cat-icon { width: 46px; height: 46px; border-radius: 14px; margin: 0 auto 0.3rem; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; background: var(--cream); }
         .app-banner { margin: 0 1rem; border-radius: 14px; overflow: hidden; position: relative; height: 90px; }
@@ -181,9 +181,16 @@
         .feat-card h4 { font-weight: 700; margin-bottom: 0.4rem; }
         .feat-card p { font-size: 0.88rem; color: var(--gray); }
 
-        /* Product lines */
-        .lines { background: white; }
-        .lines-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
+        /* Product categories — LHS / RHS */
+        .products { background: white; }
+        .product-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 3rem; }
+        .product-col-header { text-align: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid var(--gray-light); }
+        .product-col-header h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.06em; color: var(--green); }
+        .product-col-header p { font-size: 0.85rem; color: var(--gray); margin-top: 0.25rem; }
+        .product-col-header.prepared h3 { color: var(--orange); }
+        .lines-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+        .line-card.prepared { border-top: 3px solid var(--orange); }
+        .line-card.whole { border-top: 3px solid var(--green); }
         .line-card { border-radius: 22px; overflow: hidden; background: var(--cream); border: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
         .line-card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(0,0,0,0.1); }
         .line-media { aspect-ratio: 4/3; overflow: hidden; position: relative; background: var(--gray-light); }
@@ -349,6 +356,7 @@
             .workflow, .features-grid, .ai-grid, .review-grid, .media-grid { grid-template-columns: repeat(2,1fr); }
             .media-card.wide { grid-column: span 1; }
             .studio-wrap, .market-thesis, .studio-specs { grid-template-columns: 1fr; }
+            .product-columns { grid-template-columns: 1fr; }
             .market-grid, .pipeline-track, .lines-grid { grid-template-columns: repeat(2,1fr); }
             .footer-inner { grid-template-columns: 1fr; }
         }
@@ -368,12 +376,10 @@
 <nav id="nav">
     <img src="assets/logo-trans.png" alt="SABXI" class="nav-logo">
     <ul id="navLinks">
-        <li><a href="#how">Inside Studio</a></li>
         <li><a href="#lines">Products</a></li>
-        <li><a href="#studio">SABXI Studio</a></li>
-        <li><a href="#menu">Order</a></li>
-        <li><a href="#ai">AI</a></li>
-        <li><a href="#notify" class="nav-cta">Get Early Access</a></li>
+        <li><a href="#studio">Studio</a></li>
+        <li><a href="#menu">Shop</a></li>
+        <li><a href="#notify" class="nav-cta">Order Now</a></li>
     </ul>
     <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -388,17 +394,17 @@
     <div class="hero-inner">
         <div>
             <img src="assets/logo-trans.png" alt="SABXI logo" class="hero-logo">
-            <div class="hero-badge">SABXI Studio — Fresh, Made Visible</div>
-            <h1><span class="o">Chop Chop,</span><br><span class="g">Sorted.</span></h1>
-            <p class="hero-sub">Order on the app. Watch it flow through our SABXI Studio — six stations from order receive to packaging — then delivered to your door in under 30 minutes.</p>
+            <div class="hero-badge">Freshly cut · Quickly delivered</div>
+            <h1><span class="o">Freshly Cut,</span><br><span class="g">Quickly Delivered.</span></h1>
+            <p class="hero-sub">Cut veggies, cut fruits, fresh juices, whole vegetables, fruits, and smoothies — all from SABXI Studio, delivered to your door in under 30 minutes.</p>
             <div class="hero-actions">
-                <a href="#notify" class="btn btn-primary">Get Early Access</a>
-                <a href="#how" class="btn btn-ghost">See the 6 Stations</a>
+                <a href="#menu" class="btn btn-primary">Shop Now</a>
+                <a href="#lines" class="btn btn-ghost">Browse Products</a>
             </div>
             <div class="hero-trust">
-                <div><strong>6</strong><span>Prep stations</span></div>
+                <div><strong>6</strong><span>Product lines</span></div>
                 <div><strong>100%</strong><span>Cut to order</span></div>
-                <div><strong>30 min</strong><span>Avg. delivery</span></div>
+                <div><strong>30 min</strong><span>Delivery</span></div>
             </div>
         </div>
         <div class="phone-wrap">
@@ -411,10 +417,12 @@
                     </div>
                     <div class="app-search">🔍 Search tomatoes, palak, orange juice…</div>
                     <div class="app-cats">
-                        <div class="app-cat"><div class="app-cat-icon">🥬</div>Raw</div>
-                        <div class="app-cat"><div class="app-cat-icon">🔪</div>Cut</div>
-                        <div class="app-cat"><div class="app-cat-icon">🍲</div>Mixes</div>
-                        <div class="app-cat"><div class="app-cat-icon">🥤</div>Jars</div>
+                        <div class="app-cat"><div class="app-cat-icon">🔪</div>Cut Veg</div>
+                        <div class="app-cat"><div class="app-cat-icon">🍉</div>Cut Fruit</div>
+                        <div class="app-cat"><div class="app-cat-icon">🥤</div>Juices</div>
+                        <div class="app-cat"><div class="app-cat-icon">🥬</div>Veg</div>
+                        <div class="app-cat"><div class="app-cat-icon">🍎</div>Fruits</div>
+                        <div class="app-cat"><div class="app-cat-icon">🧋</div>Smoothie</div>
                     </div>
                     <div class="app-banner">
                         <video autoplay muted loop playsinline><source src="https://assets.mixkit.co/videos/46543/46543-720.mp4" type="video/mp4"></video>
@@ -435,135 +443,120 @@
 <!-- MARQUEE -->
 <div class="marquee">
     <div class="marquee-track">
-        <span>Chop Chop, Sorted</span><span>SABXI Studio</span><span>Order Receive</span><span>Cut to Order</span><span>Salad &amp; Fruit Chaat</span><span>Cold-Pressed Juice</span><span>Ice &amp; Water</span><span>Packaged Fresh</span>
-        <span>Chop Chop, Sorted</span><span>SABXI Studio</span><span>Order Receive</span><span>Cut to Order</span><span>Salad &amp; Fruit Chaat</span><span>Cold-Pressed Juice</span><span>Ice &amp; Water</span><span>Packaged Fresh</span>
+        <span>Freshly Cut</span><span>Quickly Delivered</span><span>Cut Veggies</span><span>Cut Fruits</span><span>Fresh Juices</span><span>Vegetables</span><span>Fruits</span><span>Smoothies</span>
+        <span>Freshly Cut</span><span>Quickly Delivered</span><span>Cut Veggies</span><span>Cut Fruits</span><span>Fresh Juices</span><span>Vegetables</span><span>Fruits</span><span>Smoothies</span>
     </div>
 </div>
 
 <!-- STATS -->
 <div class="stats">
     <div class="stats-grid">
-        <div class="reveal"><div class="stat-num">30 min</div><div class="stat-label">Average delivery</div></div>
-        <div class="reveal"><div class="stat-num">22%</div><div class="stat-label">Lower procurement cost via AI</div></div>
-        <div class="reveal"><div class="stat-num">35%</div><div class="stat-label">Less food waste</div></div>
-        <div class="reveal"><div class="stat-num">94%</div><div class="stat-label">Support auto-resolved by AI</div></div>
+        <div class="reveal"><div class="stat-num">30 min</div><div class="stat-label">Home delivery</div></div>
+        <div class="reveal"><div class="stat-num">6</div><div class="stat-label">Fresh product lines</div></div>
+        <div class="reveal"><div class="stat-num">100%</div><div class="stat-label">Cut to order</div></div>
+        <div class="reveal"><div class="stat-num">Daily</div><div class="stat-label">Fresh from mandi</div></div>
     </div>
 </div>
-
-<!-- STUDIO WORKFLOW -->
-<section class="how" id="how">
-    <div class="section-inner" style="text-align:center;">
-        <span class="section-label reveal">Inside SABXI Studio</span>
-        <h2 class="section-title reveal" style="color:white;">Six Stations. One Fresh Promise.</h2>
-        <p class="section-desc reveal" style="margin:0 auto;">Every order moves through six dedicated stations — from the moment it hits our POS to the final sealed bag. Transparent, hygienic, and built for speed.</p>
-        <div class="workflow">
-            <div class="workflow-step reveal">
-                <div class="workflow-num">1</div>
-                <div class="workflow-icon">📋</div>
-                <h3>Order Receive (POC)</h3>
-                <p>App orders land on our studio POS. Every item is verified, queued, and routed to the right station.</p>
-            </div>
-            <div class="workflow-step reveal">
-                <div class="workflow-num">2</div>
-                <div class="workflow-icon">🔪</div>
-                <h3>Cutting Vegetables</h3>
-                <p>Diced, sliced, or julienned to your spec — cut fresh on stainless steel, never from pre-cut stock.</p>
-            </div>
-            <div class="workflow-step reveal">
-                <div class="workflow-num">3</div>
-                <div class="workflow-icon">🥗</div>
-                <h3>Salad &amp; Fruit Chaat</h3>
-                <p>Salad bowls, fruit cuts, and chaat mixes assembled with seasonal produce from our cold shelves.</p>
-            </div>
-            <div class="workflow-step reveal">
-                <div class="workflow-num">4</div>
-                <div class="workflow-icon">🥤</div>
-                <h3>Juice</h3>
-                <p>Cold-pressed and blended fresh — orange, green detox, smoothies, and seasonal specials on demand.</p>
-            </div>
-            <div class="workflow-step reveal">
-                <div class="workflow-num">5</div>
-                <div class="workflow-icon">🧊</div>
-                <h3>Ice &amp; Drinking Water</h3>
-                <p>Filtered water and crushed ice added to drinks. Every juice and smoothie finished at peak freshness.</p>
-            </div>
-            <div class="workflow-step reveal">
-                <div class="workflow-num">6</div>
-                <div class="workflow-icon">📦</div>
-                <h3>Packaging</h3>
-                <p>Labelled, sealed, and quality-checked. Your bag is ready for pickup by our delivery partner.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- FEATURES -->
 <section class="features" id="features">
     <div class="section-inner">
-        <span class="section-label reveal">Built for You</span>
-        <h2 class="section-title reveal">Everything You Need, Nothing You Don't</h2>
-        <p class="section-desc reveal">Designed around one thing — the freshest food with zero hassle.</p>
+        <span class="section-label reveal">Why SABXI</span>
+        <h2 class="section-title reveal">Fresh Food, Zero Hassle</h2>
+        <p class="section-desc reveal">Six product lines. One app. Delivered fast.</p>
         <div class="features-grid">
-            <div class="feat-card reveal"><div class="feat-icon">🔪</div><h4>Cut to Your Spec</h4><p>Diced for biryani, sliced for sandwiches, julienned for stir-fry. We prep it your way.</p></div>
-            <div class="feat-card reveal"><div class="feat-icon">⚡</div><h4>Same-Day Delivery</h4><p>Order between 7 AM and 9 PM — fresh produce and juices delivered the same day.</p></div>
-            <div class="feat-card reveal"><div class="feat-icon">💰</div><h4>Market Prices</h4><p>Direct from mandis every morning. What you'd pay at the market is what you pay — no markup.</p></div>
-            <div class="feat-card reveal"><div class="feat-icon">🏪</div><h4>SABXI Studio</h4><p>Six dedicated stations — order receive, cutting, salad &amp; chaat, juice, ice &amp; water, packaging — all under one roof.</p></div>
-            <div class="feat-card reveal"><div class="feat-icon">📍</div><h4>Live Order Tracking</h4><p>Track your order through every studio station — from POC to packaging to your door, in real time.</p></div>
-            <div class="feat-card reveal"><div class="feat-icon">🍲</div><h4>Ready-to-Eat Mixes</h4><p>Fried rice, poha, custard, sandwiches, boiled rajma &amp; chana, bhel and more — fresh, prepped, and ready.</p></div>
-            <div class="feat-card reveal"><div class="feat-icon">🔁</div><h4>Daily Subscription</h4><p>Set your daily basket — palak, tomatoes, onions. Auto-delivered every morning, always discounted.</p></div>
+            <div class="feat-card reveal"><div class="feat-icon">🔪</div><h4>Cut to Your Spec</h4><p>Diced, sliced, or julienned — your veggies and fruits, prepped exactly how you want them.</p></div>
+            <div class="feat-card reveal"><div class="feat-icon">⚡</div><h4>30-Min Delivery</h4><p>Order cut veggies, fruits, juices, or whole produce — at your door in under 30 minutes.</p></div>
+            <div class="feat-card reveal"><div class="feat-icon">💰</div><h4>Market Prices</h4><p>Sourced fresh from the mandi every morning. No markup, no middlemen.</p></div>
+            <div class="feat-card reveal"><div class="feat-icon">🥤</div><h4>Fresh Juices &amp; Smoothies</h4><p>Cold-pressed juices and thick smoothies — blended fresh, never from concentrate.</p></div>
+            <div class="feat-card reveal"><div class="feat-icon">📍</div><h4>Live Tracking</h4><p>Watch your order move from SABXI Studio to your doorstep in real time.</p></div>
+            <div class="feat-card reveal"><div class="feat-icon">🔁</div><h4>Daily Subscription</h4><p>Set your daily basket — palak, tomatoes, orange juice. Auto-delivered every morning.</p></div>
         </div>
     </div>
 </section>
 
-<!-- FOUR PRODUCT LINES -->
-<section class="lines" id="lines">
+<!-- SIX PRODUCT LINES -->
+<section class="lines products" id="lines">
     <div class="section-inner">
-        <span class="section-label reveal">What We Sell</span>
-        <h2 class="section-title reveal">Four Fresh Lines</h2>
-        <p class="section-desc reveal">From raw produce to ready-to-eat mixes and jars — SABXI covers your whole fresh-food day, all from one app.</p>
-        <div class="lines-grid">
-            <div class="line-card reveal">
-                <div class="line-media">
-                    <span class="line-no">1</span>
-                    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/26649/26649-720.mp4" type="video/mp4"></video>
+        <span class="section-label reveal">Shop by Category</span>
+        <h2 class="section-title reveal">Six Fresh Lines</h2>
+        <p class="section-desc reveal">Prepared fresh at SABXI Studio — cut, pressed, and packed the moment you order.</p>
+
+        <div class="product-columns">
+            <div>
+                <div class="product-col-header prepared reveal">
+                    <h3>Prepared Fresh</h3>
+                    <p>Cut and ready — no prep needed at home</p>
                 </div>
-                <div class="line-body">
-                    <h3>Raw Vegetables &amp; Fruits</h3>
-                    <p>Farm-fresh, whole produce sourced from the mandi every morning — by the kilo, never pre-packed.</p>
-                    <div class="line-chips"><span class="line-chip">Tomatoes</span><span class="line-chip">Onions</span><span class="line-chip">Leafy greens</span><span class="line-chip">Apples</span><span class="line-chip">Bananas</span></div>
+                <div class="lines-grid">
+                    <div class="line-card prepared reveal">
+                        <div class="line-media">
+                            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/46543/46543-720.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="line-body">
+                            <h3>Cut Veggies</h3>
+                            <p>Diced, sliced, or julienned to your spec — tomatoes, onions, palak, carrots, and more.</p>
+                            <div class="line-chips"><span class="line-chip">Diced tomatoes</span><span class="line-chip">Sliced onions</span><span class="line-chip">Stir-fry mix</span><span class="line-chip">Salad cuts</span></div>
+                        </div>
+                    </div>
+                    <div class="line-card prepared reveal">
+                        <div class="line-media">
+                            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/43913/43913-720.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="line-body">
+                            <h3>Cut Fruits</h3>
+                            <p>Seasonal fruit bowls and slices — watermelon, papaya, apple, and mixed fruit packs.</p>
+                            <div class="line-chips"><span class="line-chip">Fruit bowl</span><span class="line-chip">Watermelon</span><span class="line-chip">Papaya</span><span class="line-chip">Mixed fruit</span></div>
+                        </div>
+                    </div>
+                    <div class="line-card prepared reveal">
+                        <div class="line-media">
+                            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/15954/15954-720.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="line-body">
+                            <h3>Fresh Juices</h3>
+                            <p>Cold-pressed and blended on demand — orange, green detox, watermelon mint, and more.</p>
+                            <div class="line-chips"><span class="line-chip">Orange</span><span class="line-chip">Green detox</span><span class="line-chip">Watermelon</span><span class="line-chip">Carrot ginger</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="line-card reveal">
-                <div class="line-media">
-                    <span class="line-no">2</span>
-                    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/46543/46543-720.mp4" type="video/mp4"></video>
+            <div>
+                <div class="product-col-header reveal">
+                    <h3>Whole &amp; Blended</h3>
+                    <p>Raw produce and thick smoothies</p>
                 </div>
-                <div class="line-body">
-                    <h3>Freshly Cut Veg &amp; Fruits</h3>
-                    <p>Cut to your spec — diced, sliced, julienned, or bowled — prepped the moment you order.</p>
-                    <div class="line-chips"><span class="line-chip">Diced veg</span><span class="line-chip">Cut fruit bowls</span><span class="line-chip">Stir-fry mix</span><span class="line-chip">Salad cuts</span></div>
-                </div>
-            </div>
-            <div class="line-card reveal">
-                <div class="line-media">
-                    <span class="line-no">3</span>
-                    <div class="food-tile" style="background:linear-gradient(135deg,#FFE0B2,#FFCC80);">🍲<img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600&h=450&fit=crop" alt="Ready mixes" loading="lazy" onerror="this.remove()"></div>
-                </div>
-                <div class="line-body">
-                    <h3>Mixes — Ready &amp; Prepped</h3>
-                    <p>Ready-to-cook and ready-to-eat mixes — boiled bases, snack mixes, and quick meals.</p>
-                    <div class="line-chips"><span class="line-chip">Fried rice</span><span class="line-chip">Poha</span><span class="line-chip">Custard</span><span class="line-chip">Sandwich</span><span class="line-chip">Rajma &amp; chana</span><span class="line-chip">Boiled potato</span><span class="line-chip">Bhel mix</span><span class="line-chip">Chana chur</span></div>
-                </div>
-            </div>
-            <div class="line-card reveal">
-                <div class="line-media">
-                    <span class="line-no">4</span>
-                    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/15954/15954-720.mp4" type="video/mp4"></video>
-                </div>
-                <div class="line-body">
-                    <h3>Juices, Salads &amp; Jars</h3>
-                    <p>Cold-pressed juices, fresh salads, and raw-cut smoothie jars — made fresh, sealed clean.</p>
-                    <div class="line-chips"><span class="line-chip">Cold-pressed juice</span><span class="line-chip">Smoothie jars</span><span class="line-chip">Salad bowls</span><span class="line-chip">Fruit jars</span></div>
+                <div class="lines-grid">
+                    <div class="line-card whole reveal">
+                        <div class="line-media">
+                            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/26649/26649-720.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="line-body">
+                            <h3>Vegetables</h3>
+                            <p>Whole, farm-fresh vegetables from the mandi — tomatoes, onions, palak, potatoes, and more.</p>
+                            <div class="line-chips"><span class="line-chip">Tomatoes</span><span class="line-chip">Onions</span><span class="line-chip">Palak</span><span class="line-chip">Potatoes</span></div>
+                        </div>
+                    </div>
+                    <div class="line-card whole reveal">
+                        <div class="line-media">
+                            <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=600&h=450&fit=crop" alt="Fresh fruits">
+                        </div>
+                        <div class="line-body">
+                            <h3>Fruits</h3>
+                            <p>Whole seasonal fruits — apples, bananas, oranges, grapes, and more by the kilo.</p>
+                            <div class="line-chips"><span class="line-chip">Apples</span><span class="line-chip">Bananas</span><span class="line-chip">Oranges</span><span class="line-chip">Grapes</span></div>
+                        </div>
+                    </div>
+                    <div class="line-card whole reveal">
+                        <div class="line-media">
+                            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/34252/34252-720.mp4" type="video/mp4"></video>
+                        </div>
+                        <div class="line-body">
+                            <h3>Smoothies</h3>
+                            <p>Thick, blended smoothies — berry, mango, banana oats, and seasonal specials.</p>
+                            <div class="line-chips"><span class="line-chip">Berry blend</span><span class="line-chip">Mango</span><span class="line-chip">Banana oats</span><span class="line-chip">Green power</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -575,69 +568,34 @@
     <div class="section-inner">
         <span class="section-label reveal">Our Store</span>
         <h2 class="section-title reveal">SABXI Studio</h2>
-        <p class="section-desc reveal">A compact, industrial-chic micro-store — black panels, stainless steel counters, LED-lit shelves, and six dedicated prep stations. Every app order is made here, visible and fresh.</p>
+        <p class="section-desc reveal">Freshly cut, quickly delivered — your neighbourhood fresh-food studio. Stainless steel counters, LED-lit shelves, and six product lines under one roof.</p>
 
         <div class="studio-showcase reveal">
-            <img src="assets/sabxi-studio.png" alt="SABXI Studio storefront — six-station fresh produce, salad, juice, and packaging studio">
+            <img src="assets/sabxi-studio.png" alt="SABXI Studio — cut veggies, cut fruits, fresh juices, vegetables, fruits, smoothies">
             <div class="studio-showcase-overlay">
-                <h3>SABXI · sabxi.com</h3>
-                <p>Fresh vegetables, salads, fruit chaat, and cold-pressed juice — prepared across six stations and delivered to your door.</p>
+                <h3>sabxi studio</h3>
+                <p>Freshly cut, quickly delivered — cut veggies · cut fruits · fresh juices · vegetables · fruits · smoothies</p>
             </div>
         </div>
 
         <div class="studio-wrap">
             <div class="studio-info reveal">
-                <h3>Designed for<br><span>Speed &amp; Hygiene</span></h3>
-                <p>SABXI Studio is a 100 sq.ft smart layout built around six stations — order receive, cutting, salad &amp; fruit chaat, juice, ice &amp; water, and packaging. Stainless steel surfaces, LED lighting, and CCTV at every station.</p>
+                <h3>Freshly Cut,<br><span>Quickly Delivered.</span></h3>
+                <p>Walk into SABXI Studio and you'll see exactly what we sell — cut veggies and cut fruits on the left, whole vegetables, fruits, and smoothies on the right. Every order is prepared fresh and delivered to your door.</p>
                 <ul class="studio-perks">
-                    <li>Six dedicated prep stations — no cross-contamination</li>
-                    <li>Stainless steel counters with LED-lit produce shelves</li>
-                    <li>POS at order receive — app orders flow straight to the floor</li>
-                    <li>Ice &amp; filtered water station for every drink</li>
-                    <li>Labelled packaging with order tracking QR</li>
-                    <li>App-only — no walk-ins, built for delivery speed</li>
+                    <li>Cut Veggies — diced, sliced, julienned to order</li>
+                    <li>Cut Fruits — bowls and seasonal slices</li>
+                    <li>Fresh Juices — cold-pressed, no concentrate</li>
+                    <li>Vegetables — whole, from the mandi daily</li>
+                    <li>Fruits — whole, seasonal, by the kilo</li>
+                    <li>Smoothies — thick, blended fresh</li>
                 </ul>
             </div>
             <div class="studio-specs reveal">
-                <div class="studio-spec"><strong>6</strong><span>Prep Stations</span></div>
-                <div class="studio-spec"><strong>100</strong><span>Sq.ft Layout</span></div>
-                <div class="studio-spec"><strong>LED</strong><span>Lit Shelves</span></div>
+                <div class="studio-spec"><strong>6</strong><span>Product Lines</span></div>
                 <div class="studio-spec"><strong>30</strong><span>Min Delivery</span></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FRESH IN ACTION -->
-<section class="fresh" id="fresh">
-    <div class="section-inner">
-        <span class="section-label reveal">Station by Station</span>
-        <h2 class="section-title reveal" style="color:white;">See Every Station in Action</h2>
-        <p class="section-desc reveal">From the POS to the sealed bag — watch how each SABXI Studio station prepares your order.</p>
-        <div class="media-grid">
-            <div class="media-card reveal">
-                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/26649/26649-720.mp4" type="video/mp4"></video>
-                <div class="media-info"><span class="media-tag cut">Station 1</span><h4>Order Receive (POC)</h4><p>App orders verified on POS and routed to the right prep stations instantly.</p></div>
-            </div>
-            <div class="media-card reveal">
-                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/46543/46543-720.mp4" type="video/mp4"></video>
-                <div class="media-info"><span class="media-tag cut">Station 2</span><h4>Cutting Vegetables</h4><p>Diced, sliced, or julienned on stainless steel — cut fresh the moment you order.</p></div>
-            </div>
-            <div class="media-card reveal">
-                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/6272/6272-720.mp4" type="video/mp4"></video>
-                <div class="media-info"><span class="media-tag fruit">Station 3</span><h4>Salad &amp; Fruit Chaat</h4><p>Salad bowls, fruit cuts, and chaat mixes assembled from LED-lit cold shelves.</p></div>
-            </div>
-            <div class="media-card reveal">
-                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/15954/15954-720.mp4" type="video/mp4"></video>
-                <div class="media-info"><span class="media-tag fruit">Station 4</span><h4>Juice</h4><p>Cold-pressed and blended fresh — no bottles, no concentrates, made on demand.</p></div>
-            </div>
-            <div class="media-card reveal">
-                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1551024709-8f23befdfef9?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/34252/34252-720.mp4" type="video/mp4"></video>
-                <div class="media-info"><span class="media-tag pack">Station 5</span><h4>Ice &amp; Drinking Water</h4><p>Filtered water and crushed ice added — every drink finished at peak temperature.</p></div>
-            </div>
-            <div class="media-card reveal">
-                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=400&fit=crop"><source src="https://assets.mixkit.co/videos/22677/22677-720.mp4" type="video/mp4"></video>
-                <div class="media-info"><span class="media-tag pack">Station 6</span><h4>Packaging</h4><p>Labelled, sealed, and quality-checked — your bag ready for delivery in minutes.</p></div>
+                <div class="studio-spec"><strong>100%</strong><span>Cut to Order</span></div>
+                <div class="studio-spec"><strong>Daily</strong><span>Fresh Stock</span></div>
             </div>
         </div>
     </div>
@@ -646,114 +604,55 @@
 <!-- MENU -->
 <section class="menu" id="menu">
     <div class="section-inner">
-        <span class="section-label reveal">What's on the Menu</span>
-        <h2 class="section-title reveal">Order Fresh Now</h2>
-        <p class="section-desc reveal">Raw produce, freshly-cut veg &amp; fruit, ready-to-eat mixes, and juices &amp; jars — sourced this morning, prepped on demand.</p>
+        <span class="section-label reveal">Shop Now</span>
+        <h2 class="section-title reveal">Order Fresh</h2>
+        <p class="section-desc reveal">Six categories. Sourced this morning, prepped on demand, delivered in 30 minutes.</p>
         <div class="menu-tabs reveal">
-            <button class="menu-tab active" data-cat="raw">Raw Veg &amp; Fruits</button>
-            <button class="menu-tab" data-cat="cut">Freshly Cut</button>
-            <button class="menu-tab" data-cat="mix">Mixes</button>
-            <button class="menu-tab" data-cat="jars">Juices &amp; Jars</button>
+            <button class="menu-tab active" data-cat="cut-veg">Cut Veggies</button>
+            <button class="menu-tab" data-cat="cut-fruit">Cut Fruits</button>
+            <button class="menu-tab" data-cat="juice">Fresh Juices</button>
+            <button class="menu-tab" data-cat="veg">Vegetables</button>
+            <button class="menu-tab" data-cat="fruit">Fruits</button>
+            <button class="menu-tab" data-cat="smoothie">Smoothies</button>
         </div>
         <div class="menu-grid" id="menuGrid">
-            <!-- 1. Raw Vegetables & Fruits (whole) -->
-            <div class="menu-card reveal" data-cat="raw"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&h=300&fit=crop" alt="Tomatoes"></div><div class="menu-card-body"><h4>Tomatoes</h4><p>1 kg · whole, vine-ripened</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="raw"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&h=300&fit=crop" alt="Spinach"></div><div class="menu-card-body"><h4>Palak (Spinach)</h4><p>250g · fresh whole bunch</p><div class="menu-card-footer"><span class="menu-price">₹25</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="raw"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1508747703725-719777637510?w=400&h=300&fit=crop" alt="Onions"></div><div class="menu-card-body"><h4>Onions</h4><p>1 kg · whole, fresh</p><div class="menu-card-footer"><span class="menu-price">₹30</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="raw"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&h=300&fit=crop" alt="Apples"></div><div class="menu-card-body"><h4>Apples</h4><p>1 kg · Shimla or Kashmiri</p><div class="menu-card-footer"><span class="menu-price">₹120</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="raw"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=300&fit=crop" alt="Bananas"></div><div class="menu-card-body"><h4>Bananas</h4><p>6 pcs · ripe &amp; ready</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="raw"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1547514704-5ce1ce0e3a29?w=400&h=300&fit=crop" alt="Oranges"></div><div class="menu-card-body"><h4>Oranges</h4><p>1 kg · sweet &amp; juicy</p><div class="menu-card-footer"><span class="menu-price">₹80</span><button class="add-btn">+</button></div></div></div>
+            <!-- Cut Veggies -->
+            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/46543/46543-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Diced Tomatoes</h4><p>500g · diced fresh to order</p><div class="menu-card-footer"><span class="menu-price">₹45</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1508747703725-719777637510?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/43042/43042-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Sliced Onions</h4><p>500g · sliced or diced</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1447175008436-1701707528b5?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/36238/36238-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Julienned Carrots</h4><p>500g · julienned or diced</p><div class="menu-card-footer"><span class="menu-price">₹50</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop" alt="Salad cuts"></div><div class="menu-card-body"><h4>Salad Cut Pack</h4><p>400g · lettuce, cucumber, tomato</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/6272/6272-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Stir-Fry Mix</h4><p>500g · capsicum, carrot, beans</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&h=300&fit=crop" alt="Chopped palak"></div><div class="menu-card-body"><h4>Chopped Palak</h4><p>250g · washed &amp; chopped</p><div class="menu-card-footer"><span class="menu-price">₹35</span><button class="add-btn">+</button></div></div></div>
 
-            <!-- 2. Freshly Cut Vegetables & Fruits -->
-            <div class="menu-card reveal" data-cat="cut"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/46543/46543-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Diced Tomatoes</h4><p>500g · diced fresh to order</p><div class="menu-card-footer"><span class="menu-price">₹45</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1508747703725-719777637510?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/43042/43042-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Sliced Onions</h4><p>500g · sliced or diced</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1447175008436-1701707528b5?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/36238/36238-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Julienned Carrots</h4><p>500g · julienned or diced</p><div class="menu-card-footer"><span class="menu-price">₹50</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/43913/43913-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Cut Fruit Bowl</h4><p>300g · seasonal mixed fruit</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/6272/6272-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Stir-Fry Mix</h4><p>500g · capsicum, carrot, beans</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop" alt="Salad cuts"></div><div class="menu-card-body"><h4>Salad Cut Pack</h4><p>400g · lettuce, cucumber, tomato</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
+            <!-- Cut Fruits -->
+            <div class="menu-card reveal" data-cat="cut-fruit"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/43913/43913-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Mixed Fruit Bowl</h4><p>300g · seasonal mixed fruit</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=300&fit=crop" alt="Watermelon"></div><div class="menu-card-body"><h4>Watermelon Slices</h4><p>400g · chilled &amp; ready</p><div class="menu-card-footer"><span class="menu-price">₹69</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&h=300&fit=crop" alt="Apple slices"></div><div class="menu-card-body"><h4>Apple Slices</h4><p>250g · fresh cut</p><div class="menu-card-footer"><span class="menu-price">₹59</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=300&fit=crop" alt="Papaya"></div><div class="menu-card-body"><h4>Papaya Cubes</h4><p>300g · ripe &amp; sweet</p><div class="menu-card-footer"><span class="menu-price">₹55</span><button class="add-btn">+</button></div></div></div>
 
-            <!-- 3. Mixes — ready & prepped -->
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFE0B2,#FFB74D);">🍚<img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop" alt="Veg Fried Rice" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Veg Fried Rice</h4><p>Ready-to-eat · 350g</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFF3E0,#FFCC80);">🍛<img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop" alt="Poha" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Poha</h4><p>Ready-to-eat · 300g</p><div class="menu-card-footer"><span class="menu-price">₹59</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFF9C4,#FFE082);">🍮<img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop" alt="Fruit Custard" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Fruit Custard</h4><p>Ready-to-eat · 250g</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#DCEDC8,#AED581);">🥪<img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&h=300&fit=crop" alt="Veg Sandwich" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Veg Sandwich</h4><p>Freshly made · 2 pcs</p><div class="menu-card-footer"><span class="menu-price">₹69</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFCCBC,#FF8A65);">🫘<img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&h=300&fit=crop" alt="Rajma" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Rajma + Boiled Rajma</h4><p>Masala mix + boiled beans · 400g</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFE0B2,#FFB74D);">🧆<img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=300&fit=crop" alt="Chana Masala" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Chana Masala Mix</h4><p>With boiled chana · 400g</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFF3E0,#FFCC80);">🥔<img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&h=300&fit=crop" alt="Boiled Potato Mix" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Boiled Potato Mix</h4><p>Peeled &amp; boiled · 500g</p><div class="menu-card-footer"><span class="menu-price">₹59</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFE082,#FFB300);">🥗<img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=300&fit=crop" alt="Bhel Mix" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Bhel Mix</h4><p>Ready bhel kit · 300g</p><div class="menu-card-footer"><span class="menu-price">₹69</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="mix"><div class="menu-card-img"><div class="food-tile" style="background:linear-gradient(135deg,#FFE0B2,#FF8A65);">🥜<img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop" alt="Chana Chur / Namkeen" loading="lazy" onerror="this.remove()"></div></div><div class="menu-card-body"><h4>Chana Chur / Namkeen</h4><p>Crunchy snack mix · 200g</p><div class="menu-card-footer"><span class="menu-price">₹49</span><button class="add-btn">+</button></div></div></div>
+            <!-- Fresh Juices -->
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/15954/15954-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Classic Orange Juice</h4><p>300ml · cold-pressed, no sugar</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&h=300&fit=crop" alt="Green Detox"></div><div class="menu-card-body"><h4>Green Detox</h4><p>300ml · spinach, cucumber, ginger</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=300&fit=crop" alt="Watermelon Mint"></div><div class="menu-card-body"><h4>Watermelon Mint</h4><p>300ml · hydrating summer blend</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1447175008436-1701707528b5?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/34252/34252-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Carrot Ginger</h4><p>300ml · immunity boost</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
 
-            <!-- 4. Juices, Salads & Jars -->
-            <div class="menu-card reveal" data-cat="jars"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/15954/15954-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Classic Orange Juice</h4><p>300ml · cold-pressed, no sugar</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="jars"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&h=300&fit=crop" alt="Green Detox"></div><div class="menu-card-body"><h4>Green Detox</h4><p>300ml · spinach, cucumber, ginger</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="jars"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=300&fit=crop" alt="Watermelon Mint"></div><div class="menu-card-body"><h4>Watermelon Mint</h4><p>300ml · hydrating summer blend</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="jars"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1447175008436-1701707528b5?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/34252/34252-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Carrot Ginger</h4><p>300ml · immunity boost + turmeric</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="jars"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/43913/43913-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Berry Smoothie Jar</h4><p>350ml · berries, banana, honey</p><div class="menu-card-footer"><span class="menu-price">₹129</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="jars"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop" alt="Salad jar"></div><div class="menu-card-body"><h4>Fresh Salad Bowl</h4><p>400g · greens, veg &amp; dressing</p><div class="menu-card-footer"><span class="menu-price">₹119</span><button class="add-btn">+</button></div></div></div>
-        </div>
-    </div>
-</section>
+            <!-- Vegetables -->
+            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&h=300&fit=crop" alt="Tomatoes"></div><div class="menu-card-body"><h4>Tomatoes</h4><p>1 kg · whole, vine-ripened</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&h=300&fit=crop" alt="Spinach"></div><div class="menu-card-body"><h4>Palak (Spinach)</h4><p>250g · fresh whole bunch</p><div class="menu-card-footer"><span class="menu-price">₹25</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1508747703725-719777637510?w=400&h=300&fit=crop" alt="Onions"></div><div class="menu-card-body"><h4>Onions</h4><p>1 kg · whole, fresh</p><div class="menu-card-footer"><span class="menu-price">₹30</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&h=300&fit=crop" alt="Potatoes"></div><div class="menu-card-body"><h4>Potatoes</h4><p>1 kg · whole, fresh</p><div class="menu-card-footer"><span class="menu-price">₹35</span><button class="add-btn">+</button></div></div></div>
 
-<!-- AI HERO -->
-<section class="ai-hero" id="ai">
-    <div class="ai-hero-inner">
-        <span class="ai-chip">⚡ AI-Native Fresh Commerce</span>
-        <h2>Behind Every Chop,<br>There's an <span class="o">Algorithm</span></h2>
-        <p>SABXI isn't a shop with an app bolted on. It's an AI platform that sources, forecasts, prices, prepares, and delivers fresh produce — intelligently, at every layer.</p>
-    </div>
-</section>
+            <!-- Fruits -->
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&h=300&fit=crop" alt="Apples"></div><div class="menu-card-body"><h4>Apples</h4><p>1 kg · Shimla or Kashmiri</p><div class="menu-card-footer"><span class="menu-price">₹120</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=300&fit=crop" alt="Bananas"></div><div class="menu-card-body"><h4>Bananas</h4><p>6 pcs · ripe &amp; ready</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1547514704-5ce1ce0e3a29?w=400&h=300&fit=crop" alt="Oranges"></div><div class="menu-card-body"><h4>Oranges</h4><p>1 kg · sweet &amp; juicy</p><div class="menu-card-footer"><span class="menu-price">₹80</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1537640538966-79f369113a64?w=400&h=300&fit=crop" alt="Grapes"></div><div class="menu-card-body"><h4>Grapes</h4><p>500g · seedless green</p><div class="menu-card-footer"><span class="menu-price">₹90</span><button class="add-btn">+</button></div></div></div>
 
-<!-- AI GRID -->
-<section class="ai-section">
-    <div class="section-inner">
-        <span class="section-label reveal" style="color:var(--orange-light);">The Intelligence Layer</span>
-        <h2 class="section-title reveal" style="color:white;">Six AI Engines, One Fresh Promise</h2>
-        <p class="section-desc reveal" style="color:rgba(255,255,255,0.6);">From the mandi to your doorstep, machine learning makes every decision faster, cheaper, and fresher.</p>
-        <div class="ai-grid">
-            <div class="ai-card reveal"><div class="ai-card-icon">📦</div><h4>AI Supply Chain Engine</h4><p>Models analyze prices, weather, and festival calendars across 50+ mandis in real time — sourcing the best produce at the lowest cost, automatically.</p><span class="ai-metric">↓ 22% procurement cost</span></div>
-            <div class="ai-card reveal"><div class="ai-card-icon">📊</div><h4>Demand Forecasting</h4><p>ML predicts what customers order tomorrow — down to the gram. We stock exactly what sells, cutting spoilage to near zero.</p><span class="ai-metric">↓ 35% food waste</span></div>
-            <div class="ai-card reveal"><div class="ai-card-icon">💬</div><h4>AI Customer Support</h4><p>24/7 conversational AI handles order changes, refunds, and cut preferences in Hindi &amp; English. Humans only for edge cases.</p><span class="ai-metric">94% auto-resolved</span></div>
-            <div class="ai-card reveal"><div class="ai-card-icon">👁️</div><h4>Computer Vision QA</h4><p>Cameras at every cutting station run real-time quality checks — flagging bruised produce and verifying cut specs before packing.</p><span class="ai-metric">99.2% quality match</span></div>
-            <div class="ai-card reveal"><div class="ai-card-icon">🛵</div><h4>Route Optimization</h4><p>Delivery routes recalculated every 30 seconds based on traffic, batching, and station load — minimizing time, maximizing freshness.</p><span class="ai-metric">&lt; 30 min delivery</span></div>
-            <div class="ai-card reveal"><div class="ai-card-icon">💲</div><h4>Smart Pricing Engine</h4><p>Prices update dynamically with mandi rates, demand, and inventory — passing savings to customers while protecting margins.</p><span class="ai-metric">Live market pricing</span></div>
-        </div>
-    </div>
-</section>
-
-<!-- STUDIO PIPELINE -->
-<section class="pipeline">
-    <div class="section-inner" style="text-align:center;">
-        <span class="section-label reveal" style="color:var(--orange-light);">Order Flow</span>
-        <h2 class="section-title reveal" style="color:white;">From App to Bag in Six Steps</h2>
-        <p class="section-desc reveal" style="color:rgba(255,255,255,0.6);margin:0 auto;">Track your order as it moves through every SABXI Studio station — live on the app.</p>
-        <div class="pipeline-track">
-            <div class="pipe-step reveal"><div class="pipe-ico">📋</div><h5>Order Receive</h5><p>POC verifies &amp; queues</p><span class="pipe-tag">Station 1</span></div>
-            <div class="pipe-step reveal"><div class="pipe-ico">🔪</div><h5>Cutting</h5><p>Vegetables cut to spec</p><span class="pipe-tag">Station 2</span></div>
-            <div class="pipe-step reveal"><div class="pipe-ico">🥗</div><h5>Salad &amp; Chaat</h5><p>Fruit &amp; salad assembly</p><span class="pipe-tag">Station 3</span></div>
-            <div class="pipe-step reveal"><div class="pipe-ico">🥤</div><h5>Juice</h5><p>Blended &amp; pressed fresh</p><span class="pipe-tag">Station 4</span></div>
-            <div class="pipe-step reveal"><div class="pipe-ico">🧊</div><h5>Ice &amp; Water</h5><p>Drinks finished &amp; chilled</p><span class="pipe-tag">Station 5</span></div>
-            <div class="pipe-step reveal"><div class="pipe-ico">📦</div><h5>Packaging</h5><p>Labelled &amp; sealed</p><span class="pipe-tag">Station 6</span></div>
-        </div>
-    </div>
-</section>
-
-<!-- MARKET -->
-<section class="market">
-    <div class="section-inner">
-        <div style="text-align:center;">
-            <span class="section-label reveal" style="color:var(--orange-light);">The Opportunity</span>
-            <h2 class="section-title reveal">Fresh Commerce at Scale</h2>
-            <p class="section-desc reveal" style="margin:0 auto;color:rgba(255,255,255,0.75);">India's $50B+ fresh produce market runs on broken supply chains and zero tech. SABXI is building the AI infrastructure to fix it — one micro-store at a time.</p>
-        </div>
-        <div class="market-grid">
-            <div class="reveal"><div class="market-num">$50B+</div><div class="market-label">India fresh produce market</div></div>
-            <div class="reveal"><div class="market-num">6</div><div class="market-label">Dedicated prep stations per studio</div></div>
-            <div class="reveal"><div class="market-num">30%</div><div class="market-label">Supply chain waste eliminated</div></div>
-            <div class="reveal"><div class="market-num">10x</div><div class="market-label">Faster than traditional retail</div></div>
-        </div>
-        <div class="market-thesis reveal">
-            <div><h3>Why SABXI Wins</h3><p>We're not competing on warehouse scale. We're building a network of SABXI Studios — compact, six-station micro-stores inside neighborhoods. Closer to customers, fresher by design, and 10x cheaper to launch.</p></div>
-            <div><h3>Unit Economics</h3><ul><li>100 sq.ft studios with 6 prep stations — low capex, fast rollout</li><li>Stainless steel layout — hygienic, repeatable, scalable</li><li>Cut-to-order eliminates pre-packaging waste</li><li>AI procurement cuts COGS by 22%</li><li>App-only delivery — no walk-ins needed</li><li>Subscription revenue = predictable LTV</li></ul></div>
+            <!-- Smoothies -->
+            <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/43913/43913-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Berry Smoothie</h4><p>350ml · berries, banana, honey</p><div class="menu-card-footer"><span class="menu-price">₹129</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1623065422021-99320a896377?w=400&h=300&fit=crop" alt="Mango smoothie"></div><div class="menu-card-body"><h4>Mango Smoothie</h4><p>350ml · alphonso, thick blend</p><div class="menu-card-footer"><span class="menu-price">₹119</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=400&h=300&fit=crop" alt="Banana oats"></div><div class="menu-card-body"><h4>Banana Oats Smoothie</h4><p>350ml · banana, oats, milk</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1610970881699-44a5587cab7c?w=400&h=300&fit=crop" alt="Green power"></div><div class="menu-card-body"><h4>Green Power Smoothie</h4><p>350ml · spinach, avocado, apple</p><div class="menu-card-footer"><span class="menu-price">₹109</span><button class="add-btn">+</button></div></div></div>
         </div>
     </div>
 </section>
@@ -764,9 +663,9 @@
         <span class="section-label reveal">Early Feedback</span>
         <h2 class="section-title reveal">People Love Fresh</h2>
         <div class="review-grid">
-            <div class="review-card reveal"><div class="review-stars">★★★★★</div><p>"Finally an app that chops palak the way I want. No more washing and cutting after a long day."</p><div class="review-author">Priya S. <span>· Bangalore</span></div></div>
-            <div class="review-card reveal"><div class="review-stars">★★★★★</div><p>"The orange juice tastes like it was just squeezed. Ordered at 7 AM, at my door by 7:25."</p><div class="review-author">Rahul M. <span>· Mumbai</span></div></div>
-            <div class="review-card reveal"><div class="review-stars">★★★★★</div><p>"Daily subscription saves me a trip to the mandi every morning. Same quality, less hassle, cheaper."</p><div class="review-author">Anita K. <span>· Delhi</span></div></div>
+            <div class="review-card reveal"><div class="review-stars">★★★★★</div><p>"The cut fruit bowl is perfect for my kids' tiffin. Fresh every morning, delivered in 20 minutes."</p><div class="review-author">Priya S. <span>· Bangalore</span></div></div>
+            <div class="review-card reveal"><div class="review-stars">★★★★★</div><p>"Orange juice tastes like it was just squeezed. And the mango smoothie is thick and amazing."</p><div class="review-author">Rahul M. <span>· Mumbai</span></div></div>
+            <div class="review-card reveal"><div class="review-stars">★★★★★</div><p>"I order diced tomatoes and sliced onions every day. Saves me 30 minutes in the kitchen."</p><div class="review-author">Anita K. <span>· Delhi</span></div></div>
         </div>
     </div>
 </section>
@@ -774,9 +673,9 @@
 <!-- CTA -->
 <section class="cta" id="notify">
     <div class="section-inner">
-        <span class="section-label reveal" style="color:var(--orange);">Coming Soon</span>
-        <h2 class="section-title reveal">Get Early Access to SABXI</h2>
-        <p class="section-desc reveal">Be first in line when we launch in your city. Early members get free delivery for 30 days.</p>
+        <span class="section-label reveal" style="color:var(--orange);">Order Now</span>
+        <h2 class="section-title reveal">Freshly Cut, Quickly Delivered</h2>
+        <p class="section-desc reveal">Cut veggies, cut fruits, juices, whole produce, and smoothies — from SABXI Studio to your door. Join the waitlist for early access.</p>
         <form class="notify-form reveal" id="notifyForm">
             <input type="email" placeholder="Enter your email" required aria-label="Email">
             <button type="submit" class="btn btn-primary">Join Waitlist</button>
@@ -793,16 +692,16 @@
     <div class="footer-inner">
         <div class="footer-brand">
             <img src="assets/logo-trans.png" alt="SABXI">
-            <p>Fresh vegetables, salads, fruit chaat, and cold-pressed juice — prepared at SABXI Studio and delivered fast. AI-powered from farm to doorstep.</p>
-            <div class="footer-tag">Chop Chop, Sorted.</div>
+            <p>Cut veggies, cut fruits, fresh juices, vegetables, fruits, and smoothies — freshly cut, quickly delivered from SABXI Studio.</p>
+            <div class="footer-tag">Freshly Cut, Quickly Delivered.</div>
         </div>
         <div class="footer-links">
             <h5>Product</h5>
-            <ul><li><a href="#how">Inside Studio</a></li><li><a href="#studio">SABXI Studio</a></li><li><a href="#menu">Order</a></li></ul>
+            <ul><li><a href="#lines">Products</a></li><li><a href="#studio">Studio</a></li><li><a href="#menu">Shop</a></li></ul>
         </div>
         <div class="footer-links">
-            <h5>Company</h5>
-            <ul><li><a href="#ai">Our AI</a></li><li><a href="#notify">Early Access</a></li><li><a href="mailto:hello@sabxi.com">hello@sabxi.com</a></li></ul>
+            <h5>Contact</h5>
+            <ul><li><a href="#notify">Order Now</a></li><li><a href="mailto:hello@sabxi.com">hello@sabxi.com</a></li></ul>
         </div>
     </div>
     <p class="footer-copy">&copy; 2026 SABXI. All rights reserved.</p>
@@ -823,7 +722,7 @@
             document.querySelectorAll('.menu-card').forEach(card => { card.style.display = card.dataset.cat === cat ? '' : 'none'; });
         });
     });
-    document.querySelector('.menu-tab[data-cat="raw"]').click();
+    document.querySelector('.menu-tab[data-cat="cut-veg"]').click();
     document.getElementById('notifyForm').addEventListener('submit', e => {
         e.preventDefault();
         e.target.innerHTML = '<p style="padding:1rem;color:var(--green-light);font-weight:600;">You\'re on the list! We\'ll notify you at launch. 🥕</p>';
