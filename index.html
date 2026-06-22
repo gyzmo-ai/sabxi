@@ -198,6 +198,9 @@
         .line-media img.product-pack, .menu-card-img img.product-pack {
             object-fit: contain; background: var(--cream); padding: 0.75rem;
         }
+        .line-media img.product-photo, .menu-card-img img.product-photo {
+            object-fit: cover;
+        }
         .line-media .food-tile { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3.4rem; }
         .line-no { position: absolute; top: 0.85rem; left: 0.85rem; width: 36px; height: 36px; border-radius: 50%; background: var(--orange); color: white; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
         .line-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
@@ -215,17 +218,38 @@
         .studio-showcase {
             margin-top: 3rem; border-radius: 28px; overflow: hidden;
             box-shadow: 0 32px 80px rgba(0,0,0,0.18); border: 1px solid rgba(0,0,0,0.06);
-            position: relative; background: var(--ink);
+            background: white;
         }
-        .studio-showcase img { width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; }
-        .studio-showcase-overlay {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            background: linear-gradient(transparent, rgba(12,12,12,0.92) 60%);
-            padding: 3rem 2.5rem 2rem; color: white;
+        .studio-showcase-img {
+            width: 100%; display: block; height: auto;
+            aspect-ratio: 819 / 1024; object-fit: contain; object-position: center;
+            background: white;
         }
-        .studio-showcase-overlay h3 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.5rem); letter-spacing: 0.06em; margin-bottom: 0.5rem; }
-        .studio-showcase-overlay p { font-size: 0.95rem; color: rgba(255,255,255,0.75); max-width: 560px; }
-        .studio-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; margin-top: 3rem; }
+        .studio-showcase-caption {
+            padding: 1.75rem 2rem; text-align: center;
+            background: white; border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        .studio-showcase-caption h3 {
+            font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem,4vw,2.8rem);
+            letter-spacing: 0.08em; margin-bottom: 0.5rem; color: var(--black);
+        }
+        .studio-showcase-caption p {
+            font-size: clamp(0.85rem,2vw,0.95rem); color: var(--gray);
+            max-width: 640px; margin: 0 auto; line-height: 1.6;
+        }
+        .studio-categories {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+            border-top: 1px solid rgba(0,0,0,0.06); background: white;
+        }
+        .studio-cat-col { padding: 1.5rem 2rem; }
+        .studio-cat-col:first-child { border-right: 1px solid rgba(0,0,0,0.06); }
+        .studio-cat-col h4 {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem;
+        }
+        .studio-cat-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .studio-cat-col li { font-size: 0.9rem; font-weight: 500; color: var(--black); }
+        .studio-wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: start; margin-top: 3rem; }
         .studio-info h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 1rem; }
         .studio-info h3 span { color: var(--orange); }
         .studio-info p { color: var(--gray); line-height: 1.7; margin-bottom: 1.5rem; }
@@ -362,6 +386,7 @@
 
         @media (max-width: 1024px) {
             nav { padding: 0.9rem 1.5rem; }
+            section { padding: 4rem 1.5rem; }
             .hero-inner { grid-template-columns: 1fr; text-align: center; }
             .hero-logo { margin-left: auto; margin-right: auto; }
             .hero-sub { margin-left: auto; margin-right: auto; }
@@ -369,8 +394,10 @@
             .phone-wrap { margin-top: 2.5rem; }
             .workflow, .features-grid, .ai-grid, .review-grid, .media-grid { grid-template-columns: repeat(2,1fr); }
             .media-card.wide { grid-column: span 1; }
-            .studio-wrap, .market-thesis, .studio-specs { grid-template-columns: 1fr; }
+            .studio-wrap { grid-template-columns: 1fr; }
+            .studio-specs { grid-template-columns: repeat(4,1fr); }
             .product-columns { grid-template-columns: 1fr; }
+            .product-columns .lines-grid { grid-template-columns: repeat(2,1fr); }
             .product-showcase { grid-template-columns: repeat(2,1fr); }
             .market-grid, .pipeline-track, .lines-grid { grid-template-columns: repeat(2,1fr); }
             .footer-inner { grid-template-columns: 1fr; }
@@ -382,7 +409,26 @@
             .phone-float { display: none; }
             .stats-grid { grid-template-columns: 1fr 1fr; }
             .lines-grid, .workflow, .pipeline-track, .product-showcase { grid-template-columns: 1fr; }
+            .product-columns .lines-grid { grid-template-columns: 1fr; }
+            .studio-showcase { border-radius: 20px; margin-top: 2rem; }
+            .studio-showcase-caption { padding: 1.25rem 1rem; }
+            .studio-categories { grid-template-columns: 1fr; }
+            .studio-cat-col:first-child { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
+            .studio-cat-col { padding: 1.25rem 1rem; }
+            .studio-specs { grid-template-columns: 1fr 1fr; }
+            .menu-tabs { gap: 0.4rem; }
+            .menu-tab { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
+            .menu-grid { grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 1rem; }
             .notify-form { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            nav { padding: 0.75rem 1rem; }
+            section { padding: 3rem 1rem; }
+            .hero { padding: 6rem 1rem 3rem; min-height: auto; }
+            .hero-trust { gap: 1.5rem; justify-content: space-around; width: 100%; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .features-grid, .review-grid { grid-template-columns: 1fr; }
+            .studio-specs { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -544,7 +590,7 @@
                 <div class="lines-grid">
                     <div class="line-card whole reveal">
                         <div class="line-media">
-                            <img src="assets/products/cut-produce-tray.png" alt="SABXI Vegetables — farm fresh produce" class="product-pack">
+                            <img src="assets/products/vegetable-basket.jpg" alt="Whole vegetables basket — tomatoes, onions, palak, potatoes" class="product-photo">
                         </div>
                         <div class="line-body">
                             <h3>Vegetables</h3>
@@ -554,7 +600,7 @@
                     </div>
                     <div class="line-card whole reveal">
                         <div class="line-media">
-                            <img src="assets/products/cut-produce-bowl.png" alt="SABXI Fruits — seasonal whole fruits" class="product-pack">
+                            <img src="assets/products/fruit-basket.jpg" alt="Whole fruits basket — apples, bananas, oranges, grapes" class="product-photo">
                         </div>
                         <div class="line-body">
                             <h3>Fruits</h3>
@@ -613,10 +659,28 @@
         <p class="section-desc reveal">Freshly cut, quickly delivered — your neighbourhood fresh-food studio. Stainless steel counters, LED-lit shelves, and six product lines under one roof.</p>
 
         <div class="studio-showcase reveal">
-            <img src="assets/sabxi-studio.png" alt="SABXI Studio — cut veggies, cut fruits, fresh juices, vegetables, fruits, smoothies">
-            <div class="studio-showcase-overlay">
+            <img src="assets/sabxi-studio.png" alt="SABXI Studio storefront — cut veggies, cut fruits, fresh juices, vegetables, fruits, smoothies" class="studio-showcase-img" width="819" height="1024">
+            <div class="studio-showcase-caption">
                 <h3>sabxi studio</h3>
-                <p>Freshly cut, quickly delivered — cut veggies · cut fruits · fresh juices · vegetables · fruits · smoothies</p>
+                <p>Freshly cut, quickly delivered — your neighbourhood fresh-food studio with six product lines under one roof.</p>
+            </div>
+            <div class="studio-categories">
+                <div class="studio-cat-col">
+                    <h4>Prepared Fresh · LHS</h4>
+                    <ul>
+                        <li>Cut Veggies</li>
+                        <li>Cut Fruits</li>
+                        <li>Fresh Juices</li>
+                    </ul>
+                </div>
+                <div class="studio-cat-col">
+                    <h4>Whole &amp; Blended · RHS</h4>
+                    <ul>
+                        <li>Vegetables</li>
+                        <li>Fruits</li>
+                        <li>Smoothies</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -679,16 +743,16 @@
             <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><img src="assets/products/carrot-juice.png" alt="Watermelon Mint" class="product-pack"></div><div class="menu-card-body"><h4>Watermelon Mint</h4><p>500ml · hydrating summer blend</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
 
             <!-- Vegetables -->
-            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="assets/products/cut-produce-tray.png" alt="Fresh Vegetables" class="product-pack"></div><div class="menu-card-body"><h4>Fresh Vegetable Pack</h4><p>500g · whole, from mandi</p><div class="menu-card-footer"><span class="menu-price">₹49</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Tomatoes" class="product-pack"></div><div class="menu-card-body"><h4>Tomatoes</h4><p>1 kg · whole, vine-ripened</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Palak" class="product-pack"></div><div class="menu-card-body"><h4>Palak (Spinach)</h4><p>250g · fresh whole bunch</p><div class="menu-card-footer"><span class="menu-price">₹25</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="assets/products/cut-produce-tray.png" alt="Onions" class="product-pack"></div><div class="menu-card-body"><h4>Onions</h4><p>1 kg · whole, fresh</p><div class="menu-card-footer"><span class="menu-price">₹30</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="assets/products/vegetable-basket.jpg" alt="Fresh Vegetables" class="product-photo"></div><div class="menu-card-body"><h4>Fresh Vegetable Pack</h4><p>500g · whole, from mandi</p><div class="menu-card-footer"><span class="menu-price">₹49</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="assets/products/vegetable-basket.jpg" alt="Tomatoes" class="product-photo"></div><div class="menu-card-body"><h4>Tomatoes</h4><p>1 kg · whole, vine-ripened</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="assets/products/vegetable-basket.jpg" alt="Palak" class="product-photo"></div><div class="menu-card-body"><h4>Palak (Spinach)</h4><p>250g · fresh whole bunch</p><div class="menu-card-footer"><span class="menu-price">₹25</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="assets/products/vegetable-basket.jpg" alt="Onions" class="product-photo"></div><div class="menu-card-body"><h4>Onions</h4><p>1 kg · whole, fresh</p><div class="menu-card-footer"><span class="menu-price">₹30</span><button class="add-btn">+</button></div></div></div>
 
             <!-- Fruits -->
-            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Fresh Fruits" class="product-pack"></div><div class="menu-card-body"><h4>Seasonal Fruit Pack</h4><p>500g · whole, fresh daily</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Apples" class="product-pack"></div><div class="menu-card-body"><h4>Apples</h4><p>1 kg · Shimla or Kashmiri</p><div class="menu-card-footer"><span class="menu-price">₹120</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="assets/products/cut-produce-tray.png" alt="Bananas" class="product-pack"></div><div class="menu-card-body"><h4>Bananas</h4><p>6 pcs · ripe &amp; ready</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Oranges" class="product-pack"></div><div class="menu-card-body"><h4>Oranges</h4><p>1 kg · sweet &amp; juicy</p><div class="menu-card-footer"><span class="menu-price">₹80</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="assets/products/fruit-basket.jpg" alt="Fresh Fruits" class="product-photo"></div><div class="menu-card-body"><h4>Seasonal Fruit Pack</h4><p>500g · whole, fresh daily</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="assets/products/fruit-basket.jpg" alt="Apples" class="product-photo"></div><div class="menu-card-body"><h4>Apples</h4><p>1 kg · Shimla or Kashmiri</p><div class="menu-card-footer"><span class="menu-price">₹120</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="assets/products/fruit-basket.jpg" alt="Bananas" class="product-photo"></div><div class="menu-card-body"><h4>Bananas</h4><p>6 pcs · ripe &amp; ready</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="assets/products/fruit-basket.jpg" alt="Oranges" class="product-photo"></div><div class="menu-card-body"><h4>Oranges</h4><p>1 kg · sweet &amp; juicy</p><div class="menu-card-footer"><span class="menu-price">₹80</span><button class="add-btn">+</button></div></div></div>
 
             <!-- Smoothies -->
             <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><img src="assets/products/fruit-smoothie.png" alt="Mixed Fruit Smoothie" class="product-pack"></div><div class="menu-card-body"><h4>Mixed Fruit Smoothie</h4><p>350ml · mango, banana, kiwi, dates</p><div class="menu-card-footer"><span class="menu-price">₹129</span><button class="add-btn">+</button></div></div></div>
