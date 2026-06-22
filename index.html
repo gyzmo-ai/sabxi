@@ -39,50 +39,134 @@
             }
             html { scroll-behavior: auto; }
         }
+        body.loading { overflow: hidden; }
         .page-loader {
-            position: fixed; inset: 0; z-index: 9999; background: var(--ink);
-            display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1.25rem;
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+            position: fixed; inset: 0; z-index: 9999;
+            background: var(--ink);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, visibility 0.65s 0.15s, background 0.85s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        .page-loader::before {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background:
+                radial-gradient(ellipse 90% 70% at 50% 45%, rgba(255,107,0,0.14) 0%, transparent 58%),
+                radial-gradient(ellipse 70% 50% at 50% 100%, rgba(46,133,64,0.1) 0%, transparent 52%);
+        }
+        .page-loader.loader-exit { background: var(--cream); }
         .page-loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
-        .loader-stage {
-            position: relative; width: min(340px, 78vw); height: min(440px, 56vh);
+        .loader-inner {
+            position: relative; z-index: 2; width: 100%; height: 100%;
             display: flex; align-items: center; justify-content: center;
         }
-        .loader-logo, .loader-studio {
-            position: absolute; inset: 0; margin: auto;
-            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.75s;
+        .loader-logo-block {
+            position: absolute; display: flex; flex-direction: column; align-items: center; gap: 0.85rem;
+            opacity: 0; transform: scale(0.86); filter: blur(6px);
         }
-        .loader-logo {
-            width: 108px; height: auto; object-fit: contain;
-            opacity: 1; transform: scale(1); filter: blur(0);
-            animation: loaderPulse 1.4s ease-in-out infinite;
+        .loader-logo { width: min(148px, 34vw); height: auto; display: block; }
+        .loader-logo-word {
+            font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 0.35em;
+            color: rgba(255,255,255,0.55); text-transform: uppercase;
         }
-        .loader-studio {
-            width: 100%; height: 100%; object-fit: contain; object-position: center;
-            opacity: 0; transform: scale(0.94) translateY(16px); filter: blur(10px);
-            border-radius: 14px;
+        .loader-studio-block {
+            position: absolute; display: flex; flex-direction: column; align-items: center; gap: 1.1rem;
+            opacity: 0; transform: translateY(28px) scale(0.94); filter: blur(12px);
+            max-width: min(440px, 90vw);
         }
-        .page-loader.phase-studio .loader-logo {
-            opacity: 0; transform: scale(0.88); filter: blur(6px); animation: none;
+        .loader-studio-frame {
+            position: relative; width: min(400px, 88vw);
+            padding: 3px; border-radius: 20px; overflow: hidden;
+            background: linear-gradient(135deg, var(--orange), var(--green-light), var(--orange));
+            background-size: 220% 220%;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
         }
-        .page-loader.phase-studio .loader-studio {
-            opacity: 1; transform: scale(1) translateY(0); filter: blur(0);
+        .loader-run .loader-studio-frame { animation: gradientFlow 3.5s ease infinite; }
+        .loader-studio-frame img {
+            display: block; width: 100%; height: auto; max-height: min(62vh, 580px);
+            object-fit: contain; object-position: center;
+            border-radius: 17px; background: white;
+            transform-origin: center center;
         }
-        .page-loader-bar {
-            width: 120px; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;
-            opacity: 1; transition: opacity 0.4s;
+        .loader-studio-shine {
+            position: absolute; inset: 3px; border-radius: 17px; pointer-events: none;
+            background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.28) 50%, transparent 62%);
+            transform: translateX(-140%);
         }
-        .page-loader.phase-studio .page-loader-bar { opacity: 0.35; }
-        .page-loader-bar span {
-            display: block; height: 100%; width: 40%; background: linear-gradient(90deg, var(--orange), var(--green-light));
-            animation: loaderSlide 1s ease-in-out infinite;
+        .loader-studio-label {
+            font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.2rem, 3vw, 1.6rem);
+            letter-spacing: 0.22em; color: rgba(255,255,255,0.92); opacity: 0;
         }
-        @keyframes loaderPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.06);opacity:0.85} }
-        @keyframes loaderSlide { 0%{transform:translateX(-100%)} 100%{transform:translateX(350%)} }
+        .loader-exit .loader-studio-label { color: var(--ink); }
+        .loader-studio-tag {
+            font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+            color: rgba(255,255,255,0.42); opacity: 0;
+        }
+        .loader-exit .loader-studio-tag { color: var(--gray); }
+        .loader-progress {
+            position: absolute; bottom: clamp(1.5rem, 4vh, 2.75rem); left: 50%; transform: translateX(-50%);
+            width: min(220px, 44vw); height: 2px; background: rgba(255,255,255,0.1);
+            border-radius: 2px; overflow: hidden; z-index: 3;
+            transition: opacity 0.4s;
+        }
+        .loader-exit .loader-progress { opacity: 0; }
+        .loader-progress span {
+            display: block; height: 100%; width: 0;
+            background: linear-gradient(90deg, var(--orange), var(--green-light));
+            border-radius: 2px;
+        }
+        .loader-run .loader-logo-block {
+            animation:
+                loaderLogoIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                loaderLogoOut 0.75s cubic-bezier(0.55, 0, 1, 0.45) 1.55s forwards;
+        }
+        .loader-run .loader-studio-block {
+            animation:
+                loaderStudioIn 1.15s cubic-bezier(0.16, 1, 0.3, 1) 1.95s forwards,
+                loaderStudioOut 0.55s cubic-bezier(0.16, 1, 0.3, 1) 3.85s forwards;
+        }
+        .loader-run .loader-studio-frame img {
+            animation: loaderKenBurns 1.8s cubic-bezier(0.16, 1, 0.3, 1) 2.15s forwards;
+        }
+        .loader-run .loader-studio-shine {
+            animation: loaderShineSweep 1.4s cubic-bezier(0.16, 1, 0.3, 1) 2.35s forwards;
+        }
+        .loader-run .loader-studio-label { animation: loaderCaptionIn 0.65s ease 2.45s forwards; }
+        .loader-run .loader-studio-tag { animation: loaderCaptionIn 0.65s ease 2.6s forwards; }
+        .loader-run .loader-progress span { animation: loaderProgressFill 4.1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        @keyframes loaderLogoIn {
+            to { opacity: 1; transform: scale(1); filter: blur(0); }
+        }
+        @keyframes loaderLogoOut {
+            to { opacity: 0; transform: scale(1.14); filter: blur(10px); }
+        }
+        @keyframes loaderStudioIn {
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        @keyframes loaderStudioOut {
+            to { opacity: 0; transform: translateY(-16px) scale(1.03); filter: blur(6px); }
+        }
+        @keyframes loaderKenBurns {
+            from { transform: scale(1); }
+            to { transform: scale(1.045); }
+        }
+        @keyframes loaderShineSweep {
+            to { transform: translateX(140%); }
+        }
+        @keyframes loaderCaptionIn { to { opacity: 1; } }
+        @keyframes loaderProgressFill { to { width: 100%; } }
         @media (prefers-reduced-motion: reduce) {
-            .loader-logo { animation: none; }
-            .loader-logo, .loader-studio { transition-duration: 0.01ms; }
+            .loader-run .loader-logo-block,
+            .loader-run .loader-studio-block,
+            .loader-run .loader-studio-frame img,
+            .loader-run .loader-studio-shine,
+            .loader-run .loader-studio-label,
+            .loader-run .loader-studio-tag,
+            .loader-run .loader-progress span,
+            .loader-run .loader-studio-frame { animation: none; }
+            .loader-run .loader-logo-block { opacity: 0; }
+            .loader-run .loader-studio-block { opacity: 1; transform: none; filter: none; }
+            .loader-run .loader-studio-label,
+            .loader-run .loader-studio-tag { opacity: 1; }
         }
 
         .cursor-glow {
@@ -959,13 +1043,23 @@
         }
     </style>
 </head>
-<body>
+<body class="loading">
 <div class="page-loader" id="pageLoader" aria-hidden="true">
-    <div class="loader-stage">
-        <img src="assets/logo-trans.png" alt="SABXI" class="loader-logo">
-        <img src="assets/sabxi-studio.png" alt="SABXI Studio" class="loader-studio" width="819" height="1024">
+    <div class="loader-inner">
+        <div class="loader-logo-block">
+            <img src="assets/logo-trans.png" alt="SABXI" class="loader-logo" id="loaderLogo">
+            <span class="loader-logo-word">SABXI</span>
+        </div>
+        <div class="loader-studio-block">
+            <div class="loader-studio-frame">
+                <img src="assets/sabxi-studio.png" alt="SABXI Studio" id="loaderStudio" width="819" height="1024">
+                <span class="loader-studio-shine" aria-hidden="true"></span>
+            </div>
+            <span class="loader-studio-label">SABXI Studio</span>
+            <span class="loader-studio-tag">Freshly cut · Quickly delivered</span>
+        </div>
     </div>
-    <div class="page-loader-bar"><span></span></div>
+    <div class="loader-progress" aria-hidden="true"><span></span></div>
 </div>
 <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
@@ -1420,16 +1514,40 @@
         }, { passive: true });
     }
 
-    window.addEventListener('load', () => {
+    const pageLoader = document.getElementById('pageLoader');
+    const loaderLogo = document.getElementById('loaderLogo');
+    const loaderStudio = document.getElementById('loaderStudio');
+
+    const preloadImage = img => new Promise(resolve => {
+        if (img.complete && img.naturalWidth) resolve();
+        else { img.onload = img.onerror = resolve; }
+    });
+
+    const finishLoader = () => {
+        document.body.classList.remove('loading');
         document.body.classList.add('motion-ready');
-        if (!pageLoader) return;
-        if (reducedMotion) {
-            pageLoader.classList.add('done');
+        pageLoader.classList.add('done');
+    };
+
+    const runLoader = () => {
+        if (!pageLoader) {
+            document.body.classList.remove('loading');
+            document.body.classList.add('motion-ready');
             return;
         }
-        setTimeout(() => pageLoader.classList.add('phase-studio'), 1100);
-        setTimeout(() => pageLoader.classList.add('done'), 2900);
-    });
+        if (reducedMotion) {
+            finishLoader();
+            return;
+        }
+        Promise.all([preloadImage(loaderLogo), preloadImage(loaderStudio)]).then(() => {
+            requestAnimationFrame(() => pageLoader.classList.add('loader-run'));
+            setTimeout(() => pageLoader.classList.add('loader-exit'), 3900);
+            setTimeout(finishLoader, 4700);
+        });
+    };
+
+    if (document.readyState === 'complete') runLoader();
+    else window.addEventListener('load', runLoader);
 
     document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
 
