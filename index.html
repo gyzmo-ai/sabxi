@@ -195,6 +195,9 @@
         .line-card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(0,0,0,0.1); }
         .line-media { aspect-ratio: 4/3; overflow: hidden; position: relative; background: var(--gray-light); }
         .line-media video, .line-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .line-media img.product-pack, .menu-card-img img.product-pack {
+            object-fit: contain; background: var(--cream); padding: 0.75rem;
+        }
         .line-media .food-tile { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3.4rem; }
         .line-no { position: absolute; top: 0.85rem; left: 0.85rem; width: 36px; height: 36px; border-radius: 50%; background: var(--orange); color: white; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
         .line-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
@@ -262,8 +265,19 @@
         .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 1.25rem; }
         .menu-card { background: white; border-radius: 16px; overflow: hidden; border: 1px solid rgba(0,0,0,0.04); transition: transform 0.2s; }
         .menu-card:hover { transform: scale(1.02); }
-        .menu-card-img { height: 150px; overflow: hidden; background: var(--gray-light); }
+        .menu-card-img { height: 180px; overflow: hidden; background: var(--gray-light); }
         .menu-card-img video, .menu-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .product-showcase { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
+        .product-shot {
+            background: white; border-radius: 20px; overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-shot:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(0,0,0,0.1); }
+        .product-shot-img { aspect-ratio: 1; background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 1rem; }
+        .product-shot-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .product-shot-info { padding: 1.25rem; text-align: center; }
+        .product-shot-info h4 { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+        .product-shot-info p { font-size: 0.78rem; color: var(--gray); }
         .menu-card-body { padding: 1rem; }
         .menu-card-body h4 { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
         .menu-card-body p { font-size: 0.78rem; color: var(--gray); margin-bottom: 0.5rem; }
@@ -357,6 +371,7 @@
             .media-card.wide { grid-column: span 1; }
             .studio-wrap, .market-thesis, .studio-specs { grid-template-columns: 1fr; }
             .product-columns { grid-template-columns: 1fr; }
+            .product-showcase { grid-template-columns: repeat(2,1fr); }
             .market-grid, .pipeline-track, .lines-grid { grid-template-columns: repeat(2,1fr); }
             .footer-inner { grid-template-columns: 1fr; }
         }
@@ -366,7 +381,7 @@
             .menu-toggle { display: block; }
             .phone-float { display: none; }
             .stats-grid { grid-template-columns: 1fr 1fr; }
-            .lines-grid, .workflow, .pipeline-track { grid-template-columns: 1fr; }
+            .lines-grid, .workflow, .pipeline-track, .product-showcase { grid-template-columns: 1fr; }
             .notify-form { flex-direction: column; }
         }
     </style>
@@ -425,8 +440,8 @@
                         <div class="app-cat"><div class="app-cat-icon">🧋</div>Smoothie</div>
                     </div>
                     <div class="app-banner">
-                        <video autoplay muted loop playsinline><source src="https://assets.mixkit.co/videos/46543/46543-720.mp4" type="video/mp4"></video>
-                        <span>Cut to order · live</span>
+                        <img src="assets/products/carrot-juice.png" alt="SABXI Fresh Carrot Juice" style="width:100%;height:100%;object-fit:contain;background:var(--cream);padding:4px;">
+                        <span>Fresh carrot juice · 500 ml</span>
                     </div>
                     <div class="app-order">
                         <strong>🛵 Arriving in 18 min</strong>
@@ -491,7 +506,7 @@
                 <div class="lines-grid">
                     <div class="line-card prepared reveal">
                         <div class="line-media">
-                            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/46543/46543-720.mp4" type="video/mp4"></video>
+                            <img src="assets/products/cut-produce-tray.png" alt="SABXI Cut Veggies — fresh cut produce tray" class="product-pack">
                         </div>
                         <div class="line-body">
                             <h3>Cut Veggies</h3>
@@ -501,7 +516,7 @@
                     </div>
                     <div class="line-card prepared reveal">
                         <div class="line-media">
-                            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/43913/43913-720.mp4" type="video/mp4"></video>
+                            <img src="assets/products/cut-produce-bowl.png" alt="SABXI Cut Fruits — fresh cut produce bowl" class="product-pack">
                         </div>
                         <div class="line-body">
                             <h3>Cut Fruits</h3>
@@ -511,7 +526,7 @@
                     </div>
                     <div class="line-card prepared reveal">
                         <div class="line-media">
-                            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/15954/15954-720.mp4" type="video/mp4"></video>
+                            <img src="assets/products/carrot-juice.png" alt="SABXI Fresh Carrot Juice — 500 ml" class="product-pack">
                         </div>
                         <div class="line-body">
                             <h3>Fresh Juices</h3>
@@ -529,7 +544,7 @@
                 <div class="lines-grid">
                     <div class="line-card whole reveal">
                         <div class="line-media">
-                            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/26649/26649-720.mp4" type="video/mp4"></video>
+                            <img src="assets/products/cut-produce-tray.png" alt="SABXI Vegetables — farm fresh produce" class="product-pack">
                         </div>
                         <div class="line-body">
                             <h3>Vegetables</h3>
@@ -539,7 +554,7 @@
                     </div>
                     <div class="line-card whole reveal">
                         <div class="line-media">
-                            <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=600&h=450&fit=crop" alt="Fresh fruits">
+                            <img src="assets/products/cut-produce-bowl.png" alt="SABXI Fruits — seasonal whole fruits" class="product-pack">
                         </div>
                         <div class="line-body">
                             <h3>Fruits</h3>
@@ -549,7 +564,7 @@
                     </div>
                     <div class="line-card whole reveal">
                         <div class="line-media">
-                            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&h=450&fit=crop"><source src="https://assets.mixkit.co/videos/34252/34252-720.mp4" type="video/mp4"></video>
+                            <img src="assets/products/fruit-smoothie.png" alt="SABXI Mixed Fruit Smoothie" class="product-pack">
                         </div>
                         <div class="line-body">
                             <h3>Smoothies</h3>
@@ -558,6 +573,33 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCT SHOWCASE -->
+<section class="features" style="background:white;padding-top:0;">
+    <div class="section-inner">
+        <span class="section-label reveal">Our Packaging</span>
+        <h2 class="section-title reveal">Fresh. Branded. Ready to Eat.</h2>
+        <p class="section-desc reveal">Every SABXI product comes in clean, labelled packaging — washed, cut, and sealed at our studio.</p>
+        <div class="product-showcase">
+            <div class="product-shot reveal">
+                <div class="product-shot-img"><img src="assets/products/cut-produce-tray.png" alt="SABXI Fresh Cut Produce — 500g tray"></div>
+                <div class="product-shot-info"><h4>Fresh Cut Produce</h4><p>Cut Veggies · 500g tray · Ready to eat</p></div>
+            </div>
+            <div class="product-shot reveal">
+                <div class="product-shot-img"><img src="assets/products/cut-produce-bowl.png" alt="SABXI Fresh Cut Produce — 500g bowl"></div>
+                <div class="product-shot-info"><h4>Fresh Cut Bowl</h4><p>Cut Fruits · 500g bowl · No preservatives</p></div>
+            </div>
+            <div class="product-shot reveal">
+                <div class="product-shot-img"><img src="assets/products/carrot-juice.png" alt="SABXI Fresh Carrot Juice — 500ml"></div>
+                <div class="product-shot-info"><h4>Fresh Carrot Juice</h4><p>Fresh Juices · 500 ml · Cold-pressed</p></div>
+            </div>
+            <div class="product-shot reveal">
+                <div class="product-shot-img"><img src="assets/products/fruit-smoothie.png" alt="SABXI Mixed Fruit Smoothie"></div>
+                <div class="product-shot-info"><h4>Mixed Fruit Smoothie</h4><p>Smoothies · Layered fresh fruit</p></div>
             </div>
         </div>
     </div>
@@ -617,42 +659,42 @@
         </div>
         <div class="menu-grid" id="menuGrid">
             <!-- Cut Veggies -->
-            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/46543/46543-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Diced Tomatoes</h4><p>500g · diced fresh to order</p><div class="menu-card-footer"><span class="menu-price">₹45</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1508747703725-719777637510?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/43042/43042-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Sliced Onions</h4><p>500g · sliced or diced</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1447175008436-1701707528b5?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/36238/36238-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Julienned Carrots</h4><p>500g · julienned or diced</p><div class="menu-card-footer"><span class="menu-price">₹50</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop" alt="Salad cuts"></div><div class="menu-card-body"><h4>Salad Cut Pack</h4><p>400g · lettuce, cucumber, tomato</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/6272/6272-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Stir-Fry Mix</h4><p>500g · capsicum, carrot, beans</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&h=300&fit=crop" alt="Chopped palak"></div><div class="menu-card-body"><h4>Chopped Palak</h4><p>250g · washed &amp; chopped</p><div class="menu-card-footer"><span class="menu-price">₹35</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><img src="assets/products/cut-produce-tray.png" alt="Fresh Cut Produce" class="product-pack"></div><div class="menu-card-body"><h4>Fresh Cut Produce</h4><p>500g · diced, sliced, julienned</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><img src="assets/products/cut-produce-tray.png" alt="Diced Tomatoes" class="product-pack"></div><div class="menu-card-body"><h4>Diced Tomatoes</h4><p>500g · diced fresh to order</p><div class="menu-card-footer"><span class="menu-price">₹45</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Salad Cut Pack" class="product-pack"></div><div class="menu-card-body"><h4>Salad Cut Pack</h4><p>400g · lettuce, cucumber, tomato</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><img src="assets/products/cut-produce-tray.png" alt="Stir-Fry Mix" class="product-pack"></div><div class="menu-card-body"><h4>Stir-Fry Mix</h4><p>500g · capsicum, carrot, beans</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Sliced Onions" class="product-pack"></div><div class="menu-card-body"><h4>Sliced Onions</h4><p>500g · sliced or diced</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-veg"><div class="menu-card-img"><img src="assets/products/cut-produce-tray.png" alt="Chopped Palak" class="product-pack"></div><div class="menu-card-body"><h4>Chopped Palak</h4><p>250g · washed &amp; chopped</p><div class="menu-card-footer"><span class="menu-price">₹35</span><button class="add-btn">+</button></div></div></div>
 
             <!-- Cut Fruits -->
-            <div class="menu-card reveal" data-cat="cut-fruit"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/43913/43913-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Mixed Fruit Bowl</h4><p>300g · seasonal mixed fruit</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut-fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=300&fit=crop" alt="Watermelon"></div><div class="menu-card-body"><h4>Watermelon Slices</h4><p>400g · chilled &amp; ready</p><div class="menu-card-footer"><span class="menu-price">₹69</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut-fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&h=300&fit=crop" alt="Apple slices"></div><div class="menu-card-body"><h4>Apple Slices</h4><p>250g · fresh cut</p><div class="menu-card-footer"><span class="menu-price">₹59</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="cut-fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=300&fit=crop" alt="Papaya"></div><div class="menu-card-body"><h4>Papaya Cubes</h4><p>300g · ripe &amp; sweet</p><div class="menu-card-footer"><span class="menu-price">₹55</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-fruit"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Mixed Fruit Bowl" class="product-pack"></div><div class="menu-card-body"><h4>Mixed Fruit Bowl</h4><p>500g · seasonal mixed fruit</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-fruit"><div class="menu-card-img"><img src="assets/products/cut-produce-tray.png" alt="Cut Fruit Tray" class="product-pack"></div><div class="menu-card-body"><h4>Cut Fruit Tray</h4><p>500g · melon, mango, watermelon</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-fruit"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Watermelon Slices" class="product-pack"></div><div class="menu-card-body"><h4>Watermelon Slices</h4><p>400g · chilled &amp; ready</p><div class="menu-card-footer"><span class="menu-price">₹69</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="cut-fruit"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Apple Slices" class="product-pack"></div><div class="menu-card-body"><h4>Apple Slices</h4><p>250g · fresh cut</p><div class="menu-card-footer"><span class="menu-price">₹59</span><button class="add-btn">+</button></div></div></div>
 
             <!-- Fresh Juices -->
-            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/15954/15954-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Classic Orange Juice</h4><p>300ml · cold-pressed, no sugar</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=400&h=300&fit=crop" alt="Green Detox"></div><div class="menu-card-body"><h4>Green Detox</h4><p>300ml · spinach, cucumber, ginger</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=300&fit=crop" alt="Watermelon Mint"></div><div class="menu-card-body"><h4>Watermelon Mint</h4><p>300ml · hydrating summer blend</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1447175008436-1701707528b5?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/34252/34252-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Carrot Ginger</h4><p>300ml · immunity boost</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><img src="assets/products/carrot-juice.png" alt="Fresh Carrot Juice" class="product-pack"></div><div class="menu-card-body"><h4>Fresh Carrot Juice</h4><p>500ml · cold-pressed, no sugar</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><img src="assets/products/carrot-juice.png" alt="Classic Orange Juice" class="product-pack"></div><div class="menu-card-body"><h4>Classic Orange Juice</h4><p>500ml · cold-pressed, no sugar</p><div class="menu-card-footer"><span class="menu-price">₹79</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><img src="assets/products/carrot-juice.png" alt="Green Detox" class="product-pack"></div><div class="menu-card-body"><h4>Green Detox</h4><p>500ml · spinach, cucumber, ginger</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="juice"><div class="menu-card-img"><img src="assets/products/carrot-juice.png" alt="Watermelon Mint" class="product-pack"></div><div class="menu-card-body"><h4>Watermelon Mint</h4><p>500ml · hydrating summer blend</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
 
             <!-- Vegetables -->
-            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&h=300&fit=crop" alt="Tomatoes"></div><div class="menu-card-body"><h4>Tomatoes</h4><p>1 kg · whole, vine-ripened</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&h=300&fit=crop" alt="Spinach"></div><div class="menu-card-body"><h4>Palak (Spinach)</h4><p>250g · fresh whole bunch</p><div class="menu-card-footer"><span class="menu-price">₹25</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1508747703725-719777637510?w=400&h=300&fit=crop" alt="Onions"></div><div class="menu-card-body"><h4>Onions</h4><p>1 kg · whole, fresh</p><div class="menu-card-footer"><span class="menu-price">₹30</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&h=300&fit=crop" alt="Potatoes"></div><div class="menu-card-body"><h4>Potatoes</h4><p>1 kg · whole, fresh</p><div class="menu-card-footer"><span class="menu-price">₹35</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="assets/products/cut-produce-tray.png" alt="Fresh Vegetables" class="product-pack"></div><div class="menu-card-body"><h4>Fresh Vegetable Pack</h4><p>500g · whole, from mandi</p><div class="menu-card-footer"><span class="menu-price">₹49</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Tomatoes" class="product-pack"></div><div class="menu-card-body"><h4>Tomatoes</h4><p>1 kg · whole, vine-ripened</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Palak" class="product-pack"></div><div class="menu-card-body"><h4>Palak (Spinach)</h4><p>250g · fresh whole bunch</p><div class="menu-card-footer"><span class="menu-price">₹25</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="veg"><div class="menu-card-img"><img src="assets/products/cut-produce-tray.png" alt="Onions" class="product-pack"></div><div class="menu-card-body"><h4>Onions</h4><p>1 kg · whole, fresh</p><div class="menu-card-footer"><span class="menu-price">₹30</span><button class="add-btn">+</button></div></div></div>
 
             <!-- Fruits -->
-            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&h=300&fit=crop" alt="Apples"></div><div class="menu-card-body"><h4>Apples</h4><p>1 kg · Shimla or Kashmiri</p><div class="menu-card-footer"><span class="menu-price">₹120</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=300&fit=crop" alt="Bananas"></div><div class="menu-card-body"><h4>Bananas</h4><p>6 pcs · ripe &amp; ready</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1547514704-5ce1ce0e3a29?w=400&h=300&fit=crop" alt="Oranges"></div><div class="menu-card-body"><h4>Oranges</h4><p>1 kg · sweet &amp; juicy</p><div class="menu-card-footer"><span class="menu-price">₹80</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1537640538966-79f369113a64?w=400&h=300&fit=crop" alt="Grapes"></div><div class="menu-card-body"><h4>Grapes</h4><p>500g · seedless green</p><div class="menu-card-footer"><span class="menu-price">₹90</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Fresh Fruits" class="product-pack"></div><div class="menu-card-body"><h4>Seasonal Fruit Pack</h4><p>500g · whole, fresh daily</p><div class="menu-card-footer"><span class="menu-price">₹89</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Apples" class="product-pack"></div><div class="menu-card-body"><h4>Apples</h4><p>1 kg · Shimla or Kashmiri</p><div class="menu-card-footer"><span class="menu-price">₹120</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="assets/products/cut-produce-tray.png" alt="Bananas" class="product-pack"></div><div class="menu-card-body"><h4>Bananas</h4><p>6 pcs · ripe &amp; ready</p><div class="menu-card-footer"><span class="menu-price">₹40</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="fruit"><div class="menu-card-img"><img src="assets/products/cut-produce-bowl.png" alt="Oranges" class="product-pack"></div><div class="menu-card-body"><h4>Oranges</h4><p>1 kg · sweet &amp; juicy</p><div class="menu-card-footer"><span class="menu-price">₹80</span><button class="add-btn">+</button></div></div></div>
 
             <!-- Smoothies -->
-            <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop"><source src="https://assets.mixkit.co/videos/43913/43913-720.mp4" type="video/mp4"></video></div><div class="menu-card-body"><h4>Berry Smoothie</h4><p>350ml · berries, banana, honey</p><div class="menu-card-footer"><span class="menu-price">₹129</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1623065422021-99320a896377?w=400&h=300&fit=crop" alt="Mango smoothie"></div><div class="menu-card-body"><h4>Mango Smoothie</h4><p>350ml · alphonso, thick blend</p><div class="menu-card-footer"><span class="menu-price">₹119</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?w=400&h=300&fit=crop" alt="Banana oats"></div><div class="menu-card-body"><h4>Banana Oats Smoothie</h4><p>350ml · banana, oats, milk</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
-            <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><img src="https://images.unsplash.com/photo-1610970881699-44a5587cab7c?w=400&h=300&fit=crop" alt="Green power"></div><div class="menu-card-body"><h4>Green Power Smoothie</h4><p>350ml · spinach, avocado, apple</p><div class="menu-card-footer"><span class="menu-price">₹109</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><img src="assets/products/fruit-smoothie.png" alt="Mixed Fruit Smoothie" class="product-pack"></div><div class="menu-card-body"><h4>Mixed Fruit Smoothie</h4><p>350ml · mango, banana, kiwi, dates</p><div class="menu-card-footer"><span class="menu-price">₹129</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><img src="assets/products/fruit-smoothie.png" alt="Berry Smoothie" class="product-pack"></div><div class="menu-card-body"><h4>Berry Smoothie</h4><p>350ml · berries, banana, honey</p><div class="menu-card-footer"><span class="menu-price">₹129</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><img src="assets/products/fruit-smoothie.png" alt="Mango Smoothie" class="product-pack"></div><div class="menu-card-body"><h4>Mango Smoothie</h4><p>350ml · alphonso, thick blend</p><div class="menu-card-footer"><span class="menu-price">₹119</span><button class="add-btn">+</button></div></div></div>
+            <div class="menu-card reveal" data-cat="smoothie"><div class="menu-card-img"><img src="assets/products/fruit-smoothie.png" alt="Banana Oats Smoothie" class="product-pack"></div><div class="menu-card-body"><h4>Banana Oats Smoothie</h4><p>350ml · banana, oats, milk</p><div class="menu-card-footer"><span class="menu-price">₹99</span><button class="add-btn">+</button></div></div></div>
         </div>
     </div>
 </section>
