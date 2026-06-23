@@ -1497,6 +1497,8 @@
     const heroVideo = document.querySelector('.hero-bg video');
     const cursorGlow = document.getElementById('cursorGlow');
     const pageLoader = document.getElementById('pageLoader');
+    const loaderLogo = document.getElementById('loaderLogo');
+    const loaderStudio = document.getElementById('loaderStudio');
 
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
 
@@ -1514,11 +1516,8 @@
         }, { passive: true });
     }
 
-    const pageLoader = document.getElementById('pageLoader');
-    const loaderLogo = document.getElementById('loaderLogo');
-    const loaderStudio = document.getElementById('loaderStudio');
-
     const preloadImage = img => new Promise(resolve => {
+        if (!img) { resolve(); return; }
         if (img.complete && img.naturalWidth) resolve();
         else { img.onload = img.onerror = resolve; }
     });
@@ -1526,23 +1525,23 @@
     const finishLoader = () => {
         document.body.classList.remove('loading');
         document.body.classList.add('motion-ready');
-        pageLoader.classList.add('done');
+        if (pageLoader) pageLoader.classList.add('done');
     };
 
     const runLoader = () => {
         if (!pageLoader) {
-            document.body.classList.remove('loading');
-            document.body.classList.add('motion-ready');
+            finishLoader();
             return;
         }
         if (reducedMotion) {
             finishLoader();
             return;
         }
+        const safety = setTimeout(finishLoader, 6000);
         Promise.all([preloadImage(loaderLogo), preloadImage(loaderStudio)]).then(() => {
             requestAnimationFrame(() => pageLoader.classList.add('loader-run'));
             setTimeout(() => pageLoader.classList.add('loader-exit'), 3900);
-            setTimeout(finishLoader, 4700);
+            setTimeout(() => { clearTimeout(safety); finishLoader(); }, 4700);
         });
     };
 
