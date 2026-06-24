@@ -768,7 +768,7 @@
 
         /* Footer */
         footer { background: var(--ink); color: rgba(255,255,255,0.45); padding: 3rem 2rem 2rem; border-top: 1px solid rgba(255,255,255,0.06); }
-        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
         .footer-brand img { height: 44px; margin-bottom: 0.75rem; }
         .footer-brand p { font-size: 0.85rem; line-height: 1.6; max-width: 300px; }
         .footer-tag { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--orange-light); letter-spacing: 0.05em; margin-top: 0.5rem; }
@@ -776,7 +776,8 @@
         .footer-links ul { list-style: none; }
         .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.85rem; line-height: 2; transition: color 0.2s; }
         .footer-links a:hover { color: var(--orange); }
-        .footer-copy { text-align: center; font-size: 0.78rem; margin-top: 2rem; color: rgba(255,255,255,0.25); }
+        .footer-copy a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+        .footer-copy a:hover { color: var(--orange); }
 
         /* Live prep animations */
         .prep-section { background: var(--ink); color: white; position: relative; overflow: hidden; }
@@ -1487,8 +1488,12 @@
             <h5>Contact</h5>
             <ul><li><a href="#notify">Order Now</a></li><li><a href="mailto:hello@sabxi.com">hello@sabxi.com</a></li></ul>
         </div>
+        <div class="footer-links">
+            <h5>Legal</h5>
+            <ul><li><a href="/privacy/">Privacy Policy</a></li></ul>
+        </div>
     </div>
-    <p class="footer-copy">&copy; 2026 SABXI. All rights reserved.</p>
+    <p class="footer-copy">&copy; 2026 SABXI. All rights reserved. · <a href="/privacy/" style="color:rgba(255,255,255,0.35);text-decoration:none;">Privacy Policy</a></p>
 </footer>
 
 <script>
