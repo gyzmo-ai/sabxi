@@ -516,6 +516,34 @@
         .line-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
         .line-body h3 { font-size: 1.12rem; font-weight: 700; margin-bottom: 0.4rem; }
         .line-body p { font-size: 0.85rem; color: var(--gray); margin-bottom: 0.9rem; }
+        .prep-time {
+            display: inline-flex; align-items: baseline; gap: 0.3rem;
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+            text-transform: uppercase; margin-bottom: 0.75rem; width: fit-content;
+            padding: 0.35rem 0.75rem; border-radius: 50px;
+        }
+        .prep-time.prepared { color: var(--orange); background: rgba(255,107,0,0.1); }
+        .prep-time.whole { color: var(--green); background: rgba(46,133,64,0.1); }
+        .prep-time-val {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem;
+            letter-spacing: 0.02em; line-height: 1; text-transform: none;
+        }
+        .prep-time-empty .prep-time-val { opacity: 0.45; }
+        .prep-time-label { font-size: 0.62rem; opacity: 0.75; margin-right: 0.15rem; }
+        .product-shot-info .prep-time {
+            margin: 0 auto 0.5rem; font-size: 0.65rem;
+        }
+        .studio-cat-col li {
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        }
+        .studio-cat-col .prep-time-mini {
+            font-size: 0.72rem; font-weight: 600; color: var(--gray);
+            white-space: nowrap; flex-shrink: 0;
+        }
+        .studio-cat-col .prep-time-mini .prep-time-val {
+            font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; color: var(--orange);
+        }
+        .studio-cat-col.whole .prep-time-mini .prep-time-val { color: var(--green); }
         .line-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
         .line-chip { font-size: 0.7rem; background: white; border: 1px solid var(--gray-light); border-radius: 50px; padding: 0.25rem 0.65rem; color: var(--gray); }
 
@@ -776,6 +804,7 @@
         .footer-links ul { list-style: none; }
         .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.85rem; line-height: 2; transition: color 0.2s; }
         .footer-links a:hover { color: var(--orange); }
+        .footer-copy { text-align: center; font-size: 0.78rem; margin-top: 2rem; color: rgba(255,255,255,0.25); }
         .footer-copy a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
         .footer-copy a:hover { color: var(--orange); }
 
@@ -1244,6 +1273,7 @@
                         </div>
                         <div class="line-body">
                             <h3>Cut Veggies</h3>
+                            <div class="prep-time prepared" data-product="cut-veg"><span class="prep-time-label">Prep</span> <span class="prep-time-val">—</span> min</div>
                             <p>Diced, sliced, or julienned to your spec — tomatoes, onions, palak, carrots, and more.</p>
                             <div class="line-chips"><span class="line-chip">Diced tomatoes</span><span class="line-chip">Sliced onions</span><span class="line-chip">Stir-fry mix</span><span class="line-chip">Salad cuts</span></div>
                         </div>
@@ -1254,6 +1284,7 @@
                         </div>
                         <div class="line-body">
                             <h3>Cut Fruits</h3>
+                            <div class="prep-time prepared" data-product="cut-fruit"><span class="prep-time-label">Prep</span> <span class="prep-time-val">—</span> min</div>
                             <p>Seasonal fruit bowls and slices — watermelon, papaya, apple, and mixed fruit packs.</p>
                             <div class="line-chips"><span class="line-chip">Fruit bowl</span><span class="line-chip">Watermelon</span><span class="line-chip">Papaya</span><span class="line-chip">Mixed fruit</span></div>
                         </div>
@@ -1264,6 +1295,7 @@
                         </div>
                         <div class="line-body">
                             <h3>Fresh Juices</h3>
+                            <div class="prep-time prepared" data-product="juice"><span class="prep-time-label">Prep</span> <span class="prep-time-val">—</span> min</div>
                             <p>Cold-pressed and blended on demand — orange, green detox, watermelon mint, and more.</p>
                             <div class="line-chips"><span class="line-chip">Orange</span><span class="line-chip">Green detox</span><span class="line-chip">Watermelon</span><span class="line-chip">Carrot ginger</span></div>
                         </div>
@@ -1282,6 +1314,7 @@
                         </div>
                         <div class="line-body">
                             <h3>Vegetables</h3>
+                            <div class="prep-time whole" data-product="vegetables"><span class="prep-time-label">Prep</span> <span class="prep-time-val">—</span> min</div>
                             <p>Raw whole vegetables from the mandi — whole, unwashed, uncut. Tomatoes, onions, palak, potatoes, and more.</p>
                             <div class="line-chips"><span class="line-chip">Tomatoes</span><span class="line-chip">Onions</span><span class="line-chip">Palak</span><span class="line-chip">Potatoes</span></div>
                         </div>
@@ -1292,6 +1325,7 @@
                         </div>
                         <div class="line-body">
                             <h3>Fruits</h3>
+                            <div class="prep-time whole" data-product="fruits"><span class="prep-time-label">Prep</span> <span class="prep-time-val">—</span> min</div>
                             <p>Raw whole seasonal fruits — whole, unwashed, uncut. Apples, bananas, oranges, grapes, and more by the kilo.</p>
                             <div class="line-chips"><span class="line-chip">Apples</span><span class="line-chip">Bananas</span><span class="line-chip">Oranges</span><span class="line-chip">Grapes</span></div>
                         </div>
@@ -1302,6 +1336,7 @@
                         </div>
                         <div class="line-body">
                             <h3>Smoothies</h3>
+                            <div class="prep-time whole" data-product="smoothie"><span class="prep-time-label">Prep</span> <span class="prep-time-val">—</span> min</div>
                             <p>Thick, blended smoothies — berry, mango, banana oats, and seasonal specials.</p>
                             <div class="line-chips"><span class="line-chip">Berry blend</span><span class="line-chip">Mango</span><span class="line-chip">Banana oats</span><span class="line-chip">Green power</span></div>
                         </div>
@@ -1321,19 +1356,31 @@
         <div class="product-showcase">
             <div class="product-shot reveal">
                 <div class="product-shot-img"><img src="assets/products/cut-produce-tray.png" alt="SABXI Fresh Cut Produce — 500g tray"></div>
-                <div class="product-shot-info"><h4>Fresh Cut Produce</h4><p>Cut Veggies · 500g tray · Ready to eat</p></div>
+                <div class="product-shot-info">
+                    <div class="prep-time prepared" data-product="cut-veg"><span class="prep-time-label">Prep</span> <span class="prep-time-val">—</span> min</div>
+                    <h4>Fresh Cut Produce</h4><p>Cut Veggies · 500g tray · Ready to eat</p>
+                </div>
             </div>
             <div class="product-shot reveal">
                 <div class="product-shot-img"><img src="assets/products/cut-produce-bowl.png" alt="SABXI Fresh Cut Produce — 500g bowl"></div>
-                <div class="product-shot-info"><h4>Fresh Cut Bowl</h4><p>Cut Fruits · 500g bowl · No preservatives</p></div>
+                <div class="product-shot-info">
+                    <div class="prep-time prepared" data-product="cut-fruit"><span class="prep-time-label">Prep</span> <span class="prep-time-val">—</span> min</div>
+                    <h4>Fresh Cut Bowl</h4><p>Cut Fruits · 500g bowl · No preservatives</p>
+                </div>
             </div>
             <div class="product-shot reveal">
                 <div class="product-shot-img"><img src="assets/products/carrot-juice.png" alt="SABXI Fresh Carrot Juice — 500ml"></div>
-                <div class="product-shot-info"><h4>Fresh Carrot Juice</h4><p>Fresh Juices · 500 ml · Cold-pressed</p></div>
+                <div class="product-shot-info">
+                    <div class="prep-time prepared" data-product="juice"><span class="prep-time-label">Prep</span> <span class="prep-time-val">—</span> min</div>
+                    <h4>Fresh Carrot Juice</h4><p>Fresh Juices · 500 ml · Cold-pressed</p>
+                </div>
             </div>
             <div class="product-shot reveal">
                 <div class="product-shot-img"><img src="assets/products/fruit-smoothie.png" alt="SABXI Mixed Fruit Smoothie"></div>
-                <div class="product-shot-info"><h4>Mixed Fruit Smoothie</h4><p>Smoothies · Layered fresh fruit</p></div>
+                <div class="product-shot-info">
+                    <div class="prep-time whole" data-product="smoothie"><span class="prep-time-label">Prep</span> <span class="prep-time-val">—</span> min</div>
+                    <h4>Mixed Fruit Smoothie</h4><p>Smoothies · Layered fresh fruit</p>
+                </div>
             </div>
         </div>
     </div>
@@ -1424,17 +1471,17 @@
                 <div class="studio-cat-col prepared">
                     <h4>Prepared Fresh</h4>
                     <ul>
-                        <li>Cut Veggies</li>
-                        <li>Cut Fruits</li>
-                        <li>Fresh Juices</li>
+                        <li data-product="cut-veg"><span>Cut Veggies</span><span class="prep-time-mini"><span class="prep-time-val">—</span> min</span></li>
+                        <li data-product="cut-fruit"><span>Cut Fruits</span><span class="prep-time-mini"><span class="prep-time-val">—</span> min</span></li>
+                        <li data-product="juice"><span>Fresh Juices</span><span class="prep-time-mini"><span class="prep-time-val">—</span> min</span></li>
                     </ul>
                 </div>
                 <div class="studio-cat-col whole">
                     <h4>Whole &amp; Blended</h4>
                     <ul>
-                        <li>Vegetables</li>
-                        <li>Fruits</li>
-                        <li>Smoothies</li>
+                        <li data-product="vegetables"><span>Vegetables</span><span class="prep-time-mini"><span class="prep-time-val">—</span> min</span></li>
+                        <li data-product="fruits"><span>Fruits</span><span class="prep-time-mini"><span class="prep-time-val">—</span> min</span></li>
+                        <li data-product="smoothie"><span>Smoothies</span><span class="prep-time-mini"><span class="prep-time-val">—</span> min</span></li>
                     </ul>
                 </div>
             </div>
@@ -1493,10 +1540,36 @@
             <ul><li><a href="/privacy/">Privacy Policy</a></li></ul>
         </div>
     </div>
-    <p class="footer-copy">&copy; 2026 SABXI. All rights reserved. · <a href="/privacy/" style="color:rgba(255,255,255,0.35);text-decoration:none;">Privacy Policy</a></p>
+    <p class="footer-copy">&copy; 2026 SABXI. All rights reserved. · <a href="/privacy/">Privacy Policy</a></p>
 </footer>
 
 <script>
+    // Enter studio prep minutes per product (leave '' to show —)
+    const PREP_TIMES = {
+        'cut-veg': '',
+        'cut-fruit': '',
+        'juice': '',
+        'vegetables': '',
+        'fruits': '',
+        'smoothie': '',
+    };
+
+    const applyPrepTimes = () => {
+        document.querySelectorAll('[data-product]').forEach(el => {
+            const mins = PREP_TIMES[el.dataset.product];
+            const valEl = el.querySelector('.prep-time-val');
+            if (!valEl) return;
+            if (mins === '' || mins == null) {
+                valEl.textContent = '—';
+                el.classList.add('prep-time-empty');
+            } else {
+                valEl.textContent = mins;
+                el.classList.remove('prep-time-empty');
+            }
+        });
+    };
+    applyPrepTimes();
+
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const nav = document.getElementById('nav');
     const heroVideo = document.querySelector('.hero-bg video');
