@@ -379,6 +379,29 @@
         .phone-float-2 { bottom: 16%; right: -16%; animation-delay: 2s; }
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
+        /* Floating produce in hero */
+        .hero-produce { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
+        .hero-produce span {
+            position: absolute; top: -12%; font-size: 1.7rem; opacity: 0;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.35));
+            animation: produceDrift 13s linear infinite;
+        }
+        .hero-produce span:nth-child(1) { left: 6%; animation-delay: 0s; }
+        .hero-produce span:nth-child(2) { left: 20%; font-size: 1.3rem; animation-delay: 2.6s; animation-duration: 15s; }
+        .hero-produce span:nth-child(3) { left: 38%; animation-delay: 5.5s; }
+        .hero-produce span:nth-child(4) { left: 55%; font-size: 2rem; animation-delay: 1.4s; animation-duration: 16s; }
+        .hero-produce span:nth-child(5) { left: 72%; font-size: 1.4rem; animation-delay: 7.2s; }
+        .hero-produce span:nth-child(6) { left: 86%; animation-delay: 4.1s; animation-duration: 14s; }
+        .hero-produce span:nth-child(7) { left: 30%; font-size: 1.2rem; animation-delay: 9.4s; animation-duration: 17s; }
+        .hero-produce span:nth-child(8) { left: 64%; font-size: 1.5rem; animation-delay: 11s; }
+        @keyframes produceDrift {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            6% { opacity: 0.5; }
+            88% { opacity: 0.4; }
+            100% { transform: translateY(118vh) rotate(300deg); opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) { .hero-produce { display: none; } }
+
         /* Marquee */
         .marquee { background: var(--orange); color: white; padding: 0.9rem 0; overflow: hidden; white-space: nowrap; }
         .marquee-track { display: inline-block; animation: scroll 22s linear infinite; font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.08em; }
@@ -1004,6 +1027,175 @@
             70% { transform: scale(1.2); }
             100% { opacity: 1; transform: scale(1); }
         }
+
+        /* ===== Cutting scenes ===== */
+        .chop-scene { position: relative; width: 240px; height: 230px; }
+        .chop-board {
+            position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+            width: 222px; height: 16px; border-radius: 8px;
+            background: linear-gradient(180deg, #a9744f, #85573a);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        .chop-board::after {
+            content: ''; position: absolute; top: 3px; left: 8%; right: 8%; height: 2px;
+            border-radius: 2px; background: rgba(255,255,255,0.14);
+        }
+        .prep-playing .chop-board { animation: boardThud 3.2s ease 0.1s forwards; }
+        @keyframes boardThud {
+            0%, 100% { transform: translateX(-50%) scaleY(1); }
+            13%, 41%, 71% { transform: translateX(-50%) scaleY(0.82); }
+            17%, 45%, 75% { transform: translateX(-50%) scaleY(1); }
+        }
+
+        /* Knife (shared) */
+        .chop-knife { position: absolute; top: 10px; right: 26px; width: 128px; height: 56px; z-index: 6; filter: drop-shadow(0 6px 10px rgba(0,0,0,0.35)); }
+        .chop-knife-blade {
+            position: absolute; left: 0; bottom: 0; width: 88px; height: 30px;
+            background: linear-gradient(180deg, #f8fafc 0%, #cdd6df 70%, #9fadba 100%);
+            clip-path: polygon(0 62%, 14% 22%, 100% 0, 100% 100%, 10% 100%);
+        }
+        .chop-knife-blade::after {
+            content: ''; position: absolute; left: 8%; right: 2%; bottom: 3px; height: 2px;
+            background: rgba(255,255,255,0.75); border-radius: 2px;
+        }
+        .chop-knife-handle {
+            position: absolute; left: 84px; bottom: 8px; width: 44px; height: 16px;
+            background: linear-gradient(180deg, #3d3d3d, #171717); border-radius: 4px 9px 9px 4px;
+        }
+        .chop-knife-handle::after {
+            content: ''; position: absolute; left: 6px; top: 50%; transform: translateY(-50%);
+            width: 5px; height: 5px; border-radius: 50%; background: #777;
+            box-shadow: 14px 0 0 #777;
+        }
+
+        /* Carrot chop scene */
+        .chop-carrot { position: absolute; bottom: 34px; left: 22px; display: flex; align-items: center; z-index: 3; }
+        .carrot-top { position: relative; width: 30px; height: 36px; margin-right: -4px; }
+        .carrot-top span {
+            position: absolute; right: 0; top: 50%; width: 28px; height: 7px; border-radius: 4px;
+            background: linear-gradient(90deg, #a5d6a7, #2e7d32); transform-origin: right center;
+        }
+        .carrot-top span:nth-child(1) { transform: translateY(-50%) rotate(22deg); }
+        .carrot-top span:nth-child(2) { transform: translateY(-50%); width: 32px; }
+        .carrot-top span:nth-child(3) { transform: translateY(-50%) rotate(-22deg); }
+        .carrot-body {
+            width: 92px; height: 36px; position: relative; z-index: 2;
+            background: linear-gradient(180deg, #ffa15c 0%, #ff7a1a 55%, #e55a00 100%);
+            border-radius: 18px 5px 5px 18px;
+        }
+        .carrot-body::after {
+            content: ''; position: absolute; inset: 0; border-radius: inherit;
+            background: repeating-linear-gradient(90deg, transparent 0 14px, rgba(0,0,0,0.08) 14px 16px);
+        }
+        .carrot-slice {
+            width: 21px; height: 36px; margin-left: -1px; position: relative;
+            border-radius: 6px;
+            background: radial-gradient(circle at 50% 50%, #ffd9ad 0 22%, #ffb26b 24% 46%, #ff7a1a 48% 100%);
+            box-shadow: inset 0 0 0 2px #e55a00;
+        }
+        .prep-playing .carrot-slice-a { animation: sliceFallA 0.8s cubic-bezier(0.34, 1.3, 0.64, 1) 0.5s forwards; }
+        .prep-playing .carrot-slice-b { animation: sliceFallB 0.8s cubic-bezier(0.34, 1.3, 0.64, 1) 1.4s forwards; }
+        .prep-playing .carrot-slice-c { animation: sliceFallC 0.8s cubic-bezier(0.34, 1.3, 0.64, 1) 2.3s forwards; }
+        @keyframes sliceFallA {
+            45% { transform: translate(26px, -16px) rotate(38deg); }
+            100% { transform: translate(42px, 1px) rotate(86deg); }
+        }
+        @keyframes sliceFallB {
+            45% { transform: translate(20px, -13px) rotate(32deg); }
+            100% { transform: translate(31px, -1px) rotate(72deg); }
+        }
+        @keyframes sliceFallC {
+            45% { transform: translate(14px, -11px) rotate(28deg); }
+            100% { transform: translate(20px, 0) rotate(94deg); }
+        }
+        .prep-playing .chop-knife-veg { animation: knifeChopRun 3.2s cubic-bezier(0.6, 0, 0.5, 1) 0.1s forwards; }
+        @keyframes knifeChopRun {
+            0% { transform: translate(0, -12px) rotate(-5deg); }
+            12% { transform: translate(0, 118px) rotate(0deg); }
+            24% { transform: translate(-6px, -8px) rotate(-6deg); }
+            40% { transform: translate(-21px, 118px) rotate(0deg); }
+            54% { transform: translate(-27px, -8px) rotate(-6deg); }
+            70% { transform: translate(-42px, 118px) rotate(0deg); }
+            84% { transform: translate(-48px, -14px) rotate(-7deg); }
+            100% { transform: translate(-48px, -16px) rotate(-8deg); }
+        }
+        .chop-spark {
+            position: absolute; bottom: 66px; width: 30px; height: 30px; z-index: 5;
+            background: radial-gradient(circle, rgba(255,255,255,0.95) 0 18%, rgba(255,200,120,0.55) 20% 38%, transparent 42%);
+            opacity: 0; transform: scale(0.2); pointer-events: none;
+        }
+        .chop-spark-1 { right: 42px; } .chop-spark-2 { right: 62px; } .chop-spark-3 { right: 82px; }
+        .prep-playing .chop-spark-1 { animation: sparkPop 0.35s ease-out 0.48s; }
+        .prep-playing .chop-spark-2 { animation: sparkPop 0.35s ease-out 1.38s; }
+        .prep-playing .chop-spark-3 { animation: sparkPop 0.35s ease-out 2.28s; }
+        @keyframes sparkPop {
+            0% { opacity: 0; transform: scale(0.2); }
+            35% { opacity: 1; transform: scale(1.15); }
+            100% { opacity: 0; transform: scale(1.5); }
+        }
+
+        /* Watermelon slice scene */
+        .melon-scene { position: relative; width: 240px; height: 230px; }
+        .melon { position: absolute; bottom: 34px; left: 50%; transform: translateX(-58%); width: 176px; height: 90px; z-index: 3; }
+        .melon-wedge {
+            position: absolute; inset: 0; border-radius: 90px 90px 0 0;
+            background: radial-gradient(farthest-side at 50% 100%, #ff6659 0 58%, #e53935 58% 74%, #fce4ec 74% 79%, #81c784 79% 86%, #1b5e20 86% 100%);
+            transform-origin: 50% 100%;
+        }
+        .melon-seed {
+            position: absolute; width: 5px; height: 9px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            background: #1a1a1a;
+        }
+        .prep-playing .melon-wedge-r { animation: wedgeTipR 0.9s cubic-bezier(0.34, 1.2, 0.64, 1) 0.55s forwards; }
+        .prep-playing .melon-wedge-m { animation: wedgeTipM 0.9s cubic-bezier(0.34, 1.2, 0.64, 1) 1.55s forwards; }
+        @keyframes wedgeTipR {
+            50% { transform: translate(30px, -8px) rotate(18deg); }
+            100% { transform: translate(44px, 0) rotate(30deg); }
+        }
+        @keyframes wedgeTipM {
+            50% { transform: translate(14px, -6px) rotate(7deg); }
+            100% { transform: translate(20px, 0) rotate(12deg); }
+        }
+        .prep-playing .chop-knife-fruit { animation: melonChopRun 2.8s cubic-bezier(0.6, 0, 0.5, 1) 0.1s forwards; }
+        @keyframes melonChopRun {
+            0% { transform: translate(14px, -12px) rotate(-5deg); }
+            16% { transform: translate(14px, 106px) rotate(0deg); }
+            32% { transform: translate(8px, -8px) rotate(-6deg); }
+            52% { transform: translate(-38px, 106px) rotate(0deg); }
+            68% { transform: translate(-44px, -14px) rotate(-7deg); }
+            100% { transform: translate(-44px, -16px) rotate(-8deg); }
+        }
+        .melon-drop {
+            position: absolute; bottom: 110px; width: 7px; height: 7px; border-radius: 50% 50% 50% 0;
+            background: #ff5252; opacity: 0; z-index: 5; pointer-events: none;
+        }
+        .melon-drop-1 { left: 52%; } .melon-drop-2 { left: 62%; transform: rotate(45deg); } .melon-drop-3 { left: 34%; }
+        .prep-playing .melon-drop-1 { animation: dropFly1 0.7s ease-out 0.6s; }
+        .prep-playing .melon-drop-2 { animation: dropFly2 0.7s ease-out 0.66s; }
+        .prep-playing .melon-drop-3 { animation: dropFly1 0.7s ease-out 1.6s; }
+        @keyframes dropFly1 {
+            0% { opacity: 0; transform: translate(0,0) scale(0.4); }
+            25% { opacity: 1; }
+            100% { opacity: 0; transform: translate(-22px, -44px) scale(1); }
+        }
+        @keyframes dropFly2 {
+            0% { opacity: 0; transform: translate(0,0) scale(0.4); }
+            25% { opacity: 1; }
+            100% { opacity: 0; transform: translate(26px, -40px) scale(1); }
+        }
+        .prep-stage-cutfruit .prep-stage-glow { background: radial-gradient(circle at 50% 75%, rgba(229,57,53,0.14) 0%, transparent 55%); }
+        .prep-stage-cutfruit .prep-stage-tag { background: rgba(229,57,53,0.18); color: #ff8a80; }
+        .prep-stage-cutveg .prep-stage-tag { background: rgba(76,175,80,0.18); color: #a5d6a7; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .prep-playing .carrot-slice-a { transform: translate(42px, 1px) rotate(86deg); }
+            .prep-playing .carrot-slice-b { transform: translate(31px, -1px) rotate(72deg); }
+            .prep-playing .carrot-slice-c { transform: translate(20px, 0) rotate(94deg); }
+            .prep-playing .melon-wedge-r { transform: translate(44px, 0) rotate(30deg); }
+            .prep-playing .melon-wedge-m { transform: translate(20px, 0) rotate(12deg); }
+            .prep-playing .chop-knife-veg { transform: translate(-48px, -16px) rotate(-8deg); }
+            .prep-playing .chop-knife-fruit { transform: translate(-44px, -16px) rotate(-8deg); }
+        }
         @media (prefers-reduced-motion: reduce) {
             .prep-playing .juice-liquid { height: 82%; }
             .prep-playing .juice-cap-wrap { transform: translateX(-50%) rotate(-30deg) translateY(-42px); opacity: 0.5; }
@@ -1017,6 +1209,135 @@
         }
         .prep-playing .prep-status { color: var(--green-light); }
         .prep-playing .prep-status::before { content: '● '; animation: blink 1.5s infinite; }
+
+        /* ===== Promise: Fresh / Fast / Effortless ===== */
+        .promise { background: white; position: relative; overflow: hidden; }
+        .promise-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.75rem; margin-top: 3rem; }
+        .promise-card {
+            position: relative; overflow: hidden; border-radius: 24px;
+            padding: 2.5rem 2rem 2.25rem; min-height: 360px;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            background: var(--cream); border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s;
+        }
+        .promise-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .promise-visual { position: relative; width: 100%; height: 150px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; }
+        .promise-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+        .promise-card > p { font-size: 0.9rem; color: var(--gray); max-width: 280px; }
+        .promise-metric {
+            margin-top: auto; padding-top: 1.25rem; font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange);
+        }
+
+        /* Freshness: pulsing leaf ring */
+        .fresh-ring { position: relative; width: 120px; height: 120px; }
+        .fresh-ring-core {
+            position: absolute; inset: 22px; border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #7ed957, var(--green));
+            display: flex; align-items: center; justify-content: center; font-size: 2.1rem;
+            box-shadow: 0 10px 26px rgba(46,133,64,0.35);
+            animation: freshBreath 3s ease-in-out infinite;
+        }
+        @keyframes freshBreath { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+        .fresh-ring-wave { position: absolute; inset: 10px; border-radius: 50%; border: 2px solid var(--green-light); opacity: 0; }
+        .visible .fresh-ring-wave-1 { animation: freshWave 2.6s ease-out infinite; }
+        .visible .fresh-ring-wave-2 { animation: freshWave 2.6s ease-out 1.3s infinite; }
+        @keyframes freshWave {
+            0% { transform: scale(0.7); opacity: 0.9; }
+            100% { transform: scale(1.35); opacity: 0; }
+        }
+        .fresh-sparkle { position: absolute; font-size: 0.95rem; opacity: 0; }
+        .fresh-sparkle-1 { top: 4px; right: 10px; } .fresh-sparkle-2 { bottom: 12px; left: 2px; } .fresh-sparkle-3 { top: 26px; left: -8px; }
+        .visible .fresh-sparkle-1 { animation: sparkleTwinkle 2.4s ease-in-out infinite; }
+        .visible .fresh-sparkle-2 { animation: sparkleTwinkle 2.4s ease-in-out 0.8s infinite; }
+        .visible .fresh-sparkle-3 { animation: sparkleTwinkle 2.4s ease-in-out 1.6s infinite; }
+        @keyframes sparkleTwinkle { 0%,100% { opacity: 0; transform: scale(0.5) rotate(0deg); } 50% { opacity: 1; transform: scale(1.15) rotate(20deg); } }
+
+        /* Speed: scooter dash */
+        .speed-lane { position: relative; width: 100%; max-width: 260px; height: 120px; }
+        .speed-road { position: absolute; left: 4%; right: 4%; bottom: 26px; height: 3px; border-radius: 3px; background: repeating-linear-gradient(90deg, var(--gray-light) 0 18px, transparent 18px 30px); }
+        .speed-scooter { position: absolute; bottom: 34px; left: -18%; font-size: 2.6rem; transform: scaleX(-1); filter: drop-shadow(0 8px 14px rgba(0,0,0,0.18)); }
+        .visible .speed-scooter { animation: scooterDash 3.4s cubic-bezier(0.45, 0, 0.4, 1) infinite; }
+        @keyframes scooterDash {
+            0% { left: -18%; }
+            45% { left: 44%; }
+            55% { left: 46%; }
+            100% { left: 112%; }
+        }
+        .speed-line { position: absolute; bottom: 58px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, transparent, var(--orange)); opacity: 0; }
+        .speed-line-1 { width: 40px; bottom: 66px; } .speed-line-2 { width: 56px; } .speed-line-3 { width: 34px; bottom: 50px; }
+        .visible .speed-line-1 { animation: speedTrail 3.4s linear infinite; }
+        .visible .speed-line-2 { animation: speedTrail 3.4s linear 0.12s infinite; }
+        .visible .speed-line-3 { animation: speedTrail 3.4s linear 0.22s infinite; }
+        @keyframes speedTrail {
+            0%, 38% { left: -30%; opacity: 0; }
+            48% { left: 20%; opacity: 0.9; }
+            62% { left: 60%; opacity: 0; }
+            100% { left: 60%; opacity: 0; }
+        }
+        .speed-pin { position: absolute; right: 4%; bottom: 44px; font-size: 1.5rem; }
+        .visible .speed-pin { animation: pinBounce 3.4s ease infinite; }
+        @keyframes pinBounce {
+            0%, 88% { transform: translateY(0); }
+            92% { transform: translateY(-10px) scale(1.15); }
+            96% { transform: translateY(0) scale(1); }
+        }
+
+        /* Convenience: one-tap phone */
+        .tap-phone {
+            position: relative; width: 88px; height: 132px; border-radius: 18px;
+            background: var(--ink); padding: 5px;
+            box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+        }
+        .tap-phone-screen {
+            width: 100%; height: 100%; border-radius: 14px; overflow: hidden;
+            background: linear-gradient(160deg, #fff 55%, #fff2e6 100%);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .tap-btn {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.1rem; font-weight: 800;
+            box-shadow: 0 8px 18px rgba(255,107,0,0.4);
+        }
+        .visible .tap-btn { animation: tapPress 3s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
+        @keyframes tapPress {
+            0%, 20%, 100% { transform: scale(1); }
+            26% { transform: scale(0.82); }
+            34% { transform: scale(1.08); }
+            42% { transform: scale(1); }
+        }
+        .tap-ripple { position: absolute; top: 50%; left: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; border: 2px solid var(--orange); opacity: 0; }
+        .visible .tap-ripple-1 { animation: tapRipple 3s ease-out 0.78s infinite; }
+        .visible .tap-ripple-2 { animation: tapRipple 3s ease-out 0.95s infinite; }
+        @keyframes tapRipple {
+            0% { transform: scale(0.8); opacity: 0.85; }
+            28% { transform: scale(2.4); opacity: 0; }
+            100% { transform: scale(2.4); opacity: 0; }
+        }
+        .tap-bag { position: absolute; right: -34px; bottom: 6px; font-size: 1.9rem; opacity: 0; transform: translateY(14px) scale(0.6); }
+        .visible .tap-bag { animation: bagPop 3s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
+        @keyframes bagPop {
+            0%, 30% { opacity: 0; transform: translateY(14px) scale(0.6); }
+            44% { opacity: 1; transform: translateY(-6px) scale(1.12); }
+            52% { transform: translateY(0) scale(1); }
+            86% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(0) scale(1); }
+        }
+        .tap-check { position: absolute; left: -32px; top: 12px; width: 26px; height: 26px; border-radius: 50%; background: var(--green); color: white; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(0.4); }
+        .visible .tap-check { animation: checkPop 3s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s infinite; }
+        @keyframes checkPop {
+            0%, 38% { opacity: 0; transform: scale(0.4); }
+            50% { opacity: 1; transform: scale(1.15); }
+            58% { transform: scale(1); }
+            88% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .visible .tap-bag, .visible .tap-check { opacity: 1; transform: none; animation: none; }
+            .visible .speed-scooter { left: 40%; animation: none; }
+        }
 
         @media (max-width: 1024px) {
             nav { padding: 0.9rem 1.5rem; }
@@ -1034,6 +1355,7 @@
             .product-columns .lines-grid { grid-template-columns: repeat(2,1fr); }
             .product-showcase { grid-template-columns: repeat(2,1fr); }
             .prep-grid { grid-template-columns: 1fr; }
+            .promise-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
             .market-grid, .pipeline-track, .lines-grid { grid-template-columns: repeat(2,1fr); }
             .footer-inner { grid-template-columns: 1fr; }
         }
@@ -1111,6 +1433,9 @@
         <div class="hero-orb hero-orb-1"></div>
         <div class="hero-orb hero-orb-2"></div>
     </div>
+    <div class="hero-produce" aria-hidden="true">
+        <span>🥕</span><span>🍅</span><span>🥬</span><span>🍉</span><span>🍊</span><span>🥒</span><span>🍓</span><span>🍎</span>
+    </div>
     <div class="hero-bg">
         <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=1600&h=900&fit=crop">
             <source src="https://assets.mixkit.co/videos/6272/6272-720.mp4" type="video/mp4">
@@ -1182,6 +1507,61 @@
         <div class="reveal"><div class="stat-num">Daily</div><div class="stat-label">Fresh from mandi</div></div>
     </div>
 </div>
+
+<!-- PROMISE: FRESH / FAST / EFFORTLESS -->
+<section class="promise" id="promise">
+    <div class="section-inner">
+        <span class="section-label reveal">The SABXI Promise</span>
+        <h2 class="section-title reveal">Fresh. Fast. Effortless.</h2>
+        <p class="section-desc reveal">Three things we obsess over, so you never have to think about them.</p>
+        <div class="promise-grid">
+            <div class="promise-card reveal">
+                <div class="promise-visual">
+                    <div class="fresh-ring">
+                        <div class="fresh-ring-wave fresh-ring-wave-1"></div>
+                        <div class="fresh-ring-wave fresh-ring-wave-2"></div>
+                        <div class="fresh-ring-core">🥬</div>
+                        <span class="fresh-sparkle fresh-sparkle-1">✨</span>
+                        <span class="fresh-sparkle fresh-sparkle-2">✨</span>
+                        <span class="fresh-sparkle fresh-sparkle-3">✨</span>
+                    </div>
+                </div>
+                <h3>Freshness You Can See</h3>
+                <p>Mandi-fresh every morning, cut only after you order. Nothing sits, nothing wilts.</p>
+                <div class="promise-metric">Cut after you order · Never before</div>
+            </div>
+            <div class="promise-card reveal">
+                <div class="promise-visual">
+                    <div class="speed-lane">
+                        <span class="speed-line speed-line-1"></span>
+                        <span class="speed-line speed-line-2"></span>
+                        <span class="speed-line speed-line-3"></span>
+                        <div class="speed-scooter">🛵</div>
+                        <div class="speed-pin">📍</div>
+                        <div class="speed-road"></div>
+                    </div>
+                </div>
+                <h3>Speed That Surprises</h3>
+                <p>From cutting board to your doorstep in under 30 minutes, tracked live all the way.</p>
+                <div class="promise-metric">Under 30 minutes · Live tracked</div>
+            </div>
+            <div class="promise-card reveal">
+                <div class="promise-visual">
+                    <div class="tap-phone">
+                        <div class="tap-check">✓</div>
+                        <div class="tap-phone-screen"><div class="tap-btn">+</div></div>
+                        <div class="tap-ripple tap-ripple-1"></div>
+                        <div class="tap-ripple tap-ripple-2"></div>
+                        <div class="tap-bag">🛍️</div>
+                    </div>
+                </div>
+                <h3>Convenience, Built In</h3>
+                <p>One tap to order, daily subscriptions on autopilot, zero washing or chopping at home.</p>
+                <div class="promise-metric">One tap · Daily subscription</div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- FEATURES -->
 <section class="features" id="features">
@@ -1391,8 +1771,65 @@
     <div class="section-inner">
         <span class="section-label reveal">Made On Order</span>
         <h2 class="section-title reveal" style="color:white;">Watch It Come Together</h2>
-        <p class="section-desc reveal">Every juice is cold-pressed fresh. Every smoothie is layered and blended the moment you order.</p>
+        <p class="section-desc reveal">Nothing is pre-made. Veggies and fruits are cut, juices pressed, and smoothies blended live — the moment your order lands.</p>
         <div class="prep-grid">
+            <div class="prep-stage prep-stage-cutveg prep-anim reveal" data-prep="cutveg">
+                <div class="prep-stage-glow"></div>
+                <div class="prep-stage-head">
+                    <span class="prep-stage-tag">Cut Veggies</span>
+                    <h3>Chop. Chop. Sorted.</h3>
+                    <p>Carrots, onions, palak — sliced to your spec on a live cutting board.</p>
+                </div>
+                <div class="prep-scene">
+                    <div class="chop-scene">
+                        <div class="chop-knife chop-knife-veg"><div class="chop-knife-blade"></div><div class="chop-knife-handle"></div></div>
+                        <div class="chop-spark chop-spark-1"></div>
+                        <div class="chop-spark chop-spark-2"></div>
+                        <div class="chop-spark chop-spark-3"></div>
+                        <div class="chop-carrot">
+                            <div class="carrot-top"><span></span><span></span><span></span></div>
+                            <div class="carrot-body"></div>
+                            <div class="carrot-slice carrot-slice-c"></div>
+                            <div class="carrot-slice carrot-slice-b"></div>
+                            <div class="carrot-slice carrot-slice-a"></div>
+                        </div>
+                        <div class="chop-board"></div>
+                    </div>
+                </div>
+                <div class="prep-status">Cutting fresh</div>
+            </div>
+            <div class="prep-stage prep-stage-cutfruit prep-anim reveal" data-prep="cutfruit">
+                <div class="prep-stage-glow"></div>
+                <div class="prep-stage-head">
+                    <span class="prep-stage-tag">Cut Fruits</span>
+                    <h3>Sliced, Not Stored.</h3>
+                    <p>Watermelon to fruit bowls — wedged and packed while you watch.</p>
+                </div>
+                <div class="prep-scene">
+                    <div class="melon-scene">
+                        <div class="chop-knife chop-knife-fruit"><div class="chop-knife-blade"></div><div class="chop-knife-handle"></div></div>
+                        <div class="melon-drop melon-drop-1"></div>
+                        <div class="melon-drop melon-drop-2"></div>
+                        <div class="melon-drop melon-drop-3"></div>
+                        <div class="melon">
+                            <div class="melon-wedge" style="clip-path:polygon(0 0, 49% 0, 49% 100%, 0 100%);">
+                                <span class="melon-seed" style="left:24%;top:48%;"></span>
+                                <span class="melon-seed" style="left:36%;top:32%;transform:rotate(20deg);"></span>
+                            </div>
+                            <div class="melon-wedge melon-wedge-m" style="clip-path:polygon(50% 0, 73% 0, 73% 100%, 50% 100%);">
+                                <span class="melon-seed" style="left:57%;top:40%;"></span>
+                                <span class="melon-seed" style="left:64%;top:62%;transform:rotate(20deg);"></span>
+                            </div>
+                            <div class="melon-wedge melon-wedge-r" style="clip-path:polygon(74% 0, 100% 0, 100% 100%, 74% 100%);">
+                                <span class="melon-seed" style="left:82%;top:44%;transform:rotate(-15deg);"></span>
+                                <span class="melon-seed" style="left:88%;top:66%;"></span>
+                            </div>
+                        </div>
+                        <div class="chop-board"></div>
+                    </div>
+                </div>
+                <div class="prep-status">Slicing now</div>
+            </div>
             <div class="prep-stage prep-stage-juice prep-anim reveal" data-prep="juice">
                 <div class="prep-stage-glow"></div>
                 <div class="prep-stage-head">
@@ -1628,7 +2065,7 @@
 
     document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
 
-    document.querySelectorAll('.stats-grid, .features-grid, .lines-grid, .product-showcase, .review-grid').forEach(grid => {
+    document.querySelectorAll('.stats-grid, .features-grid, .lines-grid, .product-showcase, .review-grid, .promise-grid').forEach(grid => {
         [...grid.children].forEach((child, i) => {
             if (child.classList.contains('reveal')) {
                 child.classList.add('reveal-child');
