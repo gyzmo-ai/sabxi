@@ -3,10 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SABXI Studio — Freshly Cut, Quickly Delivered</title>
-    <meta name="description" content="SABXI Studio — Freshly cut, quickly delivered. Order cut veggies, cut fruits, fresh juices, whole vegetables, fruits, and smoothies. Delivered to your door in 30 minutes.">
+    <title>SABXI — Freshly Cut Vegetables, Fruits &amp; Juices Delivered in 30 Minutes | D2C Fresh Food Brand India</title>
+    <meta name="description" content="SABXI is a D2C fresh food brand changing how India eats. Freshly cut vegetables, cut fruits, cold-pressed juices, whole produce, and smoothies — cut to order at SABXI Studio and delivered to your door in under 30 minutes. The future of quick commerce for fresh food.">
+    <meta name="keywords" content="SABXI, freshly cut vegetables, cut fruits online, fresh juice delivery, quick commerce India, D2C food brand, fresh food delivery 30 minutes, cut vegetables delivery, fruit bowl delivery, cold-pressed juice, vegetable delivery app, mandi fresh vegetables, online sabzi, fresh cut produce, smoothie delivery, daily vegetable subscription">
+    <meta name="author" content="SABXI">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://sabxi.com/">
     <meta name="theme-color" content="#FF6B00">
     <link rel="icon" href="assets/logo-trans.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SABXI">
+    <meta property="og:title" content="SABXI — Freshly Cut, Quickly Delivered. The Future of Fresh Food Quick Commerce.">
+    <meta property="og:description" content="D2C fresh food brand changing how the world eats. Cut veggies, cut fruits, fresh juices, and smoothies — prepared live at SABXI Studio, delivered in under 30 minutes.">
+    <meta property="og:url" content="https://sabxi.com/">
+    <meta property="og:image" content="https://sabxi.com/assets/logo.png">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SABXI — Freshly Cut, Quickly Delivered">
+    <meta name="twitter:description" content="D2C fresh food brand changing how India eats. Freshly cut produce, juices &amp; smoothies delivered in 30 minutes.">
+    <meta name="twitter:image" content="https://sabxi.com/assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -1339,6 +1358,51 @@
             .visible .speed-scooter { left: 40%; animation: none; }
         }
 
+        /* Mission / manifesto */
+        .mission { background: var(--ink); color: white; position: relative; overflow: hidden; }
+        .mission::before {
+            content: ''; position: absolute; top: -30%; left: 50%; transform: translateX(-50%);
+            width: 900px; height: 900px; pointer-events: none;
+            background: radial-gradient(circle, rgba(255,107,0,0.1) 0%, transparent 60%);
+        }
+        .mission .section-inner { position: relative; z-index: 1; max-width: 900px; text-align: center; }
+        .mission .section-label { color: var(--orange-light); }
+        .mission h2 {
+            font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.6rem, 6vw, 5rem);
+            line-height: 1; letter-spacing: 0.02em; margin-bottom: 1.5rem;
+        }
+        .mission h2 em { font-style: normal; color: var(--orange); }
+        .mission-copy { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.85; max-width: 760px; margin: 0 auto 1.25rem; }
+        .mission-copy strong { color: white; font-weight: 600; }
+        .mission-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-top: 2rem; }
+        .mission-chip {
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+            padding: 0.45rem 0.95rem; border-radius: 50px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.7);
+        }
+        .mission-chip.hot { background: rgba(255,107,0,0.14); border-color: rgba(255,107,0,0.35); color: var(--orange-light); }
+
+        /* FAQ */
+        .faq { background: white; }
+        .faq-list { max-width: 780px; margin: 2.5rem auto 0; }
+        .faq-item {
+            border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; margin-bottom: 0.85rem;
+            background: var(--cream); overflow: hidden; transition: box-shadow 0.3s;
+        }
+        .faq-item[open] { box-shadow: 0 12px 32px rgba(0,0,0,0.08); background: white; }
+        .faq-item summary {
+            list-style: none; cursor: pointer; padding: 1.15rem 1.4rem;
+            font-weight: 700; font-size: 0.98rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: '+'; font-size: 1.4rem; font-weight: 400; color: var(--orange);
+            transition: transform 0.3s; flex-shrink: 0; line-height: 1;
+        }
+        .faq-item[open] summary::after { transform: rotate(45deg); }
+        .faq-item p { padding: 0 1.4rem 1.25rem; font-size: 0.92rem; color: var(--gray); line-height: 1.75; }
+
         @media (max-width: 1024px) {
             nav { padding: 0.9rem 1.5rem; }
             section { padding: 4rem 1.5rem; }
@@ -1394,6 +1458,98 @@
             .studio-details { padding: 2.5rem 1rem 3rem; }
         }
     </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://sabxi.com/#organization",
+                "name": "SABXI",
+                "url": "https://sabxi.com/",
+                "logo": "https://sabxi.com/assets/logo.png",
+                "slogan": "Freshly Cut, Quickly Delivered",
+                "description": "SABXI is a direct-to-consumer (D2C) fresh food brand changing how the world eats. Freshly cut vegetables and fruits, cold-pressed juices, whole produce, and smoothies — prepared live at SABXI Studio and delivered in under 30 minutes. The future of quick commerce for fresh food in India.",
+                "email": "hello@sabxi.com",
+                "foundingDate": "2026",
+                "areaServed": { "@type": "Country", "name": "India" },
+                "knowsAbout": ["freshly cut vegetables", "cut fruits", "fresh juice", "quick commerce", "D2C fresh food", "grocery delivery", "smoothies", "farm fresh produce"]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://sabxi.com/#website",
+                "url": "https://sabxi.com/",
+                "name": "SABXI",
+                "publisher": { "@id": "https://sabxi.com/#organization" },
+                "inLanguage": "en-IN"
+            },
+            {
+                "@type": "OnlineStore",
+                "@id": "https://sabxi.com/#store",
+                "name": "SABXI Studio",
+                "url": "https://sabxi.com/",
+                "image": "https://sabxi.com/assets/logo.png",
+                "priceRange": "₹",
+                "parentOrganization": { "@id": "https://sabxi.com/#organization" },
+                "makesOffer": [
+                    { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Cut Veggies", "description": "Freshly cut vegetables — diced, sliced, or julienned to order. Tomatoes, onions, palak, carrots, and more." } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Cut Fruits", "description": "Freshly cut seasonal fruit bowls and slices — watermelon, papaya, apple, and mixed fruit packs." } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Fresh Juices", "description": "Cold-pressed juices made on order — orange, green detox, watermelon mint, carrot ginger." } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Whole Vegetables", "description": "Raw whole vegetables fresh from the mandi every morning — no markup, no middlemen." } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Whole Fruits", "description": "Raw whole seasonal fruits by the kilo — apples, bananas, oranges, grapes." } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Smoothies", "description": "Thick blended smoothies — berry, mango, banana oats, and seasonal specials." } }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "https://sabxi.com/#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What is SABXI?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "SABXI is a direct-to-consumer (D2C) fresh food brand on a mission to change how the world eats. We deliver freshly cut vegetables, cut fruits, cold-pressed juices, whole produce, and smoothies — all prepared live at SABXI Studio the moment you order, and delivered to your door in under 30 minutes." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How fast does SABXI deliver?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "SABXI delivers in under 30 minutes. Orders travel from our cutting board to your doorstep with live tracking, between 7 AM and 9 PM every day." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How is SABXI different from other quick commerce apps like Zepto or Blinkit?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Quick commerce apps deliver packaged inventory from dark stores. SABXI is a freshness-first D2C brand: nothing is pre-made or stored. Vegetables and fruits are cut, juices pressed, and smoothies blended live at SABXI Studio only after your order lands — then delivered in under 30 minutes. It is the future of quick commerce for fresh food." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "When are the vegetables and fruits cut?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Only after you order. SABXI never pre-cuts or stores produce. Every order is washed, cut to your spec — diced, sliced, or julienned — and sealed at SABXI Studio minutes before delivery." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What products does SABXI sell?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Six fresh lines: freshly cut veggies, freshly cut fruits, cold-pressed juices, raw whole vegetables, raw whole fruits, and blended smoothies — all sourced fresh from the mandi every morning at market prices." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What is SABXI Studio?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "SABXI Studio is our compact, glass-front micro-store where every order is prepared. It is built for speed, hygiene, and transparency — you can watch your produce being cut, pressed, and packed live." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Does SABXI offer a daily subscription?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Set your daily basket — palak, tomatoes, juice, fruit bowls — and SABXI auto-delivers it fresh every morning, always at a discount." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Where does SABXI source its produce?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Direct from local mandis every morning. No middlemen, no markup, no cold storage — what you would pay at the market is what you pay on SABXI." }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
 </head>
 <body class="loading">
 <div class="page-loader" id="pageLoader" aria-hidden="true">
@@ -1939,6 +2095,70 @@
     </div>
 </section>
 
+<!-- MISSION -->
+<section class="mission" id="mission">
+    <div class="section-inner">
+        <span class="section-label reveal">Our Mission</span>
+        <h2 class="reveal">Changing How<br>the World <em>Eats.</em></h2>
+        <p class="mission-copy reveal">SABXI is a <strong>direct-to-consumer (D2C) fresh food brand</strong> built for one idea: fresh food should be effortless. Not warehoused, not pre-packaged, not sitting in cold storage for days — but <strong>cut, pressed, and packed live</strong>, minutes before it reaches your kitchen.</p>
+        <p class="mission-copy reveal">We believe this is the <strong>future of quick commerce</strong>. Dark stores solved speed; SABXI solves <strong>freshness at speed</strong>. Every order is prepared on demand at SABXI Studio — a transparent, glass-front micro-kitchen — and delivered in <strong>under 30 minutes</strong>. Mandi-fresh sourcing every morning, zero middlemen, market prices, and a daily subscription that puts your kitchen on autopilot.</p>
+        <p class="mission-copy reveal">From <strong>freshly cut vegetables and fruits</strong> to <strong>cold-pressed juices and smoothies</strong>, SABXI is building the fresh food layer of India's quick commerce revolution — one chopped carrot at a time.</p>
+        <div class="mission-chips reveal">
+            <span class="mission-chip hot">D2C Fresh Food Brand</span>
+            <span class="mission-chip hot">Future of Quick Commerce</span>
+            <span class="mission-chip hot">Changing How the World Eats</span>
+            <span class="mission-chip">Cut to Order</span>
+            <span class="mission-chip">Under 30 Minutes</span>
+            <span class="mission-chip">Mandi-Fresh Daily</span>
+            <span class="mission-chip">Zero Middlemen</span>
+            <span class="mission-chip">Freshness at Speed</span>
+            <span class="mission-chip">Made in India</span>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+    <div class="section-inner">
+        <span class="section-label reveal" style="text-align:center;">FAQ</span>
+        <h2 class="section-title reveal" style="text-align:center;">Everything People Ask Us</h2>
+        <div class="faq-list reveal">
+            <details class="faq-item">
+                <summary>What is SABXI?</summary>
+                <p>SABXI is a direct-to-consumer (D2C) fresh food brand on a mission to change how the world eats. We deliver freshly cut vegetables, cut fruits, cold-pressed juices, whole produce, and smoothies — all prepared live at SABXI Studio the moment you order, and delivered to your door in under 30 minutes.</p>
+            </details>
+            <details class="faq-item">
+                <summary>How fast does SABXI deliver?</summary>
+                <p>Under 30 minutes. Orders travel from our cutting board to your doorstep with live tracking, between 7 AM and 9 PM every day.</p>
+            </details>
+            <details class="faq-item">
+                <summary>How is SABXI different from other quick commerce apps like Zepto or Blinkit?</summary>
+                <p>Quick commerce apps deliver packaged inventory from dark stores. SABXI is a freshness-first D2C brand: nothing is pre-made or stored. Vegetables and fruits are cut, juices pressed, and smoothies blended live at SABXI Studio only after your order lands — then delivered in under 30 minutes. It's the future of quick commerce for fresh food.</p>
+            </details>
+            <details class="faq-item">
+                <summary>When are the vegetables and fruits cut?</summary>
+                <p>Only after you order. SABXI never pre-cuts or stores produce. Every order is washed, cut to your spec — diced, sliced, or julienned — and sealed at SABXI Studio minutes before delivery.</p>
+            </details>
+            <details class="faq-item">
+                <summary>What products does SABXI sell?</summary>
+                <p>Six fresh lines: freshly cut veggies, freshly cut fruits, cold-pressed juices, raw whole vegetables, raw whole fruits, and blended smoothies — all sourced fresh from the mandi every morning at market prices.</p>
+            </details>
+            <details class="faq-item">
+                <summary>What is SABXI Studio?</summary>
+                <p>SABXI Studio is our compact, glass-front micro-store where every order is prepared. It's built for speed, hygiene, and transparency — you can watch your produce being cut, pressed, and packed live.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Does SABXI offer a daily subscription?</summary>
+                <p>Yes. Set your daily basket — palak, tomatoes, juice, fruit bowls — and SABXI auto-delivers it fresh every morning, always at a discount.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Where does SABXI source its produce?</summary>
+                <p>Direct from local mandis every morning. No middlemen, no markup, no cold storage — what you'd pay at the market is what you pay on SABXI.</p>
+            </details>
+        </div>
+    </div>
+</section>
+
 <!-- CTA -->
 <section class="cta" id="notify">
     <div class="section-inner">
@@ -1961,12 +2181,12 @@
     <div class="footer-inner">
         <div class="footer-brand">
             <img src="assets/logo-trans.png" alt="SABXI">
-            <p>Cut veggies, cut fruits, fresh juices, vegetables, fruits, and smoothies — freshly cut, quickly delivered from SABXI Studio.</p>
+            <p>SABXI is a D2C fresh food brand changing how the world eats — freshly cut veggies, cut fruits, cold-pressed juices, whole produce, and smoothies, prepared live at SABXI Studio and delivered in under 30 minutes. The future of quick commerce for fresh food.</p>
             <div class="footer-tag">Freshly Cut, Quickly Delivered.</div>
         </div>
         <div class="footer-links">
             <h5>Product</h5>
-            <ul><li><a href="#lines">Products</a></li><li><a href="#studio">Studio</a></li></ul>
+            <ul><li><a href="#lines">Products</a></li><li><a href="#studio">Studio</a></li><li><a href="#mission">Our Mission</a></li><li><a href="#faq">FAQ</a></li></ul>
         </div>
         <div class="footer-links">
             <h5>Contact</h5>

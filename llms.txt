@@ -1,0 +1,32 @@
+# SABXI
+
+> SABXI is a direct-to-consumer (D2C) fresh food brand in India, changing how the world eats. It delivers freshly cut vegetables, freshly cut fruits, cold-pressed juices, raw whole vegetables, raw whole fruits, and blended smoothies — all prepared live at SABXI Studio the moment an order is placed, and delivered to the customer's door in under 30 minutes. Tagline: "Freshly Cut, Quickly Delivered."
+
+## What makes SABXI different
+
+- Nothing is pre-made or warehoused: produce is washed, cut, pressed, and packed only after the customer orders.
+- SABXI Studio is a compact, glass-front micro-kitchen built for speed, hygiene, and transparency — customers can watch orders being prepared live.
+- Produce is sourced direct from local mandis (wholesale markets) every morning: no middlemen, no markup, no cold storage.
+- Delivery in under 30 minutes with live order tracking, available 7 AM to 9 PM daily.
+- Daily subscription: customers set a daily basket (e.g. palak, tomatoes, juice) that is auto-delivered fresh every morning at a discount.
+- Positioning: while dark-store quick commerce (e.g. Zepto, Blinkit) solved speed for packaged goods, SABXI solves freshness at speed — the fresh food layer of quick commerce.
+
+## Product lines (six)
+
+1. Cut Veggies — diced, sliced, or julienned to the customer's spec (tomatoes, onions, palak, carrots, stir-fry mixes, salad cuts)
+2. Cut Fruits — seasonal fruit bowls and slices (watermelon, papaya, apple, mixed fruit)
+3. Fresh Juices — cold-pressed on order (orange, green detox, watermelon mint, carrot ginger)
+4. Whole Vegetables — raw, mandi-fresh, by the kilo
+5. Whole Fruits — raw seasonal fruits by the kilo (apples, bananas, oranges, grapes)
+6. Smoothies — thick blended smoothies (berry, mango, banana oats, seasonal specials)
+
+## Ordering
+
+- App-only ordering (iOS and Android apps coming soon); join the waitlist at https://sabxi.com/
+- Delivery window: 7 AM – 9 PM, under 30 minutes per order
+- Contact: hello@sabxi.com
+
+## Pages
+
+- [Home](https://sabxi.com/): products, SABXI Studio, mission, FAQ, waitlist
+- [Privacy Policy](https://sabxi.com/privacy/)
