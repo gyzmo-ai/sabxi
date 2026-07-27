@@ -375,27 +375,43 @@
         .hero-trust strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: white; line-height: 1; }
         .hero-trust span { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
 
-        /* Phone */
+        /* Phone — real app screenshots */
         .phone-wrap { display: flex; justify-content: center; position: relative; }
-        .phone { width: 270px; background: #000; border-radius: 38px; padding: 10px; box-shadow: 0 40px 90px rgba(0,0,0,0.5); position: relative; z-index: 2; }
-        .phone-screen { background: white; border-radius: 30px; overflow: hidden; height: 540px; display: flex; flex-direction: column; }
-        .app-header { background: linear-gradient(135deg, var(--orange), var(--green)); padding: 2.2rem 1.2rem 1.2rem; color: white; }
-        .app-header h3 { font-size: 1.05rem; font-weight: 700; }
-        .app-header p { font-size: 0.72rem; opacity: 0.85; }
-        .app-search { margin: -0.75rem 1rem 0; background: white; border-radius: 12px; padding: 0.6rem 1rem; font-size: 0.72rem; color: var(--gray); box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
-        .app-cats { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.5rem; padding: 1rem; }
-        .app-cat { text-align: center; font-size: 0.6rem; font-weight: 600; }
-        .app-cat-icon { width: 46px; height: 46px; border-radius: 14px; margin: 0 auto 0.3rem; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; background: var(--cream); }
-        .app-banner { margin: 0 1rem; border-radius: 14px; overflow: hidden; position: relative; height: 90px; }
-        .app-banner video { width: 100%; height: 100%; object-fit: cover; }
-        .app-banner span { position: absolute; bottom: 8px; left: 10px; color: white; font-size: 0.7rem; font-weight: 700; text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
-        .app-order { margin: 0.85rem 1rem; background: var(--green); color: white; border-radius: 14px; padding: 0.8rem; font-size: 0.7rem; }
-        .app-order strong { display: block; font-size: 0.82rem; margin-bottom: 0.15rem; }
-        .app-nav { margin-top: auto; display: flex; justify-content: space-around; padding: 0.7rem; border-top: 1px solid var(--gray-light); font-size: 0.58rem; color: var(--gray); }
-        .app-nav .active { color: var(--orange); font-weight: 700; }
+        .phone {
+            width: 280px; background: #0a0a0a; border-radius: 42px; padding: 11px;
+            box-shadow: 0 40px 90px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.08);
+            position: relative; z-index: 2;
+        }
+        .phone::before {
+            content: ''; position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+            width: 90px; height: 22px; background: #0a0a0a; border-radius: 14px; z-index: 5;
+        }
+        .phone-screen {
+            background: #f5f5f5; border-radius: 32px; overflow: hidden;
+            height: 560px; position: relative;
+        }
+        .phone-slides { position: absolute; inset: 0; }
+        .phone-slide {
+            position: absolute; inset: 0; opacity: 0;
+            transition: opacity 0.55s ease;
+            pointer-events: none;
+        }
+        .phone-slide.active { opacity: 1; }
+        .phone-slide img {
+            width: 100%; height: 100%; object-fit: cover; object-position: top center;
+            display: block;
+        }
+        .phone-dots {
+            display: flex; gap: 7px; justify-content: center; margin-top: 1rem; position: relative; z-index: 2;
+        }
+        .phone-dot {
+            width: 7px; height: 7px; border-radius: 50%; border: none; padding: 0;
+            background: rgba(255,255,255,0.35); cursor: pointer; transition: background 0.25s, transform 0.25s;
+        }
+        .phone-dot.active { background: var(--green-light); transform: scale(1.25); }
         .phone-float { position: absolute; background: white; border-radius: 14px; padding: 0.7rem 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2); font-size: 0.78rem; font-weight: 700; z-index: 3; animation: float 4s ease-in-out infinite; }
-        .phone-float-1 { top: 12%; left: -14%; }
-        .phone-float-2 { bottom: 16%; right: -16%; animation-delay: 2s; }
+        .phone-float-1 { top: 12%; left: -18%; }
+        .phone-float-2 { bottom: 16%; right: -20%; animation-delay: 2s; }
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 
         /* Floating produce in hero */
@@ -1624,8 +1640,8 @@
             <h1><span class="o">Freshly Cut</span><br><span class="g">and Quickly Delivered.</span></h1>
             <p class="hero-sub">Cut veggies, cut fruits, fresh juices, whole vegetables, fruits, and smoothies — all from SABXI Studio, delivered to your door in under 30 minutes.</p>
             <div class="hero-actions">
-                <a href="#lines" class="btn btn-primary">Browse Products</a>
-                <a href="#notify" class="btn btn-ghost">Join Waitlist</a>
+                <a href="https://apps.apple.com/in/app/sabxi/id6783602290" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download App</a>
+                <a href="#lines" class="btn btn-ghost">Browse Products</a>
             </div>
             <div class="hero-trust">
                 <div><strong>6</strong><span>Product lines</span></div>
@@ -1634,34 +1650,24 @@
             </div>
         </div>
         <div class="phone-wrap">
-            <div class="phone-float phone-float-1">🔪 Cut fresh now</div>
+            <div class="phone-float phone-float-1">⏱️ ETA 18 min</div>
             <div class="phone">
-                <div class="phone-screen">
-                    <div class="app-header">
-                        <h3>Good morning, Ahmed 👋</h3>
-                        <p>Fresh sabzi, sorted by 8 AM</p>
+                <div class="phone-screen" id="phoneScreen">
+                    <div class="phone-slides">
+                        <div class="phone-slide active"><img src="assets/app/home.png" alt="SABXI app home — deliver in 18 minutes" width="460" height="1024"></div>
+                        <div class="phone-slide"><img src="assets/app/categories.png" alt="SABXI app categories — vegetables and fruits" width="460" height="1024" loading="lazy"></div>
+                        <div class="phone-slide"><img src="assets/app/mixes.png" alt="SABXI app Mixed Packs — prepped veg and fruit combos" width="460" height="1024" loading="lazy"></div>
+                        <div class="phone-slide"><img src="assets/app/cart.png" alt="SABXI app cart — cut and packed fresh after you order" width="460" height="1024" loading="lazy"></div>
                     </div>
-                    <div class="app-search">🔍 Search tomatoes, palak, orange juice…</div>
-                    <div class="app-cats">
-                        <div class="app-cat"><div class="app-cat-icon">🔪</div>Cut Veg</div>
-                        <div class="app-cat"><div class="app-cat-icon">🍉</div>Cut Fruit</div>
-                        <div class="app-cat"><div class="app-cat-icon">🥤</div>Juices</div>
-                        <div class="app-cat"><div class="app-cat-icon">🥬</div>Veg</div>
-                        <div class="app-cat"><div class="app-cat-icon">🍎</div>Fruits</div>
-                        <div class="app-cat"><div class="app-cat-icon">🧋</div>Smoothie</div>
-                    </div>
-                    <div class="app-banner">
-                        <img src="assets/products/carrot-juice.png" alt="SABXI Fresh Carrot Juice" style="width:100%;height:100%;object-fit:contain;background:var(--cream);padding:4px;">
-                        <span>Fresh carrot juice · 500 ml</span>
-                    </div>
-                    <div class="app-order">
-                        <strong>🛵 Arriving in 18 min</strong>
-                        Palak 250g (chopped) · Orange Juice · Tomatoes
-                    </div>
-                    <div class="app-nav"><span class="active">Home</span><span>Orders</span><span>Cart</span><span>Profile</span></div>
                 </div>
             </div>
-            <div class="phone-float phone-float-2">🥤 Juice ready!</div>
+            <div class="phone-dots" role="tablist" aria-label="App screens">
+                <button type="button" class="phone-dot active" aria-label="Home" data-slide="0"></button>
+                <button type="button" class="phone-dot" aria-label="Categories" data-slide="1"></button>
+                <button type="button" class="phone-dot" aria-label="Mixes" data-slide="2"></button>
+                <button type="button" class="phone-dot" aria-label="Cart" data-slide="3"></button>
+            </div>
+            <div class="phone-float phone-float-2">🛒 View cart · ₹38</div>
         </div>
     </div>
 </section>
@@ -2310,6 +2316,30 @@
     else window.addEventListener('load', runLoader);
 
     document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+
+    /* Hero phone — cycle real SABXI app screenshots */
+    const phoneSlides = document.querySelectorAll('.phone-slide');
+    const phoneDots = document.querySelectorAll('.phone-dot');
+    const phoneFloat1 = document.querySelector('.phone-float-1');
+    const phoneFloat2 = document.querySelector('.phone-float-2');
+    const phoneCaptions = [
+        { a: '⏱️ ETA 18 min', b: '🛒 View cart · ₹38' },
+        { a: '🥬 Fresh veg', b: '🍅 Tomato · ₹38' },
+        { a: '🥣 Mixed Packs', b: '✨ Prepped fresh' },
+        { a: '🛵 Delivery 18 min', b: '💳 Pay · ₹76' },
+    ];
+    let phoneIdx = 0;
+    const showPhoneSlide = i => {
+        phoneIdx = (i + phoneSlides.length) % phoneSlides.length;
+        phoneSlides.forEach((s, n) => s.classList.toggle('active', n === phoneIdx));
+        phoneDots.forEach((d, n) => d.classList.toggle('active', n === phoneIdx));
+        if (phoneFloat1) phoneFloat1.textContent = phoneCaptions[phoneIdx].a;
+        if (phoneFloat2) phoneFloat2.textContent = phoneCaptions[phoneIdx].b;
+    };
+    phoneDots.forEach(dot => dot.addEventListener('click', () => showPhoneSlide(+dot.dataset.slide)));
+    if (!reducedMotion && phoneSlides.length) {
+        setInterval(() => showPhoneSlide(phoneIdx + 1), 3200);
+    }
 
     document.querySelectorAll('.stats-grid, .features-grid, .lines-grid, .product-showcase, .review-grid, .promise-grid').forEach(grid => {
         [...grid.children].forEach((child, i) => {
