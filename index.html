@@ -834,7 +834,22 @@
         .notify-form input::placeholder { color: rgba(255,255,255,0.35); }
         .notify-form input:focus { border-color: var(--orange); }
         .store-badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
-        .store-badge { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 0.75rem 1.5rem; font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.6); }
+        .store-badge {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px; padding: 0.75rem 1.5rem; font-size: 0.85rem; font-weight: 600;
+            color: rgba(255,255,255,0.6); text-decoration: none; transition: background 0.25s, border-color 0.25s, color 0.25s;
+        }
+        a.store-badge { color: white; border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.12); }
+        a.store-badge:hover { background: var(--orange); border-color: var(--orange); color: white; }
+        .store-badge.soon { pointer-events: none; opacity: 0.7; }
+        .studio-map-link {
+            display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.25rem;
+            padding: 0.7rem 1.25rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700;
+            background: var(--orange); color: white; text-decoration: none;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .studio-map-link:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,107,0,0.35); }
 
         /* Footer */
         footer { background: var(--ink); color: rgba(255,255,255,0.45); padding: 3rem 2rem 2rem; border-top: 1px solid rgba(255,255,255,0.06); }
@@ -1467,13 +1482,17 @@
                 "@type": "Organization",
                 "@id": "https://sabxi.com/#organization",
                 "name": "SABXI",
+                "legalName": "Sabxi Private Limited",
                 "url": "https://sabxi.com/",
                 "logo": "https://sabxi.com/assets/logo.png",
                 "slogan": "Freshly Cut, Quickly Delivered",
-                "description": "SABXI is a direct-to-consumer (D2C) fresh food brand changing how the world eats. Freshly cut vegetables and fruits, cold-pressed juices, whole produce, and smoothies — prepared live at SABXI Studio and delivered in under 30 minutes. The future of quick commerce for fresh food in India.",
-                "email": "hello@sabxi.com",
+                "description": "Sabxi Private Limited operates SABXI, a direct-to-consumer (D2C) fresh food brand changing how the world eats. Freshly cut vegetables and fruits, cold-pressed juices, whole produce, and smoothies — prepared live at SABXI Studio and delivered in under 30 minutes. The future of quick commerce for fresh food in India.",
+                "email": "info@sabxi.com",
                 "foundingDate": "2026",
                 "areaServed": { "@type": "Country", "name": "India" },
+                "sameAs": [
+                    "https://apps.apple.com/in/app/sabxi/id6783602290"
+                ],
                 "knowsAbout": ["freshly cut vegetables", "cut fruits", "fresh juice", "quick commerce", "D2C fresh food", "grocery delivery", "smoothies", "farm fresh produce"]
             },
             {
@@ -1491,6 +1510,7 @@
                 "url": "https://sabxi.com/",
                 "image": "https://sabxi.com/assets/logo.png",
                 "priceRange": "₹",
+                "hasMap": "https://share.google/fSwVSqChoe7AyLVUM",
                 "parentOrganization": { "@id": "https://sabxi.com/#organization" },
                 "makesOffer": [
                     { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Cut Veggies", "description": "Freshly cut vegetables — diced, sliced, or julienned to order. Tomatoes, onions, palak, carrots, and more." } },
@@ -2059,6 +2079,7 @@
             <div class="studio-showcase-caption reveal">
                 <h3>sabxi studio</h3>
                 <p>Freshly cut, quickly delivered — cut veggies · cut fruits · fresh juices · vegetables · fruits · smoothies</p>
+                <a class="studio-map-link" href="https://share.google/fSwVSqChoe7AyLVUM" target="_blank" rel="noopener noreferrer">📍 Find our first studio on Google Maps</a>
             </div>
             <div class="studio-categories reveal">
                 <div class="studio-cat-col prepared">
@@ -2164,14 +2185,14 @@
     <div class="section-inner">
         <span class="section-label reveal" style="color:var(--orange);">Order Now</span>
         <h2 class="section-title reveal">Freshly Cut, Quickly Delivered</h2>
-        <p class="section-desc reveal">Cut veggies, cut fruits, juices, whole produce, and smoothies — from SABXI Studio to your door. Join the waitlist for early access.</p>
+        <p class="section-desc reveal">Cut veggies, cut fruits, juices, whole produce, and smoothies — from SABXI Studio to your door. Download the app and order fresh today.</p>
         <form class="notify-form reveal" id="notifyForm">
             <input type="email" placeholder="Enter your email" required aria-label="Email">
             <button type="submit" class="btn btn-primary">Join Waitlist</button>
         </form>
         <div class="store-badges reveal">
-            <div class="store-badge">📱 iOS — Coming Soon</div>
-            <div class="store-badge">🤖 Android — Coming Soon</div>
+            <a class="store-badge" href="https://apps.apple.com/in/app/sabxi/id6783602290" target="_blank" rel="noopener noreferrer">📱 Download on the App Store</a>
+            <span class="store-badge soon">🤖 Android — Coming Soon</span>
         </div>
     </div>
 </section>
@@ -2181,7 +2202,7 @@
     <div class="footer-inner">
         <div class="footer-brand">
             <img src="assets/logo-trans.png" alt="SABXI">
-            <p>SABXI is a D2C fresh food brand changing how the world eats — freshly cut veggies, cut fruits, cold-pressed juices, whole produce, and smoothies, prepared live at SABXI Studio and delivered in under 30 minutes. The future of quick commerce for fresh food.</p>
+            <p>SABXI is a D2C fresh food brand by <strong>Sabxi Private Limited</strong> — changing how the world eats with freshly cut veggies, cut fruits, cold-pressed juices, whole produce, and smoothies, prepared live at SABXI Studio and delivered in under 30 minutes.</p>
             <div class="footer-tag">Freshly Cut, Quickly Delivered.</div>
         </div>
         <div class="footer-links">
@@ -2190,14 +2211,19 @@
         </div>
         <div class="footer-links">
             <h5>Contact</h5>
-            <ul><li><a href="#notify">Order Now</a></li><li><a href="mailto:hello@sabxi.com">hello@sabxi.com</a></li></ul>
+            <ul>
+                <li><a href="#notify">Order Now</a></li>
+                <li><a href="mailto:info@sabxi.com">info@sabxi.com</a></li>
+                <li><a href="https://apps.apple.com/in/app/sabxi/id6783602290" target="_blank" rel="noopener noreferrer">App Store</a></li>
+                <li><a href="https://share.google/fSwVSqChoe7AyLVUM" target="_blank" rel="noopener noreferrer">Studio on Maps</a></li>
+            </ul>
         </div>
         <div class="footer-links">
             <h5>Legal</h5>
-            <ul><li><a href="/privacy/">Privacy Policy</a></li></ul>
+            <ul><li><a href="/privacy/">Privacy Policy</a></li><li>Sabxi Private Limited</li></ul>
         </div>
     </div>
-    <p class="footer-copy">&copy; 2026 SABXI. All rights reserved. · <a href="/privacy/">Privacy Policy</a></p>
+    <p class="footer-copy">&copy; 2026 Sabxi Private Limited. All rights reserved. · <a href="/privacy/">Privacy Policy</a></p>
 </footer>
 
 <script>

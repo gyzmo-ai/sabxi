@@ -1,6 +1,15 @@
 # SABXI
 
-> SABXI is a direct-to-consumer (D2C) fresh food brand in India, changing how the world eats. It delivers freshly cut vegetables, freshly cut fruits, cold-pressed juices, raw whole vegetables, raw whole fruits, and blended smoothies — all prepared live at SABXI Studio the moment an order is placed, and delivered to the customer's door in under 30 minutes. Tagline: "Freshly Cut, Quickly Delivered."
+> SABXI is the consumer brand of **Sabxi Private Limited**, a direct-to-consumer (D2C) fresh food company in India changing how the world eats. It delivers freshly cut vegetables, freshly cut fruits, cold-pressed juices, raw whole vegetables, raw whole fruits, and blended smoothies — all prepared live at SABXI Studio the moment an order is placed, and delivered to the customer's door in under 30 minutes. Tagline: "Freshly Cut, Quickly Delivered."
+
+## Company
+
+- Legal name: Sabxi Private Limited
+- Brand: SABXI
+- Website: https://sabxi.com/
+- Email: info@sabxi.com
+- iOS App: https://apps.apple.com/in/app/sabxi/id6783602290
+- First studio (Google Maps): https://share.google/fSwVSqChoe7AyLVUM
 
 ## What makes SABXI different
 
@@ -22,11 +31,13 @@
 
 ## Ordering
 
-- App-only ordering (iOS and Android apps coming soon); join the waitlist at https://sabxi.com/
+- App-only ordering — available now on the [Apple App Store](https://apps.apple.com/in/app/sabxi/id6783602290); Android coming soon
 - Delivery window: 7 AM – 9 PM, under 30 minutes per order
-- Contact: hello@sabxi.com
+- Contact: info@sabxi.com
 
 ## Pages
 
-- [Home](https://sabxi.com/): products, SABXI Studio, mission, FAQ, waitlist
+- [Home](https://sabxi.com/): products, SABXI Studio, mission, FAQ, app download
 - [Privacy Policy](https://sabxi.com/privacy/)
+- [App Store](https://apps.apple.com/in/app/sabxi/id6783602290)
+- [First Studio on Google Maps](https://share.google/fSwVSqChoe7AyLVUM)
