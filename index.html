@@ -1534,6 +1534,58 @@
         .faq-item[open] summary::after { transform: rotate(45deg); }
         .faq-item p { padding: 0 1.4rem 1.25rem; font-size: 0.92rem; color: var(--gray); line-height: 1.75; }
 
+        /* Studio map embed */
+        .studio-map-wrap {
+            margin-top: 2.5rem; border-radius: 20px; overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.08); background: white;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+        }
+        .studio-map-wrap iframe {
+            display: block; width: 100%; height: 320px; border: 0;
+        }
+        .studio-map-meta {
+            display: flex; flex-wrap: wrap; gap: 1rem 1.75rem; align-items: center;
+            padding: 1.1rem 1.35rem; background: var(--cream);
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        .studio-map-meta strong { display: block; font-size: 0.95rem; margin-bottom: 0.15rem; }
+        .studio-map-meta span { font-size: 0.82rem; color: var(--gray); }
+        .studio-map-meta a {
+            margin-left: auto; font-size: 0.82rem; font-weight: 700; color: var(--orange);
+            text-decoration: none;
+        }
+        .studio-map-meta a:hover { text-decoration: underline; }
+
+        /* Sticky mobile download bar */
+        .app-sticky {
+            display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 900;
+            padding: 0.65rem 0.85rem calc(0.65rem + env(safe-area-inset-bottom));
+            background: rgba(12,12,12,0.94); backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            transform: translateY(110%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+        }
+        .app-sticky.show { transform: translateY(0); }
+        .app-sticky-inner {
+            max-width: 520px; margin: 0 auto; display: flex; align-items: center; gap: 0.75rem;
+        }
+        .app-sticky-copy { flex: 1; min-width: 0; color: white; }
+        .app-sticky-copy strong { display: block; font-size: 0.88rem; line-height: 1.2; }
+        .app-sticky-copy span { font-size: 0.7rem; color: rgba(255,255,255,0.55); }
+        .app-sticky-cta {
+            flex-shrink: 0; background: var(--orange); color: white; text-decoration: none;
+            font-size: 0.78rem; font-weight: 700; padding: 0.7rem 1rem; border-radius: 50px;
+            white-space: nowrap;
+        }
+        .app-sticky-close {
+            flex-shrink: 0; width: 32px; height: 32px; border: none; border-radius: 50%;
+            background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7);
+            font-size: 1.1rem; cursor: pointer; line-height: 1;
+        }
+        @media (max-width: 768px) {
+            .app-sticky { display: block; }
+            body.has-app-sticky { padding-bottom: 76px; }
+        }
+
         @media (max-width: 1024px) {
             nav { padding: 0.9rem 1.5rem; }
             section { padding: 4rem 1.5rem; }
@@ -1604,9 +1656,13 @@
                 "description": "Sabxi Private Limited operates SABXI, a direct-to-consumer (D2C) fresh food brand changing how the world eats. Freshly cut vegetables and fruits, cold-pressed juices, whole produce, and smoothies — prepared live at SABXI Studio and delivered in under 30 minutes. The future of quick commerce for fresh food in India.",
                 "email": "info@sabxi.com",
                 "foundingDate": "2026",
-                "areaServed": { "@type": "Country", "name": "India" },
+                "areaServed": [
+                    { "@type": "Country", "name": "India" },
+                    { "@type": "City", "name": "Bengaluru" }
+                ],
                 "sameAs": [
-                    "https://apps.apple.com/in/app/sabxi/id6783602290"
+                    "https://apps.apple.com/in/app/sabxi/id6783602290",
+                    "https://share.google/fSwVSqChoe7AyLVUM"
                 ],
                 "knowsAbout": ["freshly cut vegetables", "cut fruits", "fresh juice", "quick commerce", "D2C fresh food", "grocery delivery", "smoothies", "farm fresh produce"]
             },
@@ -1633,8 +1689,41 @@
                     { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Fresh Juices", "description": "Cold-pressed juices made on order — orange, green detox, watermelon mint, carrot ginger." } },
                     { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Whole Vegetables", "description": "Raw whole vegetables fresh from the mandi every morning — no markup, no middlemen." } },
                     { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Whole Fruits", "description": "Raw whole seasonal fruits by the kilo — apples, bananas, oranges, grapes." } },
-                    { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Smoothies", "description": "Thick blended smoothies — berry, mango, banana oats, and seasonal specials." } }
+                    { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Smoothies", "description": "Thick blended smoothies — berry, mango, banana oats, and seasonal specials." } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Mixed Packs", "description": "Prepped vegetable and fruit combos — moong dal, chickpea, chana, rajma and more, ready to cook." } }
                 ]
+            },
+            {
+                "@type": ["LocalBusiness", "FoodEstablishment"],
+                "@id": "https://sabxi.com/#studio-koramangala",
+                "name": "SABXI Studio — Koramangala",
+                "alternateName": "SABXI Studio",
+                "description": "First SABXI Studio micro-kitchen in Koramangala, Bengaluru. Fresh produce cut, pressed, and packed live after you order — delivered in under 30 minutes.",
+                "url": "https://sabxi.com/#studio",
+                "image": "https://sabxi.com/assets/sabxi-studio.png",
+                "email": "info@sabxi.com",
+                "priceRange": "₹",
+                "currenciesAccepted": "INR",
+                "paymentAccepted": "UPI, Credit Card, Debit Card",
+                "hasMap": "https://share.google/fSwVSqChoe7AyLVUM",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Koramangala",
+                    "addressLocality": "Bengaluru",
+                    "addressRegion": "Karnataka",
+                    "addressCountry": "IN"
+                },
+                "areaServed": {
+                    "@type": "City",
+                    "name": "Bengaluru"
+                },
+                "openingHoursSpecification": [{
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                    "opens": "07:00",
+                    "closes": "21:00"
+                }],
+                "parentOrganization": { "@id": "https://sabxi.com/#organization" }
             },
             {
                 "@type": "FAQPage",
@@ -1663,12 +1752,12 @@
                     {
                         "@type": "Question",
                         "name": "What products does SABXI sell?",
-                        "acceptedAnswer": { "@type": "Answer", "text": "Six fresh lines: freshly cut veggies, freshly cut fruits, cold-pressed juices, raw whole vegetables, raw whole fruits, and blended smoothies — all sourced fresh from the mandi every morning at market prices." }
+                        "acceptedAnswer": { "@type": "Answer", "text": "Six fresh lines plus Mixed Packs: freshly cut veggies, freshly cut fruits, cold-pressed juices, raw whole vegetables, raw whole fruits, blended smoothies, and prepped mixes like moong dal, chana, and rajma — all sourced fresh from the mandi every morning at market prices." }
                     },
                     {
                         "@type": "Question",
                         "name": "What is SABXI Studio?",
-                        "acceptedAnswer": { "@type": "Answer", "text": "SABXI Studio is our compact, glass-front micro-store where every order is prepared. It is built for speed, hygiene, and transparency — you can watch your produce being cut, pressed, and packed live." }
+                        "acceptedAnswer": { "@type": "Answer", "text": "SABXI Studio is our compact, glass-front micro-store where every order is prepared. The first studio is in Koramangala, Bengaluru. It is built for speed, hygiene, and transparency — you can watch your produce being cut, pressed, and packed live." }
                     },
                     {
                         "@type": "Question",
@@ -1679,6 +1768,31 @@
                         "@type": "Question",
                         "name": "Where does SABXI source its produce?",
                         "acceptedAnswer": { "@type": "Answer", "text": "Direct from local mandis every morning. No middlemen, no markup, no cold storage — what you would pay at the market is what you pay on SABXI." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Where does SABXI deliver?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "SABXI currently delivers from our first studio in Koramangala, Bengaluru, within a fast 30-minute radius. Enter your address in the SABXI app to confirm serviceability. More studios and cities are coming soon." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How do I download the SABXI app?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Download SABXI free on the Apple App Store at https://apps.apple.com/in/app/sabxi/id6783602290. The Android app is coming soon on Google Play." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Can I choose how my vegetables are cut?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Yes. In the app you can add cooking notes and cut preferences — diced, sliced, julienned, or whole — so produce is prepped exactly how you cook." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What are Mixed Packs?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Mixed Packs are prepped vegetable and fruit combos ready for busy kitchens — items like moong dal, chickpea, chana, and rajma mixes, washed and portioned so you skip the prep and start cooking." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What if I am not happy with my order?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Contact us in the app or email info@sabxi.com. If something arrives damaged, incorrect, or not fresh, we will make it right with a replacement or refund as applicable." }
                     }
                 ]
             }
@@ -2223,7 +2337,8 @@
             <div class="studio-showcase-caption reveal">
                 <h3>sabxi studio</h3>
                 <p>Freshly cut, quickly delivered — cut veggies · cut fruits · fresh juices · vegetables · fruits · smoothies</p>
-                <a class="studio-map-link" href="https://share.google/fSwVSqChoe7AyLVUM" target="_blank" rel="noopener noreferrer">📍 Find our first studio on Google Maps</a>
+                <p style="margin-top:0.75rem;font-size:0.9rem;color:var(--gray);">📍 First studio · Koramangala, Bengaluru · Open 7 AM – 9 PM daily</p>
+                <a class="studio-map-link" href="https://share.google/fSwVSqChoe7AyLVUM" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
             </div>
             <div class="studio-categories reveal">
                 <div class="studio-cat-col prepared">
@@ -2241,6 +2356,22 @@
                         <li data-product="fruits"><span>Fruits</span><span class="prep-time-mini"><span class="prep-time-val">—</span> min</span></li>
                         <li data-product="smoothie"><span>Smoothies</span><span class="prep-time-mini"><span class="prep-time-val">—</span> min</span></li>
                     </ul>
+                </div>
+            </div>
+            <div class="studio-map-wrap reveal">
+                <iframe
+                    title="SABXI Studio location on Google Maps — Koramangala, Bengaluru"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://maps.google.com/maps?q=Koramangala,+Bengaluru,+Karnataka&z=14&output=embed"
+                    allowfullscreen>
+                </iframe>
+                <div class="studio-map-meta">
+                    <div>
+                        <strong>SABXI Studio — Koramangala</strong>
+                        <span>Bengaluru, Karnataka · Fresh cut &amp; delivered 7 AM – 9 PM</span>
+                    </div>
+                    <a href="https://share.google/fSwVSqChoe7AyLVUM" target="_blank" rel="noopener noreferrer">Get directions →</a>
                 </div>
             </div>
         </div>
@@ -2314,7 +2445,7 @@
             </details>
             <details class="faq-item">
                 <summary>What is SABXI Studio?</summary>
-                <p>SABXI Studio is our compact, glass-front micro-store where every order is prepared. It's built for speed, hygiene, and transparency — you can watch your produce being cut, pressed, and packed live.</p>
+                <p>SABXI Studio is our compact, glass-front micro-store where every order is prepared. The first studio is in <strong>Koramangala, Bengaluru</strong>. It's built for speed, hygiene, and transparency — you can watch your produce being cut, pressed, and packed live.</p>
             </details>
             <details class="faq-item">
                 <summary>Does SABXI offer a daily subscription?</summary>
@@ -2323,6 +2454,26 @@
             <details class="faq-item">
                 <summary>Where does SABXI source its produce?</summary>
                 <p>Direct from local mandis every morning. No middlemen, no markup, no cold storage — what you'd pay at the market is what you pay on SABXI.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Where does SABXI deliver?</summary>
+                <p>We currently deliver from our first studio in <strong>Koramangala, Bengaluru</strong>, within a fast 30-minute radius. Enter your address in the SABXI app to confirm if we serve your pin code. More studios and cities are coming soon.</p>
+            </details>
+            <details class="faq-item">
+                <summary>How do I download the SABXI app?</summary>
+                <p>Download SABXI free on the <a href="https://apps.apple.com/in/app/sabxi/id6783602290" target="_blank" rel="noopener noreferrer">Apple App Store</a>. The Android app is coming soon on Google Play.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Can I choose how my vegetables are cut?</summary>
+                <p>Yes. In the app you can add cooking notes and cut preferences — diced, sliced, julienned, or whole — so produce is prepped exactly how you cook.</p>
+            </details>
+            <details class="faq-item">
+                <summary>What are Mixed Packs?</summary>
+                <p>Mixed Packs are prepped vegetable and fruit combos for busy kitchens — moong dal, chickpea, chana, rajma mixes and more — washed and portioned so you skip the prep and start cooking.</p>
+            </details>
+            <details class="faq-item">
+                <summary>What if I'm not happy with my order?</summary>
+                <p>Contact us in the app or email <a href="mailto:info@sabxi.com">info@sabxi.com</a>. If something arrives damaged, incorrect, or not fresh, we'll make it right with a replacement or refund as applicable.</p>
             </details>
         </div>
     </div>
@@ -2369,6 +2520,17 @@
     </div>
     <p class="footer-copy">&copy; 2026 Sabxi Private Limited. All rights reserved. · <a href="/privacy/">Privacy Policy</a></p>
 </footer>
+
+<aside class="app-sticky" id="appSticky" aria-label="Download SABXI app">
+    <div class="app-sticky-inner">
+        <div class="app-sticky-copy">
+            <strong>Order fresh in the app</strong>
+            <span>Cut to order · Under 30 min</span>
+        </div>
+        <a class="app-sticky-cta" href="https://apps.apple.com/in/app/sabxi/id6783602290" target="_blank" rel="noopener noreferrer">Download</a>
+        <button type="button" class="app-sticky-close" id="appStickyClose" aria-label="Dismiss">×</button>
+    </div>
+</aside>
 
 <script>
     // Enter studio prep minutes per product (leave '' to show —)
@@ -2597,6 +2759,34 @@
     }
 
     document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+
+    /* Sticky mobile download bar */
+    const appSticky = document.getElementById('appSticky');
+    const appStickyClose = document.getElementById('appStickyClose');
+    const stickyDismissed = sessionStorage.getItem('sabxiStickyDismissed') === '1';
+    const updateAppSticky = () => {
+        if (!appSticky || stickyDismissed) return;
+        const pastHero = window.scrollY > window.innerHeight * 0.55;
+        const nearCta = document.getElementById('notify');
+        let hideNearCta = false;
+        if (nearCta) {
+            const r = nearCta.getBoundingClientRect();
+            hideNearCta = r.top < window.innerHeight && r.bottom > 0;
+        }
+        const show = pastHero && !hideNearCta && window.matchMedia('(max-width: 768px)').matches;
+        appSticky.classList.toggle('show', show);
+        document.body.classList.toggle('has-app-sticky', show);
+    };
+    if (appStickyClose) {
+        appStickyClose.addEventListener('click', () => {
+            sessionStorage.setItem('sabxiStickyDismissed', '1');
+            appSticky.classList.remove('show');
+            document.body.classList.remove('has-app-sticky');
+        });
+    }
+    window.addEventListener('scroll', updateAppSticky, { passive: true });
+    window.addEventListener('resize', updateAppSticky);
+    updateAppSticky();
 </script>
 </body>
 </html>
