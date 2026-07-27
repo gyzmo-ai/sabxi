@@ -57,6 +57,8 @@
                 transition-duration: 0.01ms !important;
             }
             html { scroll-behavior: auto; }
+            .scroll-graphics, .section-float { display: none !important; }
+            .journey-step, .journey-arrow { opacity: 1 !important; transform: none !important; }
         }
         body.loading { overflow: hidden; }
         .page-loader {
@@ -273,6 +275,108 @@
             transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal-child.visible { opacity: 1; transform: translateY(0); }
+
+        /* Scroll progress */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; height: 3px; width: 0%; z-index: 1100;
+            background: linear-gradient(90deg, var(--orange), var(--green-light));
+            box-shadow: 0 0 12px rgba(255,107,0,0.45);
+            pointer-events: none;
+        }
+
+        /* Floating scroll graphics */
+        .scroll-graphics {
+            position: fixed; inset: 0; pointer-events: none; z-index: 5; overflow: hidden;
+        }
+        .sg-item {
+            position: absolute; font-size: clamp(1.6rem, 3vw, 2.4rem);
+            opacity: 0; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.12));
+            transition: opacity 0.6s ease; will-change: transform;
+            user-select: none;
+        }
+        .sg-item.show { opacity: 0.55; }
+        .sg-item.sg-l1 { left: 2%; top: 22%; }
+        .sg-item.sg-l2 { left: 4%; top: 48%; font-size: clamp(1.3rem, 2.4vw, 1.9rem); }
+        .sg-item.sg-l3 { left: 1.5%; top: 72%; }
+        .sg-item.sg-r1 { right: 2.5%; top: 28%; }
+        .sg-item.sg-r2 { right: 3%; top: 55%; font-size: clamp(1.3rem, 2.4vw, 1.9rem); }
+        .sg-item.sg-r3 { right: 1.5%; top: 78%; }
+        @media (max-width: 1024px) {
+            .scroll-graphics { display: none; }
+        }
+
+        /* Journey strip — chop → pack → deliver */
+        .journey {
+            background: linear-gradient(180deg, var(--cream) 0%, white 100%);
+            padding: 4rem 2rem; position: relative; overflow: hidden;
+        }
+        .journey::before, .journey::after {
+            content: ''; position: absolute; width: 280px; height: 280px; border-radius: 50%;
+            filter: blur(80px); pointer-events: none; opacity: 0.35;
+        }
+        .journey::before { background: var(--orange); top: -80px; left: -60px; }
+        .journey::after { background: var(--green); bottom: -80px; right: -60px; }
+        .journey-inner { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+        .journey-track {
+            display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 0.75rem;
+            align-items: center; margin-top: 2.5rem;
+        }
+        .journey-step {
+            text-align: center; padding: 1.5rem 1rem; border-radius: 20px;
+            background: white; border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.04);
+            transform: translateY(24px); opacity: 0;
+            transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), opacity 0.7s, box-shadow 0.3s;
+        }
+        .journey.visible .journey-step { transform: translateY(0); opacity: 1; }
+        .journey.visible .journey-step:nth-child(1) { transition-delay: 0.05s; }
+        .journey.visible .journey-step:nth-child(3) { transition-delay: 0.2s; }
+        .journey.visible .journey-step:nth-child(5) { transition-delay: 0.35s; }
+        .journey-step:hover { box-shadow: 0 14px 36px rgba(0,0,0,0.08); transform: translateY(-4px); }
+        .journey-icon {
+            width: 72px; height: 72px; margin: 0 auto 0.85rem; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 2rem;
+            background: var(--cream); position: relative;
+        }
+        .journey-step:nth-child(1) .journey-icon { background: linear-gradient(135deg, #FFE0B2, #FFCC80); }
+        .journey-step:nth-child(3) .journey-icon { background: linear-gradient(135deg, #C8E6C9, #A5D6A7); }
+        .journey-step:nth-child(5) .journey-icon { background: linear-gradient(135deg, #FFCCBC, #FFAB91); }
+        .journey.visible .journey-icon { animation: journeyBounce 2.4s ease-in-out infinite; }
+        .journey.visible .journey-step:nth-child(3) .journey-icon { animation-delay: 0.4s; }
+        .journey.visible .journey-step:nth-child(5) .journey-icon { animation-delay: 0.8s; }
+        @keyframes journeyBounce {
+            0%,100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-6px) scale(1.05); }
+        }
+        .journey-step h4 {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem;
+            letter-spacing: 0.06em; margin-bottom: 0.3rem;
+        }
+        .journey-step p { font-size: 0.82rem; color: var(--gray); line-height: 1.45; }
+        .journey-arrow {
+            font-size: 1.4rem; color: var(--orange); opacity: 0;
+            transform: scaleX(0.5); transition: opacity 0.5s, transform 0.5s;
+        }
+        .journey.visible .journey-arrow { opacity: 0.7; transform: scaleX(1); }
+        .journey.visible .journey-arrow:nth-child(2) { transition-delay: 0.15s; }
+        .journey.visible .journey-arrow:nth-child(4) { transition-delay: 0.3s; }
+        @media (max-width: 768px) {
+            .journey-track { grid-template-columns: 1fr; gap: 0.5rem; }
+            .journey-arrow { transform: rotate(90deg); text-align: center; }
+            .journey.visible .journey-arrow { transform: rotate(90deg) scaleX(1); }
+        }
+
+        /* Section floating produce accents */
+        .section-float {
+            position: absolute; pointer-events: none; z-index: 0;
+            font-size: 3rem; opacity: 0; filter: blur(0);
+            transition: opacity 0.8s, transform 1s cubic-bezier(0.16,1,0.3,1);
+        }
+        .section-float.show { opacity: 0.12; }
+        .section-float.left { left: 3%; top: 12%; transform: translateX(-40px) rotate(-12deg); }
+        .section-float.right { right: 3%; top: 18%; transform: translateX(40px) rotate(12deg); }
+        .section-float.show.left { transform: translateX(0) rotate(-8deg); }
+        .section-float.show.right { transform: translateX(0) rotate(8deg); }
 
         .line-card, .menu-card, .product-shot, .review-card, .feat-item {
             transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s, border-color 0.45s;
@@ -1583,6 +1687,15 @@
     </script>
 </head>
 <body class="loading">
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+<div class="scroll-graphics" id="scrollGraphics" aria-hidden="true">
+    <span class="sg-item sg-l1" data-speed="0.18">🥕</span>
+    <span class="sg-item sg-l2" data-speed="0.28">🍅</span>
+    <span class="sg-item sg-l3" data-speed="0.14">🥬</span>
+    <span class="sg-item sg-r1" data-speed="0.22">🍉</span>
+    <span class="sg-item sg-r2" data-speed="0.16">🍊</span>
+    <span class="sg-item sg-r3" data-speed="0.26">🥒</span>
+</div>
 <div class="page-loader" id="pageLoader" aria-hidden="true">
     <div class="loader-inner">
         <div class="loader-logo-block">
@@ -1684,6 +1797,34 @@
         <div class="reveal"><div class="stat-num">Daily</div><div class="stat-label">Fresh from mandi</div></div>
     </div>
 </div>
+
+<!-- JOURNEY: CHOP → PACK → DELIVER -->
+<section class="journey" id="journey">
+    <div class="journey-inner">
+        <span class="section-label reveal" style="text-align:center;display:block;">How Fresh Gets to You</span>
+        <h2 class="section-title reveal" style="text-align:center;">Chop. Pack. Deliver.</h2>
+        <p class="section-desc reveal" style="text-align:center;margin-left:auto;margin-right:auto;">Three steps. Zero waiting on wilted produce.</p>
+        <div class="journey-track">
+            <div class="journey-step">
+                <div class="journey-icon">🔪</div>
+                <h4>Chop</h4>
+                <p>Cut to your spec the moment you order — never before.</p>
+            </div>
+            <div class="journey-arrow" aria-hidden="true">→</div>
+            <div class="journey-step">
+                <div class="journey-icon">📦</div>
+                <h4>Pack</h4>
+                <p>Sealed fresh at SABXI Studio in clean branded trays.</p>
+            </div>
+            <div class="journey-arrow" aria-hidden="true">→</div>
+            <div class="journey-step">
+                <div class="journey-icon">🛵</div>
+                <h4>Deliver</h4>
+                <p>At your door in under 30 minutes, live tracked.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- PROMISE: FRESH / FAST / EFFORTLESS -->
 <section class="promise" id="promise">
@@ -1811,7 +1952,9 @@
 </section>
 
 <!-- SIX PRODUCT LINES -->
-<section class="lines products" id="lines">
+<section class="lines products" id="lines" style="position:relative;">
+    <span class="section-float left" data-float>🥦</span>
+    <span class="section-float right" data-float>🍎</span>
     <div class="section-inner">
         <span class="section-label reveal">Shop by Category</span>
         <h2 class="section-title reveal">Six Fresh Lines</h2>
@@ -2105,7 +2248,9 @@
 </section>
 
 <!-- REVIEWS -->
-<section class="reviews">
+<section class="reviews" style="position:relative;">
+    <span class="section-float left" data-float>🍋</span>
+    <span class="section-float right" data-float>🫑</span>
     <div class="section-inner" style="text-align:center;">
         <span class="section-label reveal">Early Feedback</span>
         <h2 class="section-title reveal">People Love Fresh</h2>
@@ -2140,7 +2285,9 @@
 </section>
 
 <!-- FAQ -->
-<section class="faq" id="faq">
+<section class="faq" id="faq" style="position:relative;">
+    <span class="section-float left" data-float>🥝</span>
+    <span class="section-float right" data-float>🍇</span>
     <div class="section-inner">
         <span class="section-label reveal" style="text-align:center;">FAQ</span>
         <h2 class="section-title reveal" style="text-align:center;">Everything People Ask Us</h2>
@@ -2259,6 +2406,48 @@
     const loaderStudio = document.getElementById('loaderStudio');
 
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+    /* Scroll progress bar + floating produce parallax */
+    const scrollProgress = document.getElementById('scrollProgress');
+    const sgItems = document.querySelectorAll('.sg-item');
+    const sectionFloats = document.querySelectorAll('[data-float]');
+    const journey = document.getElementById('journey');
+    let ticking = false;
+    const updateScrollGraphics = () => {
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const p = docH > 0 ? Math.min(window.scrollY / docH, 1) : 0;
+        if (scrollProgress) scrollProgress.style.width = (p * 100) + '%';
+
+        const mid = window.scrollY + window.innerHeight * 0.45;
+        const showFloats = window.scrollY > window.innerHeight * 0.55;
+        sgItems.forEach(el => {
+            el.classList.toggle('show', showFloats && p < 0.92);
+            const speed = parseFloat(el.dataset.speed) || 0.2;
+            const y = (window.scrollY - window.innerHeight) * speed;
+            el.style.transform = `translate3d(0, ${y * 0.15}px, 0) rotate(${y * 0.02}deg)`;
+        });
+
+        sectionFloats.forEach(el => {
+            const parent = el.parentElement;
+            if (!parent) return;
+            const rect = parent.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15;
+            el.classList.toggle('show', inView);
+        });
+
+        if (journey) {
+            const jr = journey.getBoundingClientRect();
+            if (jr.top < window.innerHeight * 0.75) journey.classList.add('visible');
+        }
+        ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateScrollGraphics);
+            ticking = true;
+        }
+    }, { passive: true });
+    updateScrollGraphics();
 
     if (!reducedMotion && heroVideo) {
         window.addEventListener('scroll', () => {
