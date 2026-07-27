@@ -980,6 +980,13 @@
         .footer-links ul { list-style: none; }
         .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.85rem; line-height: 2; transition: color 0.2s; }
         .footer-links a:hover { color: var(--orange); }
+        .footer-legal {
+            max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.75rem; color: rgba(255,255,255,0.4); line-height: 1.7;
+        }
+        .footer-legal strong { color: rgba(255,255,255,0.65); font-weight: 600; }
+        .footer-legal a { color: rgba(255,255,255,0.55); }
         .footer-copy { text-align: center; font-size: 0.78rem; margin-top: 2rem; color: rgba(255,255,255,0.25); }
         .footer-copy a { color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
         .footer-copy a:hover { color: var(--orange); }
@@ -1677,21 +1684,38 @@
                 "@id": "https://sabxi.com/#organization",
                 "name": "SABXI",
                 "legalName": "Sabxi Private Limited",
+                "alternateName": "SABXI PRIVATE LIMITED",
                 "url": "https://sabxi.com/",
                 "logo": "https://sabxi.com/assets/logo.png",
                 "slogan": "Freshly Cut, Quickly Delivered",
-                "description": "Sabxi Private Limited operates SABXI, a direct-to-consumer (D2C) fresh food brand changing how the world eats. Freshly cut vegetables and fruits, cold-pressed juices, whole produce, and smoothies — prepared live at SABXI Studio and delivered in under 30 minutes. The future of quick commerce for fresh food in India.",
+                "description": "Sabxi Private Limited (CIN U46301MH2026PTC473853) operates SABXI, a direct-to-consumer (D2C) fresh food brand changing how the world eats. Freshly cut vegetables and fruits, cold-pressed juices, whole produce, and smoothies — prepared live at SABXI Studio Chembur and delivered in under 30 minutes. MCA activity: wholesale of fruits & vegetables.",
                 "email": "info@sabxi.com",
-                "foundingDate": "2026",
+                "foundingDate": "2026-07-23",
+                "taxID": "U46301MH2026PTC473853",
+                "identifier": {
+                    "@type": "PropertyValue",
+                    "name": "CIN",
+                    "value": "U46301MH2026PTC473853",
+                    "propertyID": "MCA Corporate Identification Number"
+                },
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "501, Plot No. 32 Emerald, Union Park CHS Ltd",
+                    "addressLocality": "Mumbai",
+                    "addressRegion": "Maharashtra",
+                    "postalCode": "400071",
+                    "addressCountry": "IN"
+                },
                 "areaServed": [
                     { "@type": "Country", "name": "India" },
                     { "@type": "City", "name": "Mumbai" }
                 ],
                 "sameAs": [
                     "https://apps.apple.com/in/app/sabxi/id6783602290",
-                    "https://share.google/Be6ad2LS0plYCVRL5"
+                    "https://share.google/Be6ad2LS0plYCVRL5",
+                    "https://www.falconebiz.com/company/SABXI-PRIVATE-LIMITED-U46301MH2026PTC473853"
                 ],
-                "knowsAbout": ["freshly cut vegetables", "cut fruits", "fresh juice", "quick commerce", "D2C fresh food", "grocery delivery", "smoothies", "farm fresh produce"]
+                "knowsAbout": ["freshly cut vegetables", "cut fruits", "fresh juice", "quick commerce", "D2C fresh food", "grocery delivery", "smoothies", "farm fresh produce", "wholesale of fruits and vegetables"]
             },
             {
                 "@type": "WebSite",
@@ -2580,10 +2604,20 @@
         </div>
         <div class="footer-links">
             <h5>Legal</h5>
-            <ul><li><a href="/privacy/">Privacy Policy</a></li><li>Sabxi Private Limited</li></ul>
+            <ul>
+                <li><a href="/company/">Company Info</a></li>
+                <li><a href="/privacy/">Privacy Policy</a></li>
+                <li>Sabxi Private Limited</li>
+            </ul>
         </div>
     </div>
-    <p class="footer-copy">&copy; 2026 Sabxi Private Limited. All rights reserved. · <a href="/privacy/">Privacy Policy</a></p>
+    <div class="footer-legal">
+        <strong>Sabxi Private Limited</strong> · CIN: U46301MH2026PTC473853 · Incorporated 23 July 2026 · RoC-Mumbai ·
+        Registered office: 501, Plot No. 32 Emerald, Union Park CHS Ltd, Mumbai, Maharashtra 400071 ·
+        Activity: Wholesale of fruits &amp; vegetables ·
+        <a href="https://www.falconebiz.com/company/SABXI-PRIVATE-LIMITED-U46301MH2026PTC473853" target="_blank" rel="noopener noreferrer">MCA / Falcon eBiz profile</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Sabxi Private Limited. All rights reserved. · <a href="/privacy/">Privacy Policy</a> · <a href="/company/">Company</a></p>
 </footer>
 
 <aside class="app-sticky" id="appSticky" aria-label="Download SABXI app">
