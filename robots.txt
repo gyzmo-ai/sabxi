@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /setup/
 
 Sitemap: https://sabxi.com/sitemap.xml

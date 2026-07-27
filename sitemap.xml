@@ -18,10 +18,40 @@
         <xhtml:link rel="alternate" hreflang="en" href="https://sabxi.com/"/>
     </url>
     <url>
+        <loc>https://sabxi.com/about/</loc>
+        <lastmod>2026-07-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://sabxi.com/areas/</loc>
+        <lastmod>2026-07-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://sabxi.com/blog/</loc>
         <lastmod>2026-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://sabxi.com/blog/best-cut-veg-chembur/</loc>
+        <lastmod>2026-07-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://sabxi.com/blog/mumbai-meal-prep-guide/</loc>
+        <lastmod>2026-07-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://sabxi.com/blog/fresh-juice-delivery-chembur/</loc>
+        <lastmod>2026-07-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://sabxi.com/blog/cut-veg-vs-whole/</loc>
@@ -46,6 +76,18 @@
         <lastmod>2026-07-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://sabxi.com/terms/</loc>
+        <lastmod>2026-07-28</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    <url>
+        <loc>https://sabxi.com/refund/</loc>
+        <lastmod>2026-07-28</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
     </url>
     <url>
         <loc>https://sabxi.com/privacy/</loc>

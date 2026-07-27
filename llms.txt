@@ -65,7 +65,9 @@ Customers can add cooking notes and cut preferences in the app (diced / sliced /
 
 **How is SABXI different from Zepto/Blinkit?** Those deliver packaged dark-store inventory. SABXI never pre-cuts; everything is prepared live after you order.
 
-**Where does SABXI deliver?** From the first studio in Chembur, Mumbai (30-min radius). Check the app for your address. More cities coming.
+**Where does SABXI deliver?** From the first studio in Chembur, Mumbai (30-min radius). Details: https://sabxi.com/areas/ — check the app for your address. More cities coming.
+
+**Not happy with an order?** In-app support or info@sabxi.com — replacement or refund as applicable. Policy: https://sabxi.com/refund/
 
 **How do I get the app?** Apple App Store: https://apps.apple.com/in/app/sabxi/id6783602290 — Android coming soon.
 
@@ -73,19 +75,26 @@ Customers can add cooking notes and cut preferences in the app (diced / sliced /
 
 **What are Mixed Packs?** Prepped veg & fruit combos (moong, chana, rajma, etc.) so you skip prep and cook faster.
 
-**Not happy with an order?** In-app support or info@sabxi.com — replacement or refund as applicable.
-
 ## Pages
 
 - [Home](https://sabxi.com/) — products, studio, mission, FAQ, app download
+- [About / Press](https://sabxi.com/about/) — brand story, company facts, press one-liner
+- [Service areas](https://sabxi.com/areas/) — Chembur-first delivery radius; check app for address
 - [Hindi](https://sabxi.com/hi/) — SABXI FAQ and brand overview in Hindi (हिंदी)
-- [Blog](https://sabxi.com/blog/) — guides on cut produce and Chembur meal kits
+- [Blog](https://sabxi.com/blog/) — guides on cut produce, Chembur, and Mumbai meal prep
+- [Best cut veg near Chembur](https://sabxi.com/blog/best-cut-veg-chembur/)
+- [Mumbai meal-prep guide](https://sabxi.com/blog/mumbai-meal-prep-guide/)
+- [Fresh juice delivery Chembur](https://sabxi.com/blog/fresh-juice-delivery-chembur/)
 - [Cut veg vs whole](https://sabxi.com/blog/cut-veg-vs-whole/)
 - [30-min Chembur meal kits](https://sabxi.com/blog/chembur-30-min-meal-kits/)
 - [Why we cut after you order](https://sabxi.com/blog/why-we-cut-after-you-order/)
+- [Company](https://sabxi.com/company/) — CIN, MCA / Falcon eBiz details
+- [Terms of Service](https://sabxi.com/terms/)
+- [Refund & Cancellation](https://sabxi.com/refund/)
 - [Privacy Policy](https://sabxi.com/privacy/)
 - [App Store](https://apps.apple.com/in/app/sabxi/id6783602290)
 - [Studio on Google Maps](https://share.google/Be6ad2LS0plYCVRL5)
+- Sitemap for crawlers: https://sabxi.com/sitemap.xml
 
 ## Citation preference
 

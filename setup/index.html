@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SABXI Setup — Google Business Profile & Search Console</title>
+    <meta name="description" content="Internal checklist for Google Business Profile and Google Search Console for SABXI.">
+    <link rel="canonical" href="https://sabxi.com/setup/">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#FF6B00">
+    <meta property="og:title" content="SABXI Setup — Google Business Profile & Search Console">
+    <meta property="og:description" content="Internal checklist for Google Business Profile and Google Search Console for SABXI.">
+    <meta property="og:url" content="https://sabxi.com/setup/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SABXI">
+    <link rel="icon" href="../assets/logo-trans.png">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+:root {
+    --orange: #FF6B00; --orange-light: #FF8533; --green: #2E8540; --green-light: #4CAF50;
+    --cream: #FAF8F5; --ink: #0C0C0C; --black: #141414; --gray: #666; --gray-light: #F0EDE8;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Outfit', sans-serif; background: var(--cream); color: var(--black); line-height: 1.7; }
+img { max-width: 100%; }
+nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 0.9rem 2rem; background: rgba(250,248,245,0.92);
+    backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+nav .logo { height: 40px; }
+nav .links { display: flex; gap: 1.25rem; align-items: center; list-style: none; flex-wrap: wrap; }
+nav .links a {
+    text-decoration: none; color: var(--black); font-weight: 500; font-size: 0.88rem;
+}
+nav .links a:hover { color: var(--orange); }
+nav .cta {
+    background: var(--orange); color: white !important; padding: 0.5rem 1.1rem;
+    border-radius: 50px; font-weight: 700 !important;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+.wrap-wide { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+.label {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--orange); margin-bottom: 0.5rem; display: block;
+}
+h1 {
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem, 6vw, 3.8rem);
+    letter-spacing: 0.03em; line-height: 1; margin-bottom: 0.85rem;
+}
+h2 {
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem);
+    letter-spacing: 0.04em; margin: 2.25rem 0 0.75rem; line-height: 1.1;
+}
+.meta { font-size: 0.85rem; color: var(--gray); margin-bottom: 2rem; }
+.lead { font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
+p, li { font-size: 1rem; color: var(--gray); margin-bottom: 1rem; }
+ul, ol { padding-left: 1.25rem; margin-bottom: 1.25rem; }
+li { margin-bottom: 0.45rem; }
+a { color: var(--orange); }
+strong { color: var(--black); }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+.card {
+    background: white; border-radius: 18px; padding: 1.5rem; border: 1px solid rgba(0,0,0,0.06);
+    text-decoration: none; color: inherit; display: block; transition: transform 0.25s, box-shadow 0.25s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+.card h3 { font-size: 1.15rem; color: var(--black); margin-bottom: 0.5rem; }
+.card p { font-size: 0.9rem; margin-bottom: 0.75rem; }
+.card .more { font-size: 0.8rem; font-weight: 700; color: var(--orange); }
+.callout {
+    background: white; border-left: 4px solid var(--orange); border-radius: 12px;
+    padding: 1.25rem 1.4rem; margin: 1.75rem 0;
+}
+.callout p:last-child { margin-bottom: 0; }
+.cta-box {
+    margin-top: 2.5rem; padding: 1.75rem; border-radius: 18px; background: var(--ink); color: white; text-align: center;
+}
+.cta-box p { color: rgba(255,255,255,0.7); }
+.cta-box a.btn {
+    display: inline-block; margin-top: 0.75rem; background: var(--orange); color: white;
+    text-decoration: none; font-weight: 700; padding: 0.75rem 1.4rem; border-radius: 50px;
+}
+.faq-item {
+    border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; margin-bottom: 0.75rem;
+    background: white; overflow: hidden;
+}
+.faq-item summary {
+    list-style: none; cursor: pointer; padding: 1rem 1.2rem; font-weight: 700;
+    display: flex; justify-content: space-between; gap: 1rem; align-items: center;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; color: var(--orange); font-size: 1.3rem; }
+.faq-item[open] summary::after { content: '×'; }
+.faq-item p { padding: 0 1.2rem 1.1rem; font-size: 0.92rem; }
+.lang-switch {
+    display: inline-flex; gap: 0.35rem; background: white; border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 50px; padding: 0.25rem; margin-bottom: 1.5rem;
+}
+.lang-switch a {
+    text-decoration: none; color: var(--gray); font-size: 0.8rem; font-weight: 700;
+    padding: 0.4rem 0.9rem; border-radius: 50px;
+}
+.lang-switch a.active { background: var(--orange); color: white; }
+footer {
+    text-align: center; padding: 2rem 1rem; font-size: 0.78rem; color: var(--gray);
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+footer a { color: var(--gray); }
+@media (max-width: 640px) {
+    nav { padding: 0.8rem 1rem; }
+    nav .links { gap: 0.75rem; font-size: 0.8rem; }
+}
+
+.area-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+.area-card {
+    background: white; border-radius: 14px; padding: 1.15rem 1.25rem;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+.area-card h3 { font-size: 1.05rem; margin-bottom: 0.35rem; color: var(--black); }
+.area-card .badge {
+    display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 50px; margin-bottom: 0.5rem;
+}
+.badge-live { background: rgba(46,133,64,0.12); color: var(--green); }
+.badge-soon { background: rgba(255,107,0,0.12); color: var(--orange); }
+.steps { counter-reset: step; list-style: none; padding-left: 0; }
+.steps li {
+    counter-increment: step; position: relative; padding: 1rem 1rem 1rem 3.25rem;
+    background: white; border-radius: 12px; margin-bottom: 0.75rem; border: 1px solid rgba(0,0,0,0.06);
+}
+.steps li::before {
+    content: counter(step); position: absolute; left: 1rem; top: 1rem;
+    width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--orange); color: white;
+    font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+}
+.check-list { list-style: none; padding-left: 0; }
+.check-list li { padding-left: 1.5rem; position: relative; }
+.check-list li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+</style>
+</head>
+<body>
+<nav>
+    <a href="../"><img class="logo" src="../assets/logo-trans.png" alt="SABXI"></a>
+    <ul class="links">
+        <li><a href="../">Home</a></li>
+        <li><a href="../about/">About</a></li>
+        <li><a href="../blog/">Blog</a></li>
+        <li><a href="../areas/">Areas</a></li>
+        <li><a class="cta" href="https://apps.apple.com/in/app/sabxi/id6783602290" target="_blank" rel="noopener">Download App</a></li>
+    </ul>
+</nav>
+<main class="wrap">
+    <span class="label">Ops checklist</span>
+    <h1>Launch checklist: Maps & Search</h1>
+    <p class="lead">Step-by-step for Google Business Profile (Chembur studio) and Search Console sitemap submission.</p>
+    
+<p class="meta">Internal checklist · <strong>noindex</strong> · for founders / ops</p>
+<p>Google Business Profile and Search Console must be completed while signed into your Google account. The site is already prepared (sitemap, LocalBusiness schema, Maps link).</p>
+
+<h2>A. Google Business Profile (SABXI Studio Chembur)</h2>
+<ol class="steps">
+    <li>Go to <a href="https://business.google.com/" target="_blank" rel="noopener">business.google.com</a> and sign in with the company Google account.</li>
+    <li>Create or claim a profile. Business name: <strong>SABXI Studio</strong> (or SABXI). Category: e.g. <em>Grocery delivery service</em> / <em>Fruit and vegetable store</em> (pick the closest fit).</li>
+    <li>Set the location to your Chembur studio. Use the same place as <a href="https://share.google/Be6ad2LS0plYCVRL5" target="_blank" rel="noopener">this Maps share link</a> so reviews and Maps stay consistent.</li>
+    <li>Hours: align with ops (site FAQ says roughly 7 AM – 9 PM). Phone + website: <strong>https://sabxi.com/</strong> · email info@sabxi.com.</li>
+    <li>Add 10+ photos: storefront, cutting board live prep, sealed packs, rider handoff, Mixed Packs, juices. Update weekly.</li>
+    <li>Complete verification (postcard / video / phone — whatever Google offers). Then turn on messaging and ask happy customers for reviews.</li>
+    <li>Optional: after the profile is public, send us the GBP URL to add under <code>sameAs</code> in site JSON-LD.</li>
+</ol>
+
+<h2>B. Google Search Console</h2>
+<ol class="steps">
+    <li>Open <a href="https://search.google.com/search-console" target="_blank" rel="noopener">Google Search Console</a> → Add property → URL prefix <strong>https://sabxi.com</strong> (or Domain property if you prefer DNS).</li>
+    <li>Verify ownership (HTML tag, DNS TXT, or GitHub Pages HTML file). If you choose HTML meta tag, paste it to us and we will add it to <code>index.html</code>.</li>
+    <li>After verification: Sitemaps → submit <strong>https://sabxi.com/sitemap.xml</strong> (already linked from robots.txt).</li>
+    <li>Request indexing for homepage, <code>/company/</code>, <code>/about/</code>, <code>/areas/</code>, and top blog posts.</li>
+    <li>Monitor Coverage / Experience; fix any soft 404s after Pages deploys.</li>
+</ol>
+
+<h2>C. Growth extras (need your IDs)</h2>
+<ul class="check-list">
+    <li>WhatsApp Business number → sticky “Chat” button</li>
+    <li>Instagram / LinkedIn URLs → footer + schema sameAs</li>
+    <li>GA4 Measurement ID → analytics on all pages</li>
+    <li>Public Play Store URL when Android ships</li>
+    <li>FSSAI licence number on footer + company page</li>
+</ul>
+<p>Email those details to the site maintainer or paste in chat when ready.</p>
+
+<div class="cta-box">
+<p>Public pages ready for crawlers</p>
+<a class="btn" href="../sitemap.xml">View sitemap.xml</a>
+</div>
+
+</main>
+<footer>
+    &copy; 2026 Sabxi Private Limited · CIN U46301MH2026PTC473853 ·
+    <a href="../">Home</a> · <a href="../about/">About</a> ·
+    <a href="../areas/">Areas</a> · <a href="../privacy/">Privacy</a> ·
+    <a href="../terms/">Terms</a>
+</footer>
+</body>
+</html>
