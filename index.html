@@ -845,11 +845,7 @@
         .cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(255,107,0,0.14) 0%, transparent 60%); }
         .cta .section-title { color: white; position: relative; }
         .cta .section-desc { color: rgba(255,255,255,0.6); margin: 0 auto 2rem; position: relative; }
-        .notify-form { display: flex; gap: 0.75rem; max-width: 460px; margin: 0 auto 1.5rem; position: relative; }
-        .notify-form input { flex: 1; padding: 1rem 1.25rem; border: 2px solid rgba(255,255,255,0.12); border-radius: 50px; background: rgba(255,255,255,0.06); color: white; font-family: inherit; font-size: 1rem; outline: none; }
-        .notify-form input::placeholder { color: rgba(255,255,255,0.35); }
-        .notify-form input:focus { border-color: var(--orange); }
-        .store-badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+        .store-badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; margin-top: 1.5rem; }
         .store-badge {
             display: inline-flex; align-items: center; gap: 0.45rem;
             background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
@@ -1472,7 +1468,6 @@
             .menu-tabs { gap: 0.4rem; }
             .menu-tab { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
             .menu-grid { grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 1rem; }
-            .notify-form { flex-direction: column; }
         }
         @media (max-width: 480px) {
             nav { padding: 0.75rem 1rem; }
@@ -2192,10 +2187,6 @@
         <span class="section-label reveal" style="color:var(--orange);">Order Now</span>
         <h2 class="section-title reveal">Freshly Cut, Quickly Delivered</h2>
         <p class="section-desc reveal">Cut veggies, cut fruits, juices, whole produce, and smoothies — from SABXI Studio to your door. Download the app and order fresh today.</p>
-        <form class="notify-form reveal" id="notifyForm">
-            <input type="email" placeholder="Enter your email" required aria-label="Email">
-            <button type="submit" class="btn btn-primary">Join Waitlist</button>
-        </form>
         <div class="store-badges reveal">
             <a class="store-badge" href="https://apps.apple.com/in/app/sabxi/id6783602290" target="_blank" rel="noopener noreferrer">📱 Download on the App Store</a>
             <span class="store-badge soon">🤖 Android — Coming Soon</span>
@@ -2416,10 +2407,6 @@
         prepStages.forEach(stage => stage.classList.add('prep-playing'));
     }
 
-    document.getElementById('notifyForm').addEventListener('submit', e => {
-        e.preventDefault();
-        e.target.innerHTML = '<p style="padding:1rem;color:var(--green-light);font-weight:600;">You\'re on the list! We\'ll notify you at launch. 🥕</p>';
-    });
     document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
 </script>
 </body>
