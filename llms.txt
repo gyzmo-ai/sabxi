@@ -69,6 +69,11 @@ Customers can add cooking notes and cut preferences in the app (diced / sliced /
 ## Pages
 
 - [Home](https://sabxi.com/) — products, studio, mission, FAQ, app download
+- [Hindi](https://sabxi.com/hi/) — SABXI FAQ and brand overview in Hindi (हिंदी)
+- [Blog](https://sabxi.com/blog/) — guides on cut produce and Chembur meal kits
+- [Cut veg vs whole](https://sabxi.com/blog/cut-veg-vs-whole/)
+- [30-min Chembur meal kits](https://sabxi.com/blog/chembur-30-min-meal-kits/)
+- [Why we cut after you order](https://sabxi.com/blog/why-we-cut-after-you-order/)
 - [Privacy Policy](https://sabxi.com/privacy/)
 - [App Store](https://apps.apple.com/in/app/sabxi/id6783602290)
 - [Studio on Google Maps](https://share.google/Be6ad2LS0plYCVRL5)

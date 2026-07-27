@@ -9,6 +9,9 @@
     <meta name="author" content="SABXI">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://sabxi.com/">
+    <link rel="alternate" hreflang="en" href="https://sabxi.com/">
+    <link rel="alternate" hreflang="hi" href="https://sabxi.com/hi/">
+    <link rel="alternate" hreflang="x-default" href="https://sabxi.com/">
     <meta name="theme-color" content="#FF6B00">
     <link rel="icon" href="assets/logo-trans.png">
 
@@ -1533,6 +1536,29 @@
         }
         .faq-item[open] summary::after { transform: rotate(45deg); }
         .faq-item p { padding: 0 1.4rem 1.25rem; font-size: 0.92rem; color: var(--gray); line-height: 1.75; }
+        .faq-lang {
+            display: inline-flex; gap: 0.35rem; background: var(--cream); border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 50px; padding: 0.25rem; margin: 1.25rem auto 0; 
+        }
+        .faq-lang a {
+            text-decoration: none; color: var(--gray); font-size: 0.78rem; font-weight: 700;
+            padding: 0.4rem 0.95rem; border-radius: 50px;
+        }
+        .faq-lang a.active { background: var(--orange); color: white; }
+
+        /* Blog teaser on homepage */
+        .blog-teaser { background: var(--cream); }
+        .blog-teaser-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 2.5rem; }
+        .blog-teaser-card {
+            background: white; border-radius: 18px; padding: 1.5rem; border: 1px solid rgba(0,0,0,0.05);
+            text-decoration: none; color: inherit; display: flex; flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .blog-teaser-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+        .blog-teaser-card .label { margin-bottom: 0.65rem; }
+        .blog-teaser-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--black); }
+        .blog-teaser-card p { font-size: 0.88rem; color: var(--gray); flex: 1; margin-bottom: 0.85rem; }
+        .blog-teaser-card .more { font-size: 0.8rem; font-weight: 700; color: var(--orange); }
 
         /* Studio map embed */
         .studio-map-wrap {
@@ -1603,6 +1629,7 @@
             .product-showcase { grid-template-columns: repeat(2,1fr); }
             .prep-grid { grid-template-columns: 1fr; }
             .promise-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+            .blog-teaser-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
             .market-grid, .pipeline-track, .lines-grid { grid-template-columns: repeat(2,1fr); }
             .footer-inner { grid-template-columns: 1fr; }
         }
@@ -1836,6 +1863,8 @@
     <ul id="navLinks">
         <li><a href="#lines">Products</a></li>
         <li><a href="#studio">Studio</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/hi/">हिंदी</a></li>
         <li><a href="#notify" class="nav-cta">Order Now</a></li>
     </ul>
     <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -2422,6 +2451,12 @@
     <div class="section-inner">
         <span class="section-label reveal" style="text-align:center;">FAQ</span>
         <h2 class="section-title reveal" style="text-align:center;">Everything People Ask Us</h2>
+        <div class="reveal" style="text-align:center;">
+            <div class="faq-lang">
+                <a class="active" href="#faq">English</a>
+                <a href="/hi/">हिंदी</a>
+            </div>
+        </div>
         <div class="faq-list reveal">
             <details class="faq-item">
                 <summary>What is SABXI?</summary>
@@ -2479,6 +2514,36 @@
     </div>
 </section>
 
+<!-- BLOG TEASER -->
+<section class="blog-teaser" id="blog">
+    <div class="section-inner">
+        <span class="section-label reveal">From the Blog</span>
+        <h2 class="section-title reveal">Fresh thinking for busy kitchens</h2>
+        <p class="section-desc reveal">Guides on cut-to-order produce, Chembur meal kits, and why we never chop before you order.</p>
+        <div class="blog-teaser-grid">
+            <a class="blog-teaser-card reveal" href="/blog/cut-veg-vs-whole/">
+                <span class="label">Guide</span>
+                <h3>Cut veg vs whole: which should you order?</h3>
+                <p>When pre-cut saves time, when whole is better, and how SABXI keeps both truly fresh.</p>
+                <span class="more">Read article →</span>
+            </a>
+            <a class="blog-teaser-card reveal" href="/blog/chembur-30-min-meal-kits/">
+                <span class="label">Chembur</span>
+                <h3>30-minute meal kits from Chembur</h3>
+                <p>Weeknight dinners with cut veggies, Mixed Packs, and juices — door to stove in under 30 minutes.</p>
+                <span class="more">Read article →</span>
+            </a>
+            <a class="blog-teaser-card reveal" href="/blog/why-we-cut-after-you-order/">
+                <span class="label">Brand</span>
+                <h3>Why we cut after you order</h3>
+                <p>Freshness at speed vs dark-store quick commerce — the SABXI non-negotiable.</p>
+                <span class="more">Read article →</span>
+            </a>
+        </div>
+        <p class="reveal" style="margin-top:1.75rem;"><a href="/blog/" style="font-weight:700;color:var(--orange);text-decoration:none;">View all posts →</a></p>
+    </div>
+</section>
+
 <!-- CTA -->
 <section class="cta" id="notify">
     <div class="section-inner">
@@ -2502,7 +2567,7 @@
         </div>
         <div class="footer-links">
             <h5>Product</h5>
-            <ul><li><a href="#lines">Products</a></li><li><a href="#studio">Studio</a></li><li><a href="#mission">Our Mission</a></li><li><a href="#faq">FAQ</a></li></ul>
+            <ul><li><a href="#lines">Products</a></li><li><a href="#studio">Studio</a></li><li><a href="#mission">Our Mission</a></li><li><a href="#faq">FAQ</a></li><li><a href="/blog/">Blog</a></li><li><a href="/hi/">हिंदी</a></li></ul>
         </div>
         <div class="footer-links">
             <h5>Contact</h5>
@@ -2683,7 +2748,7 @@
         setInterval(() => showPhoneSlide(phoneIdx + 1), 3200);
     }
 
-    document.querySelectorAll('.stats-grid, .features-grid, .lines-grid, .product-showcase, .review-grid, .promise-grid').forEach(grid => {
+    document.querySelectorAll('.stats-grid, .features-grid, .lines-grid, .product-showcase, .review-grid, .promise-grid, .blog-teaser-grid').forEach(grid => {
         [...grid.children].forEach((child, i) => {
             if (child.classList.contains('reveal')) {
                 child.classList.add('reveal-child');
