@@ -3,35 +3,199 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download SABXI</title>
-  <meta name="robots" content="noindex">
-  <meta http-equiv="refresh" content="0;url=https://erp.sabxi.com/download">
+  <title>Download SABXI — App Store &amp; Google Play</title>
+  <meta name="description" content="Download the SABXI app for freshly cut vegetables, fruits and juices delivered in under 30 minutes.">
   <link rel="canonical" href="https://sabxi.com/download">
-  <script>
-    window.location.replace("https://erp.sabxi.com/download");
-  </script>
+  <meta name="theme-color" content="#FF6B00">
+  <link rel="icon" href="../assets/logo-trans.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --orange: #FF6B00;
+      --green: #2E8540;
+      --cream: #FAF8F5;
+      --ink: #141414;
+      --gray: #666;
+      --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       min-height: 100vh;
+      font-family: Outfit, system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 520px at 8% -8%, rgba(255,107,0,0.18) 0%, transparent 55%),
+        radial-gradient(800px 480px at 100% 0%, rgba(46,133,64,0.16) 0%, transparent 52%),
+        linear-gradient(165deg, #FAF8F5 0%, #FFF6EE 48%, #F3F8F3 100%);
       display: grid;
       place-items: center;
-      font-family: Outfit, system-ui, sans-serif;
-      background: #f7fbf8;
-      color: #17301f;
-      text-align: center;
-      padding: 24px;
+      padding: 32px 20px;
     }
-    a {
-      color: #ff6b00;
+    main {
+      width: min(440px, 100%);
+      text-align: center;
+    }
+    .logo {
+      width: min(148px, 42vw);
+      height: auto;
+      margin: 0 auto 18px;
+      display: block;
+    }
+    .eyebrow {
+      font-family: "Bebas Neue", Impact, sans-serif;
+      letter-spacing: 0.22em;
+      color: var(--orange);
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 2.15rem);
+      line-height: 1.12;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.65rem;
+    }
+    .lead {
+      color: var(--gray);
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 1.6rem;
+    }
+    .store {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: var(--ink);
+      color: var(--cream);
+      text-decoration: none;
+      text-align: left;
+      margin-bottom: 12px;
+      border: 1px solid rgba(20,20,20,0.12);
+      box-shadow: 0 10px 28px rgba(20,20,20,0.16);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .store:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(20,20,20,0.2); }
+    .store .meta { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; opacity: 0.72; }
+    .store .name { font-size: 17px; font-weight: 800; margin-top: 2px; }
+    .store svg { flex-shrink: 0; }
+    .web {
+      display: block;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(46,133,64,0.28);
+      background: var(--white);
+      color: var(--green);
+      text-decoration: none;
+      text-align: left;
       font-weight: 700;
     }
+    .web span { display: block; font-size: 12px; margin-top: 2px; opacity: 0.75; font-weight: 500; }
+    .note {
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+    .note a { color: var(--orange); font-weight: 700; }
   </style>
 </head>
 <body>
   <main>
-    <h1>Opening SABXI download…</h1>
-    <p>If nothing happens, <a href="https://erp.sabxi.com/download">tap here</a>.</p>
+    <img class="logo" src="../assets/logo-trans.png" alt="SABXI" width="148" height="148">
+    <p class="eyebrow">SABXI</p>
+    <h1>Freshly Cut. Quickly Delivered.</h1>
+    <p class="lead" id="status">Get the Sabxi app on iOS or Android.</p>
+
+    <a class="store" id="appStore" href="https://apps.apple.com/in/app/sabxi/id6783602290" target="_blank" rel="noopener noreferrer">
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M16.365 1.43c0 1.14-.42 2.2-1.22 3.02-.9.92-2.2 1.53-3.35 1.44-.13-1.1.4-2.27 1.18-3.08.9-.95 2.34-1.62 3.39-1.38zM20.76 17.36c-.58 1.3-.86 1.88-1.61 3.03-1.04 1.57-2.51 3.52-4.33 3.54-1.62.02-2.04-1.05-4.25-1.04-2.21.01-2.67 1.07-4.3 1.05-1.81-.02-3.2-1.78-4.24-3.35C.18 17.5-.9 13.2.95 10.3c1.05-1.65 2.72-2.69 4.28-2.69 1.6 0 2.6 1.07 4.4 1.07 1.75 0 2.5-1.08 4.42-1.08 1.4 0 2.88.76 3.93 2.07-3.46 1.9-2.9 6.85.78 7.69z"/>
+      </svg>
+      <span>
+        <div class="meta">Download on the</div>
+        <div class="name">App Store</div>
+      </span>
+    </a>
+
+    <a class="store" id="playStore" href="https://play.google.com/store/apps/details?id=com.sabxi.sabxi" target="_blank" rel="noopener noreferrer">
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="#00F076" d="M3 2.5v19L13.2 12z"/>
+        <path fill="#FFD500" d="M13.2 12 3 21.5l14.2-4.1z"/>
+        <path fill="#FF3A44" d="M17.2 6.6 3 2.5 13.2 12z"/>
+        <path fill="#00F0FF" d="M17.2 6.6 13.2 12l4 5.4L21 12z"/>
+      </svg>
+      <span>
+        <div class="meta">Get it on</div>
+        <div class="name">Google Play</div>
+      </span>
+    </a>
+
+    <a class="web" href="https://sabxi.com/">
+      Continue on sabxi.com
+      <span>Fresh produce, cut packs &amp; juices</span>
+    </a>
+
+    <p class="note">Having trouble? Open <a href="https://erp.sabxi.com/download">erp.sabxi.com/download</a>.</p>
   </main>
+
+  <script>
+    (function () {
+      var APP =
+        "https://apps.apple.com/in/app/sabxi/id6783602290";
+      var PLAY =
+        "https://play.google.com/store/apps/details?id=com.sabxi.sabxi";
+      var WEB = "https://sabxi.com/";
+      var API = "https://api.sabxi.com/api/v1/public/download/config";
+
+      function device() {
+        var ua = navigator.userAgent || "";
+        if (/android/i.test(ua)) return "android";
+        if (/iphone|ipad|ipod/i.test(ua)) return "ios";
+        if (/macintosh/i.test(ua) && (navigator.maxTouchPoints || 0) > 1) return "ios";
+        return "desktop";
+      }
+
+      function pick(d, cfg) {
+        if (d === "android" && cfg.play) return { url: cfg.play, label: "Google Play" };
+        if (d === "ios" && cfg.app) return { url: cfg.app, label: "the App Store" };
+        return { url: cfg.web || WEB, label: "sabxi.com" };
+      }
+
+      var statusEl = document.getElementById("status");
+      var cfg = { play: PLAY, app: APP, web: WEB };
+
+      fetch(API, { cache: "no-store" })
+        .then(function (r) { return r.json(); })
+        .then(function (payload) {
+          var data = payload && payload.data;
+          if (!data) return;
+          if (data.play_store_url) cfg.play = data.play_store_url;
+          if (data.app_store_url) cfg.app = data.app_store_url;
+          if (data.web_url) cfg.web = data.web_url;
+          var a = document.getElementById("appStore");
+          var p = document.getElementById("playStore");
+          if (a) a.href = cfg.app;
+          if (p) p.href = cfg.play;
+        })
+        .catch(function () {})
+        .finally(function () {
+          var chosen = pick(device(), cfg);
+          if (statusEl) statusEl.textContent = "Opening " + chosen.label + "…";
+          // Mobile: auto-open the matching store. Desktop stays on this page.
+          var d = device();
+          if (d === "android" || d === "ios") {
+            window.setTimeout(function () {
+              window.location.replace(chosen.url);
+            }, 1200);
+          } else if (statusEl) {
+            statusEl.textContent = "Get the Sabxi app on iOS or Android.";
+          }
+        });
+    })();
+  </script>
 </body>
 </html>
