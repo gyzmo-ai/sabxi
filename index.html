@@ -970,6 +970,73 @@
         }
         .studio-map-link:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,107,0,0.35); }
 
+
+        /* Instagram */
+        .ig-section { background: var(--cream); position: relative; overflow: hidden; }
+        .ig-section .section-inner { position: relative; z-index: 1; }
+        .ig-head {
+            display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+            gap: 1.25rem; margin-bottom: 2rem;
+        }
+        .ig-profile {
+            display: flex; align-items: center; gap: 1rem;
+        }
+        .ig-avatar {
+            width: 64px; height: 64px; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--orange); background: white;
+        }
+        .ig-profile h3 {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.04em;
+            line-height: 1; margin-bottom: 0.2rem;
+        }
+        .ig-profile p { font-size: 0.88rem; color: var(--gray); }
+        .ig-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .ig-btn {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            padding: 0.65rem 1.15rem; border-radius: 50px; font-size: 0.82rem; font-weight: 700;
+            text-decoration: none; transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .ig-btn-primary { background: var(--orange); color: white; border: 1px solid var(--orange); }
+        .ig-btn-primary:hover { transform: translateY(-2px); background: var(--orange-light); }
+        .ig-btn-ghost {
+            background: white; color: var(--black); border: 1px solid rgba(0,0,0,0.1);
+        }
+        .ig-btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+        .ig-grid {
+            display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem;
+            align-items: start;
+        }
+        .ig-card {
+            background: white; border-radius: 16px; overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.06); min-height: 420px;
+            display: flex; flex-direction: column;
+        }
+        .ig-card .instagram-media { margin: 0 !important; width: 100% !important; min-width: 0 !important; }
+        .ig-empty {
+            grid-column: 1 / -1; text-align: center; padding: 2.5rem 1.5rem;
+            background: white; border-radius: 18px; border: 1px dashed rgba(0,0,0,0.12);
+        }
+        .ig-empty p { color: var(--gray); margin: 0.75rem auto 1.25rem; max-width: 420px; }
+        .ig-fab {
+            position: fixed; right: 1.1rem; bottom: 5.5rem; z-index: 90;
+            width: 52px; height: 52px; border-radius: 50%;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 28px rgba(220,39,67,0.4); text-decoration: none;
+            transition: transform 0.2s;
+        }
+        .ig-fab:hover { transform: scale(1.06); }
+        .ig-fab svg { width: 24px; height: 24px; fill: white; }
+        body.has-app-sticky .ig-fab { bottom: 6.5rem; }
+        @media (max-width: 900px) {
+            .ig-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 600px) {
+            .ig-grid { grid-template-columns: 1fr; }
+            .ig-card { min-height: 360px; }
+            .ig-fab { right: 0.85rem; bottom: 5.2rem; }
+        }
+
         /* Footer */
         footer { background: var(--ink); color: rgba(255,255,255,0.45); padding: 3rem 2rem 2rem; border-top: 1px solid rgba(255,255,255,0.06); }
         .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
@@ -1722,6 +1789,7 @@
                 "sameAs": [
                     "https://apps.apple.com/in/app/sabxi/id6783602290",
                     "https://play.google.com/store/apps/details?id=com.sabxi.sabxi",
+                    "https://www.instagram.com/sabxi_studio/",
                     "https://share.google/Be6ad2LS0plYCVRL5",
                     "https://www.falconebiz.com/company/SABXI-PRIVATE-LIMITED-U46301MH2026PTC473853"
                 ],
@@ -1907,6 +1975,7 @@
         <li><a href="/blog/">Blog</a></li>
         <li><a href="/areas/">Areas</a></li>
         <li><a href="/hi/">हिंदी</a></li>
+        <li><a href="#instagram">Instagram</a></li>
         <li><a href="#notify" class="nav-cta">Order Now</a></li>
     </ul>
     <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -2471,6 +2540,35 @@
     </div>
 </section>
 
+
+<!-- INSTAGRAM -->
+<section class="ig-section" id="instagram">
+    <div class="section-inner">
+        <div class="ig-head reveal">
+            <div>
+                <span class="section-label">@sabxi_studio</span>
+                <div class="ig-profile">
+                    <img class="ig-avatar" src="assets/logo.png" alt="SABXI Studio on Instagram" width="64" height="64">
+                    <div>
+                        <h3>SABXI Studio</h3>
+                        <p>Fresh cuts, juices &amp; studio moments — follow for live prep videos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ig-actions">
+                <a class="ig-btn ig-btn-primary" href="https://www.instagram.com/sabxi_studio/" data-ig-app="instagram://user?username=sabxi_studio" target="_blank" rel="noopener noreferrer">Open in App</a>
+                <a class="ig-btn ig-btn-ghost" href="https://www.instagram.com/sabxi_studio/reels/" data-ig-app="instagram://user?username=sabxi_studio" target="_blank" rel="noopener noreferrer">All Reels</a>
+                <a class="ig-btn ig-btn-ghost" href="https://www.instagram.com/sabxi_studio/" target="_blank" rel="noopener noreferrer">@sabxi_studio</a>
+            </div>
+        </div>
+        <div class="ig-grid" id="igFeed" aria-live="polite">
+            <div class="ig-empty">
+                <p>Loading Instagram videos…</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- CTA -->
 <section class="cta" id="notify">
     <div class="section-inner">
@@ -2494,7 +2592,7 @@
         </div>
         <div class="footer-links">
             <h5>Product</h5>
-            <ul><li><a href="#lines">Products</a></li><li><a href="#studio">Studio</a></li><li><a href="#mission">Our Mission</a></li><li><a href="#faq">FAQ</a></li><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/areas/">Service Areas</a></li><li><a href="/hi/">हिंदी</a></li></ul>
+            <ul><li><a href="#lines">Products</a></li><li><a href="#studio">Studio</a></li><li><a href="#instagram">Instagram</a></li><li><a href="#mission">Our Mission</a></li><li><a href="#faq">FAQ</a></li><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/areas/">Service Areas</a></li><li><a href="/hi/">हिंदी</a></li></ul>
         </div>
         <div class="footer-links">
             <h5>Contact</h5>
@@ -2504,6 +2602,7 @@
                 <li><a href="https://apps.apple.com/in/app/sabxi/id6783602290" target="_blank" rel="noopener noreferrer">App Store</a></li>
                 <li><a href="https://play.google.com/store/apps/details?id=com.sabxi.sabxi" target="_blank" rel="noopener noreferrer">Google Play</a></li>
                 <li><a href="https://share.google/Be6ad2LS0plYCVRL5" target="_blank" rel="noopener noreferrer">Studio on Maps</a></li>
+                <li><a href="https://www.instagram.com/sabxi_studio/" data-ig-app="instagram://user?username=sabxi_studio" target="_blank" rel="noopener noreferrer">Instagram</a></li>
             </ul>
         </div>
         <div class="footer-links">
@@ -2525,6 +2624,11 @@
     </div>
     <p class="footer-copy">&copy; 2026 Sabxi Private Limited. All rights reserved. · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/refund/">Refunds</a> · <a href="/company/">Company</a> · <a href="/about/">About</a></p>
 </footer>
+
+
+<a class="ig-fab" href="https://www.instagram.com/sabxi_studio/" data-ig-app="instagram://user?username=sabxi_studio" target="_blank" rel="noopener noreferrer" aria-label="SABXI on Instagram">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+</a>
 
 <aside class="app-sticky" id="appSticky" aria-label="Download SABXI app">
     <div class="app-sticky-inner">
@@ -2792,6 +2896,118 @@
     window.addEventListener('scroll', updateAppSticky, { passive: true });
     window.addEventListener('resize', updateAppSticky);
     updateAppSticky();
+
+    /* Instagram deep links + auto embed all videos */
+    const IG = {
+        username: 'sabxi_studio',
+        profile: 'https://www.instagram.com/sabxi_studio/',
+        reels: 'https://www.instagram.com/sabxi_studio/reels/',
+        app: 'instagram://user?username=sabxi_studio',
+        feedUrl: 'assets/instagram-feed.json',
+    };
+
+    document.querySelectorAll('[data-ig-app]').forEach(el => {
+        el.addEventListener('click', (e) => {
+            const appUrl = el.getAttribute('data-ig-app');
+            const webUrl = el.getAttribute('href');
+            if (!appUrl || !webUrl) return;
+            if (!/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) return;
+            e.preventDefault();
+            const start = Date.now();
+            window.location.href = appUrl;
+            setTimeout(() => {
+                if (document.visibilityState === 'visible' && Date.now() - start < 1600) {
+                    window.open(webUrl, '_blank', 'noopener,noreferrer');
+                }
+            }, 850);
+        });
+    });
+
+    const loadInstagramEmbedScript = () => new Promise((resolve) => {
+        if (window.instgrm && window.instgrm.Embeds) { resolve(); return; }
+        const existing = document.querySelector('script[data-sabxi-ig-embed]');
+        if (existing) {
+            existing.addEventListener('load', () => resolve());
+            return;
+        }
+        const s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.instagram.com/embed.js';
+        s.dataset.sabxiIgEmbed = '1';
+        s.onload = () => resolve();
+        s.onerror = () => resolve();
+        document.body.appendChild(s);
+    });
+
+    const renderIgFeed = async () => {
+        const grid = document.getElementById('igFeed');
+        if (!grid) return;
+        let posts = [];
+        try {
+            const res = await fetch(IG.feedUrl, { cache: 'no-store' });
+            if (res.ok) {
+                const data = await res.json();
+                posts = Array.isArray(data.posts) ? data.posts : [];
+            }
+        } catch (_) { /* feed optional */ }
+
+        // Prefer videos/reels; if none flagged, show all posts
+        // Also allow ?reels=CODE1,CODE2 for quick testing / manual sync
+        const q = new URLSearchParams(location.search).get('reels');
+        if (q) {
+            q.split(',').map(s => s.trim()).filter(Boolean).forEach(code => {
+                posts.push({ shortcode: code, url: `https://www.instagram.com/reel/${code}/`, is_video: true });
+            });
+        }
+        let items = posts.filter(p => p && (p.is_video || /\/reel\//.test(p.url || '')));
+        if (!items.length) items = posts.filter(p => p && p.url);
+
+        if (!items.length) {
+            grid.innerHTML = `
+                <div class="ig-empty reveal">
+                    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.04em;margin-bottom:0.35rem;">Watch SABXI on Instagram</h3>
+                    <p>Studio cuts, juices, and delivery moments — open the profile to see every reel.</p>
+                    <div class="ig-actions" style="justify-content:center;">
+                        <a class="ig-btn ig-btn-primary" href="${IG.reels}" data-ig-app="${IG.app}" target="_blank" rel="noopener noreferrer">Open all reels</a>
+                        <a class="ig-btn ig-btn-ghost" href="${IG.profile}" data-ig-app="${IG.app}" target="_blank" rel="noopener noreferrer">@${IG.username}</a>
+                    </div>
+                </div>`;
+            // rebind deeplinks in injected HTML
+            grid.querySelectorAll('[data-ig-app]').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    const appUrl = el.getAttribute('data-ig-app');
+                    const webUrl = el.getAttribute('href');
+                    if (!appUrl || !/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) return;
+                    e.preventDefault();
+                    window.location.href = appUrl;
+                    setTimeout(() => {
+                        if (document.visibilityState === 'visible') window.open(webUrl, '_blank', 'noopener,noreferrer');
+                    }, 850);
+                });
+            });
+            return;
+        }
+
+        grid.innerHTML = items.map((p) => {
+            const url = (p.url || '').replace(/\/$/, '');
+            return `<div class="ig-card reveal">
+                <blockquote class="instagram-media"
+                    data-instgrm-permalink="${url}/"
+                    data-instgrm-version="14"
+                    data-instgrm-captioned
+                    style="background:#FFF;border:0;margin:0;max-width:100%;width:100%;">
+                    <a href="${url}/" target="_blank" rel="noopener noreferrer">View on Instagram</a>
+                </blockquote>
+            </div>`;
+        }).join('');
+
+        await loadInstagramEmbedScript();
+        if (window.instgrm && window.instgrm.Embeds) {
+            window.instgrm.Embeds.process();
+        }
+    };
+    renderIgFeed();
+
 </script>
 </body>
 </html>
