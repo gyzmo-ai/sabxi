@@ -3,6 +3,32 @@
   "profileUrl": "https://www.instagram.com/sabxi_studio/",
   "reelsUrl": "https://www.instagram.com/sabxi_studio/reels/",
   "appDeepLink": "instagram://user?username=sabxi_studio",
-  "updatedAt": "2026-08-20T20:57:27.777224+00:00",
-  "posts": []
+  "updatedAt": "2026-08-21T00:00:00Z",
+  "posts": [
+    {
+      "shortcode": "DcRGnDts9U1",
+      "url": "https://www.instagram.com/p/DcRGnDts9U1/",
+      "is_video": true
+    },
+    {
+      "shortcode": "DcL4G6WMlSk",
+      "url": "https://www.instagram.com/p/DcL4G6WMlSk/",
+      "is_video": true
+    },
+    {
+      "shortcode": "DcJVnf6sUf9",
+      "url": "https://www.instagram.com/p/DcJVnf6sUf9/",
+      "is_video": true
+    },
+    {
+      "shortcode": "DcGo-7Ys7ug",
+      "url": "https://www.instagram.com/p/DcGo-7Ys7ug/",
+      "is_video": true
+    },
+    {
+      "shortcode": "DcDY-LTMv91",
+      "url": "https://www.instagram.com/p/DcDY-LTMv91/",
+      "is_video": true
+    }
+  ]
 }
