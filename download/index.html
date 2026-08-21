@@ -149,7 +149,9 @@
       var PLAY =
         "https://play.google.com/store/apps/details?id=com.sabxi.sabxi";
       var WEB = "https://sabxi.com/";
-      var API = "https://api.sabxi.com/api/v1/public/download/config";
+      var API_BASE = "https://api.sabxi.com/api/v1";
+      var API = API_BASE + "/public/download/config";
+      var EVENTS = API_BASE + "/public/download/events";
 
       function device() {
         var ua = navigator.userAgent || "";
@@ -160,13 +162,58 @@
       }
 
       function pick(d, cfg) {
-        if (d === "android" && cfg.play) return { url: cfg.play, label: "Google Play" };
-        if (d === "ios" && cfg.app) return { url: cfg.app, label: "the App Store" };
-        return { url: cfg.web || WEB, label: "sabxi.com" };
+        if (d === "android" && cfg.play) return { url: cfg.play, dest: "play_store", label: "Google Play" };
+        if (d === "ios" && cfg.app) return { url: cfg.app, dest: "app_store", label: "the App Store" };
+        return { url: cfg.web || WEB, dest: "web", label: "sabxi.com" };
+      }
+
+      // utm_source / utm_sub_source (also fixes a mistaken second "?" → "&")
+      function attribution() {
+        var raw = (window.location.search || "").replace(/^\?/, "").replace(/\?/g, "&");
+        var params = new URLSearchParams(raw);
+        var source = (
+          params.get("utm_source") ||
+          params.get("source") ||
+          params.get("utm_campaign") ||
+          ""
+        ).trim().slice(0, 64);
+        var sub = (
+          params.get("utm_sub_source") ||
+          params.get("utm_content") ||
+          params.get("utm_medium") ||
+          params.get("utm_term") ||
+          ""
+        ).trim().slice(0, 64);
+        return {
+          source: source || "sabxi_com",
+          sub_source: sub || null,
+        };
+      }
+
+      function recordEvent(deviceType, destination) {
+        var attr = attribution();
+        try {
+          fetch(EVENTS, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              device_type: deviceType,
+              destination: destination,
+              user_agent: (navigator.userAgent || "").slice(0, 512),
+              source: attr.source,
+              sub_source: attr.sub_source,
+            }),
+            keepalive: true,
+          }).catch(function () {});
+        } catch (e) {}
       }
 
       var statusEl = document.getElementById("status");
       var cfg = { play: PLAY, app: APP, web: WEB };
+      var recorded = false;
 
       fetch(API, { cache: "no-store" })
         .then(function (r) { return r.json(); })
@@ -183,10 +230,14 @@
         })
         .catch(function () {})
         .finally(function () {
-          var chosen = pick(device(), cfg);
+          var d = device();
+          var chosen = pick(d, cfg);
+          if (!recorded) {
+            recorded = true;
+            recordEvent(d, chosen.dest);
+          }
           if (statusEl) statusEl.textContent = "Opening " + chosen.label + "…";
           // Mobile: auto-open the matching store. Desktop stays on this page.
-          var d = device();
           if (d === "android" || d === "ios") {
             window.setTimeout(function () {
               window.location.replace(chosen.url);
