@@ -24,7 +24,9 @@
     box.innerHTML = `
       <h2 style="margin-bottom:8px">Your account</h2>
       <p class="hint">Signed in as <strong>${c.mobile || "customer"}</strong></p>
-      <a class="btn block" href="/cart.html" style="margin-bottom:8px">Go to cart</a>
+      <a class="btn block" href="/orders.html" style="margin-bottom:8px">Order history</a>
+      <a class="btn ghost block" href="/cart.html" style="margin-bottom:8px">Go to cart</a>
+      <a class="btn ghost block" href="/checkout.html" style="margin-bottom:8px">Checkout</a>
       <a class="btn ghost block" href="${SabxiApi.downloadUrl({
         sub: "account",
       })}" style="margin-bottom:8px">Open full app</a>

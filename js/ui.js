@@ -35,7 +35,7 @@ window.SabxiUI = (() => {
   function productCard(p) {
     const off = discount(p);
     const sold = p.is_available === false;
-    const href = `/product.html?id=${encodeURIComponent(p.product_id || p.sku_id)}`;
+    const href = `/product.html?id=${encodeURIComponent(p.sku_id || p.product_id)}`;
     return `<article class="card" data-sku="${p.sku_id}">
       <a class="img" href="${href}">
         <img src="${imgUrl(p)}" alt="${escapeHtml(p.name || "")}" loading="lazy" />
@@ -223,11 +223,13 @@ window.SabxiUI = (() => {
       <h4>About</h4>
       <a href="/">Home</a>
       <a href="/shop.html">Shop</a>
+      <a href="/orders.html">Orders</a>
       <a href="/download/?utm_source=website&utm_sub_source=footer">Download app</a>
     </div>
     <div>
       <h4>Help</h4>
       <a href="mailto:hello@sabxi.com">hello@sabxi.com</a>
+      <a href="/orders.html">Order history</a>
       <a href="/download/?utm_source=website&utm_sub_source=support">Support in app</a>
     </div>
     <div>
@@ -278,5 +280,6 @@ window.SabxiUI = (() => {
     shellHtml,
     footerHtml,
     fillCategoryNav,
+    escapeHtml,
   };
 })();

@@ -221,6 +221,110 @@ window.SabxiApi = (() => {
     return request("/customer/cart");
   }
 
+  async function listAddresses() {
+    const r = await request("/users/customers/me/delivery-addresses");
+    return r.data || [];
+  }
+
+  async function createAddress(payload) {
+    const r = await request("/users/customers/me/delivery-addresses", {
+      method: "POST",
+      body: payload,
+    });
+    return r.data;
+  }
+
+  async function quoteCoupon(code, items) {
+    const s = studio();
+    return request("/customer/coupons/quote", {
+      method: "POST",
+      body: {
+        code,
+        studio_id: s.id,
+        fulfillment_type: "delivery",
+        delivery_pincode: s.pincode || null,
+        items: items.map((i) => ({
+          product_sku_id: i.sku_id,
+          quantity: i.qty,
+        })),
+      },
+    });
+  }
+
+  async function createOrder({
+    items,
+    delivery_address_id,
+    delivery_address,
+    delivery_pincode,
+    payment_mode,
+    coupon_code,
+    notes,
+  }) {
+    const s = studio();
+    const r = await request("/orders", {
+      method: "POST",
+      body: {
+        fulfillment_studio_id: s.id,
+        fulfillment_type: "delivery",
+        delivery_address_id: delivery_address_id || null,
+        delivery_address: delivery_address || null,
+        delivery_pincode: delivery_pincode || s.pincode || null,
+        payment_mode: payment_mode || "cash",
+        payment_status: "pending",
+        coupon_code: coupon_code || null,
+        notes: notes || "Placed via sabxi.com",
+        items: items.map((i) => ({
+          product_sku_id: i.sku_id,
+          quantity: i.qty,
+        })),
+      },
+    });
+    return r.data;
+  }
+
+  async function listOrders({ page = 1, pageSize = 50 } = {}) {
+    const q = new URLSearchParams({
+      page: String(page),
+      page_size: String(pageSize),
+    });
+    const r = await request(`/orders/me?${q}`);
+    return { items: r.data || [], meta: r.meta || {} };
+  }
+
+  async function getOrder(orderId) {
+    const r = await request(`/orders/me/${encodeURIComponent(orderId)}`);
+    return r.data;
+  }
+
+  async function getRazorpayConfig() {
+    const r = await request("/customer/payments/razorpay/config");
+    return r.data;
+  }
+
+  async function createRazorpayIntent(orderId) {
+    const r = await request("/customer/payments/razorpay/create", {
+      method: "POST",
+      body: { order_id: orderId },
+    });
+    return r.data;
+  }
+
+  async function verifyRazorpayPayment(payload) {
+    const r = await request("/customer/payments/razorpay/verify", {
+      method: "POST",
+      body: payload,
+    });
+    return r.data;
+  }
+
+  async function cancelRazorpayPayment(orderId) {
+    const r = await request("/customer/payments/razorpay/cancel", {
+      method: "POST",
+      body: { order_id: orderId },
+    });
+    return r.data;
+  }
+
   function downloadUrl(extra = {}) {
     const q = new URLSearchParams({
       utm_source: "website",
@@ -247,6 +351,16 @@ window.SabxiApi = (() => {
     quote,
     saveCart,
     getCart,
+    listAddresses,
+    createAddress,
+    quoteCoupon,
+    createOrder,
+    listOrders,
+    getOrder,
+    getRazorpayConfig,
+    createRazorpayIntent,
+    verifyRazorpayPayment,
+    cancelRazorpayPayment,
     downloadUrl,
   };
 })();

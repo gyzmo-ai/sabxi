@@ -66,7 +66,7 @@
         <div>
           <h1>${heroCopy[i]?.t || p.name}</h1>
           <p>${heroCopy[i]?.s || ""}</p>
-          <a class="btn" href="/product.html?id=${encodeURIComponent(p.product_id)}">Shop ${escape(p.name)}</a>
+          <a class="btn" href="/product.html?id=${encodeURIComponent(p.sku_id || p.product_id)}">Shop ${escape(p.name)}</a>
         </div>
         <div class="hero-media"><img src="${p.images[0]}" alt="${escape(p.name)}" /></div>
       </div>`
