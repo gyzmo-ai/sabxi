@@ -144,6 +144,72 @@ window.SabxiUI = (() => {
     });
   }
 
+  const INSTAGRAM_URL = "https://www.instagram.com/sabxi_studio/";
+  const MAPS_URL =
+    "https://www.google.com/maps/search/?api=1&query=SABXI+Chembur+Mumbai";
+  const APP_STORE =
+    "https://apps.apple.com/in/app/sabxi/id6783602290";
+  const PLAY_STORE =
+    "https://play.google.com/store/apps/details?id=com.sabxi.sabxi";
+
+  function socialIconInstagram() {
+    return `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>`;
+  }
+
+  function socialIconPin() {
+    return `<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden fill="none"><path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg>`;
+  }
+
+  function dismissAppSheet(overlay) {
+    overlay.remove();
+    try {
+      sessionStorage.setItem("sabxi_app_sheet_v2", "1");
+    } catch {}
+  }
+
+  let appSheetQueued = false;
+
+  function maybeShowAppSheet() {
+    if (appSheetQueued) return;
+    appSheetQueued = true;
+    try {
+      if (sessionStorage.getItem("sabxi_app_sheet_v2") === "1") return;
+    } catch {}
+    window.setTimeout(() => {
+      if (document.querySelector(".app-sheet-overlay")) return;
+      const overlay = document.createElement("div");
+      overlay.className = "app-sheet-overlay";
+      overlay.innerHTML = `
+<div class="app-sheet" role="dialog" aria-modal="true" aria-labelledby="app-sheet-title">
+  <div class="app-sheet-handle" aria-hidden="true"></div>
+  <button type="button" class="app-sheet-close" aria-label="Close">×</button>
+  <img src="/assets/logo.png" alt="SABXI" width="112" height="32" style="height:40px;width:auto;margin:0 auto 16px" />
+  <p class="app-sheet-kicker">Best experienced in the app</p>
+  <h2 id="app-sheet-title">Download SABXI for the full experience</h2>
+  <p>Fresh-cut veggies, live order tracking, and app-only offers — built for home cooks.</p>
+  <a class="app-sheet-primary" href="/download/?utm_source=website&utm_sub_source=app_sheet">Download the app</a>
+  <div class="app-sheet-stores">
+    <a href="${APP_STORE}">App Store</a>
+    <a href="${PLAY_STORE}">Google Play</a>
+  </div>
+  <button type="button" class="app-sheet-skip">Continue on web</button>
+</div>`;
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) dismissAppSheet(overlay);
+      });
+      overlay.querySelector(".app-sheet-close")?.addEventListener("click", () =>
+        dismissAppSheet(overlay)
+      );
+      overlay.querySelector(".app-sheet-skip")?.addEventListener("click", () =>
+        dismissAppSheet(overlay)
+      );
+      overlay.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => dismissAppSheet(overlay))
+      );
+      document.body.appendChild(overlay);
+    }, 1400);
+  }
+
   function headerAuthLabel() {
     const a = SabxiApi.auth();
     const el = document.querySelector("[data-auth-label]");
@@ -160,6 +226,7 @@ window.SabxiUI = (() => {
   function renderShellChrome() {
     SabxiCart.updateBadges();
     headerAuthLabel();
+    maybeShowAppSheet();
     const studio = SabxiApi.studio();
     document.querySelectorAll("[data-studio-label]").forEach((el) => {
       el.textContent = studio.name || "Chembur";
@@ -193,15 +260,16 @@ window.SabxiUI = (() => {
 </div>
 <header class="header">
   <div class="wrap header-row">
-    <a class="logo" href="/">
-      <img src="/assets/logo.png" alt="Sabxi" />
-      <span><span class="logo-word">SABXI</span><span class="logo-sub">Cut veggies &amp; fruits</span></span>
+    <a class="logo logo-only" href="/">
+      <img src="/assets/logo.png" alt="SABXI" />
     </a>
     <form class="search" action="/shop.html" method="get" role="search">
       <input name="q" type="search" placeholder="Search pineapple, spinach, juice…" autocomplete="off" />
       <button type="submit" aria-label="Search">⌕</button>
     </form>
     <div class="header-actions">
+      <a class="social-highlight hide-sm" href="${INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="SABXI on Instagram" title="Instagram">${socialIconInstagram()}</a>
+      <a class="social-highlight hide-sm" href="${MAPS_URL}" target="_blank" rel="noopener noreferrer" aria-label="SABXI on Google Maps" title="Google Maps">${socialIconPin()}</a>
       <a class="hide-sm" data-auth-label href="/login.html">Login</a>
       <a class="cart-btn" href="/cart.html">Cart <span class="cart-badge" data-cart-count hidden>0</span></a>
     </div>

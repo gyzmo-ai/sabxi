@@ -1,16 +1,17 @@
 /* SABXI web store — app + Flipkart hybrid */
 :root {
-  --orange: #FF6B00;
-  --orange-dark: #E55A00;
-  --green: #2E8540;
-  --ink: #172337;
-  --muted: #878787;
-  --line: #eceff1;
-  --bg: #f1f3f6;
+  --orange: #FF7A1A;
+  --orange-dark: #E86A10;
+  --green: #1F9D45;
+  --green-dark: #157A35;
+  --ink: #10231A;
+  --muted: #6B7B72;
+  --line: #E7ECE8;
+  --bg: #FBFCFB;
   --white: #fff;
   --shadow: 0 1px 3px rgba(0,0,0,.08);
   --radius: 10px;
-  --header-h: 64px;
+  --header-h: 58px;
   --bottom-h: 64px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,15 +46,23 @@ button, input { font: inherit; }
 }
 .header-row {
   display: grid; grid-template-columns: auto 1fr auto;
-  gap: 12px; align-items: center; padding: 10px 0;
+  gap: 12px; align-items: center; padding: 8px 0;
 }
 .logo { display: flex; align-items: center; gap: 8px; color: #fff; }
-.logo img { width: 34px; height: 34px; object-fit: contain; }
+.logo-only img { width: auto; height: 40px; object-fit: contain; }
 .logo-word {
   font-family: "Bebas Neue", Impact, sans-serif;
   font-size: 26px; letter-spacing: .06em; line-height: 1;
 }
 .logo-sub { display: block; font-size: 10px; opacity: .85; font-weight: 600; }
+.social-highlight {
+  display: grid; place-items: center;
+  width: 42px; height: 42px; border-radius: 14px;
+  background: #fff; color: var(--orange);
+  box-shadow: 0 4px 14px rgba(16, 35, 26, 0.18);
+  flex-shrink: 0;
+}
+.social-highlight svg { display: block; }
 .search {
   display: flex; background: #fff; border-radius: 8px; overflow: hidden;
   box-shadow: var(--shadow); min-width: 0;
@@ -348,5 +357,72 @@ footer {
 }
 @media (max-width: 640px) {
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .logo-word { font-size: 22px; }
+}
+
+/* Half-screen app download sheet */
+.app-sheet-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: flex-end; justify-content: center;
+  background: rgba(8, 20, 14, 0.52);
+  backdrop-filter: blur(4px);
+  animation: appSheetFade 0.28s ease;
+}
+.app-sheet {
+  width: 100%; max-width: 520px;
+  min-height: 50vh; max-height: min(85vh, 640px);
+  background: var(--white);
+  border-radius: 28px 28px 0 0;
+  padding: 12px 24px max(20px, env(safe-area-inset-bottom));
+  box-shadow: 0 -8px 40px rgba(16, 35, 26, 0.18);
+  text-align: center;
+  position: relative;
+  animation: appSheetUp 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.app-sheet-handle {
+  width: 44px; height: 5px; border-radius: 999px;
+  background: var(--line); margin: 0 auto 18px;
+}
+.app-sheet-close {
+  position: absolute; top: 14px; right: 16px;
+  width: 36px; height: 36px; border: 0; border-radius: 999px;
+  background: #F6F8F6; color: var(--muted); font-size: 20px; cursor: pointer;
+}
+.app-sheet-kicker {
+  margin: 0 0 8px; font-size: 12px; font-weight: 800;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange);
+}
+.app-sheet h2 {
+  margin: 0 0 10px; font-size: clamp(22px, 5vw, 28px);
+  line-height: 1.15; font-weight: 800; color: var(--ink);
+}
+.app-sheet p {
+  margin: 0 auto 22px; max-width: 340px;
+  font-size: 15px; line-height: 1.5; color: var(--muted);
+}
+.app-sheet-primary {
+  display: block; width: 100%; max-width: 360px; margin: 0 auto 10px;
+  padding: 15px 16px; border-radius: 16px;
+  background: var(--green); color: #fff; font-weight: 800; font-size: 16px;
+  box-shadow: 0 8px 24px rgba(31, 157, 69, 0.28);
+}
+.app-sheet-stores {
+  display: flex; gap: 8px; max-width: 360px; margin: 0 auto;
+}
+.app-sheet-stores a {
+  flex: 1; padding: 12px 10px; border-radius: 14px;
+  border: 1px solid var(--line); background: #F6F8F6;
+  font-weight: 700; font-size: 13px;
+}
+.app-sheet-skip {
+  display: block; width: 100%; margin-top: 14px;
+  border: 0; background: transparent; color: #9AA8A0;
+  font-size: 14px; font-weight: 600; padding: 10px; cursor: pointer;
+}
+@keyframes appSheetUp {
+  from { transform: translateY(100%); opacity: 0.6; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes appSheetFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
