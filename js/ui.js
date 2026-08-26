@@ -268,8 +268,8 @@ window.SabxiUI = (() => {
       <button type="submit" aria-label="Search">⌕</button>
     </form>
     <div class="header-actions">
-      <a class="social-highlight hide-sm" href="${INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="SABXI on Instagram" title="Instagram">${socialIconInstagram()}</a>
-      <a class="social-highlight hide-sm" href="${MAPS_URL}" target="_blank" rel="noopener noreferrer" aria-label="SABXI on Google Maps" title="Google Maps">${socialIconPin()}</a>
+      <a class="social-highlight" href="${INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer" aria-label="SABXI on Instagram" title="Instagram">${socialIconInstagram()}</a>
+      <a class="social-highlight" href="${MAPS_URL}" target="_blank" rel="noopener noreferrer" aria-label="SABXI on Google Maps" title="Google Maps">${socialIconPin()}</a>
       <a class="hide-sm" data-auth-label href="/login.html">Login</a>
       <a class="cart-btn" href="/cart.html">Cart <span class="cart-badge" data-cart-count hidden>0</span></a>
     </div>
