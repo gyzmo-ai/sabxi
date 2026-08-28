@@ -269,7 +269,7 @@ window.SabxiApi = (() => {
         delivery_address_id: delivery_address_id || null,
         delivery_address: delivery_address || null,
         delivery_pincode: delivery_pincode || s.pincode || null,
-        payment_mode: payment_mode || "cash",
+        payment_mode: payment_mode || "online",
         payment_status: "pending",
         coupon_code: coupon_code || null,
         notes: notes || "Placed via sabxi.com",

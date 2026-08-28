@@ -1,4 +1,4 @@
-/** Checkout — address + Razorpay / cash */
+/** Checkout — address + Razorpay (online only) */
 (async function checkoutPage() {
   const mount = document.getElementById("app");
   if (!mount) return;
@@ -30,7 +30,6 @@
   const state = {
     addresses: [],
     addressId: null,
-    payment: "online",
     coupon: "",
     quote: null,
     placing: false,
@@ -132,17 +131,8 @@
 
           <h2 class="checkout-title" style="margin-top:22px">Payment</h2>
           <div class="pay-list">
-            <label class="addr-card ${state.payment === "online" ? "on" : ""}">
-              <input type="radio" name="pay" value="online" ${
-                state.payment === "online" ? "checked" : ""
-              } />
+            <label class="addr-card on">
               <span><strong>Pay online</strong><div class="uom">UPI / card / netbanking via Razorpay</div></span>
-            </label>
-            <label class="addr-card ${state.payment === "cash" ? "on" : ""}">
-              <input type="radio" name="pay" value="cash" ${
-                state.payment === "cash" ? "checked" : ""
-              } />
-              <span><strong>Cash on delivery</strong><div class="uom">Pay when your order arrives</div></span>
             </label>
           </div>
 
@@ -173,13 +163,7 @@
           <button class="btn block" type="button" id="place-order" ${
             state.placing ? "disabled" : ""
           } style="margin-top:14px">
-            ${
-              state.placing
-                ? "Placing…"
-                : state.payment === "online"
-                  ? "Pay & place order"
-                  : "Place order"
-            }
+            ${state.placing ? "Placing…" : "Pay & place order"}
           </button>
           <a class="btn ghost block" style="margin-top:8px" href="/cart.html">Back to cart</a>
           <a class="btn ghost block" style="margin-top:8px" href="/orders.html">Order history</a>
@@ -189,12 +173,6 @@
     main.querySelectorAll('input[name="addr"]').forEach((el) => {
       el.onchange = () => {
         state.addressId = el.value;
-        render();
-      };
-    });
-    main.querySelectorAll('input[name="pay"]').forEach((el) => {
-      el.onchange = () => {
-        state.payment = el.value;
         render();
       };
     });
@@ -310,32 +288,25 @@
       const order = await SabxiApi.createOrder({
         items,
         delivery_address_id: state.addressId,
-        payment_mode: state.payment === "online" ? "online" : "cash",
+        payment_mode: "online",
         coupon_code: coupon || null,
         notes: "Placed via sabxi.com checkout",
       });
 
-      let paidOnline = false;
-      if (state.payment === "online") {
+      try {
+        const intent = await SabxiApi.createRazorpayIntent(order.id);
+        const rzResponse = await openRazorpay(intent);
+        await SabxiApi.verifyRazorpayPayment({
+          order_id: order.id,
+          razorpay_order_id: rzResponse.razorpay_order_id,
+          razorpay_payment_id: rzResponse.razorpay_payment_id,
+          razorpay_signature: rzResponse.razorpay_signature,
+        });
+      } catch (payErr) {
         try {
-          const intent = await SabxiApi.createRazorpayIntent(order.id);
-          const rzResponse = await openRazorpay(intent);
-          await SabxiApi.verifyRazorpayPayment({
-            order_id: order.id,
-            razorpay_order_id: rzResponse.razorpay_order_id,
-            razorpay_payment_id: rzResponse.razorpay_payment_id,
-            razorpay_signature: rzResponse.razorpay_signature,
-          });
-          paidOnline = true;
-        } catch (payErr) {
-          try {
-            await SabxiApi.cancelRazorpayPayment(order.id);
-          } catch {}
-          throw payErr;
-        }
-        if (!paidOnline) {
-          throw new Error("Payment was not completed");
-        }
+          await SabxiApi.cancelRazorpayPayment(order.id);
+        } catch {}
+        throw payErr;
       }
 
       SabxiCart.clear();
