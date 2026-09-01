@@ -2,156 +2,426 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download SABXI — App Store &amp; Google Play</title>
-  <meta name="description" content="Download the SABXI app for freshly cut vegetables, fruits and juices delivered in under 30 minutes.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Download SABXI — ₹100 off first order</title>
+  <meta name="description" content="Fresh-cut veggies, ready mixes &amp; cut fruit delivered in Chembur. ₹100 off your first order. Cash on delivery. Download the SABXI app.">
   <link rel="canonical" href="https://sabxi.com/download">
-  <meta name="theme-color" content="#FF6B00">
+  <meta name="theme-color" content="#1F9D45">
   <link rel="icon" href="../assets/logo-trans.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <style>
     :root {
-      --orange: #FF6B00;
-      --green: #2E8540;
-      --cream: #FAF8F5;
-      --ink: #141414;
-      --gray: #666;
+      --green: #1F9D45;
+      --green-dark: #157A35;
+      --green-light: #E7F6EC;
+      --orange: #FF7A1A;
+      --orange-light: #FFF1E6;
+      --ink: #10231A;
+      --text: #1C2B24;
+      --muted: #6B7B72;
+      --line: #E7ECE8;
       --white: #FFFFFF;
+      --bg: #FBFCFB;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      min-height: 100vh;
       font-family: Outfit, system-ui, sans-serif;
-      color: var(--ink);
-      background:
-        radial-gradient(900px 520px at 8% -8%, rgba(255,107,0,0.18) 0%, transparent 55%),
-        radial-gradient(800px 480px at 100% 0%, rgba(46,133,64,0.16) 0%, transparent 52%),
-        linear-gradient(165deg, #FAF8F5 0%, #FFF6EE 48%, #F3F8F3 100%);
-      display: grid;
-      place-items: center;
-      padding: 32px 20px;
+      background: var(--bg);
+      color: var(--text);
+      padding-bottom: 92px;
     }
-    main {
-      width: min(440px, 100%);
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; }
+    .topbar {
+      background: linear-gradient(90deg, var(--orange) 0%, #E86A10 100%);
+      color: #fff;
       text-align: center;
-    }
-    .logo {
-      width: min(148px, 42vw);
-      height: auto;
-      margin: 0 auto 18px;
-      display: block;
-    }
-    .eyebrow {
-      font-family: "Bebas Neue", Impact, sans-serif;
-      letter-spacing: 0.22em;
-      color: var(--orange);
-      font-size: 0.95rem;
-      margin-bottom: 0.4rem;
-    }
-    h1 {
-      font-size: clamp(1.8rem, 5vw, 2.15rem);
-      line-height: 1.12;
+      padding: 10px 16px;
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.65rem;
     }
-    .lead {
-      color: var(--gray);
-      font-size: 1rem;
-      line-height: 1.5;
-      margin-bottom: 1.6rem;
-    }
-    .store {
+    .nav {
       display: flex;
       align-items: center;
-      gap: 14px;
-      width: 100%;
-      padding: 14px 18px;
-      border-radius: 16px;
-      background: var(--ink);
-      color: var(--cream);
-      text-decoration: none;
-      text-align: left;
-      margin-bottom: 12px;
-      border: 1px solid rgba(20,20,20,0.12);
-      box-shadow: 0 10px 28px rgba(20,20,20,0.16);
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      justify-content: space-between;
+      padding: 14px 20px;
+      max-width: 720px;
+      margin: 0 auto;
     }
-    .store:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(20,20,20,0.2); }
-    .store .meta { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; opacity: 0.72; }
-    .store .name { font-size: 17px; font-weight: 800; margin-top: 2px; }
-    .store svg { flex-shrink: 0; }
-    .web {
+    .nav img { height: 40px; width: auto; }
+    .nav a { font-weight: 800; font-size: 13px; text-decoration: none; color: var(--ink); }
+    .hero {
+      padding: 8px 20px 36px;
+      background:
+        radial-gradient(900px 420px at 8% -10%, rgba(31,157,69,0.2), transparent 55%),
+        radial-gradient(700px 380px at 100% 0%, rgba(255,122,26,0.16), transparent 50%),
+        linear-gradient(165deg, #FBFCFB 0%, #E7F6EC 52%, #FFF8F1 100%);
+    }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    .kicker {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: clamp(32px, 8vw, 48px);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .lede {
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 20px;
+    }
+    .offers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .offer {
+      border-radius: 16px;
+      padding: 14px 14px 16px;
+    }
+    .offer.orange { background: var(--orange-light); border: 1px solid rgba(255,122,26,0.28); }
+    .offer.green { background: var(--green-light); border: 1px solid rgba(31,157,69,0.28); }
+    .offer .ey { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .offer.orange .ey { color: var(--orange); }
+    .offer.green .ey { color: var(--green-dark); }
+    .offer h3 { font-size: 22px; letter-spacing: -0.03em; color: var(--ink); }
+    .offer p { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .hero-img {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      margin-bottom: 18px;
+      box-shadow: 0 12px 36px rgba(16,35,26,0.08);
+    }
+    .hero-img img { width: 100%; }
+    .cta {
       display: block;
       width: 100%;
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(46,133,64,0.28);
-      background: var(--white);
-      color: var(--green);
+      text-align: center;
       text-decoration: none;
-      text-align: left;
+      background: var(--green);
+      color: #fff;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 15px 18px;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+    }
+    .alt {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .stores { display: flex; gap: 8px; margin-top: 8px; }
+    .store-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 10px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--ink);
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+    section.block { padding: 36px 20px; max-width: 720px; margin: 0 auto; }
+    h2 { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 8px; }
+    .sub { font-size: 15px; line-height: 1.5; color: var(--muted); margin-bottom: 18px; }
+    .step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 14px;
+      border-radius: 16px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      margin-bottom: 10px;
+    }
+    .n {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      border-radius: 12px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+    }
+    .step strong { display: block; font-size: 16px; color: var(--ink); }
+    .step span { font-size: 14px; color: var(--muted); }
+    .picked {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--orange-light);
+      color: var(--ink);
+      font-size: 14px;
       font-weight: 700;
     }
-    .web span { display: block; font-size: 12px; margin-top: 2px; opacity: 0.75; font-weight: 500; }
-    .note {
-      margin-top: 1.25rem;
-      font-size: 0.85rem;
-      color: var(--gray);
+    .picked.on { display: flex; }
+    .picked button {
+      flex-shrink: 0;
+      border: none;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
     }
-    .note a { color: var(--orange); font-weight: 700; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+    .card {
+      margin: 0;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--white);
+      text-align: left;
+      cursor: pointer;
+    }
+    .card.on { border-color: var(--orange); }
+    .card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: #F6F8F6; }
+    .card .meta { padding: 10px 10px 12px; }
+    .card .tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .card .name { font-weight: 800; font-size: 14px; color: var(--ink); margin-top: 2px; line-height: 1.25; }
+    .map-frame {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      margin-bottom: 12px;
+      height: 300px;
+    }
+    #map { height: 100%; width: 100%; background: #F6F8F6; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .chip {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--green-light);
+      color: var(--green-dark);
+    }
+    .ghost {
+      display: inline-block;
+      text-decoration: none;
+      background: var(--white);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+    }
+    .ig {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .ig a { line-height: 0; border-radius: 10px; overflow: hidden; }
+    .ig img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+    .ig-btn {
+      background: linear-gradient(90deg, #F58529, #DD2A7B, #8134AF);
+    }
+    .finale {
+      border-radius: 24px;
+      padding: 28px 20px;
+      background: var(--ink);
+      color: #FAF8F5;
+      text-align: center;
+    }
+    .finale .kicker { color: var(--orange); }
+    .finale h2 { color: #FAF8F5; font-size: 26px; margin-bottom: 10px; }
+    .finale .sub { color: rgba(250,248,245,0.78); }
+    .finale .alt { color: rgba(250,248,245,0.7); }
+    footer {
+      padding: 8px 20px 28px;
+      text-align: center;
+      color: #9AA8A0;
+      font-size: 13px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    footer a { color: var(--green); font-weight: 700; }
+    .sticky {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 40;
+      padding: 10px 16px max(12px, env(safe-area-inset-bottom));
+      background: rgba(251,252,251,0.94);
+      border-top: 1px solid var(--line);
+      transform: translateY(110%);
+      transition: transform 0.28s ease;
+    }
+    .sticky.on { transform: translateY(0); }
   </style>
 </head>
 <body>
-  <main>
-    <img class="logo" src="../assets/logo-trans.png" alt="SABXI" width="148" height="148">
-    <p class="eyebrow">SABXI</p>
-    <h1>Freshly Cut. Quickly Delivered.</h1>
-    <p class="lead" id="status">Get the Sabxi app on iOS or Android.</p>
+  <div class="topbar">₹100 off first order · Cash on delivery in Chembur</div>
+  <header class="nav">
+    <img src="../assets/logo-trans.png" alt="SABXI">
+    <a href="https://www.instagram.com/sabxi_studio/" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </header>
 
-    <a class="store" id="appStore" href="https://apps.apple.com/in/app/sabxi/id6783602290" target="_blank" rel="noopener noreferrer">
-      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="currentColor" d="M16.365 1.43c0 1.14-.42 2.2-1.22 3.02-.9.92-2.2 1.53-3.35 1.44-.13-1.1.4-2.27 1.18-3.08.9-.95 2.34-1.62 3.39-1.38zM20.76 17.36c-.58 1.3-.86 1.88-1.61 3.03-1.04 1.57-2.51 3.52-4.33 3.54-1.62.02-2.04-1.05-4.25-1.04-2.21.01-2.67 1.07-4.3 1.05-1.81-.02-3.2-1.78-4.24-3.35C.18 17.5-.9 13.2.95 10.3c1.05-1.65 2.72-2.69 4.28-2.69 1.6 0 2.6 1.07 4.4 1.07 1.75 0 2.5-1.08 4.42-1.08 1.4 0 2.88.76 3.93 2.07-3.46 1.9-2.9 6.85.78 7.69z"/>
-      </svg>
-      <span>
-        <div class="meta">Download on the</div>
-        <div class="name">App Store</div>
-      </span>
-    </a>
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">Chembur kitchen · 5 km delivery</p>
+      <h1>Freshly cut.<br>Quickly delivered.</h1>
+      <p class="lede">Ready-to-cook mixes, cut fruit boxes &amp; juices — chopping done, you just cook.</p>
+      <div class="offers">
+        <div class="offer orange">
+          <div class="ey">First order</div>
+          <h3>₹100 off</h3>
+          <p>Code FIRST100 · min ₹200</p>
+        </div>
+        <div class="offer green">
+          <div class="ey">Pay at the door</div>
+          <h3>COD available</h3>
+          <p>Cash when it arrives</p>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="products/hero-mix-tray.jpg" alt="SABXI fresh-cut vegetable tray">
+      </div>
+      <div id="download-now">
+        <a class="cta" id="primaryCta" href="https://play.google.com/store/apps/details?id=com.sabxi.sabxi">Download the SABXI app</a>
+        <div class="stores" id="desktopStores">
+          <a class="store-btn" id="appStore" href="https://apps.apple.com/in/app/sabxi/id6783602290">App Store</a>
+          <a class="store-btn" id="playStore" href="https://play.google.com/store/apps/details?id=com.sabxi.sabxi">Google Play</a>
+        </div>
+        <a class="alt" id="otherStore" href="#" hidden></a>
+      </div>
+    </div>
+  </section>
 
-    <a class="store" id="playStore" href="https://play.google.com/store/apps/details?id=com.sabxi.sabxi" target="_blank" rel="noopener noreferrer">
-      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="#00F076" d="M3 2.5v19L13.2 12z"/>
-        <path fill="#FFD500" d="M13.2 12 3 21.5l14.2-4.1z"/>
-        <path fill="#FF3A44" d="M17.2 6.6 3 2.5 13.2 12z"/>
-        <path fill="#00F0FF" d="M17.2 6.6 13.2 12l4 5.4L21 12z"/>
-      </svg>
-      <span>
-        <div class="meta">Get it on</div>
-        <div class="name">Google Play</div>
-      </span>
-    </a>
+  <section class="block">
+    <h2>How it works</h2>
+    <p class="sub">Three steps. No chopping. No market run.</p>
+    <div class="step"><div class="n">1</div><div><strong>Download the app</strong><span>iOS or Android. Takes a minute.</span></div></div>
+    <div class="step"><div class="n">2</div><div><strong>Pick tonight’s cook</strong><span>Mixes, cut fruit, juices — browse and add.</span></div></div>
+    <div class="step"><div class="n">3</div><div><strong>We cut. Then we ride.</strong><span>Fresh from the Chembur kitchen, COD or online.</span></div></div>
+  </section>
 
-    <a class="web" href="https://sabxi.com/">
-      Continue on sabxi.com
-      <span>Fresh produce, cut packs &amp; juices</span>
-    </a>
+  <section class="block">
+    <h2>What’s cooking tonight?</h2>
+    <p class="sub">20 packs to browse. Tap one — then download the app to order.</p>
+    <div class="picked" id="picked"><span id="pickedText"></span><button type="button" id="pickedDl">Download</button></div>
+    <div class="grid" id="grid"></div>
+    <button type="button" class="cta" style="margin-top:16px" id="browseDl">Download to order these</button>
+  </section>
 
-    <p class="note">Having trouble? Open <a href="https://erp.sabxi.com/download">erp.sabxi.com/download</a>.</p>
-  </main>
+  <section class="block">
+    <h2>We deliver 5 km around Chembur</h2>
+    <p class="sub">From the SABXI kitchen — not a dark store. If you’re in the green circle, we ride to you.</p>
+    <div class="map-frame"><div id="map" role="img" aria-label="Map of Chembur with a 5 kilometre delivery radius"></div></div>
+    <div class="chips">
+      <span class="chip">Chembur</span>
+      <span class="chip">Tilak Nagar</span>
+      <span class="chip">Kurla</span>
+      <span class="chip">Ghatkopar</span>
+      <span class="chip">Govandi</span>
+      <span class="chip">Sion</span>
+    </div>
+    <a class="ghost" href="https://www.google.com/maps/search/?api=1&query=SABXI+Chembur+Mumbai" target="_blank" rel="noopener noreferrer">Open kitchen on Google Maps</a>
+  </section>
 
+  <section class="block">
+    <p class="kicker">Hygiene, packs, kitchen</p>
+    <h2>Don’t trust us. Check Instagram.</h2>
+    <p class="sub">Real trays, real cutting, real Chembur. See @sabxi_studio before you download — then come back and grab ₹100 off.</p>
+    <div class="ig" id="ig"></div>
+    <a class="cta ig-btn" href="https://www.instagram.com/sabxi_studio/" target="_blank" rel="noopener noreferrer">Open @sabxi_studio</a>
+  </section>
+
+  <section class="block" style="padding-top:8px;padding-bottom:40px">
+    <div class="finale">
+      <p class="kicker">Ready when you are</p>
+      <h2>Download SABXI. First order ₹100 off.</h2>
+      <p class="sub">Mixes, cut fruit, COD — Chembur, 5 km.</p>
+      <a class="cta" id="finaleCta" href="https://play.google.com/store/apps/details?id=com.sabxi.sabxi">Download the SABXI app</a>
+      <a class="alt" href="https://sabxi.com/">Or continue on sabxi.com</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Questions? <a href="https://wa.me/918319632141?text=Hi%20Riya!%20I%20came%20from%20sabxi.com%2Fdownload">Chat with Riya on WhatsApp</a></p>
+    <p>© SABXI · Fresh. Convenient. Delivered.</p>
+  </footer>
+
+  <div class="sticky" id="sticky">
+    <a class="cta" id="stickyCta" href="https://play.google.com/store/apps/details?id=com.sabxi.sabxi">Download · ₹100 off</a>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     (function () {
-      var APP =
-        "https://apps.apple.com/in/app/sabxi/id6783602290";
-      var PLAY =
-        "https://play.google.com/store/apps/details?id=com.sabxi.sabxi";
-      var WEB = "https://sabxi.com/";
+      var PLAY = "https://play.google.com/store/apps/details?id=com.sabxi.sabxi";
+      var APP = "https://apps.apple.com/in/app/sabxi/id6783602290";
       var API_BASE = "https://api.sabxi.com/api/v1";
-      var API = API_BASE + "/public/download/config";
-      var EVENTS = API_BASE + "/public/download/events";
+      var PRODUCTS = [
+        ["Rajma Mix", "Ready to cook", "products/rajma-mix.jpg"],
+        ["Chole Mix", "Ready to cook", "products/chole-mix.jpg"],
+        ["Whole Cut Pineapple", "Cut fruit", "products/whole-cut-pineapple.jpg"],
+        ["Cut Fruits Box", "Ready to eat", "products/cut-fruits-box.jpg"],
+        ["Hakka Noodle Mix", "Ready to cook", "products/hakka-noodle-mix.jpg"],
+        ["Poha Mix", "Breakfast", "products/poha-mix.jpg"],
+        ["Fried Rice Mix", "Ready to cook", "products/fried-rice-mix.jpg"],
+        ["Pav Bhaji Mix", "Ready to cook", "products/pav-bhaji-mix.jpg"],
+        ["Palak Paneer Mix", "Ready to cook", "products/palak-paneer-mix.jpg"],
+        ["Kadai Paneer Mix", "Ready to cook", "products/kadai-paneer-mix.jpg"],
+        ["Bhindi Masala Mix", "Ready to cook", "products/bhindi-masala-mix.jpg"],
+        ["Sambar Mix", "Ready to cook", "products/sambar-mix.jpg"],
+        ["Dal Tadka Mix", "Ready to cook", "products/dal-tadka-mix.jpg"],
+        ["Bhel Puri Mix", "Chaat", "products/bhel-puri-mix.jpg"],
+        ["Sprouts Chaat", "Ready to eat", "products/sprouts-chaat.jpg"],
+        ["Fruit Chaat Box", "Cut fruit", "products/fruit-chaat.jpg"],
+        ["Cut Watermelon", "Cut fruit", "products/cut-watermelon.jpg"],
+        ["Fitness Fruit Pack", "Cut fruit", "products/fitness-fruit-pack.jpg"],
+        ["Farmhouse Pizza Mix", "Ready to cook", "products/pizza-mix.jpg"],
+        ["Pineapple", "Whole fruit", "products/pineapple.jpg"]
+      ];
 
       function device() {
         var ua = navigator.userAgent || "";
@@ -161,91 +431,137 @@
         return "desktop";
       }
 
-      function pick(d, cfg) {
-        if (d === "android" && cfg.play) return { url: cfg.play, dest: "play_store", label: "Google Play" };
-        if (d === "ios" && cfg.app) return { url: cfg.app, dest: "app_store", label: "the App Store" };
-        return { url: cfg.web || WEB, dest: "web", label: "sabxi.com" };
-      }
-
-      // utm_source / utm_sub_source (also fixes a mistaken second "?" → "&")
       function attribution() {
         var raw = (window.location.search || "").replace(/^\?/, "").replace(/\?/g, "&");
         var params = new URLSearchParams(raw);
-        var source = (
-          params.get("utm_source") ||
-          params.get("source") ||
-          params.get("utm_campaign") ||
-          ""
-        ).trim().slice(0, 64);
-        var sub = (
-          params.get("utm_sub_source") ||
-          params.get("utm_content") ||
-          params.get("utm_medium") ||
-          params.get("utm_term") ||
-          ""
-        ).trim().slice(0, 64);
-        return {
-          source: source || "sabxi_com",
-          sub_source: sub || null,
-        };
+        var source = (params.get("utm_source") || params.get("source") || params.get("utm_campaign") || "").trim().slice(0, 64);
+        var sub = (params.get("utm_sub_source") || params.get("utm_content") || params.get("utm_medium") || params.get("utm_term") || "").trim().slice(0, 64);
+        return { source: source || "sabxi_com", sub_source: sub || null };
       }
 
-      function recordEvent(deviceType, destination) {
-        var attr = attribution();
-        try {
-          fetch(EVENTS, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify({
-              device_type: deviceType,
-              destination: destination,
-              user_agent: (navigator.userAgent || "").slice(0, 512),
-              source: attr.source,
-              sub_source: attr.sub_source,
-            }),
-            keepalive: true,
-          }).catch(function () {});
-        } catch (e) {}
+      var d = device();
+      var playHref = PLAY;
+      var appHref = APP;
+      var primaryHref = d === "ios" ? APP : PLAY;
+      var primaryLabel = d === "ios" ? "Download on the App Store" : d === "android" ? "Get it on Google Play" : "Download the SABXI app";
+
+      function applyLinks() {
+        ["primaryCta", "finaleCta", "stickyCta"].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          el.href = primaryHref;
+          if (id === "stickyCta") el.textContent = primaryLabel + " · ₹100 off";
+          else el.textContent = primaryLabel;
+        });
+        var app = document.getElementById("appStore");
+        var play = document.getElementById("playStore");
+        if (app) app.href = appHref;
+        if (play) play.href = playHref;
+        var desk = document.getElementById("desktopStores");
+        var other = document.getElementById("otherStore");
+        if (d === "desktop") {
+          if (desk) desk.hidden = false;
+          if (other) other.hidden = true;
+        } else {
+          if (desk) desk.hidden = true;
+          if (other) {
+            other.hidden = false;
+            other.href = d === "ios" ? playHref : appHref;
+            other.textContent = d === "ios" ? "Prefer Google Play?" : "Prefer App Store?";
+          }
+        }
       }
+      applyLinks();
 
-      var statusEl = document.getElementById("status");
-      var cfg = { play: PLAY, app: APP, web: WEB };
-      var recorded = false;
-
-      fetch(API, { cache: "no-store" })
+      fetch(API_BASE + "/public/download/config", { cache: "no-store" })
         .then(function (r) { return r.json(); })
         .then(function (payload) {
           var data = payload && payload.data;
           if (!data) return;
-          if (data.play_store_url) cfg.play = data.play_store_url;
-          if (data.app_store_url) cfg.app = data.app_store_url;
-          if (data.web_url) cfg.web = data.web_url;
-          var a = document.getElementById("appStore");
-          var p = document.getElementById("playStore");
-          if (a) a.href = cfg.app;
-          if (p) p.href = cfg.play;
+          if (data.play_store_url) playHref = data.play_store_url;
+          if (data.app_store_url) appHref = data.app_store_url;
+          primaryHref = d === "ios" ? appHref : playHref;
+          applyLinks();
         })
-        .catch(function () {})
-        .finally(function () {
-          var d = device();
-          var chosen = pick(d, cfg);
-          if (!recorded) {
-            recorded = true;
-            recordEvent(d, chosen.dest);
-          }
-          if (statusEl) statusEl.textContent = "Opening " + chosen.label + "…";
-          // Mobile: auto-open the matching store. Desktop stays on this page.
-          if (d === "android" || d === "ios") {
-            window.setTimeout(function () {
-              window.location.replace(chosen.url);
-            }, 1200);
-          } else if (statusEl) {
-            statusEl.textContent = "Get the Sabxi app on iOS or Android.";
-          }
+        .catch(function () {});
+
+      try {
+        var attr = attribution();
+        fetch(API_BASE + "/public/download/events", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            device_type: d,
+            destination: d === "ios" ? "app_store" : d === "android" ? "play_store" : "web",
+            user_agent: (navigator.userAgent || "").slice(0, 512),
+            source: attr.source,
+            sub_source: attr.sub_source
+          }),
+          keepalive: true
+        }).catch(function () {});
+      } catch (e) {}
+
+      var grid = document.getElementById("grid");
+      var ig = document.getElementById("ig");
+      var picked = document.getElementById("picked");
+      PRODUCTS.forEach(function (item, i) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "card";
+        btn.innerHTML = '<img src="' + item[2] + '" alt=""><div class="meta"><div class="tag">' + item[1] + '</div><div class="name">' + item[0] + "</div></div>";
+        btn.addEventListener("click", function () {
+          Array.prototype.forEach.call(grid.querySelectorAll(".card"), function (c) { c.classList.remove("on"); });
+          btn.classList.add("on");
+          document.getElementById("pickedText").textContent = item[0] + " is in the app — ₹100 off your first order.";
+          picked.classList.add("on");
+          document.getElementById("sticky").classList.add("on");
         });
+        grid.appendChild(btn);
+        if (i < 6) {
+          var a = document.createElement("a");
+          a.href = "https://www.instagram.com/sabxi_studio/";
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.innerHTML = '<img src="' + item[2] + '" alt="' + item[0] + '">';
+          ig.appendChild(a);
+        }
+      });
+
+      function goDownload() {
+        document.getElementById("download-now").scrollIntoView({ behavior: "smooth" });
+      }
+      document.getElementById("pickedDl").addEventListener("click", goDownload);
+      document.getElementById("browseDl").addEventListener("click", goDownload);
+      window.addEventListener("scroll", function () {
+        document.getElementById("sticky").classList.toggle("on", window.scrollY > 280);
+      }, { passive: true });
+
+      function setupMap() {
+        if (!window.L) return;
+        var map = L.map("map", { scrollWheelZoom: false, zoomControl: true }).setView([19.055, 72.899], 13);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
+          maxZoom: 18
+        }).addTo(map);
+        var circle = L.circle([19.055, 72.899], {
+          radius: 5000,
+          color: "#1F9D45",
+          weight: 2,
+          fillColor: "#1F9D45",
+          fillOpacity: 0.18
+        }).addTo(map);
+        L.circleMarker([19.055, 72.899], {
+          radius: 9,
+          color: "#fff",
+          weight: 3,
+          fillColor: "#FF7A1A",
+          fillOpacity: 1
+        }).bindPopup("SABXI Chembur kitchen").addTo(map);
+        map.fitBounds(circle.getBounds(), { padding: [28, 28], maxZoom: 13 });
+        setTimeout(function () { map.invalidateSize(); }, 280);
+      }
+      if (document.readyState === "complete") setupMap();
+      else window.addEventListener("load", setupMap);
     })();
   </script>
 </body>
