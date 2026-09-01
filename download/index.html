@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Download SABXI — ₹100 off first order</title>
-  <meta name="description" content="Fresh-cut veggies, ready mixes &amp; cut fruit delivered in Chembur. ₹100 off your first order. Cash on delivery. Download the SABXI app.">
+  <title>Download SABXI — ₹100 off on ₹200</title>
+  <meta name="description" content="₹100 off your first SABXI order on ₹200. Cash on delivery. Mixes, cut fruit, raw veggies — Chembur, 5 km.">
   <link rel="canonical" href="https://sabxi.com/download">
   <meta name="theme-color" content="#FAF8F5">
   <link rel="icon" href="../assets/logo-trans.png">
@@ -59,28 +59,29 @@
       justify-content: space-between;
       padding: 8px 0 20px;
     }
-    .copy { padding: 0 22px; }
+    .copy { padding: 4px 22px 0; }
     .kicker {
       font-size: 11px; font-weight: 800;
       letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--orange); margin-bottom: 8px;
+      color: var(--muted); margin-bottom: 6px;
       animation: rise 0.7s ease both;
     }
-    h1 {
-      font-size: clamp(32px, 9vw, 48px);
-      line-height: 0.98; font-weight: 800;
-      letter-spacing: -0.045em; margin: 0 0 14px;
+    h1 { margin: 0; animation: rise 0.75s ease both; animation-delay: 0.06s; }
+    .hero-off {
+      font-size: clamp(56px, 16vw, 84px);
+      line-height: 0.86; font-weight: 800;
+      letter-spacing: -0.07em; color: var(--orange);
     }
-    h1 span { display: block; animation: rise 0.75s ease both; }
-    h1 span:last-child { animation-delay: 0.12s; }
-    .chips { display: flex; gap: 8px; animation: rise 0.8s ease both; animation-delay: 0.18s; }
-    .chip {
-      font-size: 13px; font-weight: 800;
-      padding: 8px 12px; border-radius: 999px;
-      letter-spacing: -0.02em;
+    .hero-on {
+      margin-top: 6px;
+      font-size: clamp(22px, 6vw, 30px);
+      line-height: 1.05; font-weight: 800; letter-spacing: -0.04em;
     }
-    .off { background: var(--orange); color: #fff; }
-    .cod { background: #e7f6ec; color: var(--green-dark); }
+    .hero-meta {
+      margin-top: 10px; font-size: 14px; font-weight: 700;
+      color: var(--green-dark);
+      animation: rise 0.8s ease both; animation-delay: 0.14s;
+    }
     .film { position: relative; margin: 12px 0; animation: rise 0.85s ease both; animation-delay: 0.22s; }
     .track {
       display: flex; gap: 12px;
@@ -180,12 +181,13 @@
     @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
     @keyframes sheet { from { transform: translateY(24px); } to { transform: translateY(0); } }
     @media (max-height: 700px) {
-      h1 { font-size: 30px; }
+      .hero-off { font-size: 48px; }
+      .hero-on { font-size: 20px; }
       .card { flex-basis: min(46vw, 168px); }
       .caption { min-height: 32px; padding-top: 6px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .kicker, h1 span, .chips, .film, .dock, .cta, .card.on .shot img { animation: none; }
+      .kicker, h1, .hero-meta, .film, .dock, .cta, .card.on .shot img { animation: none; }
     }
   </style>
 </head>
@@ -203,12 +205,12 @@
     </header>
     <div class="main">
       <div class="copy">
-        <p class="kicker">Chembur · 5 km · COD</p>
-        <h1><span>Freshly cut.</span><span>Quickly delivered.</span></h1>
-        <div class="chips">
-          <span class="chip off">₹100 off first order</span>
-          <span class="chip cod">Cash on delivery</span>
-        </div>
+        <p class="kicker">First order · Chembur</p>
+        <h1>
+          <div class="hero-off">₹100 off</div>
+          <div class="hero-on">on ₹200</div>
+        </h1>
+        <p class="hero-meta">Cash on delivery · FIRST100</p>
       </div>
       <div class="film">
         <div class="track" id="track"></div>
@@ -254,24 +256,25 @@
       var PRODUCTS = [
         ["Rajma Mix", "Ready to cook", "products/rajma-mix.jpg"],
         ["Chole Mix", "Ready to cook", "products/chole-mix.jpg"],
+        ["Hakka Noodle Mix", "Ready to cook", "products/hakka-noodle-mix.jpg"],
         ["Whole Cut Pineapple", "Cut fruit", "products/whole-cut-pineapple.jpg"],
         ["Cut Fruits Box", "Ready to eat", "products/cut-fruits-box.jpg"],
-        ["Hakka Noodle Mix", "Ready to cook", "products/hakka-noodle-mix.jpg"],
-        ["Poha Mix", "Breakfast", "products/poha-mix.jpg"],
-        ["Fried Rice Mix", "Ready to cook", "products/fried-rice-mix.jpg"],
-        ["Pav Bhaji Mix", "Ready to cook", "products/pav-bhaji-mix.jpg"],
-        ["Palak Paneer Mix", "Ready to cook", "products/palak-paneer-mix.jpg"],
-        ["Kadai Paneer Mix", "Ready to cook", "products/kadai-paneer-mix.jpg"],
-        ["Bhindi Masala Mix", "Ready to cook", "products/bhindi-masala-mix.jpg"],
-        ["Sambar Mix", "Ready to cook", "products/sambar-mix.jpg"],
-        ["Dal Tadka Mix", "Ready to cook", "products/dal-tadka-mix.jpg"],
-        ["Bhel Puri Mix", "Chaat", "products/bhel-puri-mix.jpg"],
-        ["Sprouts Chaat", "Ready to eat", "products/sprouts-chaat.jpg"],
-        ["Fruit Chaat Box", "Cut fruit", "products/fruit-chaat.jpg"],
-        ["Cut Watermelon", "Cut fruit", "products/cut-watermelon.jpg"],
-        ["Fitness Fruit Pack", "Cut fruit", "products/fitness-fruit-pack.jpg"],
-        ["Farmhouse Pizza Mix", "Ready to cook", "products/pizza-mix.jpg"],
-        ["Pineapple", "Whole fruit", "products/pineapple.jpg"]
+        ["Tomato", "Raw veg", "products/tomato.jpg"],
+        ["Onion", "Raw veg", "products/onion.jpg"],
+        ["Potato", "Raw veg", "products/potato.jpg"],
+        ["Carrot", "Raw veg", "products/carrot.jpg"],
+        ["Spinach", "Raw veg", "products/spinach.jpg"],
+        ["Cauliflower", "Raw veg", "products/cauliflower.jpg"],
+        ["Broccoli", "Raw veg", "products/broccoli.jpg"],
+        ["Capsicum", "Raw veg", "products/capsicum.jpg"],
+        ["Apple", "Raw fruit", "products/apple.jpg"],
+        ["Mango", "Raw fruit", "products/mango.jpg"],
+        ["Pomegranate", "Raw fruit", "products/pomegranate.jpg"],
+        ["Watermelon", "Raw fruit", "products/watermelon.jpg"],
+        ["Grapes", "Raw fruit", "products/grapes.jpg"],
+        ["Orange", "Raw fruit", "products/orange.jpg"],
+        ["Banana", "Raw fruit", "products/banana.jpg"],
+        ["Papaya", "Raw fruit", "products/papaya.jpg"]
       ];
       var track = document.getElementById("track");
       var active = 0, paused = false, mapReady = false, toastTimer = 0;
@@ -320,7 +323,8 @@
       });
       setInterval(function () {
         if (paused || document.getElementById("sheet").classList.contains("on")) return;
-        goTo((active + 1) % PRODUCTS.length);
+        if (active >= PRODUCTS.length - 1) return;
+        goTo(active + 1);
       }, 2800);
 
       function device() {
