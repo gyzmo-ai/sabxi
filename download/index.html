@@ -48,6 +48,7 @@
       width: 40px; height: 40px;
       border-radius: 12px; overflow: hidden;
       text-decoration: none; line-height: 0; flex-shrink: 0;
+      border: 0; padding: 0; background: transparent; cursor: pointer;
     }
     .ig svg { display: block; width: 40px; height: 40px; }
     .main {
@@ -137,6 +138,15 @@
     }
     .ig-link { display: inline-flex; align-items: center; gap: 7px; }
     .ig-link svg { width: 18px; height: 18px; border-radius: 5px; flex-shrink: 0; }
+    .ig-sheet { padding: 4px 22px 24px; text-align: center; }
+    .ig-sheet img {
+      width: min(280px, 78%); height: auto; margin: 0 auto 14px;
+      display: block; border-radius: 22px;
+    }
+    .ig-sheet p {
+      margin: 0 0 16px; font-size: 14px; font-weight: 600;
+      color: var(--muted); line-height: 1.4;
+    }
     .other {
       display: block; text-align: center; margin-top: 6px;
       font-size: 12px; font-weight: 700; color: var(--muted); text-decoration: none;
@@ -201,7 +211,7 @@
   <div class="stage">
     <header class="nav">
       <img src="../assets/logo-trans.png" alt="SABXI">
-      <a class="ig" href="https://www.instagram.com/sabxi_studio/" target="_blank" rel="noopener noreferrer" aria-label="SABXI on Instagram">
+      <button class="ig" type="button" id="openIgNav" aria-label="Follow SABXI on Instagram">
         <svg viewBox="0 0 24 24" aria-hidden>
           <defs>
             <radialGradient id="igNav" cx="30%" cy="107%" r="150%">
@@ -216,7 +226,7 @@
           <circle cx="12" cy="12" r="3.3" fill="none" stroke="#fff" stroke-width="1.7"/>
           <circle cx="16.35" cy="7.65" r="1.05" fill="#fff"/>
         </svg>
-      </a>
+      </button>
     </header>
     <div class="main">
       <div class="copy">
@@ -241,7 +251,7 @@
         <a class="other" id="other" href="https://apps.apple.com/in/app/sabxi/id6783602290">Prefer App Store?</a>
         <div class="links">
           <button class="link" type="button" id="openMap">5 km map</button>
-          <a class="link ig-link" href="https://www.instagram.com/sabxi_studio/" target="_blank" rel="noopener noreferrer">
+          <button class="link ig-link" type="button" id="openIg">
             <svg viewBox="0 0 24 24" aria-hidden>
               <defs>
                 <radialGradient id="igTrust" cx="30%" cy="107%" r="150%">
@@ -256,8 +266,8 @@
               <circle cx="12" cy="12" r="3.3" fill="none" stroke="#fff" stroke-width="1.7"/>
               <circle cx="16.35" cy="7.65" r="1.05" fill="#fff"/>
             </svg>
-            Don’t trust us? See the kitchen
-          </a>
+            Follow us to trust our hygiene
+          </button>
         </div>
       </div>
     </div>
@@ -277,6 +287,19 @@
         <span class="area">Govandi</span>
         <span class="area">Sion</span>
         <a class="link" href="https://www.google.com/maps/search/?api=1&query=SABXI+Chembur+Mumbai" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+      </div>
+    </div>
+  </div>
+  <div class="sheet" id="igSheet">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Follow us to trust our hygiene</h2>
+        <button class="close" type="button" id="closeIg" aria-label="Close">×</button>
+      </div>
+      <div class="ig-sheet">
+        <img src="products/instagram-qr.jpg" alt="Scan to follow @sabxi_studio on Instagram">
+        <p>Scan to follow @sabxi_studio — see the cut, the kitchen, the packs.</p>
+        <a class="cta" href="https://www.instagram.com/sabxi_studio/" target="_blank" rel="noopener noreferrer">Open Instagram</a>
       </div>
     </div>
   </div>
@@ -354,7 +377,7 @@
         setTimeout(function () { paused = false; }, 4000);
       });
       setInterval(function () {
-        if (paused || document.getElementById("sheet").classList.contains("on")) return;
+        if (paused || document.getElementById("sheet").classList.contains("on") || document.getElementById("igSheet").classList.contains("on")) return;
         if (active >= PRODUCTS.length - 1) return;
         goTo(active + 1);
       }, 2800);
@@ -432,6 +455,14 @@
       document.getElementById("closeMap").onclick = function () { sheet.classList.remove("on"); };
       sheet.addEventListener("click", function (e) {
         if (e.target === sheet) sheet.classList.remove("on");
+      });
+      var igSheet = document.getElementById("igSheet");
+      function openIg() { igSheet.classList.add("on"); }
+      document.getElementById("openIg").onclick = openIg;
+      document.getElementById("openIgNav").onclick = openIg;
+      document.getElementById("closeIg").onclick = function () { igSheet.classList.remove("on"); };
+      igSheet.addEventListener("click", function (e) {
+        if (e.target === igSheet) igSheet.classList.remove("on");
       });
     })();
   </script>
