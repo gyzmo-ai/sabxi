@@ -205,6 +205,159 @@
     @media (prefers-reduced-motion: reduce) {
       .kicker, h1, .hero-meta, .film, .dock, .cta, .card.on .shot img { animation: none; }
     }
+    /* Composed storefront layout */
+    .stage {
+      position: relative; isolation: isolate;
+      background:
+        radial-gradient(circle at 8% 92%, rgba(255,122,26,.17), transparent 28%),
+        radial-gradient(circle at 92% 10%, rgba(31,157,69,.16), transparent 27%),
+        #f8f4ed;
+    }
+    .stage::before, .stage::after {
+      content: ""; position: fixed; z-index: -1; border-radius: 999px;
+      pointer-events: none;
+    }
+    .stage::before { width: 220px; height: 220px; top: -125px; right: 14%; background: #ffd9b7; }
+    .stage::after { width: 160px; height: 160px; left: -80px; bottom: -85px; background: #bfe8c9; }
+    .nav { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 18px 0 4px; }
+    .nav img { height: 34px; }
+    .ig {
+      width: auto; height: 40px; padding: 0 13px 0 5px; gap: 8px;
+      display: flex; background: rgba(255,255,255,.78);
+      border: 1px solid rgba(16,35,26,.08);
+      box-shadow: 0 8px 24px rgba(16,35,26,.08);
+    }
+    .ig::after {
+      content: "See our kitchen"; color: var(--ink);
+      font-size: 12px; font-weight: 800; line-height: 1;
+    }
+    .ig svg { width: 30px; height: 30px; }
+    .main {
+      width: min(1180px, calc(100% - 48px)); margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(310px,.82fr) minmax(440px,1.35fr);
+      grid-template-rows: minmax(0,1fr) auto;
+      gap: 18px 22px; padding: 14px 0 22px;
+    }
+    .copy {
+      position: relative; overflow: hidden; display: flex;
+      flex-direction: column; justify-content: center;
+      padding: clamp(25px,4vw,48px); border-radius: 34px;
+      color: #fffdf7;
+      background: radial-gradient(circle at 100% 0,rgba(255,179,94,.34),transparent 40%),
+                  linear-gradient(145deg,#173c2a,#0c261a);
+      box-shadow: 0 22px 60px rgba(16,35,26,.18);
+    }
+    .copy::after {
+      content: "100"; position: absolute; right: -20px; bottom: -52px;
+      color: rgba(255,255,255,.035); font-size: 180px; font-weight: 800;
+      line-height: 1; letter-spacing: -.1em; pointer-events: none;
+    }
+    .kicker {
+      width: fit-content; margin-bottom: 14px; padding: 7px 10px;
+      border: 1px solid rgba(255,255,255,.2); border-radius: 999px;
+      color: #d8efde; background: rgba(255,255,255,.08);
+    }
+    .hero-off {
+      font-size: clamp(62px,7vw,104px); color: #ff8b35;
+      text-shadow: 0 5px 26px rgba(255,122,26,.22);
+    }
+    .hero-on { color: #fffdf7; }
+    .hero-meta { color: #bde9c9; }
+    .benefits {
+      position: relative; z-index: 1; display: flex;
+      flex-wrap: wrap; gap: 8px; margin-top: 18px;
+    }
+    .benefits span {
+      padding: 7px 10px; border-radius: 999px; color: #173c2a;
+      background: #e6f5e9; font-size: 11px; font-weight: 800;
+    }
+    .benefits span::before { content: "✓"; margin-right: 5px; color: var(--green); }
+    .film {
+      min-width: 0; margin: 0; grid-column: 2; grid-row: 1 / 3;
+      display: flex; flex-direction: column; justify-content: center;
+      overflow: hidden; border: 1px solid rgba(16,35,26,.07);
+      border-radius: 34px;
+      background: linear-gradient(135deg,rgba(255,255,255,.94),rgba(255,248,235,.9));
+      box-shadow: 0 22px 60px rgba(69,49,28,.1);
+    }
+    .film::before {
+      content: "PICK YOUR FRESH"; align-self: center; margin-bottom: 4px;
+      color: var(--green-dark); font-size: 10px; font-weight: 800;
+      letter-spacing: .2em;
+    }
+    .track { gap: 16px; padding: 16px max(30px, calc(50% - 145px)); }
+    .card { flex-basis: min(38vw,290px); }
+    .shot {
+      border-radius: 30px; transform: scale(.84) rotate(-2deg); opacity: .42;
+      box-shadow: 0 18px 44px rgba(64,45,24,.13);
+    }
+    .card.on .shot {
+      transform: scale(1) rotate(0);
+      box-shadow: 0 24px 60px rgba(64,45,24,.2);
+    }
+    .caption { padding-top: 13px; }
+    .caption b { font-size: 19px; letter-spacing: -.03em; }
+    .caption span { display: block; margin-top: 3px; }
+    .dock { padding: 0; display: grid; grid-template-columns: 1fr; align-content: end; }
+    .cta {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 17px 20px; color: #17261d;
+      background: linear-gradient(105deg,#ff7a1a,#ff9a3d);
+      box-shadow: 0 14px 34px rgba(255,122,26,.26);
+    }
+    .cta span:last-child {
+      display: grid; place-items: center; width: 29px; height: 29px;
+      border-radius: 999px; color: #fff; background: #173c2a; font-size: 17px;
+    }
+    .links { margin-top: 7px; }
+    .cta-hint { margin-top: 6px; }
+    @media (max-width: 760px) {
+      .nav { width: auto; margin: 0; padding: 12px 18px 0; }
+      .nav img { height: 30px; }
+      .ig {
+        width: 38px; height: 38px; padding: 4px;
+        background: transparent; border: 0; box-shadow: none;
+      }
+      .ig::after { content: none; }
+      .ig svg { width: 38px; height: 38px; }
+      .main { width: 100%; margin: 0; display: flex; gap: 0; padding: 8px 0 14px; }
+      .copy {
+        margin: 0 16px; padding: 18px 20px; min-height: 154px;
+        border-radius: 25px; justify-content: flex-start;
+      }
+      .copy::after { right: -8px; bottom: -34px; font-size: 120px; }
+      .kicker { margin-bottom: 9px; padding: 5px 8px; font-size: 9px; }
+      .hero-off { font-size: clamp(48px,14vw,66px); }
+      .hero-on {
+        position: absolute; right: 20px; top: 68px;
+        max-width: 72px; font-size: 22px; line-height: .95;
+      }
+      .hero-meta { margin-top: 8px; font-size: 12px; }
+      .benefits { display: none; }
+      .film {
+        display: block; margin: 7px 0 4px; border: 0; border-radius: 0;
+        background: transparent; box-shadow: none; overflow: visible;
+      }
+      .film::before { display: none; }
+      .track { gap: 10px; padding: 7px max(18px, calc(50vw - 91px)); }
+      .card { flex-basis: min(46vw,182px); }
+      .shot { border-radius: 22px; box-shadow: 0 12px 28px rgba(64,45,24,.12); }
+      .caption { padding-top: 5px; min-height: 35px; }
+      .caption b { font-size: 14px; }
+      .dock { padding: 0 16px max(5px,env(safe-area-inset-bottom)); }
+      .cta { padding: 14px 16px; border-radius: 16px; font-size: 15px; }
+      .cta span:last-child { width: 26px; height: 26px; }
+    }
+    @media (max-width: 760px) and (max-height: 700px) {
+      .copy { min-height: 132px; padding-top: 14px; }
+      .hero-off { font-size: 44px; }
+      .hero-on { top: 59px; font-size: 19px; }
+      .card { flex-basis: min(37vw,148px); }
+      .track { padding-inline: max(18px, calc(50vw - 74px)); }
+      .links { margin-top: 3px; }
+      .cta-hint { margin-top: 3px; }
+    }
   </style>
 </head>
 <body>
@@ -236,6 +389,10 @@
           <div class="hero-on">on ₹200</div>
         </h1>
         <p class="hero-meta">Cash on delivery · FIRST100</p>
+        <div class="benefits" aria-label="SABXI benefits">
+          <span>Fresh-cut daily</span>
+          <span>5 km delivery</span>
+        </div>
       </div>
       <div class="film">
         <div class="track" id="track"></div>
@@ -246,7 +403,9 @@
         <div class="toast" id="toast" hidden></div>
       </div>
       <div class="dock">
-        <a class="cta" id="cta" href="https://play.google.com/store/apps/details?id=com.sabxi.sabxi">Download the SABXI app</a>
+        <a class="cta" id="cta" href="https://play.google.com/store/apps/details?id=com.sabxi.sabxi">
+          <span>Download the SABXI app</span><span aria-hidden="true">→</span>
+        </a>
         <p class="cta-hint" id="ctaHint">On a phone this opens Play or the App Store.</p>
         <a class="other" id="other" href="https://apps.apple.com/in/app/sabxi/id6783602290">Prefer App Store?</a>
         <div class="links">
@@ -395,7 +554,7 @@
         var href = d === "ios" ? appHref : playHref;
         var cta = document.getElementById("cta");
         cta.href = href;
-        cta.textContent = "Download the SABXI app";
+        cta.querySelector("span").textContent = "Download the SABXI app";
         var hint = document.getElementById("ctaHint");
         hint.textContent = d === "ios"
           ? "Opens the App Store on this iPhone."
