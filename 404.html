@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sabxi</title>
+  <link rel="icon" href="/assets/logo.png" />
+  <script>
+    (function () {
+      var path = (location.pathname || "/").replace(/\/+$/, "") || "/";
+      var q = new URLSearchParams(location.search);
+      var product = path.match(/^\/shop\/p\/([^/]+)$/);
+      if (product) {
+        var id = q.get("sku") || decodeURIComponent(product[1]);
+        q.delete("sku");
+        q.set("id", id);
+        location.replace("/product.html?" + q.toString());
+        return;
+      }
+      var pages = { "/shop": "/shop.html", "/cart": "/cart.html", "/checkout": "/checkout.html", "/login": "/login.html", "/orders": "/orders.html", "/product": "/product.html" };
+      if (pages[path]) location.replace(pages[path] + location.search);
+    })();
+  </script>
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #FAF8F5; color: #0C0C0C; font-family: Outfit, system-ui, sans-serif; }
+    a { color: #FF6B00; font-weight: 700; }
+    p { padding: 24px; text-align: center; }
+  </style>
+</head>
+<body>
+  <p>Opening Sabxi… <a href="/shop.html">Go to the shop</a></p>
+</body>
+</html>
