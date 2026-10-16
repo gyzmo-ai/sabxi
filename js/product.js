@@ -2,6 +2,7 @@
 (async function productPage() {
   const mount = document.getElementById("app");
   if (!mount) return;
+  document.body.classList.add("product-page");
   const id = new URLSearchParams(location.search).get("id");
   mount.innerHTML =
     SabxiUI.shellHtml({ active: "shop" }) +
@@ -133,13 +134,15 @@
           )}</p>
           ${dietHtml()}
           ${note ? `<p class="uom">Your mix: ${escape(note)}</p>` : ""}
-          <div class="line-price">${SabxiUI.money(p.price)}</div>
-          <div class="qty-row" style="max-width:220px;margin-top:12px">
-            ${
-              sold
-                ? `<button class="btn ghost" disabled>Sold out</button>`
-                : `<button class="btn add block" type="button" id="add-product">ADD TO CART</button>`
-            }
+          <div class="buy-bar">
+            <div class="line-price">${SabxiUI.money(p.price)}</div>
+            <div class="qty-row">
+              ${
+                sold
+                  ? `<button class="btn ghost" disabled>Sold out</button>`
+                  : `<button class="btn add block" type="button" id="add-product">ADD TO CART</button>`
+              }
+            </div>
           </div>
           <p style="margin-top:14px;font-size:13px;color:var(--muted)">
             Prefer the app? <a href="${SabxiApi.downloadUrl({ sub: "pdp" })}" style="color:var(--orange);font-weight:700">Download Sabxi</a>

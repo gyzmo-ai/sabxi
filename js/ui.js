@@ -167,9 +167,37 @@ window.SabxiUI = (() => {
     } catch {}
   }
 
+  function fromFacebookOrGoogle() {
+    const q = new URLSearchParams(location.search);
+    if (q.get("fbclid") || q.get("gclid") || q.get("gbraid") || q.get("wbraid") || q.get("gad_source")) {
+      return true;
+    }
+    const source = [q.get("source"), q.get("utm_source"), q.get("utm_medium")]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+    if (/(^|[^a-z])(fb|facebook|instagram|ig|meta|google)([^a-z]|$)/.test(source)) {
+      return true;
+    }
+    try {
+      const host = new URL(document.referrer || "").hostname.toLowerCase();
+      if (/facebook|instagram|^fb\.|google/.test(host)) return true;
+    } catch {}
+    try {
+      if (sessionStorage.getItem("sabxi_ad_visit") === "1") return true;
+    } catch {}
+    return false;
+  }
+
   let appSheetQueued = false;
 
   function maybeShowAppSheet() {
+    if (fromFacebookOrGoogle()) {
+      try {
+        sessionStorage.setItem("sabxi_ad_visit", "1");
+      } catch {}
+      return;
+    }
     if (appSheetQueued) return;
     appSheetQueued = true;
     try {
