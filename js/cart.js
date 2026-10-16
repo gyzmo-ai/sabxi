@@ -29,14 +29,23 @@ window.SabxiCart = (() => {
     });
   }
 
+  function noteOf(item) {
+    return String(item?.note || "").trim();
+  }
+
+  function sameLine(item, skuId, note) {
+    return item.sku_id === skuId && noteOf(item) === String(note || "").trim();
+  }
+
   function add(product, qty = 1) {
     if (!product?.sku_id) return;
     if (product.is_available === false) {
       window.SabxiUI?.toast("Sold out");
       return;
     }
+    const note = noteOf(product);
     const items = read();
-    const i = items.findIndex((x) => x.sku_id === product.sku_id);
+    const i = items.findIndex((x) => sameLine(x, product.sku_id, note));
     if (i >= 0) items[i].qty += qty;
     else {
       items.push({
@@ -47,6 +56,7 @@ window.SabxiCart = (() => {
         mrp: product.mrp,
         images: product.images || [],
         selling_uom: product.selling_uom,
+        note,
         qty,
       });
     }
@@ -54,11 +64,11 @@ window.SabxiCart = (() => {
     window.SabxiUI?.toast("Added to cart");
   }
 
-  function setQty(skuId, qty) {
+  function setQty(skuId, qty, note) {
     let items = read();
-    if (qty <= 0) items = items.filter((x) => x.sku_id !== skuId);
+    if (qty <= 0) items = items.filter((x) => !sameLine(x, skuId, note));
     else {
-      const row = items.find((x) => x.sku_id === skuId);
+      const row = items.find((x) => sameLine(x, skuId, note));
       if (row) row.qty = qty;
     }
     write(items);

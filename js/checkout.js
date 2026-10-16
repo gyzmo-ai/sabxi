@@ -145,6 +145,14 @@
 
         <aside class="panel cart-summary">
           <h2 style="margin-bottom:12px;font-size:18px">Bill details</h2>
+          ${items
+            .map(
+              (item) => `<div class="row">
+            <span>${SabxiUI.escapeHtml(item.name || "Item")} × ${item.qty}${item.note ? `<div class="uom">${SabxiUI.escapeHtml(item.note)}</div>` : ""}</span>
+            <span class="line-price">${SabxiUI.money(SabxiCart.lineTotal(item))}</span>
+          </div>`
+            )
+            .join("")}
           ${
             q
               ? `<div class="row"><span>Item total</span><span>${SabxiUI.money(

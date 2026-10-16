@@ -283,6 +283,20 @@ main { padding: 12px 0 24px; }
   display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;
 }
 .cart-summary .total { font-size: 18px; font-weight: 800; margin-top: 8px; }
+.line-price { font-size: 18px; font-weight: 800; color: var(--ink); margin-top: 4px; }
+.diet { margin: 16px 0; display: grid; gap: 10px; }
+.diet h2 { font-size: 18px; }
+.diet-modes, .diet-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.diet-chip {
+  border: 1px solid var(--line); background: #fff; color: var(--ink);
+  border-radius: 999px; padding: 8px 12px; font-weight: 700; cursor: pointer;
+}
+.diet-chip.on { background: var(--green); color: #fff; border-color: var(--green); }
+.diet-row { padding: 10px 0; border-top: 1px solid var(--line); }
+.diet-row select {
+  margin-top: 8px; width: 100%; padding: 10px; border-radius: 8px;
+  border: 1px solid var(--line); font: inherit; background: #fff;
+}
 
 .auth-box { max-width: 420px; margin: 24px auto; padding: 20px; }
 .auth-box label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }

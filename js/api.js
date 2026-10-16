@@ -194,6 +194,7 @@ window.SabxiApi = (() => {
         items: items.map((i) => ({
           product_sku_id: i.sku_id,
           quantity: i.qty,
+          notes: i.note || null,
         })),
       },
     });
@@ -212,6 +213,7 @@ window.SabxiApi = (() => {
             images: i.images,
           },
           quantity: i.qty,
+          note: i.note || null,
         })),
       },
     });
@@ -246,6 +248,7 @@ window.SabxiApi = (() => {
         items: items.map((i) => ({
           product_sku_id: i.sku_id,
           quantity: i.qty,
+          notes: i.note || null,
         })),
       },
     });
@@ -276,6 +279,7 @@ window.SabxiApi = (() => {
         items: items.map((i) => ({
           product_sku_id: i.sku_id,
           quantity: i.qty,
+          notes: i.note || null,
         })),
       },
     });

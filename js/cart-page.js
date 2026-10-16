@@ -38,14 +38,18 @@
 
     const lines = quote?.lines?.length
       ? quote.lines.map((line) => {
-          const local = items.find((i) => i.sku_id === line.product_sku_id);
-          return {
+          const local =
+          items.find(
+            (i) => i.sku_id === line.product_sku_id && (i.note || "") === (line.notes || "")
+          ) || items.find((i) => i.sku_id === line.product_sku_id);
+            return {
             sku_id: line.product_sku_id,
-            name: local?.name || "Item",
+            name: local?.name || line.name || "Item",
             price: line.unit_price,
             qty: line.quantity,
             images: local?.images,
             selling_uom: local?.selling_uom,
+            note: local?.note || line.notes || "",
             line_total: line.line_subtotal,
           };
         })
@@ -90,14 +94,15 @@
                 <img src="${(i.images && i.images[0]) || "/assets/products/cut-produce-bowl.png"}" alt="" />
                 <div>
                   <strong>${i.name}</strong>
-                  <div class="uom">${SabxiUI.money(i.price)} · ${i.selling_uom || "pack"}</div>
+                  <div class="uom">${i.selling_uom || ""}${i.note ? `${i.selling_uom ? " · " : ""}${SabxiUI.escapeHtml(i.note)}` : ""}</div>
+                  <div class="line-price">${SabxiUI.money(i.line_total != null ? i.line_total : i.price)}</div>
                   <div class="stepper" style="margin-top:8px">
-                    <button type="button" data-cart-dec="${i.sku_id}">−</button>
+                    <button type="button" data-cart-dec="${i.sku_id}" data-note="${encodeURIComponent(i.note || "")}">−</button>
                     <span>${i.qty}</span>
-                    <button type="button" data-cart-inc="${i.sku_id}">+</button>
+                    <button type="button" data-cart-inc="${i.sku_id}" data-note="${encodeURIComponent(i.note || "")}">+</button>
                   </div>
                 </div>
-                <strong>${SabxiUI.money(i.line_total)}</strong>
+                <strong class="line-price">${SabxiUI.money(i.line_total != null ? i.line_total : SabxiCart.lineTotal(i))}</strong>
               </div>`
             )
             .join("")}
@@ -144,17 +149,20 @@
   document.getElementById("cart-main").addEventListener("click", async (e) => {
     const dec = e.target.closest("[data-cart-dec]");
     const inc = e.target.closest("[data-cart-inc]");
+    const lineNote = (el) => decodeURIComponent(el.getAttribute("data-note") || "");
     if (dec) {
       const id = dec.getAttribute("data-cart-dec");
-      const cur = SabxiCart.read().find((x) => x.sku_id === id)?.qty || 0;
-      SabxiCart.setQty(id, cur - 1);
+      const note = lineNote(dec);
+      const cur = SabxiCart.read().find((x) => x.sku_id === id && (x.note || "") === note)?.qty || 0;
+      SabxiCart.setQty(id, cur - 1, note);
       render();
       return;
     }
     if (inc) {
       const id = inc.getAttribute("data-cart-inc");
-      const cur = SabxiCart.read().find((x) => x.sku_id === id)?.qty || 0;
-      SabxiCart.setQty(id, cur + 1);
+      const note = lineNote(inc);
+      const cur = SabxiCart.read().find((x) => x.sku_id === id && (x.note || "") === note)?.qty || 0;
+      SabxiCart.setQty(id, cur + 1, note);
       render();
     }
   });
