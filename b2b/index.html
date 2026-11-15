@@ -55,7 +55,7 @@
       "alternateName": "SABXI cafe supply",
       "description": "Vegetables and fruits supplier for cafes and restaurant kitchens in Mumbai. Produce is procured, washed, sanitised, cut to the kitchen's specification, weighed to the gram, and delivered in a next-day time slot from SABXI Studio, Chembur.",
       "url": "https://sabxi.com/b2b/",
-      "image": ["https://sabxi.com/b2b/packed.jpg", "https://sabxi.com/b2b/onions.jpg", "https://sabxi.com/b2b/chillies.jpg", "https://sabxi.com/b2b/beans.jpg", "https://sabxi.com/b2b/cut-board.jpg", "https://sabxi.com/b2b/wash-bowl.jpg", "https://sabxi.com/b2b/fruit-still.jpg"],
+      "image": ["https://sabxi.com/b2b/packed.jpg", "https://sabxi.com/b2b/onion-top.jpg", "https://sabxi.com/b2b/onion-peeled.jpg", "https://sabxi.com/b2b/onion-wash.jpg", "https://sabxi.com/b2b/onions.jpg", "https://sabxi.com/b2b/chillies.jpg", "https://sabxi.com/b2b/beans.jpg", "https://sabxi.com/b2b/cut-board.jpg", "https://sabxi.com/b2b/wash-bowl.jpg", "https://sabxi.com/b2b/fruit-still.jpg"],
       "telephone": "+919821918192",
       "email": "info@sabxi.com",
       "currenciesAccepted": "INR",
@@ -177,11 +177,9 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
     text-transform: uppercase;
     text-decoration: none;
 }
-.hero, .plate, .chapter {
+.hero {
     min-height: 100vh;
     min-height: 100dvh;
-}
-.hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
@@ -192,7 +190,7 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
     justify-content: flex-end;
     padding: 7rem 8vw 4.5rem 6vw;
 }
-h1, h2, .num {
+h1, h2, .num, .wt {
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
     letter-spacing: 0.01em;
@@ -200,16 +198,17 @@ h1, h2, .num {
     margin: 0;
 }
 h1 { font-size: clamp(4.6rem, 8vw, 8.2rem); max-width: 8ch; }
+h2 { font-size: clamp(2.8rem, 5.5vw, 5rem); max-width: 14ch; }
 .quiet {
-    max-width: 26rem;
-    margin: 1.4rem 0 0;
+    max-width: 28rem;
+    margin: 1.2rem 0 0;
     color: var(--muted);
     font-size: 1.05rem;
 }
 .action {
     display: inline-flex;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 1.6rem;
     min-height: 48px;
     padding: 0.7rem 1.2rem;
     background: var(--orange);
@@ -226,10 +225,142 @@ h1 { font-size: clamp(4.6rem, 8vw, 8.2rem); max-width: 8ch; }
     background: #e7e1d8;
 }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.plate {
+
+.frame {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: hidden;
+    background: #1a1714;
+    color: #fff;
+}
+.frame figure { margin: 0; height: 100vh; height: 100dvh; }
+.frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+}
+.frame .caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 7rem 6vw 3.2rem;
+    background: linear-gradient(to top, rgba(17,17,17,0.88) 0%, rgba(17,17,17,0.45) 55%, rgba(17,17,17,0) 100%);
+}
+.frame .step {
+    margin: 0 0 0.45rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+}
+.frame h2 { color: #fff; max-width: 10ch; font-size: clamp(3rem, 7vw, 5.6rem); }
+.frame .lede { color: rgba(255,255,255,0.78); margin-top: 0.7rem; max-width: 22rem; }
+
+.combo {
+    min-height: 100vh;
+    min-height: 100dvh;
     display: grid;
-    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
-    align-items: end;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 0;
+    padding: 5.5rem 4vw 3rem;
+    align-items: stretch;
+}
+.combo > * { min-width: 0; }
+.combo-head {
+    grid-column: 1 / -1;
+    margin-bottom: 1.2rem;
+}
+.weights {
+    display: grid;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+    min-height: 0;
+}
+.weight {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    gap: 0.9rem;
+    align-items: center;
+    min-height: 0;
+    border-top: 1px solid var(--line);
+    padding-top: 0.55rem;
+}
+.weight:first-child { border-top: 0; padding-top: 0; }
+.weight img {
+    width: 7.5rem;
+    height: 7.5rem;
+    object-fit: cover;
+    background: #ebe6de;
+}
+.wt { font-size: clamp(2.4rem, 4.2vw, 3.6rem); }
+.weight span { display: block; margin-top: 0.2rem; color: var(--muted); font-size: 0.95rem; }
+.combo-path {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 2.5vw;
+    border-left: 1px solid var(--line);
+}
+.path { display: grid; grid-template-columns: 1fr 1.25fr; gap: 1.6rem; margin-top: 1.2rem; }
+.path h3 { margin: 0; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; }
+.path ol { list-style: none; margin: 0.55rem 0 0; padding: 0; border-top: 1px solid var(--ink); }
+.path li {
+    display: grid;
+    grid-template-columns: 1.6rem 1fr;
+    gap: 0.45rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.95rem;
+}
+.path li b { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1.35rem; line-height: 1; }
+
+.chapter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5.5rem 6vw 4rem;
+    min-height: auto;
+}
+.chapter.tall {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+.lede { max-width: 34rem; color: var(--muted); font-size: 1.05rem; margin: 1rem 0 0; }
+.twin {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+    margin-top: 2rem;
+    max-width: 980px;
+}
+.twin h3 {
+    margin: 0 0 0.35rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.lines { list-style: none; margin: 1.4rem 0 0; padding: 0; max-width: 640px; }
+.twin .lines { margin-top: 0; }
+.lines li {
+    display: grid;
+    grid-template-columns: 2.2rem 1fr;
+    gap: 0.7rem;
+    padding: 0.7rem 0;
+    border-top: 1px solid var(--line);
+    font-size: 1.08rem;
+}
+.lines li:last-child { border-bottom: 1px solid var(--line); }
+.lines b { font-weight: 500; color: var(--muted); }
+
+.plate {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: center;
     background: #ebe6de;
     overflow: hidden;
 }
@@ -238,84 +369,74 @@ h1 { font-size: clamp(4.6rem, 8vw, 8.2rem); max-width: 8ch; }
     margin: 0;
     grid-column: 2;
     grid-row: 1;
-    height: 100vh;
-    height: 100dvh;
+    height: 100%;
     display: grid;
     place-items: center;
+    padding: 2rem 1rem;
 }
-.plate-copy { grid-column: 1; grid-row: 1; align-self: end; }
+.plate-copy { grid-column: 1; grid-row: 1; padding: 4rem 1.5rem 3rem 6vw; }
 .plate img {
     width: auto;
     max-width: 100%;
-    max-height: 100vh;
-    max-height: 100dvh;
+    max-height: 82vh;
+    max-height: 82dvh;
     object-fit: contain;
 }
-.plate-copy { padding: 0 1.5rem 4.2rem 6vw; }
-.plate .words b { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+.words { display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; }
+.words b { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: clamp(2.4rem, 4.5vw, 3.8rem); line-height: 0.9; }
 .plate .lines { margin-top: 1.1rem; max-width: none; }
-.plate .lines li { font-size: 1rem; }
-.num { font-size: clamp(5.5rem, 11vw, 9.5rem); }
-.plate-copy span { display: block; color: var(--muted); font-size: 1.05rem; letter-spacing: 0.04em; }
-.flip { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); }
-.flip figure { grid-column: 1; grid-row: 1; }
-.flip .plate-copy { grid-column: 2; grid-row: 1; padding-left: 1.5rem; }
-.chapter {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 7rem 6vw 4.5rem;
-}
-h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
-.lede { max-width: 32rem; color: var(--muted); font-size: 1.08rem; margin: 1.2rem 0 0; }
-.lines { list-style: none; margin: 2.5rem 0 0; padding: 0; max-width: 640px; }
-.lines li {
+.plate .lines li { font-size: 0.98rem; }
+.fine { margin-top: 1.2rem; color: var(--muted); font-size: 0.92rem; }
+
+.catalog {
     display: grid;
-    grid-template-columns: 2.5rem 1fr;
-    gap: 0.8rem;
-    padding: 1rem 0;
-    border-top: 1px solid var(--line);
-    font-size: 1.2rem;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 2.5rem;
+    padding: 5.5rem 5vw 4rem;
+    align-items: start;
 }
-.lines li:last-child { border-bottom: 1px solid var(--line); }
-.lines b { font-weight: 500; color: var(--muted); }
-.path { display: grid; grid-template-columns: 1fr 1.35fr; gap: 3.5rem; margin-top: 2.4rem; max-width: 980px; }
-.path h3 { margin: 0; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; }
-.path ol { list-style: none; margin: 0.7rem 0 0; padding: 0; display: flex; border-top: 1px solid var(--ink); }
-.path li { flex: 1; min-width: 0; border-left: 1px solid var(--ink); padding: 0.75rem 0.7rem 0; min-height: 6.2rem; }
-.path li b { display: block; font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1.7rem; line-height: 1; }
-.path li span { display: block; margin-top: 0.35rem; font-size: 0.92rem; }
-.words { display: flex; flex-wrap: wrap; gap: 0.35rem 1.4rem; }
-.words b { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: clamp(3rem, 6vw, 5rem); line-height: 0.9; }
-.fine { margin-top: 1.5rem; color: var(--muted); font-size: 0.95rem; }
-.menu-wrap { padding-top: 7rem; }
+.catalog > * { min-width: 0; }
+.catalog figure {
+    margin: 0;
+    position: sticky;
+    top: 5.5rem;
+    background: #ebe6de;
+}
+.catalog img {
+    width: 100%;
+    max-height: 72vh;
+    object-fit: cover;
+}
 .menu {
-    columns: 3;
-    column-gap: 3rem;
+    columns: 2;
+    column-gap: 2rem;
     list-style: none;
-    margin: 2rem 0 0;
+    margin: 1.2rem 0 0;
     padding: 0;
 }
 .menu li {
     break-inside: avoid;
     border-bottom: 1px solid var(--line);
-    padding: 0.55rem 0;
-    font-size: 0.98rem;
+    padding: 0.45rem 0;
+    font-size: 0.95rem;
 }
 .menu em { font-style: normal; color: var(--muted); }
 .menu i {
     font-style: normal;
-    margin-left: 0.45rem;
-    font-size: 0.68rem;
+    margin-left: 0.4rem;
+    font-size: 0.66rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #1d7a34;
 }
+
+.faq-wrap { padding: 4.5rem 6vw 3rem; }
 .faq details { border-top: 1px solid var(--line); max-width: 720px; }
 .faq details:last-of-type { border-bottom: 1px solid var(--line); }
-.faq summary { cursor: pointer; padding: 1.05rem 0; font-size: 1.05rem; list-style: none; }
+.faq summary { cursor: pointer; padding: 0.95rem 0; font-size: 1.02rem; list-style: none; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq p { margin: 0 0 1.1rem; color: var(--muted); max-width: 40rem; }
+.faq p { margin: 0 0 1rem; color: var(--muted); max-width: 40rem; }
+
 .close {
     min-height: 100vh;
     min-height: 100dvh;
@@ -324,15 +445,20 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 7rem 6vw 4rem;
+    padding: 6rem 6vw 3.5rem;
 }
 .close h2 { max-width: 10ch; }
 .close .quiet { color: rgba(255,255,255,0.66); }
 .close .action { background: #fff; color: var(--ink); }
 .close .action:hover { background: #f4f1eb; }
+.close .lines { max-width: 420px; }
+.close .lines li { border-color: rgba(255,255,255,0.18); }
+.close .lines b { color: rgba(255,255,255,0.45); }
+.close .fine { color: rgba(255,255,255,0.55); }
+.close .fine a { color: #fff; }
 .meta {
     display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem;
-    margin-top: 2.2rem; font-size: 0.92rem;
+    margin-top: 1.8rem; font-size: 0.92rem;
 }
 .meta a { color: #fff; }
 .foot {
@@ -343,22 +469,23 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
     font-size: 0.78rem;
 }
 .foot a { color: rgba(255,255,255,0.45); }
-.js .reveal { opacity: 0; transform: translateY(28px); }
+
+.js .reveal { opacity: 0; transform: translateY(24px); }
 .js .reveal.in {
     opacity: 1;
     transform: none;
     transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
 }
-.js .reveal .rise { transform: translateY(16px); }
+.js .reveal .rise { transform: translateY(14px); }
 .js .reveal.in .rise {
     transform: none;
     transition: transform 0.9s var(--ease);
     transition-delay: var(--d, 0s);
 }
-.js .reveal .zoom { transform: scale(1.06); }
+.js .reveal .zoom { transform: scale(1.05); }
 .js .reveal.in .zoom {
     transform: scale(1);
-    transition: transform 1.2s var(--ease);
+    transition: transform 1.15s var(--ease);
 }
 @media (prefers-reduced-motion: reduce) {
     .js .reveal, .js .reveal .rise, .js .reveal .zoom {
@@ -367,20 +494,32 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
         transition: none;
     }
 }
-@media (max-width: 860px) {
+@media (max-width: 900px) {
     .hero { grid-template-columns: minmax(0, 1fr); min-height: auto; }
-    .hero-photo, .hero-photo img { height: 48vh; }
-    .hero-copy, .chapter, .close { padding: 5.2rem 1.25rem 2.2rem; }
-    .plate, .flip { grid-template-columns: minmax(0, 1fr); min-height: auto; align-items: stretch; }
-    .plate figure, .flip figure { grid-column: 1; grid-row: 1; height: auto; place-items: center; }
-    .plate img { max-height: 68vh; }
-    .plate-copy, .flip .plate-copy { grid-column: 1; grid-row: 2; align-self: start; padding: 0.2rem 1.25rem 1.8rem; }
-    h1 { font-size: 3.5rem; }
-    .num { font-size: 4.6rem; }
-    .path { grid-template-columns: 1fr; gap: 1.6rem; }
-    .path ol { flex-direction: column; }
-    .path li { border-left: 0; border-bottom: 1px solid var(--line); min-height: 0; padding: 0.7rem 0; }
+    .hero-photo, .hero-photo img { height: 46vh; }
+    .hero-copy, .chapter, .close, .faq-wrap, .catalog { padding: 5rem 1.25rem 2rem; }
+    .frame .caption { padding: 4rem 1.25rem 2rem; }
+    .combo {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 5rem 1.25rem 2.2rem;
+    }
+    .combo-head { grid-column: 1; }
+    .combo-path { border-left: 0; border-top: 1px solid var(--line); padding: 1.4rem 0 0; }
+    .weights { grid-template-rows: none; }
+    .weight { grid-template-columns: 5.2rem 1fr; }
+    .weight img { width: 5.2rem; height: 5.2rem; }
+    .path { grid-template-columns: 1fr; gap: 1.2rem; }
+    .twin { grid-template-columns: 1fr; gap: 1.6rem; }
+    .plate { grid-template-columns: 1fr; min-height: auto; }
+    .plate figure { grid-column: 1; grid-row: 1; padding: 3.5rem 0 0; }
+    .plate-copy { grid-column: 1; grid-row: 2; padding: 0.4rem 1.25rem 1.8rem; }
+    .plate img { max-height: 48vh; }
+    .catalog { grid-template-columns: 1fr; gap: 1.2rem; }
+    .catalog figure { position: static; }
+    .catalog img { max-height: 42vh; }
     .menu { columns: 1; }
+    h1 { font-size: 3.4rem; }
 }
 </style>
 </head>
@@ -402,80 +541,114 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
         </figure>
     </section>
 
-    <section class="plate reveal" id="onions">
-        <figure><img class="zoom" src="onions.jpg" alt="A crate of onions on a scale reading 25.140 kilograms" width="768" height="1024"></figure>
-        <div class="plate-copy">
-            <p class="num rise">25.140</p>
-            <span class="rise" style="--d:0.12s">kg onions</span>
+    <section class="frame reveal" id="journey">
+        <figure><img class="zoom" src="onion-top.jpg" alt="A whole red onion with its skin still on" width="864" height="1152"></figure>
+        <div class="caption">
+            <p class="step rise">01 · The onion</p>
+            <h2 class="rise" style="--d:0.08s">From the top.</h2>
+            <p class="lede rise" style="--d:0.14s">Whole. Mandi-fresh. Still wearing its skin.</p>
         </div>
     </section>
 
-    <section class="plate flip reveal" id="chillies">
-        <figure><img class="zoom" src="chillies.jpg" alt="A crate of green chillies on a scale reading 5.050 kilograms" width="768" height="1024"></figure>
-        <div class="plate-copy">
-            <p class="num rise">5.050</p>
-            <span class="rise" style="--d:0.12s">kg green chillies</span>
+    <section class="frame reveal">
+        <figure><img class="zoom" src="onion-peeled.jpg" alt="A peeled red onion with its papery skin set aside" width="864" height="1152"></figure>
+        <div class="caption">
+            <p class="step rise">02 · Peeled</p>
+            <h2 class="rise" style="--d:0.08s">Skin off.</h2>
+            <p class="lede rise" style="--d:0.14s">Cut to the kitchen’s spec. Ready for the wash.</p>
         </div>
     </section>
 
-    <section class="plate reveal" id="beans">
-        <figure><img class="zoom" src="beans.jpg" alt="Beans packed and weighed at 0.500 kilograms" width="768" height="1024"></figure>
-        <div class="plate-copy">
-            <p class="num rise">0.500</p>
-            <span class="rise" style="--d:0.12s">kg beans</span>
+    <section class="frame reveal">
+        <figure><img class="zoom" src="onion-wash.jpg" alt="Peeled onion wedges in a steel bowl of bubbling water" width="864" height="1152"></figure>
+        <div class="caption">
+            <p class="step rise">03 · Washed</p>
+            <h2 class="rise" style="--d:0.08s">Ozonated water.</h2>
+            <p class="lede rise" style="--d:0.14s">Then a food-safe Suma tablet. Then the pack.</p>
         </div>
     </section>
 
-    <section class="chapter reveal" id="problem">
+    <section class="combo reveal" id="order">
+        <div class="combo-head">
+            <h2 class="rise">Weighed. Then ordered.</h2>
+            <p class="lede rise" style="--d:0.08s">Real packs from the Chembur studio. Then the path from your slot to the door.</p>
+        </div>
+        <div class="weights">
+            <article class="weight rise" style="--d:0.1s">
+                <img src="onions.jpg" alt="Onions on a scale reading 25.140 kilograms" width="768" height="1024">
+                <div>
+                    <p class="wt">25.140</p>
+                    <span>kg onions</span>
+                </div>
+            </article>
+            <article class="weight rise" style="--d:0.16s">
+                <img src="chillies.jpg" alt="Green chillies on a scale reading 5.050 kilograms" width="768" height="1024">
+                <div>
+                    <p class="wt">5.050</p>
+                    <span>kg green chillies</span>
+                </div>
+            </article>
+            <article class="weight rise" style="--d:0.22s">
+                <img src="beans.jpg" alt="Beans weighed at 0.500 kilograms" width="768" height="1024">
+                <div>
+                    <p class="wt">0.500</p>
+                    <span>kg beans</span>
+                </div>
+            </article>
+        </div>
+        <div class="combo-path">
+            <div class="path">
+                <div>
+                    <h3 class="rise" style="--d:0.1s">You</h3>
+                    <ol>
+                        <li class="rise" style="--d:0.14s"><b>1</b><span>Select the product.</span></li>
+                        <li class="rise" style="--d:0.18s"><b>2</b><span>Choose raw or the cut.</span></li>
+                        <li class="rise" style="--d:0.22s"><b>3</b><span>Pick a next-day slot.</span></li>
+                    </ol>
+                </div>
+                <div>
+                    <h3 class="rise" style="--d:0.1s">SABXI</h3>
+                    <ol>
+                        <li class="rise" style="--d:0.14s"><b>1</b><span>We procure.</span></li>
+                        <li class="rise" style="--d:0.18s"><b>2</b><span>Wash and sanitise.</span></li>
+                        <li class="rise" style="--d:0.22s"><b>3</b><span>Pack in food-grade recyclable film.</span></li>
+                        <li class="rise" style="--d:0.26s"><b>4</b><span>Deliver at your slot.</span></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="chapter tall reveal" id="problem">
         <h2 class="rise">Your morning goes to the market.</h2>
-        <ul class="lines">
-            <li class="rise" style="--d:0.1s"><b>01</b> Hours lost sourcing every day.</li>
-            <li class="rise" style="--d:0.16s"><b>02</b> Quality changes batch to batch.</li>
-            <li class="rise" style="--d:0.22s"><b>03</b> Prep and waste eat the margin.</li>
-        </ul>
+        <div class="twin">
+            <div>
+                <h3 class="rise" style="--d:0.08s">The problem</h3>
+                <ul class="lines">
+                    <li class="rise" style="--d:0.12s"><b>01</b> Hours lost sourcing every day.</li>
+                    <li class="rise" style="--d:0.16s"><b>02</b> Quality changes batch to batch.</li>
+                    <li class="rise" style="--d:0.2s"><b>03</b> Prep and waste eat the margin.</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="rise" style="--d:0.08s">Prep off your plate</h3>
+                <ul class="lines">
+                    <li class="rise" style="--d:0.14s"><b>01</b> Fewer prep staff to hire and manage.</li>
+                    <li class="rise" style="--d:0.18s"><b>02</b> No sorting, and no procurement wastage.</li>
+                    <li class="rise" style="--d:0.22s"><b>03</b> Sanitised before it reaches the pass.</li>
+                    <li class="rise" style="--d:0.26s"><b>04</b> Everyday vegetables and seasonal fruit in one place.</li>
+                </ul>
+            </div>
+        </div>
     </section>
 
-    <section class="chapter reveal">
-        <h2 class="rise">Prep off your plate.</h2>
-        <p class="lede rise" style="--d:0.1s">What changes when one supplier sends the vegetables and the fruit.</p>
-        <ul class="lines">
-            <li class="rise" style="--d:0.16s"><b>01</b> Fewer prep staff to hire and manage.</li>
-            <li class="rise" style="--d:0.22s"><b>02</b> No sorting, and no procurement wastage.</li>
-            <li class="rise" style="--d:0.28s"><b>03</b> Sanitised before it reaches the pass.</li>
-            <li class="rise" style="--d:0.34s"><b>04</b> Everyday vegetables and seasonal fruit in one place.</li>
-        </ul>
-    </section>
-
-    <section class="chapter reveal" id="who">
+    <section class="chapter tall reveal" id="who">
         <h2 class="rise">One kitchen.</h2>
         <ul class="lines">
             <li class="rise" style="--d:0.1s"><b>01</b> The app. Fresh produce for homes.</li>
             <li class="rise" style="--d:0.16s"><b>02</b> The studio. Cut and prepped to order.</li>
             <li class="rise" style="--d:0.22s"><b>03</b> For cafes. Supply across Mumbai.</li>
         </ul>
-    </section>
-
-    <section class="chapter reveal">
-        <h2 class="rise">The order.</h2>
-        <div class="path">
-            <div>
-                <h3 class="rise" style="--d:0.08s">You</h3>
-                <ol>
-                    <li class="rise" style="--d:0.12s"><b>1</b><span>Select the product.</span></li>
-                    <li class="rise" style="--d:0.16s"><b>2</b><span>Choose raw or the cut.</span></li>
-                    <li class="rise" style="--d:0.2s"><b>3</b><span>Pick a next-day slot.</span></li>
-                </ol>
-            </div>
-            <div>
-                <h3 class="rise" style="--d:0.08s">SABXI</h3>
-                <ol>
-                    <li class="rise" style="--d:0.14s"><b>1</b><span>We procure.</span></li>
-                    <li class="rise" style="--d:0.18s"><b>2</b><span>Wash and sanitise.</span></li>
-                    <li class="rise" style="--d:0.22s"><b>3</b><span>Pack in food-grade recyclable film.</span></li>
-                    <li class="rise" style="--d:0.26s"><b>4</b><span>Deliver at your slot.</span></li>
-                </ol>
-            </div>
-        </div>
     </section>
 
     <section class="plate reveal" id="wash">
@@ -486,161 +659,129 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
                 <b class="rise" style="--d:0.16s">Packed.</b>
             </div>
             <ul class="lines">
-                <li class="rise" style="--d:0.22s"><b>01</b> Ozonator wash. Produce is washed in ozonated water.</li>
-                <li class="rise" style="--d:0.28s"><b>02</b> Suma tablet. A food-safe sanitising step before packing.</li>
+                <li class="rise" style="--d:0.2s"><b>01</b> Ozonator wash. Produce is washed in ozonated water.</li>
+                <li class="rise" style="--d:0.24s"><b>02</b> Suma tablet. A food-safe sanitising step before packing.</li>
+                <li class="rise" style="--d:0.28s"><b>03</b> FSSAI 21526015002628.</li>
+                <li class="rise" style="--d:0.32s"><b>04</b> GSTIN 27ABUCS4728H1ZP.</li>
+                <li class="rise" style="--d:0.36s"><b>05</b> Food-grade packaging. Recyclable only.</li>
             </ul>
         </div>
         <figure><img class="zoom" src="wash-bowl.jpg" alt="Green chillies resting on a steel bowl of bubbling water" width="1152" height="864"></figure>
     </section>
 
-    <section class="chapter reveal" id="certified">
-        <h2 class="rise">Registered.</h2>
-        <ul class="lines">
-            <li class="rise" style="--d:0.1s"><b>01</b> FSSAI 21526015002628.</li>
-            <li class="rise" style="--d:0.16s"><b>02</b> GSTIN 27ABUCS4728H1ZP.</li>
-            <li class="rise" style="--d:0.22s"><b>03</b> Food-grade packaging. Recyclable only.</li>
-        </ul>
-    </section>
-
-    <section class="chapter reveal">
-        <h2 class="rise">The range.</h2>
-        <ul class="lines">
-            <li class="rise" style="--d:0.1s"><b>01</b> Daily vegetables. Everyday produce, raw or cut.</li>
-            <li class="rise" style="--d:0.16s"><b>02</b> Cut and prepped. The team starts cooking, not chopping.</li>
-            <li class="rise" style="--d:0.22s"><b>03</b> Fruits and exotics. Seasonal fruit, and the produce a menu is built on.</li>
-        </ul>
-    </section>
-
-    <section class="plate flip reveal" id="cut">
-        <figure><img class="zoom" src="cut-board.jpg" alt="Diced onion, carrot batons, and a green chilli arranged on a board" width="1152" height="864"></figure>
-        <div class="plate-copy">
-            <p class="num rise">Cut.</p>
-            <span class="rise" style="--d:0.12s">To the kitchen’s spec.</span>
+    <section class="catalog reveal" id="menu">
+        <figure>
+            <img class="zoom" src="cut-board.jpg" alt="Diced onion, carrot batons, and a green chilli arranged on a board" width="1152" height="864">
+        </figure>
+        <div>
+            <h2 class="rise">Vegetables.</h2>
+            <p class="lede rise" style="--d:0.08s">Everyday produce, raw or cut. A green mark is the cut. No prices here. Homes order on the <a href="../shop.html">live shop</a>.</p>
+            <ul class="menu">
+                <li>Amla</li>
+                <li>Coriander <em>Dhaniya</em></li>
+                <li>Lettuce</li>
+                <li>Red &amp; Yellow Capsicum</li>
+                <li>Arbi</li>
+                <li>Cucumber <em>Kheera</em></li>
+                <li>Mild Chilli <em>Silba Big</em></li>
+                <li>Sambhar Onion <em>Small</em></li>
+                <li>Ash Gourd <em>Petha</em></li>
+                <li>Curry Leaves</li>
+                <li>Mini Potato <em>Baby Aloo</em></li>
+                <li>Singhada <em>Water Chestnut</em></li>
+                <li>Baby Corn</li>
+                <li>Drumstick <em>Sahjan</em></li>
+                <li>Mint</li>
+                <li>Soya Leaves <em>Dill Leaves</em></li>
+                <li>Baingan Bharta Wala</li>
+                <li>Drumstick Leaves <em>Moringa</em></li>
+                <li>Mirchi Bhajji</li>
+                <li>Spinach <em>Palak</em></li>
+                <li>Beetroot</li>
+                <li>Fenugreek <em>Methi</em></li>
+                <li>Mushroom</li>
+                <li>Spring Onion</li>
+                <li>Bhindi <em>Okra</em></li>
+                <li>French Beans</li>
+                <li>Onion <em>Pyaz</em> <i>cut</i></li>
+                <li>Sweet Corn</li>
+                <li>Bottle Gourd <em>Lauki</em></li>
+                <li>Gilki <em>Sponge Gourd</em></li>
+                <li>Papdi <em>Valor</em></li>
+                <li>Tomato <em>Tamatar</em></li>
+                <li>Broccoli</li>
+                <li>Ginger</li>
+                <li>Parwal <em>Pointed Gourd</em></li>
+                <li>Tundli <em>Tendli</em></li>
+                <li>Cabbage <em>Patta Gobhi</em></li>
+                <li>Green Chilli</li>
+                <li>Peeled Garlic</li>
+                <li>White Cucumber</li>
+                <li>Capsicum</li>
+                <li>Green Peas <em>Matar</em></li>
+                <li>Potato <em>Aloo</em> <i>fries, chips</i></li>
+                <li>White Onion <em>Safed Pyaz</em></li>
+                <li>Carrot <em>Gajar</em> <i>grated</i></li>
+                <li>Green Small Brinjal</li>
+                <li>Pumpkin <em>Kaddu</em> <i>cut</i></li>
+                <li>Yam <em>Suran</em></li>
+                <li>Cauliflower <em>Phool Gobhi</em></li>
+                <li>Karela <em>Bitter Gourd</em></li>
+                <li>Radish <em>Mooli</em> <i>grated</i></li>
+                <li>Zucchini</li>
+                <li>Cherry Tomatoes</li>
+                <li>Knol Khol <em>Ganth Gobhi</em></li>
+                <li>Raw Banana <em>Kacha Kela</em> <i>chips</i></li>
+                <li>Cluster Beans <em>Gawar Phali</em></li>
+                <li>Lemon <em>Nimbu</em></li>
+                <li>Raw Garlic</li>
+            </ul>
         </div>
     </section>
 
-    <section class="chapter menu-wrap reveal" id="menu">
-        <h2 class="rise">Vegetables.</h2>
-        <p class="lede rise" style="--d:0.08s">Everyday vegetables for the kitchen, raw or cut. A green mark is the cut. No prices here. Homes order on the <a href="../shop.html">live shop</a>.</p>
-        <ul class="menu">
-            <li>Amla</li>
-            <li>Coriander <em>Dhaniya</em></li>
-            <li>Lettuce</li>
-            <li>Red &amp; Yellow Capsicum</li>
-            <li>Arbi</li>
-            <li>Cucumber <em>Kheera</em></li>
-            <li>Mild Chilli <em>Silba Big</em></li>
-            <li>Sambhar Onion <em>Small</em></li>
-            <li>Ash Gourd <em>Petha</em></li>
-            <li>Curry Leaves</li>
-            <li>Mini Potato <em>Baby Aloo</em></li>
-            <li>Singhada <em>Water Chestnut</em></li>
-            <li>Baby Corn</li>
-            <li>Drumstick <em>Sahjan</em></li>
-            <li>Mint</li>
-            <li>Soya Leaves <em>Dill Leaves</em></li>
-            <li>Baingan Bharta Wala</li>
-            <li>Drumstick Leaves <em>Moringa</em></li>
-            <li>Mirchi Bhajji</li>
-            <li>Spinach <em>Palak</em></li>
-            <li>Beetroot</li>
-            <li>Fenugreek <em>Methi</em></li>
-            <li>Mushroom</li>
-            <li>Spring Onion</li>
-            <li>Bhindi <em>Okra</em></li>
-            <li>French Beans</li>
-            <li>Onion <em>Pyaz</em> <i>cut</i></li>
-            <li>Sweet Corn</li>
-            <li>Bottle Gourd <em>Lauki</em></li>
-            <li>Gilki <em>Sponge Gourd</em></li>
-            <li>Papdi <em>Valor</em></li>
-            <li>Tomato <em>Tamatar</em></li>
-            <li>Broccoli</li>
-            <li>Ginger</li>
-            <li>Parwal <em>Pointed Gourd</em></li>
-            <li>Tundli <em>Tendli</em></li>
-            <li>Cabbage <em>Patta Gobhi</em></li>
-            <li>Green Chilli</li>
-            <li>Peeled Garlic</li>
-            <li>White Cucumber</li>
-            <li>Capsicum</li>
-            <li>Green Peas <em>Matar</em></li>
-            <li>Potato <em>Aloo</em> <i>fries, chips</i></li>
-            <li>White Onion <em>Safed Pyaz</em></li>
-            <li>Carrot <em>Gajar</em> <i>grated</i></li>
-            <li>Green Small Brinjal</li>
-            <li>Pumpkin <em>Kaddu</em> <i>cut</i></li>
-            <li>Yam <em>Suran</em></li>
-            <li>Cauliflower <em>Phool Gobhi</em></li>
-            <li>Karela <em>Bitter Gourd</em></li>
-            <li>Radish <em>Mooli</em> <i>grated</i></li>
-            <li>Zucchini</li>
-            <li>Cherry Tomatoes</li>
-            <li>Knol Khol <em>Ganth Gobhi</em></li>
-            <li>Raw Banana <em>Kacha Kela</em> <i>chips</i></li>
-            <li>Cluster Beans <em>Gawar Phali</em></li>
-            <li>Lemon <em>Nimbu</em></li>
-            <li>Raw Garlic</li>
-        </ul>
-    </section>
-
-    <section class="plate reveal" id="fruit">
-        <figure><img class="zoom" src="fruit-still.jpg" alt="Halved papaya, red globe grapes, and a wedge of watermelon" width="864" height="1152"></figure>
-        <div class="plate-copy">
-            <p class="num rise">Fruit.</p>
-            <span class="rise" style="--d:0.12s">Seasonal, and cut when you ask.</span>
+    <section class="catalog reveal" id="fruits">
+        <figure>
+            <img class="zoom" src="fruit-still.jpg" alt="Halved papaya, red globe grapes, and a wedge of watermelon" width="864" height="1152">
+        </figure>
+        <div>
+            <h2 class="rise">Fruits.</h2>
+            <p class="lede rise" style="--d:0.08s">Seasonal fruit and specialty produce. A green mark means that fruit is also sold cut.</p>
+            <ul class="menu">
+                <li>Apple <em>Seb</em></li>
+                <li>Imported Avocado</li>
+                <li>Papaya <em>Papita</em> <i>cut</i></li>
+                <li>Cape Gooseberry</li>
+                <li>Imported Blueberry</li>
+                <li>Pear <em>Nashpati</em></li>
+                <li>Chikoo <em>Sapota</em></li>
+                <li>Imported Green Grapes</li>
+                <li>Pineapple <em>Ananas</em> <i>cut</i></li>
+                <li>Coconut <i>cut</i></li>
+                <li>Kiwi</li>
+                <li>Pomegranate <em>Anar</em></li>
+                <li>Custard Apple <em>Sitaphal</em></li>
+                <li>Longan</li>
+                <li>Raw Mango</li>
+                <li>Dates</li>
+                <li>Mango <em>Aam</em></li>
+                <li>Red Dragon Fruit</li>
+                <li>Elaichi Banana</li>
+                <li>Mosambi <em>Sweet Lime</em></li>
+                <li>Red Globe Grapes</li>
+                <li>Export Quality Persimmon <em>Japani Phal</em></li>
+                <li>Mulberry</li>
+                <li>Strawberry</li>
+                <li>Green Apple</li>
+                <li>Muskmelon <em>Kharbuja</em> <i>cut</i></li>
+                <li>Watermelon <i>cut</i></li>
+                <li>Guava <em>Amrud</em></li>
+                <li>Orange <em>Santra</em></li>
+                <li>White Dragon Fruit</li>
+            </ul>
         </div>
     </section>
 
-    <section class="chapter reveal">
-        <h2 class="rise">Fruits.</h2>
-        <p class="lede rise" style="--d:0.08s">Seasonal fruit and specialty produce. A green mark means that fruit is also sold cut.</p>
-        <ul class="menu">
-            <li>Apple <em>Seb</em></li>
-            <li>Imported Avocado</li>
-            <li>Papaya <em>Papita</em> <i>cut</i></li>
-            <li>Cape Gooseberry</li>
-            <li>Imported Blueberry</li>
-            <li>Pear <em>Nashpati</em></li>
-            <li>Chikoo <em>Sapota</em></li>
-            <li>Imported Green Grapes</li>
-            <li>Pineapple <em>Ananas</em> <i>cut</i></li>
-            <li>Coconut <i>cut</i></li>
-            <li>Kiwi</li>
-            <li>Pomegranate <em>Anar</em></li>
-            <li>Custard Apple <em>Sitaphal</em></li>
-            <li>Longan</li>
-            <li>Raw Mango</li>
-            <li>Dates</li>
-            <li>Mango <em>Aam</em></li>
-            <li>Red Dragon Fruit</li>
-            <li>Elaichi Banana</li>
-            <li>Mosambi <em>Sweet Lime</em></li>
-            <li>Red Globe Grapes</li>
-            <li>Export Quality Persimmon <em>Japani Phal</em></li>
-            <li>Mulberry</li>
-            <li>Strawberry</li>
-            <li>Green Apple</li>
-            <li>Muskmelon <em>Kharbuja</em> <i>cut</i></li>
-            <li>Watermelon <i>cut</i></li>
-            <li>Guava <em>Amrud</em></li>
-            <li>Orange <em>Santra</em></li>
-            <li>White Dragon Fruit</li>
-        </ul>
-    </section>
-
-    <section class="chapter reveal" id="app">
-        <h2 class="rise">Order in a tap.</h2>
-        <p class="lede rise" style="--d:0.08s">Then track it to the door.</p>
-        <ul class="lines">
-            <li class="rise" style="--d:0.14s"><b>01</b> Order.</li>
-            <li class="rise" style="--d:0.2s"><b>02</b> Track.</li>
-            <li class="rise" style="--d:0.26s"><b>03</b> Delivery.</li>
-        </ul>
-        <p class="fine rise" style="--d:0.32s"><a href="https://apps.apple.com/in/app/sabxi/id6783602290">App Store</a> · <a href="https://play.google.com/store/apps/details?id=com.sabxi.sabxi">Google Play</a></p>
-    </section>
-
-    <section class="chapter reveal" id="faq">
+    <section class="faq-wrap reveal" id="faq">
         <h2 class="rise">Before the first order.</h2>
         <div class="faq">
             <details class="rise" style="--d:0.08s" open>
@@ -649,7 +790,7 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
             </details>
             <details class="rise" style="--d:0.12s">
                 <summary>Does SABXI cut vegetables and fruits to a cafe’s specification?</summary>
-                <p>Yes. A cafe selects the product, chooses raw or a cut such as grated, fries, chips, or cut fruit, and picks a next-day time slot. SABXI procures, washes, sanitises, packs in food-grade recyclable packaging, and delivers at that slot. Packs are weighed to the gram.</p>
+                <p>Yes. A cafe selects the product, chooses raw or a cut such as grated, fries, chips, or cut fruit, and picks a next-day time slot. SABXI procures, washes, sanitises, packs in food-grade recyclable packaging, and delivers at that slot. Packs are weighed to the gram. Published packs include 25.140 kg onions, 5.050 kg green chillies, and 0.500 kg beans.</p>
             </details>
             <details class="rise" style="--d:0.16s">
                 <summary>How is SABXI produce washed before it is packed?</summary>
@@ -684,9 +825,15 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
 
     <section class="close reveal" id="trial">
         <h2 class="rise">Tell us the menu.</h2>
-        <p class="quiet rise" style="--d:0.1s">Shubham sends the first delivery cut to your spec. मुंबई के कैफ़े के लिए सब्ज़ी और फल।</p>
-        <a class="action rise" style="--d:0.18s" href="https://wa.me/919821918192?text=Hi%20Shubham%2C%20I%20want%20a%20trial%20delivery%20of%20vegetables%20and%20fruits%20for%20my%20cafe.">WhatsApp Shubham</a>
-        <p class="meta rise" style="--d:0.26s">
+        <p class="quiet rise" style="--d:0.08s">Shubham sends the first delivery cut to your spec. मुंबई के कैफ़े के लिए सब्ज़ी और फल।</p>
+        <ul class="lines">
+            <li class="rise" style="--d:0.12s"><b>01</b> Order in a tap.</li>
+            <li class="rise" style="--d:0.16s"><b>02</b> Track to your door.</li>
+            <li class="rise" style="--d:0.2s"><b>03</b> Delivery at your slot.</li>
+        </ul>
+        <p class="fine rise" style="--d:0.24s"><a href="https://apps.apple.com/in/app/sabxi/id6783602290">App Store</a> · <a href="https://play.google.com/store/apps/details?id=com.sabxi.sabxi">Google Play</a></p>
+        <a class="action rise" style="--d:0.28s" href="https://wa.me/919821918192?text=Hi%20Shubham%2C%20I%20want%20a%20trial%20delivery%20of%20vegetables%20and%20fruits%20for%20my%20cafe.">WhatsApp Shubham</a>
+        <p class="meta rise" style="--d:0.32s">
             <span>Shubham, Manager</span>
             <a href="tel:+919821918192">98219 18192</a>
             <a href="mailto:info@sabxi.com">info@sabxi.com</a>
@@ -717,7 +864,7 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
             entry.target.classList.add("in");
             io.unobserve(entry.target);
         });
-    }, { threshold: 0.18, rootMargin: "0px 0px -8% 0px" });
+    }, { threshold: 0.16, rootMargin: "0px 0px -6% 0px" });
     nodes.forEach(function (node) { io.observe(node); });
 })();
 </script>
