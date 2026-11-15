@@ -55,7 +55,7 @@
       "alternateName": "SABXI cafe supply",
       "description": "Vegetables and fruits supplier for cafes and restaurant kitchens in Mumbai. Produce is procured, washed, sanitised, cut to the kitchen's specification, weighed to the gram, and delivered in a next-day time slot from SABXI Studio, Chembur.",
       "url": "https://sabxi.com/b2b/",
-      "image": ["https://sabxi.com/b2b/packed.jpg", "https://sabxi.com/b2b/onions.jpg", "https://sabxi.com/b2b/chillies.jpg", "https://sabxi.com/b2b/beans.jpg"],
+      "image": ["https://sabxi.com/b2b/packed.jpg", "https://sabxi.com/b2b/onions.jpg", "https://sabxi.com/b2b/chillies.jpg", "https://sabxi.com/b2b/beans.jpg", "https://sabxi.com/b2b/cut-board.jpg", "https://sabxi.com/b2b/wash-bowl.jpg", "https://sabxi.com/b2b/fruit-still.jpg"],
       "telephone": "+919821918192",
       "email": "info@sabxi.com",
       "currenciesAccepted": "INR",
@@ -252,6 +252,9 @@ h1 { font-size: clamp(4.6rem, 8vw, 8.2rem); max-width: 8ch; }
     object-fit: contain;
 }
 .plate-copy { padding: 0 1.5rem 4.2rem 6vw; }
+.plate .words b { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+.plate .lines { margin-top: 1.1rem; max-width: none; }
+.plate .lines li { font-size: 1rem; }
 .num { font-size: clamp(5.5rem, 11vw, 9.5rem); }
 .plate-copy span { display: block; color: var(--muted); font-size: 1.05rem; letter-spacing: 0.04em; }
 .flip { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); }
@@ -276,8 +279,12 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
 }
 .lines li:last-child { border-bottom: 1px solid var(--line); }
 .lines b { font-weight: 500; color: var(--muted); }
-.split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2.5rem; max-width: 900px; }
-.split h3 { margin: 0 0 0.2rem; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; }
+.path { display: grid; grid-template-columns: 1fr 1.35fr; gap: 3.5rem; margin-top: 2.4rem; max-width: 980px; }
+.path h3 { margin: 0; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; }
+.path ol { list-style: none; margin: 0.7rem 0 0; padding: 0; display: flex; border-top: 1px solid var(--ink); }
+.path li { flex: 1; min-width: 0; border-left: 1px solid var(--ink); padding: 0.75rem 0.7rem 0; min-height: 6.2rem; }
+.path li b { display: block; font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1.7rem; line-height: 1; }
+.path li span { display: block; margin-top: 0.35rem; font-size: 0.92rem; }
 .words { display: flex; flex-wrap: wrap; gap: 0.35rem 1.4rem; }
 .words b { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: clamp(3rem, 6vw, 5rem); line-height: 0.9; }
 .fine { margin-top: 1.5rem; color: var(--muted); font-size: 0.95rem; }
@@ -370,7 +377,10 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
     .plate-copy, .flip .plate-copy { grid-column: 1; grid-row: 2; align-self: start; padding: 0.2rem 1.25rem 1.8rem; }
     h1 { font-size: 3.5rem; }
     .num { font-size: 4.6rem; }
-    .split, .menu { grid-template-columns: 1fr; columns: 1; }
+    .path { grid-template-columns: 1fr; gap: 1.6rem; }
+    .path ol { flex-direction: column; }
+    .path li { border-left: 0; border-bottom: 1px solid var(--line); min-height: 0; padding: 0.7rem 0; }
+    .menu { columns: 1; }
 }
 </style>
 </head>
@@ -447,37 +457,40 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
 
     <section class="chapter reveal">
         <h2 class="rise">The order.</h2>
-        <div class="split">
+        <div class="path">
             <div>
                 <h3 class="rise" style="--d:0.08s">You</h3>
-                <ul class="lines">
-                    <li class="rise" style="--d:0.12s"><b>1</b> Select the product.</li>
-                    <li class="rise" style="--d:0.18s"><b>2</b> Choose raw or the cut.</li>
-                    <li class="rise" style="--d:0.24s"><b>3</b> Pick a next-day slot.</li>
-                </ul>
+                <ol>
+                    <li class="rise" style="--d:0.12s"><b>1</b><span>Select the product.</span></li>
+                    <li class="rise" style="--d:0.16s"><b>2</b><span>Choose raw or the cut.</span></li>
+                    <li class="rise" style="--d:0.2s"><b>3</b><span>Pick a next-day slot.</span></li>
+                </ol>
             </div>
             <div>
                 <h3 class="rise" style="--d:0.08s">SABXI</h3>
-                <ul class="lines">
-                    <li class="rise" style="--d:0.14s"><b>1</b> We procure.</li>
-                    <li class="rise" style="--d:0.2s"><b>2</b> Wash and sanitise.</li>
-                    <li class="rise" style="--d:0.26s"><b>3</b> Pack in food-grade recyclable film.</li>
-                    <li class="rise" style="--d:0.32s"><b>4</b> Deliver at your slot.</li>
-                </ul>
+                <ol>
+                    <li class="rise" style="--d:0.14s"><b>1</b><span>We procure.</span></li>
+                    <li class="rise" style="--d:0.18s"><b>2</b><span>Wash and sanitise.</span></li>
+                    <li class="rise" style="--d:0.22s"><b>3</b><span>Pack in food-grade recyclable film.</span></li>
+                    <li class="rise" style="--d:0.26s"><b>4</b><span>Deliver at your slot.</span></li>
+                </ol>
             </div>
         </div>
     </section>
 
-    <section class="chapter reveal">
-        <div class="words">
-            <b class="rise">Washed.</b>
-            <b class="rise" style="--d:0.1s">Sanitised.</b>
-            <b class="rise" style="--d:0.2s">Packed.</b>
+    <section class="plate reveal" id="wash">
+        <div class="plate-copy">
+            <div class="words">
+                <b class="rise">Washed.</b>
+                <b class="rise" style="--d:0.08s">Sanitised.</b>
+                <b class="rise" style="--d:0.16s">Packed.</b>
+            </div>
+            <ul class="lines">
+                <li class="rise" style="--d:0.22s"><b>01</b> Ozonator wash. Produce is washed in ozonated water.</li>
+                <li class="rise" style="--d:0.28s"><b>02</b> Suma tablet. A food-safe sanitising step before packing.</li>
+            </ul>
         </div>
-        <ul class="lines">
-            <li class="rise" style="--d:0.28s"><b>01</b> Ozonator wash. Produce is washed in ozonated water.</li>
-            <li class="rise" style="--d:0.34s"><b>02</b> Suma tablet. A food-safe sanitising step before packing.</li>
-        </ul>
+        <figure><img class="zoom" src="wash-bowl.jpg" alt="Green chillies resting on a steel bowl of bubbling water" width="1152" height="864"></figure>
     </section>
 
     <section class="chapter reveal" id="certified">
@@ -496,6 +509,14 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
             <li class="rise" style="--d:0.16s"><b>02</b> Cut and prepped. The team starts cooking, not chopping.</li>
             <li class="rise" style="--d:0.22s"><b>03</b> Fruits and exotics. Seasonal fruit, and the produce a menu is built on.</li>
         </ul>
+    </section>
+
+    <section class="plate flip reveal" id="cut">
+        <figure><img class="zoom" src="cut-board.jpg" alt="Diced onion, carrot batons, and a green chilli arranged on a board" width="1152" height="864"></figure>
+        <div class="plate-copy">
+            <p class="num rise">Cut.</p>
+            <span class="rise" style="--d:0.12s">To the kitchen’s spec.</span>
+        </div>
     </section>
 
     <section class="chapter menu-wrap reveal" id="menu">
@@ -561,6 +582,14 @@ h2 { font-size: clamp(3.4rem, 7vw, 6.2rem); max-width: 12ch; }
             <li>Lemon <em>Nimbu</em></li>
             <li>Raw Garlic</li>
         </ul>
+    </section>
+
+    <section class="plate reveal" id="fruit">
+        <figure><img class="zoom" src="fruit-still.jpg" alt="Halved papaya, red globe grapes, and a wedge of watermelon" width="864" height="1152"></figure>
+        <div class="plate-copy">
+            <p class="num rise">Fruit.</p>
+            <span class="rise" style="--d:0.12s">Seasonal, and cut when you ask.</span>
+        </div>
     </section>
 
     <section class="chapter reveal">
