@@ -321,6 +321,7 @@ window.SabxiUI = (() => {
       <a href="/shop.html">Shop</a>
       <a href="/orders.html">Orders</a>
       <a href="/download/?utm_source=website&utm_sub_source=footer">Download app</a>
+      <a href="/b2b/">Cafe supply</a>
     </div>
     <div>
       <h4>Help</h4>

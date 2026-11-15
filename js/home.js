@@ -6,6 +6,7 @@
   mount.innerHTML =
     SabxiUI.shellHtml({ active: "home" }) +
     `<main class="wrap">
+      <a class="b2b-banner" href="/b2b/">Cafes — Mumbai vegetables and fruits, cut to your spec.</a>
       <section class="panel hero" id="hero">
         <div class="hero-track" id="hero-track"></div>
         <div class="hero-dots" id="hero-dots"></div>

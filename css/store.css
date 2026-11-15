@@ -458,3 +458,14 @@ footer {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+.b2b-banner {
+  display: block;
+  margin: 12px 0 4px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #10231a;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+}
